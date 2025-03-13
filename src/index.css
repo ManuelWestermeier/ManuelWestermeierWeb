@@ -1,0 +1,148 @@
+:root {
+  --b: rgb(11, 14, 20);
+  --b-l: rgba(11, 14, 20, 0.8);
+  --c: rgb(233, 238, 238);
+  --a: dodgerblue
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background-color: var(--b);
+  font-size: clamp(1rem, 0.5rem + 1vw, 1.2rem);
+  color: var(--c);
+}
+
+:focus {
+  outline: none;
+  border: none;
+  text-shadow: 0 0 10px var(--a);
+}
+
+.text-shaddow {
+  text-shadow: 0 0 10px var(--a);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+a {
+  text-shadow: 0 0 10px var(--a);
+  color: var(--c);
+  text-decoration: none;
+  position: relative;
+}
+
+a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border: 2px;
+  background-color: var(--a);
+  transform: scale(0);
+  transition: all 0.4s ease-in-out;
+}
+
+a:hover::after {
+  transform: scale(1);
+}
+
+button {
+  background-color: var(--a);
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+svg {
+  fill: var(--c);
+}
+
+.trigger-btn {
+  animation: trigger-btn-anim 1s infinite ease-in-out;
+}
+
+@keyframes trigger-btn-anim {
+  50% {
+    transform: translateY(10px) rotateZ(20deg) rotateY(-10deg) rotateX(-20deg) scale(2);
+  }
+}
+
+tr>td:nth-child(2) {
+  padding-left: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--a);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c);
+}
+
+
+
+.fadeIn {
+  animation: 0.8s fadeIn forwards;
+}
+
+.fadeOut {
+  animation: 0.8s fadeOut forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+
+  to {
+    transform: translate(-50px, 0);
+    opacity: 0;
+  }
+}
