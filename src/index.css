@@ -1,6 +1,7 @@
 :root {
   --b: rgb(11, 14, 20);
   --b-l: rgba(11, 14, 20, 0.8);
+  --b-light: rgb(19, 29, 41);
   --c: rgb(233, 238, 238);
   --a: dodgerblue
 }

@@ -15,6 +15,7 @@
     aspect-ratio: 1 / 1;
     overflow: auto;
     transition: all 0.3s ease-in-out;
+    background-image: linear-gradient(to bottom right, var(--b), var(--b-light));
 }
 
 .project:hover {

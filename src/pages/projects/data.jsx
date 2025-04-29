@@ -21,11 +21,11 @@ function Iframe(props) {
 
 export const data = {
   browserV3: {
-    name: "V1 MW-Browser",
+    name: "MW-Browser V3",
     elem: (
       <>
         <p>Der beste Browser mit Swipe-Multitab funktionalität</p>
-        <Img src="https://private-user-images.githubusercontent.com/150041048/418345619-66d0bcf0-918e-4576-9a45-9cc1b9d54cd5.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDU4Njg2ODksIm5iZiI6MTc0NTg2ODM4OSwicGF0aCI6Ii8xNTAwNDEwNDgvNDE4MzQ1NjE5LTY2ZDBiY2YwLTkxOGUtNDU3Ni05YTQ1LTljYzFiOWQ1NGNkNS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDI4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQyOFQxOTI2MjlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wZDY4MDZmYTdlY2U4YzkyOTc1MmM0MmQyNzMyOGJhZDIyYWQ3Y2ZiMTM3OGM3MzBjZGU4MjMzYWViYmFmOWZiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.v5P2KHfIF5qREdf52gs5cchgehk_0zKE012l8XYcav0"></Img>
+        <Img src="https://github.com/user-attachments/assets/66d0bcf0-918e-4576-9a45-9cc1b9d54cd5"></Img>
       </>
     ),
   },
