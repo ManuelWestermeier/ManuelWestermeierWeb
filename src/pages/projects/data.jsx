@@ -127,7 +127,7 @@ export const data = {
         />
         <Img
           className="img"
-          src="https://manuelwestermeier.github.io/home-page/img/Browser2.jpg"
+          src="https://manuelwestermeier.github.io/img/Browser2.jpg"
           alt="bild"
         />
         <p>
@@ -157,7 +157,7 @@ export const data = {
           alt="Bild"
           src="https://manuelwestermeier.github.io/home-page/nb-main.png"
         />
-        <a href="https://notenbuch.github.io" target="_blank">
+        <a href="https://noten-buch.netlify.app" target="_blank">
           Öffnen
         </a>
       </>
@@ -170,11 +170,11 @@ export const data = {
         <p>Das beste Memory-Game online. (ohne Werbung)</p>
         <Img
           alt="Bild"
-          src="https://manuelwestermeier.github.io/jpg"
+          src="https://manuelwestermeier.github.io/memory_game/logo.jpg"
         />
         <br />
         <a
-          href="https://manuelwestermeier.github.iohome-page//memory_game/"
+          href="https://manuelwestermeier.github.io/memory_game/"
           target="_blank"
         >
           Öffnen
@@ -187,9 +187,9 @@ export const data = {
     elem: (
       <>
         <p>Eine Presentationssoftware, die Markdown nutzt</p>
-        <Iframe src="https://manuelwestermeier.github.io/" />
+        <Iframe src="https://manuelwestermeier.github.io/v-present/" />
         <a
-          href="https://manuelwestermeier.github.io/"
+          href="https://manuelwestermeier.github.io/v-present/"
           target="_blank"
         >
           Öffnen
