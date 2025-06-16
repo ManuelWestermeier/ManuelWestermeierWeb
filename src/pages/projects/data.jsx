@@ -56,12 +56,12 @@ export const data = {
       <>
         <Img
           className="img"
-          src="https://manuel-westermeier.netlify.app/car-game_2.png"
+          src="https://manuelwestermeier.github.io/home-page/car-game_2.png"
           alt="bild"
         />
         <Img
           className="img"
-          src="https://manuel-westermeier.netlify.app/car-game-back.png"
+          src="https://manuelwestermeier.github.io/home-page/car-game-back.png"
           alt="bild"
         />
         <a
@@ -79,13 +79,13 @@ export const data = {
       <>
         <Img
           className="img"
-          src="https://manuel-westermeier.netlify.app/bird-game.jpg"
+          src="https://manuelwestermeier.github.io/home-page/bird-game.jpg"
           alt="bild"
         />
         <p>Ein spaßiges Spiel in dem ein Vogel die Welt erkundet....</p>
         <a
           target="_blank"
-          href="https://play.unity.com/mg/other/webgl-builds-356896"
+          href="https://play.unity.com/en/games/e6fb7edc-ba03-48ea-ba03-e7e3d5e4094f/bird-game-manuel111"
         >
           Spielen
         </a>
@@ -99,12 +99,12 @@ export const data = {
         <Img
           style={{ height: "200px" }}
           className="img"
-          src="https://manuel-westermeier.netlify.app/car-top.png"
+          src="https://manuelwestermeier.github.io/home-page/car-top.png"
           alt="bild"
         />
         <Img
           className="img"
-          src="https://manuel-westermeier.netlify.app/car-top-play.png"
+          src="https://manuelwestermeier.github.io/home-page/car-top-play.png"
           alt="bild"
         />
         <a
@@ -122,12 +122,12 @@ export const data = {
       <>
         <Img
           className="img"
-          src="https://manuel-westermeier.netlify.app/browser-1.png"
+          src="https://manuelwestermeier.github.io/home-page/browser-1.png"
           alt="bild"
         />
         <Img
           className="img"
-          src="https://manuelwestermeier.github.io/img/Browser2.jpg"
+          src="https://manuelwestermeier.github.io/home-page/img/Browser2.jpg"
           alt="bild"
         />
         <p>
@@ -147,17 +147,17 @@ export const data = {
         </p>
         <Img
           alt="Bild"
-          src="https://manuel-westermeier.netlify.app/nb-student.png"
+          src="https://manuelwestermeier.github.io/home-page/nb-student.png"
         />
         <Img
           alt="Bild"
-          src="https://manuel-westermeier.netlify.app/nb-class.png"
+          src="https://manuelwestermeier.github.io/home-page/nb-class.png"
         />
         <Img
           alt="Bild"
-          src="https://manuel-westermeier.netlify.app/nb-main.png"
+          src="https://manuelwestermeier.github.io/home-page/nb-main.png"
         />
-        <a href="https://noten-buch.netlify.app" target="_blank">
+        <a href="https://notenbuch.github.io" target="_blank">
           Öffnen
         </a>
       </>
@@ -170,11 +170,11 @@ export const data = {
         <p>Das beste Memory-Game online. (ohne Werbung)</p>
         <Img
           alt="Bild"
-          src="https://manuelwestermeier.github.io/memory_game/logo.jpg"
+          src="https://manuelwestermeier.github.io/jpg"
         />
         <br />
         <a
-          href="https://manuelwestermeier.github.io/memory_game/"
+          href="https://manuelwestermeier.github.iohome-page//memory_game/"
           target="_blank"
         >
           Öffnen
@@ -187,9 +187,9 @@ export const data = {
     elem: (
       <>
         <p>Eine Presentationssoftware, die Markdown nutzt</p>
-        <Iframe src="https://manuelwestermeier.github.io/v-present/" />
+        <Iframe src="https://manuelwestermeier.github.io/" />
         <a
-          href="https://manuelwestermeier.github.io/v-present/"
+          href="https://manuelwestermeier.github.io/"
           target="_blank"
         >
           Öffnen
@@ -252,22 +252,22 @@ export const data = {
         </p>
         <Img
           className="img"
-          src="https://manuel-westermeier.netlify.app/Chatt.jpg"
+          src="https://manuelwestermeier.github.io/home-page/Chatt.jpg"
           alt="Bild"
         />
         <Img
           className="img"
-          src="https://manuel-westermeier.netlify.app/Contacts.jpg"
+          src="https://manuelwestermeier.github.io/home-page/Contacts.jpg"
           alt="Bild"
         />
         <Img
           className="img"
-          src="https://manuel-westermeier.netlify.app/Invite.jpg"
+          src="https://manuelwestermeier.github.io/home-page/Invite.jpg"
           alt="Bild"
         />
         <Img
           className="img"
-          src="https://manuel-westermeier.netlify.app/Invite-2.jpg"
+          src="https://manuelwestermeier.github.io/home-page/Invite-2.jpg"
           alt="Bild"
         />
         <p>Auf Anfrage testbar</p>
@@ -281,15 +281,15 @@ export const data = {
         <p>Eine gratis Wahrheit oder Pflicht App</p>
         <Img
           alt="Bild"
-          src="https://manuel-westermeier.netlify.app/wop-create.png"
+          src="https://manuelwestermeier.github.io/home-page/wop-create.png"
         />
         <Img
           alt="Bild"
-          src="https://manuel-westermeier.netlify.app/wop-ask.png"
+          src="https://manuelwestermeier.github.io/home-page/wop-ask.png"
         />
         <Img
           alt="Bild"
-          src="https://manuel-westermeier.netlify.app/wop-users.png"
+          src="https://manuelwestermeier.github.io/home-page/wop-users.png"
         />
         <p>Auf Anfrage testbar</p>
       </>
@@ -302,15 +302,15 @@ export const data = {
         <p>Eine Businessapp mit der man Freelancer weltweit finden kann.</p>
         <Img
           alt="Bild"
-          src="https://manuel-westermeier.netlify.app/c-data.png"
+          src="https://manuelwestermeier.github.io/home-page/c-data.png"
         />
         <Img
           alt="Bild"
-          src="https://manuel-westermeier.netlify.app/c-search.png"
+          src="https://manuelwestermeier.github.io/home-page/c-search.png"
         />
         <Img
           alt="Bild"
-          src="https://manuel-westermeier.netlify.app/c-form.png"
+          src="https://manuelwestermeier.github.io/home-page/c-form.png"
         />
         <p>Auf Anfrage testbar</p>
       </>
