@@ -121,7 +121,7 @@ export const data = {
     elem: <>
       verschlüsselt Videos, Bilder, Audios, PDFs und alle anderen Dateitypen lokal einzeln mit passwortbasierter AES-Verschlüsselung in einem verborgenen Container, sodass ohne dein Passwort niemand Zugriff auf die Inhalte hat.
       <br />
-      <a href="https://hidden-fs.duckdns.org/favicon.ico" target="_blank">
+      <a href="https://hidden-fs.duckdns.org" target="_blank">
         Öffnen
       </a>
       <Img
@@ -180,13 +180,25 @@ export const data = {
     elem: (
       <>
         <p>Eine Presentationssoftware, die Markdown nutzt</p>
-        <Iframe src="https://manuelwestermeier.github.io/v-present/" />
+
+        <a
+          href="https://manuelwestermeier.github.io/v-present/#/project/0"
+          target="_blank"
+        >
+          Öffnen (Projekt-View)
+        </a>
+        <br />
         <a
           href="https://manuelwestermeier.github.io/v-present/"
           target="_blank"
         >
-          Öffnen
+          Öffnen (Start Seite)
         </a>
+        <br />
+        <Img
+          alt="Logo V-Present"
+          src="https://manuelwestermeier.github.io/v-present/logo.jpg"
+        />
       </>
     ),
   },
