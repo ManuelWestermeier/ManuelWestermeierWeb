@@ -33,7 +33,7 @@ function Home() {
                 <p>
                     <WriteText text='Mein Leistungsversprechen,' timeToNextChar={20} />
                     <br />
-                    <WriteText text='ich erstelle Ihre Homepage von Anfang bis Ende.' timeToNextChar={20} />
+                    <WriteText text='ich erstelle Ihre Website/App von Anfang bis Ende.' timeToNextChar={20} />
                     <br />
                     <WriteText text='Dabei stehe ich Ihnen professionell zur Seite und' timeToNextChar={20} />
                     <br />
@@ -45,7 +45,10 @@ function Home() {
                     <br />
                     <WriteText text=' Ihr persönlicher Erfolg.' timeToNextChar={20} />
                     <br />
-                    <WriteText text='(Full Stack Web-Programmierung)' timeToNextChar={20} />
+                    <br />
+                    <WriteText text='(Full Stack Web-Programmierung/App Development' timeToNextChar={20} />
+                    <br />
+                    <WriteText text='/Embedded Software/Video Spiele)' timeToNextChar={20} />
                 </p>
             </AnimCt>
 
@@ -63,7 +66,7 @@ function Home() {
                 <p>
                     <WriteText text='Auf dieser Webseite kann ich Ihnen leider nicht alle ' timeToNextChar={20} />
                     <br />
-                    <WriteText text='Meine Projekte präsentieren, da es weit über 200 sind.' timeToNextChar={20} />
+                    <WriteText text='Meine Projekte präsentieren, da es weit über 300 sind.' timeToNextChar={20} />
                     <br />
                     <WriteText text='Gerne habe ich Ihnen exemplarisch meine' timeToNextChar={20} />
                     <br />
