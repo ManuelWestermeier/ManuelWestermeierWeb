@@ -137,6 +137,20 @@ export const data = {
       </>
     ),
   },
+  hiddenFs: {
+    name: "Hidden-FS",
+    elem: <>
+      verschlüsselt Videos, Bilder, Audios, PDFs und alle anderen Dateitypen lokal einzeln mit passwortbasierter AES-Verschlüsselung in einem verborgenen Container, sodass ohne dein Passwort niemand Zugriff auf die Inhalte hat.
+      <br />
+      <a href="https://hidden-fs.duckdns.org/favicon.ico" target="_blank">
+        Öffnen
+      </a>
+      <Img
+        alt="Hidden FS Logo"
+        src="https://hidden-fs.duckdns.org/favicon.ico"
+      />
+    </>
+  },
   notenBuch: {
     name: "Notenbuch",
     elem: (
