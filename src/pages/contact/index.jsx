@@ -16,7 +16,7 @@ function Contact() {
                 E-Mail
             </p>
             <p>
-                <a href="mailto:manuel.westermeier111@gmail.com">[ manuel.westermeier111@gmail.com ]</a>
+                <a href="mailto:manuel.westermeier@gmx.de">[ manuel.westermeier@gmx.de ]</a>
             </p>
             <p>
                 Tel
