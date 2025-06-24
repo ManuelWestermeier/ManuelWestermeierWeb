@@ -34,7 +34,7 @@ export const data = {
     elem: (
       <>
         <p>Der sicherste Chat-App/Messenger der Welt.</p>
-        <p>Implementiert mit synchronen</p>
+        <p>Implementiert mit symetrischen (quantencomputersicheren) Verschlüsselungsverfahren (AES)</p>
         <p>
           <a href="https://privuschat.github.io/easy-messenger/">
             Website Öffnen & Testen
