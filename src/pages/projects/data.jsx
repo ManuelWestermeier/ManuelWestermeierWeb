@@ -135,7 +135,7 @@ export const data = {
     elem: (
       <>
         <p>
-          Eine Notenbuchapp für Lehrer und Schüler mit dem man Noten berechnen
+          Eine Notenbuchapp für Lehrer und Schüler mit der man Noten berechnen
           und veranschaulichen kann.
         </p>
         <Img
@@ -271,7 +271,7 @@ export const data = {
         />
         <p>
           Ein eigener Browser erstellt mit Electron mit Tab sowie Extesion- und
-          Farbthmefunktion.
+          Farbthemenwächelfunktion.
         </p>
       </>
     ),
