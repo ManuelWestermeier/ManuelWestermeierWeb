@@ -144,6 +144,9 @@ function MyWork() {
           </tr>
         </tbody>
       </table>
+      <p>
+        Hierbei wollte ich erwähnen, dass ich jede Technologie spielend erlärnen kann.
+      </p>
     </section>
   );
 }
