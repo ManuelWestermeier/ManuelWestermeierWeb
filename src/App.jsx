@@ -9,7 +9,7 @@ import Projects from './pages/projects';
 import Contact from './pages/contact';
 import Impressum from './pages/impressum';
 import Datenschutz from './pages/datenschutz';
-import SplashCursor from './comp/react-bits/splash-cursor';
+import { HashRouter } from 'react-router-dom'
 
 function App() {
   const location = useLocation();
@@ -21,9 +21,10 @@ function App() {
     if (location !== displayLocation) setTransistionStage("fadeOut");
   }, [location, displayLocation]);
 
+  console.log("re")
+
   return (
     <>
-      <SplashCursor COLOR_UPDATE_SPEED={1} BACK_COLOR={{ r: 0, g: 0, b: 255 }} />
       <Header />
       <div
         className={transitionStage}

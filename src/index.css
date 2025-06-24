@@ -147,3 +147,7 @@ tr>td:nth-child(2) {
     opacity: 0;
   }
 }
+
+canvas {
+  opacity: 0.8;
+}
