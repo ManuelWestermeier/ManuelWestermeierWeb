@@ -1,14 +1,10 @@
-const CACHE_NAME = 'auto-cache-v1';
+const CACHE_NAME = `auto-cache-${import.meta.env.VITE_BUILD_HASH}`;
 
 self.addEventListener('install', event => {
     self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-            return cache.addAll([
-                '/index.html',
-                '/logo.png',
-                '/src/main.jsx'
-            ]);
+            return cache.addAll([]);
         })
     );
 });
