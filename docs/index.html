@@ -10,12 +10,24 @@
   <meta name="description"
     content="🌐; Ihre Website, ihr Aushängeschild, Ihr persönlicher Erfolg; Manuel Westermeier; Traunstein Ruhpolding Chiemgau">
   <script>window.log = console.log</script>
-  <script type="module" crossorigin src="/assets/index-IzVR2RJ5.js"></script>
+  <script type="module" crossorigin src="/assets/index-DCECBBmS.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-C4MG-sKv.css">
 </head>
 
 <body>
   <div id="root"></div>
+  <noscript>
+    Please enable JavaScript to use this Website.
+  </noscript>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => log('Service Worker registriert:', reg))
+          .catch(err => log('Service Worker Fehler:', err));
+      });
+    }
+  </script>
 </body>
 
 </html>
