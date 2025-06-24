@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { data } from "./data";
 import WriteText from "../../comp/write-text";
+import BlurText from "../../comp/react-bits/blur-text";
 
 function Projects() {
   const [reposLength, setReposLength] = useState(180);
@@ -21,8 +22,13 @@ function Projects() {
 
   return (
     <section className="flex home bg-image col">
-      <h1>
-        <WriteText text="Projekte" />
+      <h1 style={{ fontSize: "2rem" }}>
+        <BlurText
+          text="Projekte"
+          delay={80}
+          animateBy="chars"
+          direction="top"
+        />
       </h1>
       <p>
         <WriteText
@@ -35,7 +41,7 @@ function Projects() {
         <WriteText
           key={reposLength != 180}
           text={`Weitere meiner ${reposLength} Projekte sind auf Github`}
-          timeToNextChar={30}
+          timeToNextChar={15}
         />
       </p>
       <p>

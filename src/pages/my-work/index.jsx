@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import WriteText from "../../comp/write-text";
+import BlurText from "../../comp/react-bits/blur-text";
 
 function MyWork() {
   useEffect(() => {
@@ -8,8 +8,13 @@ function MyWork() {
 
   return (
     <section className="flex home bg-image col">
-      <h1>
-        <WriteText text="Meine Arbeit" />
+      <h1 style={{ fontSize: "2rem" }}>
+        <BlurText
+          text="Meine Arbeit"
+          delay={70}
+          animateBy="chars"
+          direction="top"
+        />
       </h1>
       <table>
         <tbody>
@@ -144,9 +149,12 @@ function MyWork() {
           </tr>
         </tbody>
       </table>
-      <p>
-        In diesem Zusammenhang möchte ich betonen, dass ich mir neue Technologien rasch und problemlos aneignen kann.
-      </p>
+      <BlurText
+        text="In diesem Zusammenhang möchte ich betonen, dass ich mir neue Technologien rasch und problemlos aneignen kann."
+        delay={150}
+        animateBy="words"
+        direction="top"
+      />
     </section>
   );
 }
