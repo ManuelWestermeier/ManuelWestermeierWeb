@@ -145,7 +145,7 @@ function MyWork() {
         </tbody>
       </table>
       <p>
-        Hierbei wollte ich erwähnen, dass ich jede Technologie spielend erlärnen kann.
+        In diesem Zusammenhang möchte ich betonen, dass ich mir neue Technologien rasch und problemlos aneignen kann.
       </p>
     </section>
   );
