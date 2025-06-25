@@ -6,9 +6,9 @@ function Img(props) {
     <a
       href={props.src}
       onClick={(e) => e.preventDefault() || e.target.classList.toggle("max")}
-      onContextMenu={(e) =>
-        e.preventDefault() || e.target.classList.toggle("max")
-      }
+      // onContextMenu={(e) =>
+      //   e.preventDefault() || e.target.classList.toggle("max")
+      // }
     >
       <img {...props} />
     </a>
@@ -34,7 +34,10 @@ export const data = {
     elem: (
       <>
         <p>Der sicherste Chat-App/Messenger der Welt.</p>
-        <p>Implementiert mit symetrischen (quantencomputersicheren) Verschlüsselungsverfahren (AES)</p>
+        <p>
+          Implementiert mit symetrischen (quantencomputersicheren)
+          Verschlüsselungsverfahren (AES)
+        </p>
         <p>
           <a href="https://privuschat.github.io/easy-messenger/">
             Website Öffnen & Testen
@@ -92,6 +95,34 @@ export const data = {
       </>
     ),
   },
+  jumpAndDrive: {
+    name: "Jump and Drive",
+    elem: (
+      <>
+        <Img
+          className="img"
+          src="https://raw.githubusercontent.com/ManuelWestermeier/manuelwestermeier.github.io/refs/heads/main/Car.png"
+          alt="bild"
+        />
+        <p>
+          Ein Spiel, in dem man zwischen einem klassischen "Jump and Run" und
+          einem Auto wechseln muss, um Level zu meistern.
+        </p>
+        <Img
+          className="img"
+          src="https://raw.githubusercontent.com/ManuelWestermeier/manuelwestermeier.github.io/refs/heads/main/Player.png"
+          alt="bild"
+        />
+        <br />
+        <a
+          target="_blank"
+          href="https://play.unity.com/en/games/fe032d11-f973-4ba8-ad86-a89fe01f9047/webgl-build-jump-and-drive"
+        >
+          Spielen
+        </a>
+      </>
+    ),
+  },
   carGameTop: {
     name: "Car Game Top (3D)",
     elem: (
@@ -118,17 +149,22 @@ export const data = {
   },
   hiddenFs: {
     name: "Hidden-FS",
-    elem: <>
-      verschlüsselt Videos, Bilder, Audios, PDFs und alle anderen Dateitypen lokal einzeln mit passwortbasierter AES-Verschlüsselung in einem verborgenen Container, sodass ohne dein Passwort niemand Zugriff auf die Inhalte hat.
-      <br />
-      <a href="https://hidden-fs.duckdns.org" target="_blank">
-        Öffnen
-      </a>
-      <Img
-        alt="Hidden FS Logo"
-        src="https://hidden-fs.duckdns.org/favicon.ico"
-      />
-    </>
+    elem: (
+      <>
+        verschlüsselt Videos, Bilder, Audios, PDFs und alle anderen Dateitypen
+        lokal einzeln mit passwortbasierter AES-Verschlüsselung in einem
+        verborgenen Container, sodass ohne dein Passwort niemand Zugriff auf die
+        Inhalte hat.
+        <br />
+        <a href="https://hidden-fs.duckdns.org" target="_blank">
+          Öffnen
+        </a>
+        <Img
+          alt="Hidden FS Logo"
+          src="https://hidden-fs.duckdns.org/favicon.ico"
+        />
+      </>
+    ),
   },
   notenBuch: {
     name: "Notenbuch",
@@ -199,6 +235,47 @@ export const data = {
           alt="Logo V-Present"
           src="https://manuelwestermeier.github.io/v-present/logo.jpg"
         />
+      </>
+    ),
+  },
+  esp32c6OS: {
+    name: "ESP32 C6 OS",
+    elem: (
+      <>
+        <video
+          className="img"
+          style={{ width: "100%" }}
+          src="https://raw.githubusercontent.com/ManuelWestermeier/manuelwestermeier.github.io/refs/heads/main/esp32_141os.mp4"
+          alt="esp32c6 bild"
+          loop
+          onClick={(e) => e.target.play()}
+          autoPlay
+        />
+        <p>
+          Ein Betriebssystem, das auf einem 1-Euro-ESP32 mit einem 1,41 Zoll
+          großen Display und nur einem einzigen Knopf läuft. Es unterstützt
+          mehrere Accounts, ist verschlüsselt und bietet Internetzugang.
+          Mitgeliefert werden eine Suchmaschine, ein Browser und eine virtuelle
+          Tastatur, die über den einzigen Knopf mittels Gesten wie Doppelklick,
+          langem Klick und einfachem Klick gesteuert wird. Außerdem gehören ein
+          serverseitiges JavaScript-Framework sowie ein eigenes Protokoll zum
+          System. Alle Inhalte werden serverseitig gerendert und als Anweisungen
+          an den ESP32 übertragen. Dieser ist in der Lage, Auswahlmenüs,
+          Grafiken, Texte und vieles mehr zu verarbeiten und darzustellen.
+          Zusätzlich verfügt das System über einen clientseitigen Speicher.
+        </p>
+        <Img
+          className="img"
+          src="https://raw.githubusercontent.com/ManuelWestermeier/manuelwestermeier.github.io/refs/heads/main/esp32_141os.jpg"
+          alt="esp32c6 bild"
+        />
+        <br />
+        <a
+          href="https://github.com/ManuelWestermeier/mw-141-os"
+          target="_blank"
+        >
+          Source Code
+        </a>
       </>
     ),
   },
