@@ -250,6 +250,7 @@ export const data = {
           loop
           onClick={(e) => e.target.play()}
           autoPlay
+          muted
         />
         <p>
           Ein Betriebssystem, das auf einem 1-Euro-ESP32 mit einem 1,41 Zoll
