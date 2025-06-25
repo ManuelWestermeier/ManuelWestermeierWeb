@@ -17,4 +17,20 @@ header {
         background-color: var(--b-l);
         box-shadow: 0 0 10px 5px var(--b-l);
     }
+
+    a[href='#/'] {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 370px) {
+    a[href='#/'] {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 330px) {
+    a[href='#/'] {
+        font-size: 6px;
+    }
 }
