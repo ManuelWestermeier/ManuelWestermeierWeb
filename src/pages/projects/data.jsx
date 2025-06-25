@@ -101,7 +101,7 @@ export const data = {
       <>
         <Img
           className="img"
-          src="https://raw.githubusercontent.com/ManuelWestermeier/manuelwestermeier.github.io/refs/heads/main/Car.png"
+          src="https://manuelwestermeier.github.io/Car.png"
           alt="bild"
         />
         <p>
@@ -110,7 +110,7 @@ export const data = {
         </p>
         <Img
           className="img"
-          src="https://raw.githubusercontent.com/ManuelWestermeier/manuelwestermeier.github.io/refs/heads/main/Player.png"
+          src="https://manuelwestermeier.github.io/Player.png"
           alt="bild"
         />
         <br />
@@ -245,7 +245,7 @@ export const data = {
         <video
           className="img"
           style={{ width: "100%" }}
-          src="https://raw.githubusercontent.com/ManuelWestermeier/manuelwestermeier.github.io/refs/heads/main/esp32_141os.mp4"
+          src="https://manuelwestermeier.github.io/esp32_141os.mp4"
           alt="esp32c6 bild"
           loop
           onClick={(e) => e.target.play()}
@@ -267,7 +267,7 @@ export const data = {
         </p>
         <Img
           className="img"
-          src="https://raw.githubusercontent.com/ManuelWestermeier/manuelwestermeier.github.io/refs/heads/main/esp32_141os.jpg"
+          src="https://manuelwestermeier.github.io/esp32_141os.jpg"
           alt="esp32c6 bild"
         />
         <br />
