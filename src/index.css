@@ -16,6 +16,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: url("https://manuelwestermeier.github.io/output-onlinepngtools.png"), auto !important;
 }
 
 html {
