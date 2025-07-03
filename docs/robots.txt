@@ -1,0 +1,5 @@
+# robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://manuel-westermeier.duckdns.org/sitemap.xml
