@@ -68,7 +68,28 @@ function Home() {
             <br />
             <br />
             <WriteText
-              text="(Full Stack Webentwicklung | App Development | Embedded Software | Spieleentwicklung)"
+              text="Neben der Programmierung habe ich mich in letzter Zeit auch intensiv mit"
+              timeToNextChar={20}
+            />
+            <br />
+            <WriteText
+              text="Sounddesign und Musikproduktion beschäftigt – von digitalen Soundeffekten"
+              timeToNextChar={20}
+            />
+            <br />
+            <WriteText
+              text="bis hin zu kompletten Musikstücken für Apps, Spiele oder Videos."
+              timeToNextChar={20}
+            />
+            <br />
+            <br />
+            <WriteText
+              text="(Full Stack Webentwicklung | App Development | Embedded Software |"
+              timeToNextChar={20}
+            />
+            <br />
+            <WriteText
+              text="Spieleentwicklung | Sounddesign & Musikproduktion)"
               timeToNextChar={20}
             />
           </p>
