@@ -3,81 +3,82 @@ import React from "react";
 function Datenschutz() {
   return (
     <div className="bg-image" style={{ margin: "20px" }}>
-      <div class="markdown prose w-full break-words dark:prose-invert dark">
-        <p>Datenschutzerklärung:</p>
+      <div className="markdown prose w-full break-words dark:prose-invert dark">
+        <h1>Datenschutzerklärung</h1>
+
         <p>
-          Wir freuen uns über Ihr Interesse an unserem Unternehmen und unseren
-          Dienstleistungen. Der Schutz Ihrer persönlichen Daten ist uns ein
-          wichtiges Anliegen. Nachfolgend informieren wir Sie über die Erhebung,
-          Verarbeitung und Nutzung Ihrer personenbezogenen Daten gemäß den
-          geltenden Datenschutzbestimmungen.
+          Diese Website ist ein privates, nicht-kommerzielles Projekt zur
+          Präsentation von Software-, Web- und Medienprojekten. Der Schutz Ihrer
+          Daten ist uns wichtig – daher beachten wir die Vorgaben der
+          Datenschutz-Grundverordnung (DSGVO).
         </p>
-        <ol>
-          <li>
-            Verantwortliche Stelle: Verantwortlich für die Datenverarbeitung auf
-            dieser Website ist:
-          </li>
-        </ol>
+
+        <h2>1. Verantwortliche Stelle</h2>
         <p>
           Manuel Westermeier
           <br />
           Seehauserstraße 13
           <br />
-          13 Seehauserstraße
+          83324 Ruhpolding
+          <br />
+          E-Mail: manuel.westermeier@gmx.de
+        </p>
+
+        <h2>2. Keine Tracker oder Cookies</h2>
+        <p>
+          Auf dieser Website werden keinerlei Cookies, Analyse-Tools,
+          Tracking-Dienste oder Werbe-Technologien verwendet.
+          <br />
+          Es erfolgt keine Auswertung Ihres Nutzerverhaltens.
+        </p>
+
+        <h2>3. Hosting & Domain</h2>
+        <p>
+          Diese Website wird über{" "}
+          <a href="https://pages.github.com" target="_blank">
+            GitHub Pages
+          </a>{" "}
+          bereitgestellt, einem statischen Hosting-Dienst von GitHub Inc. Wir
+          nutzen ausschließlich das Hosting-Angebot, haben jedoch keinen
+          Einfluss auf etwaige serverseitige Protokollierungen durch GitHub.
+          GitHub ist verantwortlich für die technische Bereitstellung und
+          Sicherheit des Hostings.
         </p>
         <p>
-          Bei Fragen zum Datenschutz können Sie uns unter
-          manuel.westermeier@gmx.de oder +4915256427900 erreichen.
+          Die Domain <strong>manuel-westermeier.duckdns.org</strong> wird über{" "}
+          <a href="https://www.duckdns.org/" target="_blank">
+            DuckDNS.org
+          </a>{" "}
+          verwaltet. Auch dieser Dienst speichert möglicherweise Zugriffsdaten
+          (z.&nbsp;B. IP-Adressen), auf die wir keinen Zugriff haben.
         </p>
-        <ol start="2">
-          <li>
-            Datenerhebung und -verarbeitung: Wir erheben und verarbeiten
-            personenbezogene Daten, die Sie uns im Rahmen Ihrer Nutzung unserer
-            Website freiwillig zur Verfügung stellen. Dies kann beispielsweise
-            Ihr Name, Ihre E-Mail-Adresse, Ihre Telefonnummer oder andere
-            Kontaktdaten umfassen.
-          </li>
-        </ol>
+
+        <h2>4. Erhobene Daten</h2>
         <p>
-          Zudem werden bei jedem Zugriff auf unsere Website automatisch
-          Informationen durch den Webserver protokolliert. Diese Informationen
-          umfassen unter anderem Ihre IP-Adresse, Datum und Uhrzeit des
-          Zugriffs, Name und URL der abgerufenen Datei, verwendeter Browser und
-          Betriebssystem.
+          Beim Aufruf dieser Website werden durch GitHub Pages ggf. automatisch
+          technische Informationen erfasst (z.&nbsp;B. IP-Adresse, Browsertyp,
+          Datum und Uhrzeit). Diese Daten dienen der Systemsicherheit und
+          -stabilität und werden nicht von uns ausgewertet.
         </p>
-        <ol start="3">
-          <li>
-            <p>
-              Nutzung und Weitergabe der Daten: Wir verwenden Ihre
-              personenbezogenen Daten nur für die Zwecke, für die sie erhoben
-              wurden, beispielsweise zur Bearbeitung Ihrer Anfragen, zur
-              Abwicklung von Verträgen oder zur Verbesserung unserer
-              Dienstleistungen. Eine Weitergabe Ihrer Daten an Dritte erfolgt
-              nur, wenn dies gesetzlich vorgeschrieben ist oder zur Erfüllung
-              der oben genannten Zwecke erforderlich ist.
-            </p>
-          </li>
-          <li>
-            <p>Cookies: Unsere Website verwendet keine Cookies.</p>
-          </li>
-          <li>
-            <p>
-              Ihre Rechte: Sie haben das Recht, Auskunft über die bei uns
-              gespeicherten personenbezogenen Daten zu erhalten sowie deren
-              Berichtigung, Löschung oder Sperrung zu verlangen. Darüber hinaus
-              können Sie der Verwendung Ihrer Daten für Werbezwecke oder
-              Marktforschungszwecke jederzeit widersprechen.
-            </p>
-          </li>
-        </ol>
+
+        <h2>5. Kontaktaufnahme</h2>
         <p>
-          Bitte wenden Sie sich bei Fragen oder Anliegen zum Datenschutz an uns
-          unter manuel.westermeier@gmx.de oder +4915256427900.
+          Wenn Sie mit mir Kontakt aufnehmen (z.&nbsp;B. per E-Mail), werden
+          Ihre Angaben zur Bearbeitung der Anfrage verwendet. Es erfolgt keine
+          Weitergabe an Dritte.
         </p>
+
+        <h2>6. Ihre Rechte</h2>
         <p>
-          Diese Datenschutzerklärung kann von Zeit zu Zeit aktualisiert werden.
-          Die jeweils aktuelle Version finden Sie auf unserer Website. Stand:
-          04.04.2024.
+          Sie haben das Recht auf Auskunft über die von uns gespeicherten
+          personenbezogenen Daten sowie auf Berichtigung, Löschung oder
+          Einschränkung der Verarbeitung.
+        </p>
+
+        <h2>7. Stand der Erklärung</h2>
+        <p>
+          Diese Datenschutzerklärung wurde zuletzt aktualisiert am
+          03. Juli 2025. Änderungen behalten wir uns vor.
         </p>
       </div>
     </div>

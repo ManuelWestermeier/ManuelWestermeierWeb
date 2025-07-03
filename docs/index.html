@@ -1,33 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manuel Westermeier | Entwicklerportfolio</title>
+    <link rel="icon" href="https://manuelwestermeier.github.io/logo.png" />
+    <meta name="image" content="https://manuelwestermeier.github.io/logo.png" />
+    <meta
+      name="description"
+      content="👨‍💻🎧 Manuel Westermeier - Full-Stack Entwickler, Sounddesigner & kreativer Problemlöser aus dem Chiemgau. Professionelle Websites, Apps, Musikproduktion & Softwarelösungen mit Leidenschaft entwickelt."
+    />
+    <script>
+      window.log = console.log;
+    </script>
+    <script type="module" crossorigin src="/assets/index-C9YXVKta.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CDuR4avp.css">
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manuel Westermeier</title>
-  <link rel="icon" href="https://manuelwestermeier.github.io/logo.png">
-  <meta name="image" content="https://manuelwestermeier.github.io/logo.png">
-  <meta name="description"
-    content="🌐; Ihre Website, ihr Aushängeschild, Ihr persönlicher Erfolg; Manuel Westermeier; Traunstein Ruhpolding Chiemgau">
-  <script>window.log = console.log</script>
-  <script type="module" crossorigin src="/assets/index-DruYff7I.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-BmrtKgM4.css">
-</head>
-
-<body>
-  <div id="root"></div>
-  <noscript>
-    Please enable JavaScript to use this Website.
-  </noscript>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => log('Service Worker registriert:', reg))
-          .catch(err => log('Service Worker Fehler:', err));
-      });
-    }
-  </script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <noscript
+      >Bitte aktiviere JavaScript, um diese Website korrekt
+      anzuzeigen.</noscript
+    >
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((reg) => log("Service Worker registriert:", reg))
+            .catch((err) => log("Service Worker Fehler:", err));
+        });
+      }
+    </script>
+  </body>
 </html>
