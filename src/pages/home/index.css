@@ -1,19 +1,18 @@
 section {
-    width: calc(100% - 40px);
-    padding: 20px;
-    min-height: 200px;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
+  width: calc(100% - 40px);
+  padding: 20px;
+  min-height: 200px;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .bg-image {
-    background-image:
-        linear-gradient(to bottom, var(--b), transparent),
-        linear-gradient(to bottom, transparent, var(--b)),
-        url("https://manuelwestermeier.github.io/bg.jpg");
+  background-image: linear-gradient(to bottom, var(--b), transparent),
+    linear-gradient(to bottom, transparent, var(--b)),
+    url("https://manuelwestermeier.github.io/bg.jpg");
 }
 
 .home {
-    min-height: calc(100dvh - 60px);
+  min-height: calc(100dvh - 60px);
 }

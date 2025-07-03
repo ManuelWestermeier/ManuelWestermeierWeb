@@ -3,7 +3,7 @@
   --b-l: rgba(11, 14, 20, 0.8);
   --b-light: rgb(19, 29, 41);
   --c: rgb(233, 238, 238);
-  --a: dodgerblue
+  --a: dodgerblue;
 }
 
 * {
@@ -16,7 +16,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: url("https://manuelwestermeier.github.io/output-onlinepngtools (1).png"), auto !important;
+  cursor: url("https://manuelwestermeier.github.io/output-onlinepngtools (1).png"),
+    auto !important;
 }
 
 html {
@@ -89,11 +90,12 @@ svg {
 
 @keyframes trigger-btn-anim {
   50% {
-    transform: translateY(10px) rotateZ(20deg) rotateY(-10deg) rotateX(-20deg) scale(2);
+    transform: translateY(10px) rotateZ(20deg) rotateY(-10deg) rotateX(-20deg)
+      scale(2);
   }
 }
 
-tr>td:nth-child(2) {
+tr > td:nth-child(2) {
   padding-left: 10px;
 }
 
@@ -114,8 +116,6 @@ tr>td:nth-child(2) {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--c);
 }
-
-
 
 .fadeIn {
   animation: 0.8s fadeIn forwards;
