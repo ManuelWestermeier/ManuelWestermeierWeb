@@ -14,7 +14,7 @@ function Datenschutz() {
                     <br />
                     Seehauserstraße 13
                     <br />
-                    13 Seehauserstraße</p><p>Bei Fragen zum Datenschutz können Sie uns unter manuel.westermeier111@gmail.com oder +4915256427900 erreichen.</p><ol start="2">
+                    13 Seehauserstraße</p><p>Bei Fragen zum Datenschutz können Sie uns unter manuel.westermeier@gmx.de oder +4915256427900 erreichen.</p><ol start="2">
                     <li>Datenerhebung und -verarbeitung:
                         Wir erheben und verarbeiten personenbezogene Daten, die Sie uns im Rahmen Ihrer Nutzung unserer Website freiwillig zur Verfügung stellen. Dies kann beispielsweise Ihr Name, Ihre E-Mail-Adresse, Ihre Telefonnummer oder andere Kontaktdaten umfassen.
                     </li>
@@ -37,7 +37,7 @@ function Datenschutz() {
                         </p>
                     </li>
                 </ol>
-                <p>Bitte wenden Sie sich bei Fragen oder Anliegen zum Datenschutz an uns unter manuel.westermeier111@gmail.com oder +4915256427900.</p>
+                <p>Bitte wenden Sie sich bei Fragen oder Anliegen zum Datenschutz an uns unter manuel.westermeier@gmx.de oder +4915256427900.</p>
                 <p>Diese Datenschutzerklärung kann von Zeit zu Zeit aktualisiert werden. Die jeweils aktuelle Version finden Sie auf unserer Website. Stand: 04.04.2024.</p>
             </div>
         </div>
