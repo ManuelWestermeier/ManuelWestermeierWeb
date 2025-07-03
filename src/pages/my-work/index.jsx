@@ -124,7 +124,9 @@ function MyWork() {
                 />
               </a>
             </td>
-            <td>Embeddes Systems ESP32/Arduino (C/C++/PlatformIO/ArduinoIDE)</td>
+            <td>
+              Embeddes Systems ESP32/Arduino (C/C++/PlatformIO/ArduinoIDE)
+            </td>
           </tr>
           <tr>
             <td>
@@ -145,6 +147,33 @@ function MyWork() {
               Serverhosting mit <a href="https://codesandbox.io">Codesandbox</a>
               , Github Pages, render.com und{" "}
               <a href="https://www.netlify.com">Netlify</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://www.youtube.com/@TAGESSCHATTEN?sub_confirmation=1">
+                <img
+                  style={{
+                    height: "2rem",
+                    backgroundColor: "white",
+                    borderRadius: "2rem",
+                    width: "2rem",
+                  }}
+                  src="https://yt3.googleusercontent.com/uGutbkk69mpQZ8tmS8uG0RA5yZvu2VnXr-0JotmEOryR-Yo9RUaiMCbSL8cbtgFCU4ONhZg8i7Q=s160-c-k-c0x00ffffff-no-rj"
+                  alt="[TAGESSCHATTEN Kanal Logo]"
+                />
+              </a>
+            </td>
+            <td>
+              <a href="https://www.youtube.com/@TAGESSCHATTEN?sub_confirmation=1">
+                Musik und Soundeffekterstellung/Youtub Kanal
+              </a>
+              <a
+                style={{ marginLeft: "0.5rem" }}
+                href="https://www.youtube.com/@TAGESSCHATTEN/videos"
+              >
+                [ Videos ]
+              </a>
             </td>
           </tr>
         </tbody>
