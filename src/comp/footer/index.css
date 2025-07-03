@@ -1,19 +1,19 @@
 footer {
-    margin: 150px auto;
-    padding: 20px;
-    max-width: min(800px, 80dvw);
-    box-shadow: 0 0 20px -5px var(--a);
-    min-height: 200px;
+  margin: 150px auto;
+  padding: 20px;
+  max-width: min(800px, 80dvw);
+  box-shadow: 0 0 20px -5px var(--a);
+  min-height: 200px;
 }
 
 .col {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .gap {
-    gap: 10px;
+  gap: 10px;
 }
 
 .center {
-    justify-content: center;
+  justify-content: center;
 }

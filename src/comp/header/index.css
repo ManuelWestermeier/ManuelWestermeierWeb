@@ -1,36 +1,36 @@
 header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    justify-content: space-between;
-    height: 40px;
-    overflow: hidden;
-    overflow-x: auto;
-    z-index: 100;
-    font-size: clamp(0.7rem, 0.5rem + 1vw, 1.1rem);
-    background-image: linear-gradient(to bottom, var(--b), transparent);
+  position: sticky;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  justify-content: space-between;
+  height: 40px;
+  overflow: hidden;
+  overflow-x: auto;
+  z-index: 100;
+  font-size: clamp(0.7rem, 0.5rem + 1vw, 1.1rem);
+  background-image: linear-gradient(to bottom, var(--b), transparent);
 }
 
-@media (max-width : 400px) {
-    header {
-        background-color: var(--b-l);
-        box-shadow: 0 0 10px 5px var(--b-l);
-    }
+@media (max-width: 400px) {
+  header {
+    background-color: var(--b-l);
+    box-shadow: 0 0 10px 5px var(--b-l);
+  }
 
-    a[href='#/'] {
-        font-size: 14px;
-    }
+  a[href="#/"] {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 370px) {
-    a[href='#/'] {
-        font-size: 10px;
-    }
+  a[href="#/"] {
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 330px) {
-    a[href='#/'] {
-        font-size: 6px;
-    }
+  a[href="#/"] {
+    font-size: 6px;
+  }
 }

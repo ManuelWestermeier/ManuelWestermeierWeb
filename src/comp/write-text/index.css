@@ -1,6 +1,6 @@
 @keyframes text-fade-in {
-    0% {
-        opacity: 0;
-        background-color: var(--a);
-    }
+  0% {
+    opacity: 0;
+    background-color: var(--a);
+  }
 }

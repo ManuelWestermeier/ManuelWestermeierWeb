@@ -1,39 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import "./index.css"
+import React, { useEffect, useState } from "react";
+import "./index.css";
 
 function WriteText({ text = "", timeToNextChar = 100, delay = 0 }) {
-    const [current, setCurrent] = useState("")
+  const [current, setCurrent] = useState("");
 
-    useEffect(() => {
-        setTimeout(() => {
+  useEffect(() => {
+    setTimeout(() => {
+      const chars = text.split("");
 
-            const chars = text.split("")
+      var interval = setInterval(() => {
+        const nextChar = chars.shift();
 
-            var interval = setInterval(() => {
-
-                const nextChar = chars.shift()
-
-                if (!nextChar) {
-                    return clearInterval(interval)
-                }
-
-                setCurrent(old => old + nextChar)
-
-            }, timeToNextChar)
-
-        }, delay)
-        return () => true
-    }, [])
-
-    return current.split("").map((char, i) => {
-        const style = {
-            animation: `text-fade-in ${timeToNextChar * i}ms ease-in-out`
+        if (!nextChar) {
+          return clearInterval(interval);
         }
 
-        return <span style={style} key={i}>
-            {char}
-        </span>
-    })
+        setCurrent((old) => old + nextChar);
+      }, timeToNextChar);
+    }, delay);
+    return () => true;
+  }, []);
+
+  return current.split("").map((char, i) => {
+    const style = {
+      animation: `text-fade-in ${timeToNextChar * i}ms ease-in-out`,
+    };
+
+    return (
+      <span style={style} key={i}>
+        {char}
+      </span>
+    );
+  });
 }
 
-export default WriteText
+export default WriteText;

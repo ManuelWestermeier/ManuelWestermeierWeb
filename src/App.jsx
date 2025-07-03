@@ -20,8 +20,6 @@ function App() {
     if (location !== displayLocation) setTransistionStage("fadeOut");
   }, [location, displayLocation]);
 
-  console.log("re");
-
   return (
     <>
       <Header />
