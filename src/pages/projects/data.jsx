@@ -1,476 +1,363 @@
 import React from "react";
 import "./index.css";
 
+// Optimized Image Component
 function Img(props) {
+  // Extract className to avoid overriding the logical classNames
+  const { className, ...otherProps } = props;
+
   return (
-    <a
-      href={props.src}
-      onClick={(e) => e.preventDefault() || e.target.classList.toggle("max")}
-    // onContextMenu={(e) =>
-    //   e.preventDefault() || e.target.classList.toggle("max")
-    // }
+    <div
+      className={`img-wrapper ${className || ""}`}
+      onClick={(e) => {
+        // Toggle the 'max' class on the wrapper or image for the lightbox effect
+        // Using currentTarget ensures we target the container/image consistently
+        const target = e.target.closest('img');
+        if (target) target.classList.toggle("max");
+      }}
     >
-      <img {...props} />
-    </a>
+      <img
+        loading="lazy" // SEO/Performance: Lazy load images
+        decoding="async"
+        title="Klicken zum Vergrößern"
+        {...otherProps}
+      />
+    </div>
   );
 }
 
 function Iframe(props) {
-  return <iframe {...props} style={{ borderRadius: "10px" }} frameBorder={0} />;
+  return (
+    <iframe
+      {...props}
+      title={props.title || "Project Demo"} // Accessibility requirement
+      style={{ borderRadius: "10px", width: "100%", border: "none" }}
+      loading="lazy"
+    />
+  );
 }
+
+// Reusable Button Component for consistent design
+const LinkBtn = ({ href, children }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="project-link"
+  >
+    {children}
+  </a>
+);
 
 export const data = {
   easyEinakuf: {
     name: "Easy-Einkauf",
     elem: (
-      <>
-        <p>Die beste Einkaufslisten App.</p>
-        <p><a target="_blank" href="https://app.easy-einkauf.de/">Teste Selbst</a></p>
-        <Img src="https://app.easy-einkauf.de/screenshots/list-page.jpg"></Img>
-        <p><a target="_blank" href="https://www.youtube.com/@easy-einkauf?sub_confirmation=1">Youtube</a></p>
-        <p><a target="_blank" href="https://www.tiktok.com/@easyeinkauf">Tiktok</a></p>
-        <p><a target="_blank" href="https://www.instagram.com/easy.einkauf">Instagram</a></p>
-      </>
+      <article>
+        <p>Die smarte Einkaufslisten-App für effizientes Planen.</p>
+        <div className="links-row">
+          <LinkBtn href="https://app.easy-einkauf.de/">App Testen</LinkBtn>
+        </div>
+        <Img
+          src="https://app.easy-einkauf.de/screenshots/list-page.jpg"
+          alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
+        />
+        <div className="social-links">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@easy-einkauf?sub_confirmation=1">YouTube</a> •
+          <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@easyeinkauf">TikTok</a> •
+          <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/easy.einkauf">Instagram</a>
+        </div>
+      </article>
     ),
   },
   MW32OS: {
-    name: "MW-OS",
+    name: "MW-OS (ESP32)",
     elem: (
-      <>
-        <p>Ein minni OS für kleine ESP-32 Bildschirme und günstige Hardware.</p>
-        <Img src="/imag/os/home.png" alt="Ladefehler [BILD]"></Img>
-        <ul>
-          <li>- Hardwarekosten {"<"} 5 Euro</li>
-          <li>- mehr als 22.000 Zeilen Code</li>
-          <li>- SD support</li>
-          <li>- Accounts</li>
-          <li>- Verschlüsselung</li>
-          <li>- Apps</li>
-          <li>- Browser</li>
-          <li>- Virtual Keyboard</li>
-          <li>- Eigener App Manager</li>
-          <li>- Moderne UI & Themes</li>
-          <li>- WLAN</li>
+      <article>
+        <p>Ein vollwertiges Mini-Betriebssystem für ESP-32 Mikrocontroller mit Touch-Display.</p>
+        <Img src="/imag/os/home.png" alt="MW-OS Startbildschirm Interface" />
+        <ul className="feature-list">
+          <li>- Hardwarekosten &lt; 5 Euro</li>
+          <li>- &gt; 22.000 Zeilen Code</li>
+          <li>- SD-Support, Accounts & Verschlüsselung</li>
+          <li>- Apps, Browser & Virtuelles Keyboard</li>
+          <li>- Eigener App Manager & Moderne UI</li>
+          <li>- WLAN-Konnektivität</li>
         </ul>
-        <p><a target="_blank" href="https://github.com/ManuelWestermeier/esp-wroom-2-4-inch-os">Github</a></p>
-        <p><a target="_blank" href="https://www.tiktok.com/@pdev111">Tiktok</a></p>
-        <Img src="/imag/os/paint.png" alt="Ladefehler [BILD]"></Img>
-        <Img src="/imag/os/login.png" alt="Ladefehler [BILD]"></Img>
-        <Img src="/imag/os/fs.png" alt="Ladefehler [BILD]"></Img>
-        <Img src="/imag/os/settings.png" alt="Ladefehler [BILD]"></Img>
-        <Img src="/imag/os/designer.png" alt="Ladefehler [BILD]"></Img>
-        <Img src="/imag/os/wlan.png" alt="Ladefehler [BILD]"></Img>
-        <Img src="/imag/os/keyboard.png" alt="Ladefehler [BILD]"></Img>
-      </>
+        <div className="links-row">
+          <LinkBtn href="https://github.com/ManuelWestermeier/esp-wroom-2-4-inch-os">GitHub Repo</LinkBtn>
+          <LinkBtn href="https://www.tiktok.com/@pdev111">TikTok Demo</LinkBtn>
+        </div>
+        <div className="gallery-grid">
+          <Img src="/imag/os/paint.png" alt="MW-OS Paint App" />
+          <Img src="/imag/os/login.png" alt="MW-OS Login Screen" />
+          <Img src="/imag/os/fs.png" alt="MW-OS Dateisystem" />
+          <Img src="/imag/os/settings.png" alt="MW-OS Einstellungen" />
+          <Img src="/imag/os/designer.png" alt="MW-OS UI Designer" />
+          <Img src="/imag/os/wlan.png" alt="MW-OS WLAN Scan" />
+          <Img src="/imag/os/keyboard.png" alt="MW-OS Tastatur" />
+        </div>
+      </article>
     ),
   },
   browserV3: {
     name: "MW-Browser V3",
     elem: (
-      <>
-        <p>Der beste Browser mit Swipe-Multitab funktionalität</p>
-        <Img src="https://github.com/user-attachments/assets/66d0bcf0-918e-4576-9a45-9cc1b9d54cd5"></Img>
-      </>
+      <article>
+        <p>Innovativer Browser mit Swipe-Multitab Funktionalität für schnelle Navigation.</p>
+        <Img
+          src="https://github.com/user-attachments/assets/66d0bcf0-918e-4576-9a45-9cc1b9d54cd5"
+          alt="MW-Browser V3 Interface Demo"
+        />
+      </article>
     ),
   },
   privusChat: {
     name: "PrivusChat",
     elem: (
-      <>
-        <p>Der sicherste Chat-App/Messenger der Welt.</p>
-        <p>
-          Implementiert mit symetrischen (quantencomputersicheren)
-          Verschlüsselungsverfahren (AES)
-        </p>
-        <p>
-          <a href="https://privuschat.github.io/easy-messenger/">
-            Website Öffnen & Testen
-          </a>
-        </p>
-        <p>
-          <a href="https://github.com/ManuelWestermeier/easy-messenger">
-            Source Code
-          </a>
-        </p>
-        <Img src="https://github.com/ManuelWestermeier/easy-messenger/blob/main/public/img/screenshot1.png?raw=true" />
-        <Img src="https://github.com/ManuelWestermeier/easy-messenger/blob/main/public/img/screenshot3.png?raw=true" />
-      </>
+      <article>
+        <p>Hochsicherer Messenger mit Fokus auf Privatsphäre.</p>
+        <p>Implementiert symmetrische, quantencomputer-sichere Verschlüsselung (AES).</p>
+        <div className="links-row">
+          <LinkBtn href="https://privuschat.github.io/easy-messenger/">Live Demo</LinkBtn>
+          <LinkBtn href="https://github.com/ManuelWestermeier/easy-messenger">Source Code</LinkBtn>
+        </div>
+        <div className="gallery-grid">
+          <Img src="https://github.com/ManuelWestermeier/easy-messenger/blob/main/public/img/screenshot1.png?raw=true" alt="PrivusChat Login" />
+          <Img src="https://github.com/ManuelWestermeier/easy-messenger/blob/main/public/img/screenshot3.png?raw=true" alt="PrivusChat Chat Fenster" />
+        </div>
+      </article>
     ),
   },
   carGame: {
     name: "Car Game (3D)",
     elem: (
-      <>
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/home-page/car-game_2.png"
-          alt="bild"
-        />
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/home-page/car-game-back.png"
-          alt="bild"
-        />
-        <a
-          target="_blank"
-          href="https://play.unity.com/en/games/c07e7711-8f85-4b24-8091-6cebc8543cae/singemulti-player-car-game"
-        >
-          Spielen
-        </a>
-      </>
+      <article>
+        <div className="gallery-grid">
+          <Img src="https://manuelwestermeier.github.io/home-page/car-game_2.png" alt="3D Car Game Screenshot Rennstrecke" />
+          <Img src="https://manuelwestermeier.github.io/home-page/car-game-back.png" alt="3D Car Game Rückansicht" />
+        </div>
+        <div className="links-row">
+          <LinkBtn href="https://play.unity.com/en/games/c07e7711-8f85-4b24-8091-6cebc8543cae/singemulti-player-car-game">Jetzt Spielen</LinkBtn>
+        </div>
+      </article>
     ),
   },
   birdGame: {
     name: "Bird Game (2D)",
     elem: (
-      <>
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/home-page/bird-game.jpg"
-          alt="bild"
-        />
-        <p>Ein spaßiges Spiel in dem ein Vogel die Welt erkundet....</p>
-        <a
-          target="_blank"
-          href="https://play.unity.com/en/games/e6fb7edc-ba03-48ea-ba03-e7e3d5e4094f/bird-game-manuel111"
-        >
-          Spielen
-        </a>
-      </>
+      <article>
+        <Img src="https://manuelwestermeier.github.io/home-page/bird-game.jpg" alt="2D Bird Game Gameplay" />
+        <p>Ein atmosphärisches Erkundungsspiel.</p>
+        <div className="links-row">
+          <LinkBtn href="https://play.unity.com/en/games/e6fb7edc-ba03-48ea-ba03-e7e3d5e4094f/bird-game-manuel111">Jetzt Spielen</LinkBtn>
+        </div>
+      </article>
     ),
   },
   jumpAndDrive: {
     name: "Jump and Drive",
     elem: (
-      <>
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/Car.png"
-          alt="bild"
-        />
-        <p>
-          Ein Spiel, in dem man zwischen einem klassischen "Jump and Run" und
-          einem Auto wechseln muss, um Level zu meistern.
-        </p>
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/Player.png"
-          alt="bild"
-        />
-        <br />
-        <a
-          target="_blank"
-          href="https://play.unity.com/en/games/fe032d11-f973-4ba8-ad86-a89fe01f9047/webgl-build-jump-and-drive"
-        >
-          Spielen
-        </a>
-      </>
+      <article>
+        <div className="gallery-grid">
+          <Img src="https://manuelwestermeier.github.io/Car.png" alt="Jump and Drive Auto Modus" />
+          <Img src="https://manuelwestermeier.github.io/Player.png" alt="Jump and Drive Spieler Modus" />
+        </div>
+        <p>Genre-Mix: Wechsle zwischen klassischem "Jump & Run" und Rennspiel-Mechaniken.</p>
+        <div className="links-row">
+          <LinkBtn href="https://play.unity.com/en/games/fe032d11-f973-4ba8-ad86-a89fe01f9047/webgl-build-jump-and-drive">Jetzt Spielen</LinkBtn>
+        </div>
+      </article>
     ),
   },
   carGameTop: {
-    name: "Car Game Top (3D)",
+    name: "Car Game Top-Down (3D)",
     elem: (
-      <>
-        <Img
-          style={{ height: "200px" }}
-          className="img"
-          src="https://manuelwestermeier.github.io/home-page/car-top.png"
-          alt="bild"
-        />
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/home-page/car-top-play.png"
-          alt="bild"
-        />
-        <a
-          target="_blank"
-          href="https://play.unity.com/mg/other/webgl-builds-368263"
-        >
-          Spielen
-        </a>
-      </>
+      <article>
+        <div className="gallery-grid">
+          <Img src="https://manuelwestermeier.github.io/home-page/car-top.png" alt="Top Down Racing Menu" />
+          <Img src="https://manuelwestermeier.github.io/home-page/car-top-play.png" alt="Top Down Racing Gameplay" />
+        </div>
+        <div className="links-row">
+          <LinkBtn href="https://play.unity.com/mg/other/webgl-builds-368263">Jetzt Spielen</LinkBtn>
+        </div>
+      </article>
     ),
   },
   hiddenFs: {
     name: "Hidden-FS",
     elem: (
-      <>
-        verschlüsselt Videos, Bilder, Audios, PDFs und alle anderen Dateitypen
-        lokal einzeln mit passwortbasierter AES-Verschlüsselung in einem
-        verborgenen Container, sodass ohne dein Passwort niemand Zugriff auf die
-        Inhalte hat.
-        <br />
-        <a href="https://hidden-fs.duckdns.org" target="_blank">
-          Öffnen
-        </a>
-        <Img
-          alt="Hidden FS Logo"
-          src="https://hidden-fs.duckdns.org/favicon.ico"
-        />
-      </>
+      <article>
+        <p>
+          Lokaler, verschlüsselter Dateicontainer. Sichert Videos, Bilder und Dokumente
+          mit AES-Verschlüsselung direkt im Browser. Zugriff nur via Passwort möglich.
+        </p>
+        <div className="links-row">
+          <LinkBtn href="https://hidden-fs.duckdns.org">App Öffnen</LinkBtn>
+        </div>
+        <Img alt="Hidden FS Secure Icon" src="https://hidden-fs.duckdns.org/favicon.ico" style={{ width: '64px', margin: '10px auto', display: 'block' }} />
+      </article>
     ),
   },
   notenBuch: {
-    name: "Notenbuch",
+    name: "Digitales Notenbuch",
     elem: (
-      <>
-        <p>
-          Eine Notenbuchapp für Lehrer und Schüler mit der man Noten berechnen
-          und veranschaulichen kann.
-        </p>
-        <Img
-          alt="Bild"
-          src="https://manuelwestermeier.github.io/home-page/nb-student.png"
-        />
-        <Img
-          alt="Bild"
-          src="https://manuelwestermeier.github.io/home-page/nb-class.png"
-        />
-        <Img
-          alt="Bild"
-          src="https://manuelwestermeier.github.io/home-page/nb-main.png"
-        />
-        <a href="https://noten-buch.netlify.app" target="_blank">
-          Öffnen
-        </a>
-      </>
+      <article>
+        <p>Notenmanagement-Tool für Lehrer und Schüler zur Berechnung und Visualisierung des Leistungsstands.</p>
+        <div className="gallery-grid">
+          <Img alt="Notenbuch Schüleransicht" src="https://manuelwestermeier.github.io/home-page/nb-student.png" />
+          <Img alt="Notenbuch Klassenansicht" src="https://manuelwestermeier.github.io/home-page/nb-class.png" />
+          <Img alt="Notenbuch Übersicht" src="https://manuelwestermeier.github.io/home-page/nb-main.png" />
+        </div>
+        <div className="links-row">
+          <LinkBtn href="https://noten-buch.netlify.app">App Öffnen</LinkBtn>
+        </div>
+      </article>
     ),
   },
   memoryGame: {
-    name: "Memory-Game",
+    name: "Memory Game",
     elem: (
-      <>
-        <p>Das beste Memory-Game online. (ohne Werbung)</p>
-        <Img
-          alt="Bild"
-          src="https://my-memory.duckdns.org/logo.jpg"
-        />
-        <br />
-        <a
-          href="https://manuelwestermeier.github.io/memory_game/"
-          target="_blank"
-        >
-          Öffnen
-        </a>
-      </>
+      <article>
+        <p>Werbefreies Online Memory-Spiel.</p>
+        <Img alt="Memory Game Logo" src="https://my-memory.duckdns.org/logo.jpg" />
+        <div className="links-row">
+          <LinkBtn href="https://manuelwestermeier.github.io/memory_game/">Spiel Starten</LinkBtn>
+        </div>
+      </article>
     ),
   },
   vPresent: {
     name: "V-Present",
     elem: (
-      <>
-        <p>Eine Presentationssoftware, die Markdown nutzt</p>
-
-        <a
-          href="https://manuelwestermeier.github.io/v-present/#/project/0"
-          target="_blank"
-        >
-          Öffnen (Projekt-View)
-        </a>
-        <br />
-        <a
-          href="https://manuelwestermeier.github.io/v-present/"
-          target="_blank"
-        >
-          Öffnen (Start Seite)
-        </a>
-        <br />
-        <Img
-          alt="Logo V-Present"
-          src="https://manuelwestermeier.github.io/v-present/logo.jpg"
-        />
-      </>
+      <article>
+        <p>Markdown-basierte Präsentationssoftware für Entwickler.</p>
+        <div className="links-row">
+          <LinkBtn href="https://manuelwestermeier.github.io/v-present/#/project/0">Demo Projekt</LinkBtn>
+          <LinkBtn href="https://manuelwestermeier.github.io/v-present/">Startseite</LinkBtn>
+        </div>
+        <Img alt="V-Present Logo" src="https://manuelwestermeier.github.io/v-present/logo.jpg" />
+      </article>
     ),
   },
   esp32c6OS: {
     name: "ESP32 C6 OS",
     elem: (
-      <>
+      <article>
         <video
-          className="img"
-          style={{ width: "100%" }}
+          className="project-video"
           src="https://manuelwestermeier.github.io/esp32_141os.mp4"
-          alt="esp32c6 bild"
+          title="ESP32 C6 OS Demo Video"
           loop
-          onClick={(e) => e.target.play()}
+          onClick={(e) => e.target.paused ? e.target.play() : e.target.pause()}
           autoPlay
           muted
+          playsInline
         />
         <p>
-          Ein Betriebssystem, das auf einem 1-Euro-ESP32 mit einem 1,41 Zoll
-          großen Display und nur einem einzigen Knopf läuft. Es unterstützt
-          mehrere Accounts, ist verschlüsselt und bietet Internetzugang.
-          Mitgeliefert werden eine Suchmaschine, ein Browser und eine virtuelle
-          Tastatur, die über den einzigen Knopf mittels Gesten wie Doppelklick,
-          langem Klick und einfachem Klick gesteuert wird. Außerdem gehören ein
-          serverseitiges JavaScript-Framework sowie ein eigenes Protokoll zum
-          System. Alle Inhalte werden serverseitig gerendert und als Anweisungen
-          an den ESP32 übertragen. Dieser ist in der Lage, Auswahlmenüs,
-          Grafiken, Texte und vieles mehr zu verarbeiten und darzustellen.
-          Zusätzlich verfügt das System über einen clientseitigen Speicher.
+          Ein revolutionäres OS für 1€-Hardware (ESP32) mit 1,41" Display und
+          Ein-Knopf-Steuerung (Gesten). Features: Multi-User, Verschlüsselung,
+          Server-Side Rendering Protokoll, JS-Framework und persistenter Speicher.
         </p>
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/esp32_141os.jpg"
-          alt="esp32c6 bild"
-        />
-        <br />
-        <a
-          href="https://github.com/ManuelWestermeier/mw-141-os"
-          target="_blank"
-        >
-          Source Code
-        </a>
-      </>
+        <Img className="img" src="https://manuelwestermeier.github.io/esp32_141os.jpg" alt="ESP32 C6 Hardware Setup" />
+        <div className="links-row">
+          <LinkBtn href="https://github.com/ManuelWestermeier/mw-141-os">Source Code</LinkBtn>
+        </div>
+      </article>
     ),
   },
   quatchapp: {
     name: "Quatsch App (Messenger)",
     elem: (
-      <>
-        <p>
-          Full Stack realtime Chattapp mit öffentlichen und privaten Chats,
-          Kontakten und vieles mehr...
-        </p>
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/home-page/Chatt.jpg"
-          alt="Bild"
-        />
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/home-page/Contacts.jpg"
-          alt="Bild"
-        />
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/home-page/Invite.jpg"
-          alt="Bild"
-        />
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/home-page/Invite-2.jpg"
-          alt="Bild"
-        />
-        <p>Auf Anfrage testbar</p>
-      </>
+      <article>
+        <p>Full-Stack Realtime Messenger mit Gruppen, Kontakten und Invite-System.</p>
+        <div className="gallery-grid">
+          <Img src="https://manuelwestermeier.github.io/home-page/Chatt.jpg" alt="Quatsch App Chat View" />
+          <Img src="https://manuelwestermeier.github.io/home-page/Contacts.jpg" alt="Quatsch App Kontakte" />
+          <Img src="https://manuelwestermeier.github.io/home-page/Invite.jpg" alt="Quatsch App Einladung" />
+        </div>
+        <p className="note">Auf Anfrage testbar</p>
+      </article>
     ),
   },
   conntacts: {
     name: "Business Contacts",
     elem: (
-      <>
-        <p>Eine Businessapp mit der man Freelancer weltweit finden kann.</p>
-        <Img
-          alt="Bild"
-          src="https://manuelwestermeier.github.io/home-page/c-data.png"
-        />
-        <Img
-          alt="Bild"
-          src="https://manuelwestermeier.github.io/home-page/c-search.png"
-        />
-        <Img
-          alt="Bild"
-          src="https://manuelwestermeier.github.io/home-page/c-form.png"
-        />
-        <p>Auf Anfrage testbar</p>
-      </>
+      <article>
+        <p>Plattform zur Vermittlung von Freelancern weltweit.</p>
+        <div className="gallery-grid">
+          <Img src="https://manuelwestermeier.github.io/home-page/c-data.png" alt="Business Contacts Datenansicht" />
+          <Img src="https://manuelwestermeier.github.io/home-page/c-search.png" alt="Business Contacts Suche" />
+          <Img src="https://manuelwestermeier.github.io/home-page/c-form.png" alt="Business Contacts Formular" />
+        </div>
+        <p className="note">Auf Anfrage testbar</p>
+      </article>
     ),
   },
   browser: {
-    name: "Browser V1",
+    name: "Browser V1 (Electron)",
     elem: (
-      <>
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/home-page/browser-1.png"
-          alt="bild"
-        />
-        <Img
-          className="img"
-          src="https://manuelwestermeier.github.io/img/Browser2.jpg"
-          alt="bild"
-        />
-        <p>
-          Ein eigener Browser erstellt mit Electron mit Tab sowie Extesion- und
-          Farbthemenwächelfunktion.
-        </p>
-      </>
+      <article>
+        <p>Electron-basierter Browser mit Tabs, Extensions und dynamischen Themes.</p>
+        <div className="gallery-grid">
+          <Img src="https://manuelwestermeier.github.io/home-page/browser-1.png" alt="Browser V1 Screenshot" />
+          <Img src="https://manuelwestermeier.github.io/img/Browser2.jpg" alt="Browser V1 Dark Mode" />
+        </div>
+      </article>
     ),
   },
   desktopAppFramkeWork: {
-    name: "Desktopapp Framework",
+    name: "Next-Gen-Exe Framework",
     elem: (
-      <>
-        <p>Ein App Framework, dass html, css, js und c++ im backend nutzt</p>
-        <a
-          href="https://github.com/manuelWestermeier/next-gen-exe"
-          target="_blank"
-        >
-          [ Source Code ]
-        </a>
-        <Iframe src="https://manuelwestermeier.github.io/next-gen-exe/" />
-      </>
+      <article>
+        <p>Hybrid App Framework: Frontend in HTML/CSS/JS, High-Performance Backend in C++.</p>
+        <div className="links-row">
+          <LinkBtn href="https://github.com/manuelWestermeier/next-gen-exe">Source Code</LinkBtn>
+        </div>
+        <div className="iframe-container">
+          <Iframe src="https://manuelwestermeier.github.io/next-gen-exe/" title="Framework Dokumentation" />
+        </div>
+      </article>
     ),
   },
   LHRP: {
-    name: "LHRP - Lightweight Hierarchical Routing Protocol",
-    elem: <>
-      Ein Einfaches auf Baum-Strukturen basiertes Routing protocol, das mit Verschlüsselung und Kablloser technologie für ESP-Micro-Controller entwickelt wurde.
-      <p><a href="https://github.com/ManuelWestermeier/LHRP">Source Code (Github)</a></p>
-      <p><a href="https://wv.jugend-forscht.de/media/2025/project_117500/description/description_2026-01-26_12-47-46.pdf">Infos: Jugendforscht schriftliche Arbeit</a></p>
-    </>
-  },
-
-  wsnet: {
-    name: "WSNET Framework && WSNET Starter",
+    name: "LHRP Protocol",
     elem: (
-      <>
-        <p>
-          WSNET Framework : ein Full Stack Framework, das schnelle und
-          bidirektionale Kommunikation zwischen Client und Server ermöglicht.
+      <article>
+        <p><strong>Lightweight Hierarchical Routing Protocol:</strong> Entwickelt für ESP-Mikrocontroller Mesh-Netzwerke. Bietet Verschlüsselung und baumbasiertes Routing.</p>
+        <div className="links-row">
+          <LinkBtn href="https://github.com/ManuelWestermeier/LHRP">GitHub</LinkBtn>
           <br />
-          <a
-            href="https://github.com/ManuelWestermeier/WSNET_Framework"
-            target="_blank"
-          >
-            [Code auf Github]
-          </a>
-        </p>
-        <p>
-          WSNET Starter : Ein React, Vite, Bootstrap CSS und Node JS starter
-          template, das Dinge wie die Verbindung, Authentifizierung und Routing
-          mit sich bringt.
-          <br />
-          <a
-            href="https://github.com/ManuelWestermeier/WSNET_STARTER"
-            target="_blank"
-          >
-            [Code auf Github]
-          </a>
-        </p>
-      </>
+          <LinkBtn href="https://wv.jugend-forscht.de/media/2025/project_117500/description/description_2026-01-26_12-47-46.pdf">Jugend Forscht Arbeit (PDF)</LinkBtn>
+        </div>
+      </article>
+    )
+  },
+  wsnet: {
+    name: "WSNET Ecosystem",
+    elem: (
+      <article>
+        <p><strong>WSNET Framework:</strong> Full Stack Framework für bidirektionale Echtzeit-Kommunikation.</p>
+        <LinkBtn href="https://github.com/ManuelWestermeier/WSNET_Framework">Framework Code</LinkBtn>
+
+        <hr className="divider" />
+
+        <p><strong>WSNET Starter:</strong> Boilerplate mit React, Vite, Bootstrap & Node.js (Auth & Routing inklusive).</p>
+        <LinkBtn href="https://github.com/ManuelWestermeier/WSNET_STARTER">Starter Template</LinkBtn>
+      </article>
     ),
   },
   wop: {
-    name: "Wahrheit oder Pflicht App",
+    name: "Wahrheit oder Pflicht",
     elem: (
-      <>
-        <p>Eine gratis Wahrheit oder Pflicht App</p>
-        <Img
-          alt="Bild"
-          src="https://manuelwestermeier.github.io/home-page/wop-create.png"
-        />
-        <Img
-          alt="Bild"
-          src="https://manuelwestermeier.github.io/home-page/wop-ask.png"
-        />
-        <Img
-          alt="Bild"
-          src="https://manuelwestermeier.github.io/home-page/wop-users.png"
-        />
-        <p>Auf Anfrage testbar</p>
-      </>
+      <article>
+        <p>Klassische Party-App ohne Werbung.</p>
+        <div className="gallery-grid">
+          <Img src="https://manuelwestermeier.github.io/home-page/wop-create.png" alt="Wahrheit oder Pflicht Erstellen" />
+          <Img src="https://manuelwestermeier.github.io/home-page/wop-ask.png" alt="Wahrheit oder Pflicht Frage" />
+          <Img src="https://manuelwestermeier.github.io/home-page/wop-users.png" alt="Wahrheit oder Pflicht Spieler" />
+        </div>
+      </article>
     ),
   },
 };
