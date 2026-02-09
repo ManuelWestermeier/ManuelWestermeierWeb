@@ -6,9 +6,9 @@ function Img(props) {
     <a
       href={props.src}
       onClick={(e) => e.preventDefault() || e.target.classList.toggle("max")}
-      // onContextMenu={(e) =>
-      //   e.preventDefault() || e.target.classList.toggle("max")
-      // }
+    // onContextMenu={(e) =>
+    //   e.preventDefault() || e.target.classList.toggle("max")
+    // }
     >
       <img {...props} />
     </a>
@@ -20,6 +20,50 @@ function Iframe(props) {
 }
 
 export const data = {
+  easyEinakuf: {
+    name: "Easy-Einkauf",
+    elem: (
+      <>
+        <p>Die beste Einkaufslisten App.</p>
+        <p><a target="_blank" href="https://app.easy-einkauf.de/">Teste Selbst</a></p>
+        <Img src="https://app.easy-einkauf.de/screenshots/list-page.jpg"></Img>
+        <p><a target="_blank" href="https://www.youtube.com/@easy-einkauf?sub_confirmation=1">Youtube</a></p>
+        <p><a target="_blank" href="https://www.tiktok.com/@easyeinkauf">Tiktok</a></p>
+        <p><a target="_blank" href="https://www.instagram.com/easy.einkauf">Instagram</a></p>
+      </>
+    ),
+  },
+  MW32OS: {
+    name: "MW-OS",
+    elem: (
+      <>
+        <p>Ein minni OS für kleine ESP-32 Bildschirme und günstige Hardware.</p>
+        <Img src="/imag/os/home.png" alt="Ladefehler [BILD]"></Img>
+        <ul>
+          <li>- Hardwarekosten {"<"} 5 Euro</li>
+          <li>- mehr als 22.000 Zeilen Code</li>
+          <li>- SD support</li>
+          <li>- Accounts</li>
+          <li>- Verschlüsselung</li>
+          <li>- Apps</li>
+          <li>- Browser</li>
+          <li>- Virtual Keyboard</li>
+          <li>- Eigener App Manager</li>
+          <li>- Moderne UI & Themes</li>
+          <li>- WLAN</li>
+        </ul>
+        <p><a target="_blank" href="https://github.com/ManuelWestermeier/esp-wroom-2-4-inch-os">Github</a></p>
+        <p><a target="_blank" href="https://www.tiktok.com/@pdev111">Tiktok</a></p>
+        <Img src="/imag/os/paint.png" alt="Ladefehler [BILD]"></Img>
+        <Img src="/imag/os/login.png" alt="Ladefehler [BILD]"></Img>
+        <Img src="/imag/os/fs.png" alt="Ladefehler [BILD]"></Img>
+        <Img src="/imag/os/settings.png" alt="Ladefehler [BILD]"></Img>
+        <Img src="/imag/os/designer.png" alt="Ladefehler [BILD]"></Img>
+        <Img src="/imag/os/wlan.png" alt="Ladefehler [BILD]"></Img>
+        <Img src="/imag/os/keyboard.png" alt="Ladefehler [BILD]"></Img>
+      </>
+    ),
+  },
   browserV3: {
     name: "MW-Browser V3",
     elem: (

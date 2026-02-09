@@ -144,9 +144,9 @@ function MyWork() {
               </a>
             </td>
             <td>
-              Serverhosting mit <a href="https://codesandbox.io">Codesandbox</a>
-              , Github Pages, render.com und{" "}
-              <a href="https://www.netlify.com">Netlify</a>
+              Serverhosting mit <a target="_blank" href="https://codesandbox.io">Codesandbox</a>
+              , <a target="_blank" href="https://pages.github.com/">Github Pages</a>, <a target="_blank" href="https://render.com/">Render.com</a>, <a target="_blank" href="https://www.strato.de/">Strato</a>, <a target="_blank" href="https://www.netlify.com">Netlify</a> und{" "}
+              <a target="_blank" href="https://www.cloudflare.com/">Cloudflare</a>
             </td>
           </tr>
           <tr>
@@ -159,7 +159,7 @@ function MyWork() {
                     borderRadius: "2rem",
                     width: "2rem",
                   }}
-                  src="https://yt3.googleusercontent.com/uGutbkk69mpQZ8tmS8uG0RA5yZvu2VnXr-0JotmEOryR-Yo9RUaiMCbSL8cbtgFCU4ONhZg8i7Q=s160-c-k-c0x00ffffff-no-rj"
+                  src="imag/ts.jpg"
                   alt="[TAGESSCHATTEN Kanal Logo]"
                 />
               </a>
