@@ -243,7 +243,7 @@ export const data = {
         <p>Das beste Memory-Game online. (ohne Werbung)</p>
         <Img
           alt="Bild"
-          src="https://manuelwestermeier.github.io/memory_game/logo.jpg"
+          src="https://my-memory.duckdns.org/logo.jpg"
         />
         <br />
         <a
@@ -413,6 +413,15 @@ export const data = {
       </>
     ),
   },
+  LHRP: {
+    name: "LHRP - Lightweight Hierarchical Routing Protocol",
+    elem: <>
+      Ein Einfaches auf Baum-Strukturen basiertes Routing protocol, das mit Verschlüsselung und Kablloser technologie für ESP-Micro-Controller entwickelt wurde.
+      <p><a href="https://github.com/ManuelWestermeier/LHRP">Source Code (Github)</a></p>
+      <p><a href="https://wv.jugend-forscht.de/media/2025/project_117500/description/description_2026-01-26_12-47-46.pdf">Infos: Jugendforscht schriftliche Arbeit</a></p>
+    </>
+  },
+
   wsnet: {
     name: "WSNET Framework && WSNET Starter",
     elem: (
