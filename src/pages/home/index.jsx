@@ -47,12 +47,12 @@ function Home() {
         <AnimCt>
           <p>
             <WriteText
-              text="Ich bin Manuel Westermeier – leidenschaftlicher Entwickler aus dem Chiemgau."
+              text="Ich bin Manuel Westermeier - leidenschaftlicher Entwickler aus dem Chiemgau."
               timeToNextChar={20}
             />
             <br />
             <WriteText
-              text="Ich konzipiere, entwickle und betreue individuelle Softwarelösungen –"
+              text="Ich konzipiere, entwickle und betreue individuelle Softwarelösungen -"
               timeToNextChar={20}
             />
             <br />
@@ -73,7 +73,7 @@ function Home() {
             />
             <br />
             <WriteText
-              text="Sounddesign und Musikproduktion beschäftigt – von digitalen Soundeffekten"
+              text="Sounddesign und Musikproduktion beschäftigt - von digitalen Soundeffekten"
               timeToNextChar={20}
             />
             <br />
@@ -107,7 +107,7 @@ function Home() {
         <AnimCt>
           <p>
             <WriteText
-              text="Im Laufe der Jahre habe ich über 300 Projekte realisiert –"
+              text="Im Laufe der Jahre habe ich über 300 Projekte realisiert -"
               timeToNextChar={20}
             />
             <br />
