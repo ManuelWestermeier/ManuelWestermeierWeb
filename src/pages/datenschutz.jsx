@@ -46,7 +46,7 @@ function Datenschutz() {
         </p>
         <p>
           Die Domain <strong>manuel-westermeier.de</strong> wird über{" "}
-          <a href="https://www.duckdns.org/" target="_blank">
+          <a href="https://strato.de/" target="_blank">
             Starto.de
           </a>{" "}
           verwaltet. Auch dieser Dienst speichert möglicherweise Zugriffsdaten

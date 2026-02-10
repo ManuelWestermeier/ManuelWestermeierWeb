@@ -8,9 +8,10 @@ section {
 }
 
 .bg-image {
-  background-image: linear-gradient(to bottom, var(--b), transparent),
+  background-image:
+    linear-gradient(to bottom, var(--b), transparent),
     linear-gradient(to bottom, transparent, var(--b)),
-    url("https://manuelwestermeier.github.io/bg.jpg");
+    url("/bg.jpg");
 }
 
 .home {
