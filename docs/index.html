@@ -1,15 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manuel Westermeier | Entwicklerportfolio & Sounddesigner</title>
-    <link rel="icon" href="https://manuelwestermeier.github.io/logo.png" />
-    <meta name="image" content="https://manuelwestermeier.github.io/logo.png" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>
+      Manuel Westermeier — Full-Stack Entwickler & Sounddesigner | Chiemgau
+    </title>
+
+    <!-- Basic SEO -->
     <meta
       name="description"
-      content="👨‍💻🎧 Manuel Westermeier - Full-Stack Entwickler, Sounddesigner & kreativer Problemlöser aus dem Chiemgau. Professionelle Websites, Apps, Musikproduktion & Softwarelösungen mit Leidenschaft entwickelt."
+      content="Manuel Westermeier — Full-Stack Entwickler, Sounddesigner und Technikliebhaber aus dem Chiemgau. Websites, Apps, Embedded-Systems, Spieleentwicklung und Musikproduktion."
     />
+    <meta name="author" content="Manuel Westermeier" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://manuel-westermeier.de/" />
+
+    <!-- Social / Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="Manuel Westermeier" />
+    <meta
+      property="og:title"
+      content="Manuel Westermeier — Full-Stack Entwickler & Sounddesigner"
+    />
+    <meta
+      property="og:description"
+      content="Full-Stack Entwicklung, Embedded-Systems, Spieleentwicklung und Sounddesign. Projekte, Demos und Kontakt."
+    />
+    <meta property="og:url" content="https://manuel-westermeier.de/" />
+    <meta
+      property="og:image"
+      content="https://manuelwestermeier.github.io/logo.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Manuel Westermeier — Full-Stack Entwickler & Sounddesigner"
+    />
+    <meta
+      name="twitter:description"
+      content="Full-Stack Entwicklung, Embedded-Systems, Spieleentwicklung und Sounddesign. Projekte, Demos und Kontakt."
+    />
+    <meta
+      name="twitter:image"
+      content="https://manuelwestermeier.github.io/logo.png"
+    />
+
+    <!-- Mobile / PWA hints -->
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="https://manuelwestermeier.github.io/logo.png" />
+    <link
+      rel="apple-touch-icon"
+      href="https://manuelwestermeier.github.io/logo.png"
+    />
+
+    <!-- Performance / resource hints -->
+    <link rel="preconnect" href="https://api.github.com" crossorigin />
+    <link rel="preconnect" href="https://manuelwestermeier.github.io" />
+    <!-- Bei produktivem Build: preload kritische CSS/JS-Dateien (ersetzen mit korrekten Build-Pfaden) -->
+    <!-- <link rel="preload" as="style" href="/dist/assets/index.css"> -->
+    <!-- <link rel="preload" as="script" href="/dist/assets/main.js"> -->
+
+    <!-- Sitemap (für Crawler und Tools) -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- Structured Data: Person + WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "name": "Manuel Westermeier",
+            "url": "https://manuel-westermeier.de/",
+            "image": "https://manuelwestermeier.github.io/logo.png",
+            "jobTitle": "Full-Stack Entwickler & Sounddesigner",
+            "sameAs": [
+              "https://github.com/ManuelWestermeier",
+              "https://www.youtube.com/@TAGESSCHATTEN",
+              "https://play.unity.com/en/user/66818d56-98e8-499c-8fca-b3eb98a886c7"
+            ],
+            "email": "mailto:admin@manuel-westermeier.de"
+          },
+          {
+            "@type": "WebSite",
+            "url": "https://manuel-westermeier.de/",
+            "name": "Manuel Westermeier",
+            "description": "Full-Stack Entwickler, Sounddesigner, Embedded-Systems, Spieleentwicklung und Musikproduktion.",
+            "publisher": {
+              "@type": "Person",
+              "name": "Manuel Westermeier"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://manuel-westermeier.de/?s={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- Inline-critical small CSS (optional) or link to critical CSS -->
+    <!-- <style>/* kritische Styles hier */</style> -->
+
+    <!-- Development note: im Prod-Build /index.html den module script auf gebündelte Assets setzen -->
     <script>
       window.log = console.log;
     </script>
@@ -18,10 +117,29 @@
   </head>
 
   <body>
-    <div id="root"></div>
-    <noscript
-      >Bitte aktiviere JavaScript, um diese Website korrekt
-      anzuzeigen.</noscript
-    >
+    <!-- server-side rendered fallback / content für Crawler; React ersetzt #root -->
+    <main id="root" role="main" aria-label="Hauptinhalt">
+      <noscript>
+        <h1>Manuel Westermeier — Full-Stack Entwickler & Sounddesigner</h1>
+        <p>
+          Bitte aktivieren Sie JavaScript, um die vollständige Website zu sehen.
+          Kontakt:
+          <a href="mailto:admin@manuel-westermeier.de"
+            >admin@manuel-westermeier.de</a
+          >
+        </p>
+        <nav>
+          <ul>
+            <li><a href="/projects">Projekte</a></li>
+            <li><a href="/my-work">Meine Arbeit</a></li>
+            <li><a href="/contact">Kontakt</a></li>
+            <li><a href="/impressum">Impressum</a></li>
+            <li><a href="/datenschutz">Datenschutz</a></li>
+          </ul>
+        </nav>
+      </noscript>
+    </main>
+
+    <!-- Produktion: Ersetze diesen dev-Pfad durch gebündelte /rev-permasset.js -->
   </body>
 </html>
