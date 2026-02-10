@@ -1,15 +1,14 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import SplashCursor from "./comp/react-bits/splash-cursor";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 function Main() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <App />
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
@@ -22,5 +21,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       BACK_COLOR={{ r: 0, g: 0, b: 255 }}
     />
     <Main />
-  </> //</React.StrictMode>,
+  </>, //</React.StrictMode>,
 );

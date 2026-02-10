@@ -13,8 +13,8 @@ function Contact() {
       </h1>
       <p>E-Mail</p>
       <p>
-        <a href="mailto:manuel.westermeier@gmx.de">
-          [ manuel.westermeier@gmx.de ]
+        <a href="mailto:admin@manuel-westermeier.de">
+          [ admin@manuel-westermeier.de ]
         </a>
       </p>
       <p>Tel</p>

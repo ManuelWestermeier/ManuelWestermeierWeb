@@ -9,7 +9,7 @@ function Datenschutz() {
         <p>
           Diese Website ist ein privates, nicht-kommerzielles Projekt zur
           Präsentation von Software-, Web- und Medienprojekten. Der Schutz Ihrer
-          Daten ist uns wichtig – daher beachten wir die Vorgaben der
+          Daten ist uns wichtig - daher beachten wir die Vorgaben der
           Datenschutz-Grundverordnung (DSGVO).
         </p>
 
@@ -21,7 +21,7 @@ function Datenschutz() {
           <br />
           83324 Ruhpolding
           <br />
-          E-Mail: manuel.westermeier@gmx.de
+          E-Mail: admin@manuel-westermeier.de
         </p>
 
         <h2>2. Keine Tracker oder Cookies</h2>
@@ -45,9 +45,9 @@ function Datenschutz() {
           Sicherheit des Hostings.
         </p>
         <p>
-          Die Domain <strong>manuel-westermeier.duckdns.org</strong> wird über{" "}
+          Die Domain <strong>manuel-westermeier.de</strong> wird über{" "}
           <a href="https://www.duckdns.org/" target="_blank">
-            DuckDNS.org
+            Starto.de
           </a>{" "}
           verwaltet. Auch dieser Dienst speichert möglicherweise Zugriffsdaten
           (z.&nbsp;B. IP-Adressen), auf die wir keinen Zugriff haben.

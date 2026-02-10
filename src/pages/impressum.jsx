@@ -8,7 +8,7 @@ function Impressum() {
       <h2>Website</h2>
       <p>
         Dieses Impressum gilt für alle Angebote unter der Domain
-        https://manuel-westermeier.duckdns.org/.
+        https://manuel-westermeier.de/.
       </p>
       <b>Angaben gemäß § 5 TMG</b>
       <p>
@@ -20,7 +20,7 @@ function Impressum() {
         <br />
         Telefon: +4915256427900
         <br />
-        E-Mail: manuel.westermeier@gmx.de
+        E-Mail: admin@manuel-westermeier.de
       </p>
       <p>Haftungshinweis:</p>
       <p>
