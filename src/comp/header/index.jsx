@@ -6,14 +6,31 @@ import BlurText from "../react-bits/blur-text";
 function Header() {
   return (
     <header className="flex">
-      <h2>
+      <h2 style={{ display: "flex" }}>
         <Link to="/">
-          <BlurText
-            text="Manuel Westermeier"
-            delay={30}
-            animateBy="chars"
-            direction="top"
-          />
+          {innerWidth < 500 ? (
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <BlurText
+                text="Manuel"
+                delay={30}
+                animateBy="chars"
+                direction="top"
+              />
+              <BlurText
+                text="Westermeier"
+                delay={30}
+                animateBy="chars"
+                direction="top"
+              />
+            </div>
+          ) : (
+            <BlurText
+              text="Manuel Westermeier"
+              delay={30}
+              animateBy="chars"
+              direction="top"
+            />
+          )}
         </Link>
       </h2>
       <div style={{ gap: "10px" }} className="flex">

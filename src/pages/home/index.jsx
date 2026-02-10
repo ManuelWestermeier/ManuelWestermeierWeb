@@ -3,6 +3,7 @@ import "./index.css";
 import WriteText from "../../comp/write-text";
 import AnimCt from "../../comp/amim-ct";
 import { Link } from "react-router-dom";
+import BlurText from "../../comp/react-bits/blur-text";
 
 function Home() {
   function scrollTo(id) {
@@ -15,13 +16,24 @@ function Home() {
     <>
       <section className="home flex bg-image" id="page-top">
         <h1 style={{ fontSize: "max(3dvw, 30px)" }}>
+          {innerWidth > 500 ? (
           <WriteText text="Manuel Westermeier" />
+          ) : (
+            <BlurText text="Manuel Westermeier" />
+          )}
         </h1>
         <p>
-          <WriteText
-            text="Full-Stack Entwickler | Software-Ingenieur | Technikliebhaber"
-            timeToNextChar={40}
-          />
+          {innerWidth > 500 ? (
+            <WriteText
+              text="Full-Stack Entwickler | Software-Ingenieur | Technikliebhaber"
+              timeToNextChar={40}
+            />
+          ) : (
+            <BlurText
+              text="Full-Stack Entwickler | Software-Ingenieur | Technikliebhaber"
+              timeToNextChar={40}
+            />
+          )}
         </p>
         <button
           className="flex trigger-btn"
