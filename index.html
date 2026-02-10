@@ -28,13 +28,17 @@
     />
     <meta
       property="og:description"
-      content="Full-Stack Entwicklung, Embedded-Systems, Spieleentwicklung und Sounddesign. Projekte, Demos und Kontakt."
+      content="Full-Stack Entwicklung, Embedded-Systems, Spieleentwicklung und Sounddesign. Entdecke Projekte, Demos und Kontaktdetails."
     />
     <meta property="og:url" content="https://manuel-westermeier.de/" />
     <meta
       property="og:image"
       content="https://manuel-westermeier.de/logo-512.png"
     />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -49,22 +53,43 @@
       content="https://manuel-westermeier.de/logo-512.png"
     />
 
-    <!-- Mobile / PWA hints -->
-    <meta name="theme-color" content="#0a0a0a" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="icon" href="https://manuel-westermeier.de/logo-512.png" />
+    <!-- Favicons / PWA -->
     <link
-      rel="apple-touch-icon"
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
       href="https://manuel-westermeier.de/logo-512.png"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="https://manuel-westermeier.de/logo-192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="128x128"
+      href="https://manuel-westermeier.de/logo-128.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="512x512"
+      href="https://manuel-westermeier.de/logo-512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="https://manuel-westermeier.de/logo-192.png"
+    />
 
-    <!-- Performance / resource hints -->
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Performance / Resource hints -->
     <link rel="preconnect" href="https://manuel-westermeier.de" />
-    <!-- Bei produktivem Build: preload kritische CSS/JS-Dateien (ersetzen mit korrekten Build-Pfaden) -->
-    <!-- <link rel="preload" as="style" href="/dist/assets/index.css"> -->
-    <!-- <link rel="preload" as="script" href="/dist/assets/main.js"> -->
 
-    <!-- Sitemap (für Crawler und Tools) -->
+    <!-- Sitemap -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
     <!-- Structured Data: Person + WebSite -->
@@ -104,17 +129,15 @@
       }
     </script>
 
-    <!-- Inline-critical small CSS (optional) or link to critical CSS -->
+    <!-- Inline-critical CSS (optional) -->
     <!-- <style>/* kritische Styles hier */</style> -->
 
-    <!-- Development note: im Prod-Build /index.html den module script auf gebündelte Assets setzen -->
     <script>
       window.log = console.log;
     </script>
   </head>
 
   <body>
-    <!-- server-side rendered fallback / content für Crawler; React ersetzt #root -->
     <main id="root" role="main" aria-label="Hauptinhalt">
       <noscript>
         <h1>Manuel Westermeier — Full-Stack Entwickler & Sounddesigner</h1>
@@ -137,7 +160,6 @@
       </noscript>
     </main>
 
-    <!-- Produktion: Ersetze diesen dev-Pfad durch gebündelte /rev-permasset.js -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
