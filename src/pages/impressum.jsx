@@ -20,7 +20,7 @@ function Impressum() {
         <br />
         Telefon: +4915256427900
         <br />
-        E-Mail: admin@manuel-westermeier.de
+        E-Mail: info@manuel-westermeier.de
       </p>
       <p>Haftungshinweis:</p>
       <p>

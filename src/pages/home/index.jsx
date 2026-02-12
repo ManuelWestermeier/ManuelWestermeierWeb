@@ -17,7 +17,7 @@ function Home() {
       <section className="home flex bg-image" id="page-top">
         <h1 style={{ fontSize: "max(3dvw, 30px)" }}>
           {innerWidth > 500 ? (
-          <WriteText text="Manuel Westermeier" />
+            <WriteText text="Manuel Westermeier" />
           ) : (
             <BlurText text="Manuel Westermeier" />
           )}
@@ -74,12 +74,6 @@ function Home() {
             />
             <br />
             <WriteText
-              text="Ich lege großen Wert auf Qualität, Effizienz und durchdachtes Design."
-              timeToNextChar={20}
-            />
-            <br />
-            <br />
-            <WriteText
               text="Neben der Programmierung habe ich mich in letzter Zeit auch intensiv mit"
               timeToNextChar={20}
             />
@@ -91,17 +85,6 @@ function Home() {
             <br />
             <WriteText
               text="bis hin zu kompletten Musikstücken für Apps, Spiele oder Videos."
-              timeToNextChar={20}
-            />
-            <br />
-            <br />
-            <WriteText
-              text="(Full Stack Webentwicklung | App Development | Embedded Software |"
-              timeToNextChar={20}
-            />
-            <br />
-            <WriteText
-              text="Spieleentwicklung | Sounddesign & Musikproduktion)"
               timeToNextChar={20}
             />
           </p>

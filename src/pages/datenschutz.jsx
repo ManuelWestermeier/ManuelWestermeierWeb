@@ -21,7 +21,7 @@ function Datenschutz() {
           <br />
           83324 Ruhpolding
           <br />
-          E-Mail: admin@manuel-westermeier.de
+          E-Mail: info@manuel-westermeier.de
         </p>
 
         <h2>2. Keine Tracker oder Cookies</h2>

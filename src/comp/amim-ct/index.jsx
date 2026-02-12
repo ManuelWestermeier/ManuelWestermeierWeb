@@ -12,12 +12,10 @@ function AnimCt({
   });
 
   const [rerender, setRerender] = useState();
-  const hassntRerendered = React.useRef(true);
 
   useEffect(() => {
-    if (rerender != inView && hassntRerendered.current) {
+    if (rerender != inView) {
       setRerender(inView);
-      hassntRerendered.current = false;
     }
   }, [inView]);
 
