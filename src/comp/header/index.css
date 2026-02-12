@@ -18,19 +18,19 @@ header {
     box-shadow: 0 0 10px 5px var(--b-l);
   }
 
-  a[href="#/"] {
+  a[href="/"] {
     font-size: 14px;
   }
 }
 
 @media (max-width: 370px) {
-  a[href="#/"] {
+  a[href="/"] {
     font-size: 10px;
   }
 }
 
 @media (max-width: 330px) {
-  a[href="#/"] {
+  a[href="/"] {
     font-size: 6px;
   }
 }
