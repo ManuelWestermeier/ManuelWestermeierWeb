@@ -53,3 +53,8 @@ if (document.location.hash == "#white") {
 </style>`,
   );
 }
+
+
+if (!["http://localhost:4000", "http://localhost", "https://manuel-westermeier.de"].includes(document.location.origin)) {
+  document.location = "https://manuel-westermeier.de";
+}

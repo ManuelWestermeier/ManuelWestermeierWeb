@@ -25,12 +25,12 @@ function Home() {
         <p>
           {innerWidth > 500 ? (
             <WriteText
-              text="Full-Stack Entwickler | Software-Ingenieur | Technikliebhaber"
+              text="Full-Stack Web Entwickler | Software Engineer"
               timeToNextChar={40}
             />
           ) : (
             <BlurText
-              text="Full-Stack Entwickler | Software-Ingenieur | Technikliebhaber"
+              text="Full-Stack Entwickler | Software Engineer"
               timeToNextChar={40}
             />
           )}
@@ -53,44 +53,40 @@ function Home() {
       <section id="my-work" className="flex">
         <h1 style={{ fontSize: "max(2dvw, 25px)" }}>
           <AnimCt>
-            <WriteText text="Über mich & meine Arbeit" timeToNextChar={20} />
+            <WriteText text="Über mich" timeToNextChar={20} />
           </AnimCt>
         </h1>
         <AnimCt>
           <p>
             <WriteText
-              text="Ich bin Manuel Westermeier - leidenschaftlicher Entwickler aus dem Chiemgau."
+              text="Ich bin Leidenschaftlicher Entwickler aus dem Chiemgau."
               timeToNextChar={20}
             />
             <br />
             <WriteText
-              text="Ich konzipiere, entwickle und betreue individuelle Softwarelösungen -"
+              text="Ich entwickle maßgeschneiderte Softwarelösungen -"
               timeToNextChar={20}
             />
             <br />
             <WriteText
-              text="von modernen Webanwendungen bis hin zu Embedded-Systemen."
+              text="von Webapps, Websites bis Embedded-Systemen."
               timeToNextChar={20}
             />
             <br />
             <WriteText
-              text="Neben der Programmierung habe ich mich in letzter Zeit auch intensiv mit"
+              text="Zusätzlich arbeite ich im Sounddesign und an Musikproduktionen"
               timeToNextChar={20}
             />
             <br />
             <WriteText
-              text="Sounddesign und Musikproduktion beschäftigt - von digitalen Soundeffekten"
-              timeToNextChar={20}
-            />
-            <br />
-            <WriteText
-              text="bis hin zu kompletten Musikstücken für Apps, Spiele oder Videos."
+              text="für Apps, Videospiele und Medienprojekte."
               timeToNextChar={20}
             />
           </p>
         </AnimCt>
 
-        <Link to="/my-work">[ mehr über meine Arbeit ]</Link>
+        <Link to="/my-work">mehr erfahren </Link>
+        <Link to="/contact">Website oder App güstig Kaufen?</Link>
       </section>
 
       <section id="projects" className="flex bg-image home">
@@ -102,23 +98,23 @@ function Home() {
         <AnimCt>
           <p>
             <WriteText
-              text="Im Laufe der Jahre habe ich über 300 Projekte realisiert -"
+              text="Ich habe über 300 realisierte Projekte -"
               timeToNextChar={20}
             />
             <br />
             <WriteText
-              text="von kleinen Tools bis zu komplexen Systemarchitekturen."
+              text="von Tools bis komplexen Systemen."
               timeToNextChar={20}
             />
             <br />
             <WriteText
-              text="Eine Auswahl meiner spannendsten Arbeiten stelle ich Ihnen hier vor."
+              text="Hier finden Sie eine Auswahl meiner wichtigsten Projekte."
               timeToNextChar={20}
             />
           </p>
         </AnimCt>
 
-        <Link to="/projects">[ zu den Projekten ]</Link>
+        <Link to="/projects">Projekte ansehen</Link>
       </section>
 
       <section id="contact" className="flex">
@@ -128,7 +124,7 @@ function Home() {
           </AnimCt>
         </h1>
 
-        <Link to="/contact">[ meine Kontaktdaten ]</Link>
+        <Link to="/contact">Meine Kontaktdaten</Link>
       </section>
     </>
   );
