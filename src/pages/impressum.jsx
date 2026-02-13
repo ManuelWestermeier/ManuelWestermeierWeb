@@ -2,36 +2,51 @@ import React from "react";
 
 function Impressum() {
   return (
-    <div className="bg-image" style={{ margin: "20px" }}>
+    <div className="bg-image" style={{ padding: "20px" }}>
       <h1>Impressum</h1>
-      <p>Dies ist eine private, nicht-kommerzielle Portfolio-Webseite von:</p>
-      <h2>Website</h2>
-      <p>
-        Dieses Impressum gilt für alle Angebote unter der Domain
-        https://manuel-westermeier.de/.
-      </p>
-      <b>Angaben gemäß § 5 TMG</b>
+
+      <h2>Angaben gemäß § 5 TMG</h2>
       <p>
         Manuel Westermeier
         <br />
-        13 Seehauserstraße
+        Seehauserstraße 13
         <br />
-        Ruhpolding
-        <br />
-        Telefon: +4915256427900
+        83324 Ruhpolding
+      </p>
+
+      <h2>Kontakt</h2>
+      <p>
+        Telefon: +49 152 56427900
         <br />
         E-Mail: info@manuel-westermeier.de
       </p>
-      <p>Haftungshinweis:</p>
+
+      <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
       <p>
-        Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung
-        für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten
-        sind ausschließlich deren Betreiber verantwortlich.
+        Manuel Westermeier
+        <br />
+        Seehauserstraße 13
+        <br />
+        83324 Ruhpolding
       </p>
+
+      <hr className="my-4" />
+
+      <h2>Haftungsausschluss (Disclaimer)</h2>
+
+      <h3>Haftung für Inhalte</h3>
       <p>
-        Diese Seite dient ausschließlich der Präsentation privater Projekte im
-        Bereich Webentwicklung, Software, Sounddesign und Musikproduktion. Es
-        handelt sich nicht um ein kommerzielles Angebot im Sinne des § 5 TMG.
+        Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+      </p>
+
+      <h3>Haftung für Links</h3>
+      <p>
+        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+      </p>
+
+      <h3>Urheberrecht</h3>
+      <p>
+        Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
       </p>
     </div>
   );
