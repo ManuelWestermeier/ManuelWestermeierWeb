@@ -12,12 +12,11 @@ import Datenschutz from "./pages/datenschutz";
 
 function App() {
   const location = useLocation();
-
   const [displayLocation, setDisplayLocation] = useState(location);
-  const [transitionStage, setTransistionStage] = useState("fadeIn");
+  const [transitionStage, setTransitionStage] = useState("fadeIn");
 
   useEffect(() => {
-    if (location !== displayLocation) setTransistionStage("fadeOut");
+    if (location !== displayLocation) setTransitionStage("fadeOut");
   }, [location, displayLocation]);
 
   return (
@@ -27,12 +26,10 @@ function App() {
         className={transitionStage}
         onAnimationEnd={(e) => {
           if (transitionStage === "fadeOut") {
-            setTransistionStage("fadeIn");
+            setTransitionStage("fadeIn");
             setDisplayLocation(location);
           } else {
-            setTimeout(() => {
-              e.target.classList.remove("fadeIn");
-            }, 100);
+            setTimeout(() => e.target.classList.remove("fadeIn"), 100);
           }
         }}
       >

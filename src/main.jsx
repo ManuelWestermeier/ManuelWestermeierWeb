@@ -54,7 +54,13 @@ if (document.location.hash == "#white") {
   );
 }
 
-
-if (!["http://localhost:4000", "http://localhost", "https://manuel-westermeier.de"].includes(document.location.origin)) {
+if (
+  ![
+    "http://localhost:4000",
+    "http://localhost",
+    "http://localhost:5173",
+    "https://manuel-westermeier.de",
+  ].includes(document.location.origin)
+) {
   document.location = "https://manuel-westermeier.de";
 }
