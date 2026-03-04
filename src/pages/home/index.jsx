@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-function useRevealObserver() {
+function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
     const obs = new IntersectionObserver(
@@ -36,60 +36,68 @@ function Counter({ end, suffix = "" }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-const skills = [
-  "React", "Node.js", "C / C++", "ESP32", "Unity",
-  "Electron", "TypeScript", "WebSockets", "AES", "C#", "Git", "Linux",
-];
+const skills = ["React", "Node.js", "C/C++", "ESP32", "Unity", "Electron", "TypeScript", "WebSockets", "AES", "C#", "Git", "Linux"];
 
 const featuredProjects = [
   { key: "a", name: "Easy-Einkauf", desc: "Smarte Einkaufslisten-App", tag: "Web App", href: "https://app.easy-einkauf.de/", color: "#00c8ff" },
-  { key: "b", name: "MW-OS (ESP32)", desc: "Mini-OS für ESP32 Mikrocontroller mit Touch-Display", tag: "Embedded", href: "https://github.com/ManuelWestermeier/esp-wroom-2-4-inch-os", color: "#6366f1" },
-  { key: "c", name: "PrivusChat", desc: "Hochsicherer Messenger mit AES-Verschlüsselung", tag: "Security", href: "https://privuschat.github.io/easy-messenger/", color: "#10b981" },
-  { key: "d", name: "LHRP Protocol", desc: "ESP Mesh-Netzwerk-Protokoll — Jugend Forscht", tag: "Networking", href: "https://github.com/ManuelWestermeier/LHRP", color: "#f59e0b" },
+  { key: "b", name: "MW-OS (ESP32)", desc: "Mini-OS für ESP32 mit Touch-Display", tag: "Embedded", href: "https://github.com/ManuelWestermeier/esp-wroom-2-4-inch-os", color: "#6366f1" },
+  { key: "c", name: "PrivusChat", desc: "Sicherer Messenger mit AES-Verschlüsselung", tag: "Security", href: "https://privuschat.github.io/easy-messenger/", color: "#10b981" },
+  { key: "d", name: "LHRP Protocol", desc: "ESP Mesh-Netzwerk — Jugend Forscht", tag: "Networking", href: "https://github.com/ManuelWestermeier/LHRP", color: "#f59e0b" },
 ];
 
 export default function Home() {
-  useRevealObserver();
+  useReveal();
 
   return (
-    <div style={{ overflowX: "hidden" }}>
-      {/* ── HERO ─────────────────────────────────────── */}
+    <div style={{ overflowX: "hidden", width: "100%" }}>
+
+      {/* ── HERO ─────────────────────────── */}
       <section className="hero-bg grid-overlay" style={{
         minHeight: "100dvh",
         display: "flex", flexDirection: "column",
-        alignItems: "center", justifyContent: "center",
+        justifyContent: "center",
         padding: "100px 24px 80px",
         position: "relative", overflow: "hidden",
+        boxSizing: "border-box",
       }}>
         {/* Orbs */}
-        <div className="orb anim-float-slow" style={{ width: "400px", height: "400px", top: "-60px", right: "-100px", background: "rgba(0,200,255,0.06)" }} />
-        <div className="orb anim-float" style={{ width: "280px", height: "280px", bottom: "10%", left: "-60px", background: "rgba(99,102,241,0.07)", animationDelay: "2s" }} />
+        <div className="orb anim-float-slow" style={{ width: "350px", height: "350px", top: "-60px", right: "-80px", background: "rgba(0,200,255,0.06)" }} />
+        <div className="orb anim-float" style={{ width: "250px", height: "250px", bottom: "8%", left: "-50px", background: "rgba(99,102,241,0.07)", animationDelay: "2s" }} />
 
-        <div style={{ maxWidth: "720px", width: "100%", textAlign: "center", position: "relative", zIndex: 1 }}>
-          <div className="section-label" style={{ marginBottom: "20px", animation: "textFadeIn 0.5s ease both" }}>
+        <div style={{ maxWidth: "760px", width: "100%", margin: "0 auto", position: "relative", zIndex: 1 }}>
+          {/* Label */}
+          <div className="section-label" style={{ marginBottom: "18px", animation: "textFadeIn 0.5s ease both" }}>
             Full-Stack Developer · Sound Designer
           </div>
+
+          {/* Name — scales from small mobile to desktop */}
           <h1 style={{
-            fontSize: "clamp(2.6rem, 9vw, 6rem)",
-            fontFamily: "'Syne',sans-serif", fontWeight: 800,
-            lineHeight: 1.0, marginBottom: "20px",
+            fontFamily: "'Syne', sans-serif",
+            fontWeight: 800,
+            lineHeight: 1.1,
+            marginBottom: "22px",
             animation: "textFadeIn 0.6s 0.1s ease both",
+            fontSize: "clamp(2.4rem, 6vw, 5rem)",
+            whiteSpace: "normal",
           }}>
-            <span className="gradient-text">Manuel</span>
-            <br />
+            <span className="gradient-text">Manuel </span>
             <span style={{ color: "var(--ink)" }}>Westermeier</span>
           </h1>
+
+          {/* Subtitle */}
           <p style={{
-            fontSize: "clamp(0.9rem, 2vw, 1.1rem)", color: "var(--muted)",
-            maxWidth: "480px", margin: "0 auto 36px", lineHeight: 1.7,
+            fontSize: "clamp(0.88rem, 2.2vw, 1.05rem)",
+            color: "var(--muted)", maxWidth: "460px",
+            lineHeight: 1.7, marginBottom: "32px",
             animation: "textFadeIn 0.6s 0.2s ease both",
           }}>
             Maßgeschneiderte Softwarelösungen — von Web-Apps bis Embedded-Systemen,
             Spielen und Sounddesign.
           </p>
+
+          {/* CTAs */}
           <div style={{
-            display: "flex", gap: "12px", justifyContent: "center",
-            flexWrap: "wrap",
+            display: "flex", gap: "12px", flexWrap: "wrap",
             animation: "textFadeIn 0.6s 0.3s ease both",
           }}>
             <Link to="/projects" className="btn-primary">Projekte ansehen →</Link>
@@ -99,49 +107,45 @@ export default function Home() {
           {/* Stats */}
           <div style={{
             display: "grid", gridTemplateColumns: "repeat(3,1fr)",
-            gap: "16px", marginTop: "64px",
+            gap: "16px", marginTop: "56px", maxWidth: "400px",
             animation: "textFadeIn 0.6s 0.45s ease both",
           }}>
             {[{ end: 300, suffix: "+", label: "Projekte" }, { end: 5, suffix: "+ J.", label: "Erfahrung" }, { end: 20, suffix: "+", label: "Technologien" }].map(({ end, suffix, label }) => (
-              <div key={label} style={{ textAlign: "center" }}>
+              <div key={label}>
                 <div className="stat-number"><Counter end={end} suffix={suffix} /></div>
-                <p style={{ color: "var(--muted)", fontSize: "0.8rem", marginTop: "4px" }}>{label}</p>
+                <p style={{ color: "var(--muted)", fontSize: "0.78rem", marginTop: "3px" }}>{label}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="anim-float" style={{ position: "absolute", bottom: "24px", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", opacity: 0.45 }}>
-          <div style={{ width: "22px", height: "36px", border: "1.5px solid var(--muted)", borderRadius: "11px", display: "flex", justifyContent: "center", paddingTop: "6px" }}>
-            <div style={{ width: "4px", height: "7px", background: "var(--accent)", borderRadius: "2px", animation: "float 2s ease-in-out infinite" }} />
+        <div className="anim-float" style={{ position: "absolute", bottom: "24px", left: "24px", display: "flex", alignItems: "center", gap: "8px", opacity: 0.4 }}>
+          <div style={{ width: "20px", height: "33px", border: "1.5px solid var(--muted)", borderRadius: "10px", display: "flex", justifyContent: "center", paddingTop: "5px" }}>
+            <div style={{ width: "3px", height: "6px", background: "var(--accent)", borderRadius: "2px", animation: "float 2s ease-in-out infinite" }} />
           </div>
+          <p style={{ fontSize: "0.62rem", color: "var(--muted)", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "'JetBrains Mono', monospace" }}>Scroll</p>
         </div>
       </section>
 
-      {/* ── ÜBER MICH ──────────────────────────────── */}
-      <section className="section-bg reveal" style={{ padding: "90px 24px", overflow: "hidden" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-          {/* Responsive: column on mobile, 2-col on wide */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "48px", alignItems: "center",
-          }}>
+      {/* ── ÜBER MICH ────────────────────── */}
+      <section className="section-bg reveal" style={{ padding: "80px 24px", overflow: "hidden", boxSizing: "border-box" }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", width: "100%" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: "48px", alignItems: "center" }}>
             {/* Text */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
               <span className="section-label">Über mich</span>
-              <h2 style={{ fontSize: "clamp(1.7rem, 4vw, 2.6rem)", fontFamily: "'Syne',sans-serif", fontWeight: 800, lineHeight: 1.15 }}>
+              <h2 style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.6rem)", fontFamily: "'Syne',sans-serif", fontWeight: 800, lineHeight: 1.15 }}>
                 Leidenschaftlicher<br /><span className="gradient-text">Entwickler</span><br />aus dem Chiemgau
               </h2>
-              <p style={{ color: "var(--muted)", lineHeight: 1.75, fontSize: "0.92rem" }}>
+              <p style={{ color: "var(--muted)", lineHeight: 1.75, fontSize: "0.9rem" }}>
                 Ich bin Manuel Westermeier — Full-Stack Entwickler, Sounddesigner und
                 Technikliebhaber. Von Web-Applikationen über Embedded-Systeme bis hin zu
                 Spieleentwicklung bringe ich Ideen zum Leben.
               </p>
-              <p style={{ color: "var(--muted)", lineHeight: 1.75, fontSize: "0.92rem" }}>
-                Neue Technologien eigne ich mir rasch an und setze sie gezielt ein, um
-                performante, maßgeschneiderte Lösungen zu entwickeln.
+              <p style={{ color: "var(--muted)", lineHeight: 1.75, fontSize: "0.9rem" }}>
+                Neue Technologien eigne ich mir rasch an und setze sie gezielt für
+                performante, maßgeschneiderte Lösungen ein.
               </p>
               <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
                 <Link to="/my-work" className="btn-primary" style={{ padding: "10px 22px", fontSize: "0.85rem" }}>Skills ansehen</Link>
@@ -150,25 +154,16 @@ export default function Home() {
             </div>
 
             {/* Skills + Avatar */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                {skills.map((s) => (
-                  <span key={s} className="skill-chip">{s}</span>
-                ))}
+            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "7px" }}>
+                {skills.map((s) => <span key={s} className="skill-chip">{s}</span>)}
               </div>
-              {/* Avatar card */}
-              <div className="glass" style={{ padding: "18px", display: "flex", alignItems: "center", gap: "14px", marginTop: "4px" }}>
-                <img
-                  src="/logo-128.png"
-                  alt="Manuel Westermeier"
-                  style={{ width: "48px", height: "48px", borderRadius: "50%", border: "2px solid rgba(0,200,255,0.4)", objectFit: "cover", flexShrink: 0 }}
-                />
+              <div className="glass" style={{ padding: "16px", display: "flex", alignItems: "center", gap: "12px" }}>
+                <img src="/logo-128.png" alt="Manuel Westermeier" style={{ width: "44px", height: "44px", borderRadius: "50%", border: "2px solid rgba(0,200,255,0.4)", objectFit: "cover", flexShrink: 0 }} />
                 <div style={{ minWidth: 0 }}>
-                  <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: "0.9rem" }}>Manuel Westermeier</p>
-                  <p style={{ color: "var(--accent)", fontSize: "0.75rem", fontFamily: "'JetBrains Mono',monospace" }}>Full-Stack Dev · Chiemgau</p>
-                  <p style={{ color: "var(--muted)", fontSize: "0.72rem", marginTop: "2px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    info@manuel-westermeier.de
-                  </p>
+                  <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: "0.88rem" }}>Manuel Westermeier</p>
+                  <p style={{ color: "var(--accent)", fontSize: "0.72rem", fontFamily: "'JetBrains Mono',monospace" }}>Full-Stack Dev · Chiemgau</p>
+                  <p style={{ color: "var(--muted)", fontSize: "0.7rem", marginTop: "2px" }}>info@manuel-westermeier.de</p>
                 </div>
               </div>
             </div>
@@ -176,63 +171,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FEATURED PROJECTS ──────────────────────── */}
-      <section style={{ padding: "90px 24px", background: "var(--bg)", overflow: "hidden" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div className="reveal" style={{ textAlign: "center", marginBottom: "48px" }}>
+      {/* ── FEATURED PROJECTS ────────────── */}
+      <section style={{ padding: "80px 24px", background: "var(--bg)", overflow: "hidden", boxSizing: "border-box" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
+          <div className="reveal" style={{ marginBottom: "40px" }}>
             <span className="section-label">Portfolio</span>
-            <h2 style={{ fontSize: "clamp(1.7rem, 4vw, 2.6rem)", fontFamily: "'Syne',sans-serif", fontWeight: 800, marginTop: "10px" }}>
+            <h2 style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.6rem)", fontFamily: "'Syne',sans-serif", fontWeight: 800, marginTop: "10px" }}>
               Ausgewählte <span className="gradient-text">Projekte</span>
             </h2>
-            <p style={{ color: "var(--muted)", maxWidth: "440px", margin: "12px auto 0", fontSize: "0.9rem" }}>
+            <p style={{ color: "var(--muted)", maxWidth: "400px", marginTop: "10px", fontSize: "0.88rem" }}>
               Über 300 realisierte Projekte — eine Auswahl der wichtigsten.
             </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "16px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 220px), 1fr))", gap: "14px" }}>
             {featuredProjects.map(({ key, name, desc, tag, href, color }, i) => (
-              <div key={key} className="project-card reveal" style={{ padding: "24px", display: "flex", flexDirection: "column", gap: "10px", transitionDelay: `${i * 0.07}s` }}>
+              <div key={key} className="project-card reveal" style={{ padding: "22px", display: "flex", flexDirection: "column", gap: "10px", transitionDelay: `${i * 0.07}s` }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                  <span style={{
-                    fontFamily: "'JetBrains Mono',monospace", fontSize: "0.68rem",
-                    padding: "3px 10px", background: `${color}18`,
-                    border: `1px solid ${color}40`, borderRadius: "100px", color,
-                  }}>{tag}</span>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.67rem", padding: "3px 9px", background: `${color}18`, border: `1px solid ${color}40`, borderRadius: "100px", color }}>{tag}</span>
                   <span style={{ color: "var(--muted)", fontSize: "0.9rem" }}>↗</span>
                 </div>
-                <h3 style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: "1rem" }}>{name}</h3>
+                <h3 style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: "0.98rem" }}>{name}</h3>
                 <p style={{ color: "var(--muted)", fontSize: "0.82rem", lineHeight: 1.6, flexGrow: 1 }}>{desc}</p>
-                <a href={href} target="_blank" rel="noopener noreferrer" className="project-link" style={{ width: "fit-content", fontSize: "0.75rem" }}>
-                  Ansehen →
-                </a>
+                <a href={href} target="_blank" rel="noopener noreferrer" className="project-link" style={{ width: "fit-content", fontSize: "0.74rem" }}>Ansehen →</a>
               </div>
             ))}
           </div>
-          <div className="reveal" style={{ textAlign: "center", marginTop: "36px" }}>
+          <div className="reveal" style={{ marginTop: "32px" }}>
             <Link to="/projects" className="btn-ghost">Alle Projekte ansehen →</Link>
           </div>
         </div>
       </section>
 
-      {/* ── CHIEMWEB CTA ───────────────────────────── */}
-      <section className="section-bg reveal" style={{ padding: "80px 24px", overflow: "hidden" }}>
-        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-          <div className="chiemweb-banner">
-            <img
-              src="https://chiemweb.de/logo-512.jpg"
-              alt="ChiemWeb Logo"
-              style={{ width: "64px", height: "64px", borderRadius: "14px", margin: "0 auto 16px", display: "block", objectFit: "cover", border: "2px solid rgba(0,200,255,0.3)" }}
-              className="anim-orbit"
-            />
-            <span className="section-label" style={{ display: "block", marginBottom: "10px" }}>Professionelle Webentwicklung</span>
-            <h2 style={{ fontSize: "clamp(1.4rem, 3.5vw, 2.2rem)", fontFamily: "'Syne',sans-serif", fontWeight: 800, marginBottom: "14px" }}>
+      {/* ── CHIEMWEB CTA ─────────────────── */}
+      <section className="section-bg" style={{ padding: "80px 24px", overflow: "hidden", boxSizing: "border-box" }}>
+        <div style={{ maxWidth: "680px", margin: "0 auto", width: "100%" }}>
+          <div className="chiemweb-banner reveal">
+            <img src="https://chiemweb.de/logo-512.jpg" alt="ChiemWeb Logo" style={{ width: "56px", height: "56px", borderRadius: "12px", margin: "0 auto 14px", display: "block", objectFit: "cover", border: "2px solid rgba(0,200,255,0.3)" }} className="anim-orbit" />
+            <span className="section-label" style={{ display: "block", marginBottom: "8px" }}>Professionelle Webentwicklung</span>
+            <h2 style={{ fontSize: "clamp(1.3rem, 3.5vw, 2.1rem)", fontFamily: "'Syne',sans-serif", fontWeight: 800, marginBottom: "12px" }}>
               Brauchen Sie eine <span className="gradient-text">Website</span>?
             </h2>
-            <p style={{ color: "var(--muted)", maxWidth: "420px", margin: "0 auto 28px", lineHeight: 1.7, fontSize: "0.9rem" }}>
-              Für professionelle Webprojekte empfehle ich{" "}
-              <strong style={{ color: "var(--ink)" }}>ChiemWeb.de</strong> —
-              moderne Websites zu fairen Preisen aus dem Chiemgau.
+            <p style={{ color: "var(--muted)", maxWidth: "400px", margin: "0 auto 24px", lineHeight: 1.7, fontSize: "0.88rem" }}>
+              Für professionelle Webprojekte empfehle ich <strong style={{ color: "var(--ink)" }}>ChiemWeb.de</strong> — moderne Websites zu fairen Preisen aus dem Chiemgau.
             </p>
-            <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
               <a href="https://chiemweb.de" target="_blank" rel="noopener noreferrer" className="btn-primary">ChiemWeb.de besuchen ↗</a>
               <Link to="/contact" className="btn-ghost">Direkt anfragen</Link>
             </div>
@@ -240,21 +222,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CONTACT TEASER ─────────────────────────── */}
-      <section className="reveal" style={{ padding: "90px 24px", background: "var(--bg)", textAlign: "center", overflow: "hidden" }}>
-        <div style={{ maxWidth: "560px", margin: "0 auto" }}>
+      {/* ── CONTACT TEASER ───────────────── */}
+      <section className="reveal" style={{ padding: "80px 24px", background: "var(--bg)", overflow: "hidden", boxSizing: "border-box" }}>
+        <div style={{ maxWidth: "520px", margin: "0 auto" }}>
           <span className="section-label">Kontakt</span>
-          <h2 style={{ fontSize: "clamp(1.7rem, 4vw, 2.6rem)", fontFamily: "'Syne',sans-serif", fontWeight: 800, marginTop: "10px", marginBottom: "14px" }}>
+          <h2 style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.6rem)", fontFamily: "'Syne',sans-serif", fontWeight: 800, marginTop: "10px", marginBottom: "14px" }}>
             Projekt in <span className="gradient-text">Planung</span>?
           </h2>
-          <p style={{ color: "var(--muted)", lineHeight: 1.7, marginBottom: "32px", fontSize: "0.9rem" }}>
+          <p style={{ color: "var(--muted)", lineHeight: 1.7, marginBottom: "28px", fontSize: "0.9rem" }}>
             Schnelle Antwortzeiten, faire Preise, professionelle Umsetzung.
           </p>
-          <Link to="/contact" className="btn-primary" style={{ padding: "13px 32px", fontSize: "0.95rem" }}>
+          <Link to="/contact" className="btn-primary" style={{ padding: "12px 30px", fontSize: "0.92rem" }}>
             Jetzt Kontakt aufnehmen →
           </Link>
         </div>
       </section>
+
     </div>
   );
 }

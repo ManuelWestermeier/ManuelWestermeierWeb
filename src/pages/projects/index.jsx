@@ -24,9 +24,9 @@ function Projects() {
   const dataKeys = Object.keys(data);
 
   return (
-    <div style={{ paddingTop: "100px", minHeight: "100dvh", background: "var(--bg)" }}>
+    <div style={{ paddingTop: "100px", minHeight: "100dvh", background: "var(--bg)", overflowX: "hidden", width: "100%" }}>
       {/* Hero */}
-      <div className="hero-bg" style={{ padding: "60px 24px 80px", textAlign: "center" }}>
+      <div className="hero-bg" style={{ padding: "60px 24px 80px" }}>
         <div style={{ maxWidth: "700px", margin: "0 auto" }}>
           <span className="section-label">Portfolio</span>
           <h1

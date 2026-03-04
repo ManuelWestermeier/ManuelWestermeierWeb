@@ -20,9 +20,9 @@ export default function Contact() {
   }, []);
 
   return (
-    <div style={{ paddingTop: "100px", minHeight: "100dvh", background: "var(--bg)", overflow: "hidden" }}>
+    <div style={{ paddingTop: "100px", minHeight: "100dvh", background: "var(--bg)", overflowX: "hidden", width: "100%" }}>
       {/* Hero */}
-      <div className="hero-bg" style={{ padding: "56px 24px 72px", textAlign: "center" }}>
+      <div className="hero-bg" style={{ padding: "56px 24px 72px" }}>
         <div style={{ maxWidth: "580px", margin: "0 auto" }}>
           <span className="section-label">Kontakt</span>
           <h1 style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 5vw, 3.2rem)", marginTop: "14px", marginBottom: "18px" }}>
