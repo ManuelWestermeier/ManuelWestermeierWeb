@@ -62,7 +62,7 @@ function Header() {
               animation: "pulseGlow 3s ease-in-out infinite",
             }} />
             <img
-              src="/logo-128.png"
+              src="/logo-512.png"
               alt="MW"
               style={{
                 position: "relative", width: "34px", height: "34px",

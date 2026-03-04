@@ -106,14 +106,32 @@ export default function Home() {
 
           {/* Stats */}
           <div style={{
-            display: "grid", gridTemplateColumns: "repeat(3,1fr)",
-            gap: "16px", marginTop: "56px", maxWidth: "400px",
+            display: "flex", gap: "0",
+            marginTop: "60px",
             animation: "textFadeIn 0.6s 0.45s ease both",
+            borderTop: "1px solid rgba(0,200,255,0.12)",
+            paddingTop: "32px",
+            maxWidth: "560px",
           }}>
-            {[{ end: 300, suffix: "+", label: "Projekte" }, { end: 5, suffix: "+ J.", label: "Erfahrung" }, { end: 20, suffix: "+", label: "Technologien" }].map(({ end, suffix, label }) => (
-              <div key={label}>
-                <div className="stat-number"><Counter end={end} suffix={suffix} /></div>
-                <p style={{ color: "var(--muted)", fontSize: "0.78rem", marginTop: "3px" }}>{label}</p>
+            {[
+              { end: 300, suffix: "+", label: "Projekte" },
+              { end: 5, suffix: "+ Jahre", label: "Erfahrung" },
+              { end: 20, suffix: "+", label: "Technologien" },
+            ].map(({ end, suffix, label }, idx) => (
+              <div key={label} style={{
+                flex: 1,
+                paddingRight: "24px",
+                borderRight: idx < 2 ? "1px solid rgba(0,200,255,0.1)" : "none",
+                paddingLeft: idx > 0 ? "24px" : "0",
+              }}>
+                <div style={{
+                  fontFamily: "'Syne',sans-serif", fontWeight: 800,
+                  fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+                  color: "var(--accent)", lineHeight: 1,
+                }}>
+                  <Counter end={end} suffix={suffix} />
+                </div>
+                <p style={{ color: "var(--muted)", fontSize: "0.78rem", marginTop: "6px", letterSpacing: "0.03em" }}>{label}</p>
               </div>
             ))}
           </div>
@@ -159,7 +177,7 @@ export default function Home() {
                 {skills.map((s) => <span key={s} className="skill-chip">{s}</span>)}
               </div>
               <div className="glass" style={{ padding: "16px", display: "flex", alignItems: "center", gap: "12px" }}>
-                <img src="/logo-128.png" alt="Manuel Westermeier" style={{ width: "44px", height: "44px", borderRadius: "50%", border: "2px solid rgba(0,200,255,0.4)", objectFit: "cover", flexShrink: 0 }} />
+                <img src="/logo-512.png" alt="Manuel Westermeier" style={{ width: "44px", height: "44px", borderRadius: "50%", border: "2px solid rgba(0,200,255,0.4)", objectFit: "cover", flexShrink: 0 }} />
                 <div style={{ minWidth: 0 }}>
                   <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: "0.88rem" }}>Manuel Westermeier</p>
                   <p style={{ color: "var(--accent)", fontSize: "0.72rem", fontFamily: "'JetBrains Mono',monospace" }}>Full-Stack Dev · Chiemgau</p>

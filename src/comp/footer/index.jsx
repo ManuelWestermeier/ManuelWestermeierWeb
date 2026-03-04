@@ -17,7 +17,7 @@ export default function Footer() {
           <div style={{ display: "flex", flexDirection: "column", gap: "14px", gridColumn: "span 1" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <img
-                src="/logo-128.png"
+                src="/logo-512.png"
                 alt="MW"
                 style={{ width: "32px", height: "32px", borderRadius: "50%", border: "1.5px solid rgba(0,200,255,0.4)", objectFit: "cover", flexShrink: 0 }}
               />
