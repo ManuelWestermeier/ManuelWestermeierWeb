@@ -220,9 +220,9 @@ export const data = {
     elem: (
       <article>
         <p>Werbefreies Online Memory-Spiel.</p>
-        <Img alt="Memory Game Logo" src="https://my-memory.duckdns.org/logo.jpg" />
+        <Img alt="Memory Game Logo" src="https://memory-game.manuel-westermeier.de/logo.jpg" />
         <div className="links-row">
-          <LinkBtn href="https://manuelwestermeier.github.io/memory_game/">Spiel Starten</LinkBtn>
+          <LinkBtn href="https://memory-game.manuel-westermeier.de/">Spiel Starten</LinkBtn>
         </div>
       </article>
     ),
