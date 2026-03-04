@@ -91,7 +91,7 @@ export default function Footer() {
         <div style={{ borderTop: "1px solid rgba(0,200,255,0.07)", paddingTop: "20px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "8px" }}>
           <p style={{ color: "var(--muted)", fontSize: "0.78rem" }}>© {new Date().getFullYear()} Manuel Westermeier</p>
           <p style={{ color: "var(--muted)", fontSize: "0.78rem" }}>
-            Built with <span style={{ color: "var(--accent)" }}>React</span> &amp; <span style={{ color: "var(--accent)" }}>Tailwind CSS</span>
+            Built with ChiemWeb
           </p>
         </div>
       </div>

@@ -51,7 +51,7 @@ const techStack = [
     items: [
       { name: "Git / GitHub", desc: "Versionskontrolle & CI", href: "https://github.com/manuelWestermeier/" },
       { name: "Netlify / Render", desc: "Static Hosting & Deployment", href: "https://www.netlify.com" },
-      { name: "GitHub Pages", desc: "Static Site Hosting", href: "https://pages.github.com/" },
+      { name: "GitHub Pages / Cloudflaire / Iconos", desc: "Static & Dynamic Site Hosting mit eigener Domain", href: "https://pages.github.com/" },
     ],
   },
 ];
