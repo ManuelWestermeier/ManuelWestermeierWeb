@@ -115,7 +115,7 @@ export default function Home() {
           }}>
             {[
               { end: 300, suffix: "+", label: "Projekte" },
-              { end: 5, suffix: "+ Jahre", label: "Erfahrung" },
+              { end: 3, suffix: "+", label: "Jahre Erfahrung" },
               { end: 20, suffix: "+", label: "Technologien" },
             ].map(({ end, suffix, label }, idx) => (
               <div key={label} style={{
