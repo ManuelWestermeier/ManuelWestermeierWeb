@@ -12,27 +12,28 @@ import Datenschutz from "./pages/datenschutz";
 
 function App() {
   const location = useLocation();
-
   const [displayLocation, setDisplayLocation] = useState(location);
-  const [transitionStage, setTransistionStage] = useState("fadeIn");
+  const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    if (location !== displayLocation) setTransistionStage("fadeOut");
-  }, [location, displayLocation]);
+    if (location.pathname !== displayLocation.pathname) {
+      setFading(true);
+    }
+  }, [location]);
 
   return (
     <>
       <Header />
       <div
-        className={transitionStage}
-        onAnimationEnd={(e) => {
-          if (transitionStage === "fadeOut") {
-            setTransistionStage("fadeIn");
+        style={{
+          opacity: fading ? 0 : 1,
+          transition: "opacity 0.22s ease",
+        }}
+        onTransitionEnd={() => {
+          if (fading) {
+            window.scrollTo(0, 0);
             setDisplayLocation(location);
-          } else {
-            setTimeout(() => {
-              e.target.classList.remove("fadeIn");
-            }, 100);
+            setFading(false);
           }
         }}
       >

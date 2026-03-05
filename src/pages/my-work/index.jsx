@@ -1,191 +1,166 @@
 import React, { useEffect } from "react";
-import BlurText from "../../comp/react-bits/blur-text";
 
-function MyWork() {
+const techStack = [
+  {
+    category: "Frontend",
+    color: "#00c8ff",
+    items: [
+      { name: "React / Vite", desc: "Web-Apps & SPAs mit JSX", href: "https://react.dev" },
+      { name: "HTML / CSS / JS", desc: "Fundamentals & Vanilla Web", href: "" },
+      { name: "Electron", desc: "Cross-Platform Desktop Apps", href: "https://www.electronjs.org" },
+    ],
+  },
+  {
+    category: "Backend",
+    color: "#10b981",
+    items: [
+      { name: "Node.js / Express", desc: "REST APIs & Serverlogik", href: "https://nodejs.org" },
+      { name: "WSNET Framework", desc: "Eigenes WebSocket-Protokoll", href: "https://github.com/ManuelWestermeier/WSNET_Framework/" },
+      { name: "Strato / Cloudflare", desc: "Hosting & DNS-Management", href: "https://www.cloudflare.com" },
+    ],
+  },
+  {
+    category: "Embedded",
+    color: "#f59e0b",
+    items: [
+      { name: "ESP32 / Arduino", desc: "Mikrocontroller-Programmierung", href: "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/" },
+      { name: "C / C++", desc: "Low-Level & Performance Code", href: "" },
+      { name: "PlatformIO", desc: "Embedded Build-System", href: "" },
+    ],
+  },
+  {
+    category: "Game Dev",
+    color: "#6366f1",
+    items: [
+      { name: "Unity (C#)", desc: "2D / 3D Spieleentwicklung", href: "https://unity.com" },
+      { name: "Visual Studio", desc: "C# / C++ GUI-Entwicklung", href: "https://visualstudio.microsoft.com" },
+      { name: "@-script", desc: "Eigene Programmiersprache", href: "https://github.com/ManuelWestermeier/at-script" },
+    ],
+  },
+  {
+    category: "Audio",
+    color: "#ec4899",
+    items: [
+      { name: "Sounddesign", desc: "Effekte für Spiele & Medien", href: "https://www.youtube.com/@TAGESSCHATTEN?sub_confirmation=1" },
+      { name: "Musikproduktion", desc: "Beats, Soundscapes, YouTube", href: "https://www.youtube.com/@TAGESSCHATTEN/videos" },
+    ],
+  },
+  {
+    category: "DevOps",
+    color: "#14b8a6",
+    items: [
+      { name: "Git / GitHub", desc: "Versionskontrolle & CI", href: "https://github.com/manuelWestermeier/" },
+      { name: "Netlify / Render", desc: "Static Hosting & Deployment", href: "https://www.netlify.com" },
+      { name: "GitHub Pages / Cloudflare", desc: "Static & Dynamic Site Hosting", href: "https://pages.github.com/" },
+    ],
+  },
+];
+
+export default function MyWork() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const els = document.querySelectorAll(".reveal");
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("visible"); }),
+      { threshold: 0.08 }
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <section className="flex home bg-image col">
-      <h1 style={{ fontSize: "2rem" }}>
-        <BlurText
-          text="Meine Arbeit"
-          delay={70}
-          animateBy="chars"
-          direction="top"
-        />
-      </h1>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <a href="https://www.electronjs.org">
-                <img
-                  style={{ height: "2rem" }}
-                  src="https://www.electronjs.org/assets/img/logo.svg"
-                  alt="[electron logo]"
-                />
-              </a>
-            </td>
-            <td>Desktop Applikationen mit Electron (JS)</td>
-          </tr>
-          <tr>
-            <td>
-              <a href="https://react.dev">
-                <img
-                  style={{ height: "2rem", borderRadius: "2rem" }}
-                  src="https://th.bing.com/th?id=ODLS.adb8ba17-4f9a-4488-87b4-615dae577f6d&w=64&h=64&qlt=90&pcl=fffffa&o=6&pid=1.2"
-                  alt="[react logo]"
-                />
-              </a>
-            </td>
-            <td>
-              Webapps und Homepages im Frontend mit Vite und React (JSX, JS)
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="https://nodejs.org">
-                <img
-                  style={{ height: "2rem", borderRadius: "2rem" }}
-                  src="https://th.bing.com/th/id/OIP.eld6_TNR8oUOuXCAojj1CQHaDt?rs=1&pid=ImgDetMain"
-                  alt="[node js logo]"
-                />
-              </a>
-            </td>
-            <td>
-              Webapps und Homepages im Backend mit NPM, Express und
-              <a
-                style={{ margin: "0 5px" }}
-                href="https://github.com/ManuelWestermeier/WSNET_Framework/"
-                title="eigene Websocket (Libary/Protokol)"
-              >
-                WSNET
-              </a>
-              (NodeJS)
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="https://visualstudio.microsoft.com">
-                <img
-                  style={{
-                    height: "2rem",
-                    backgroundColor: "rgba(255, 255, 255, 0.8)",
-                    borderRadius: "2rem",
-                  }}
-                  src="https://th.bing.com/th/id/OIP.0PhBmwxhEiX3BRBwrlnPFwAAAA?rs=1&pid=ImgDetMain"
-                  alt="[Visual Studio logo]"
-                />
-              </a>
-            </td>
-            <td>
-              Consolen und GUI Apps mit Visual Studio (C#, C++,
-              <a
-                style={{ marginLeft: "5px" }}
-                href="https://github.com/ManuelWestermeier/at-script"
-                title="eigene sprache"
-              >
-                @-script
-              </a>
-              )
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="https://unity.com">
-                <img
-                  style={{
-                    height: "2rem",
-                    backgroundColor: "white",
-                    borderRadius: "2rem",
-                    width: "3rem",
-                  }}
-                  src="https://cdn.sanity.io/images/fuvbjjlp/production/59311eb2aa91009ac2a4eac41a6b4ae0e26ccda2-22x24.svg"
-                  alt="[unity logo]"
-                />
-              </a>
-            </td>
-            <td>Crossplatform Videospiele mit Unity (C#)</td>
-          </tr>
-          <tr>
-            <td>
-              <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/">
-                <img
-                  style={{
-                    height: "2rem",
-                    backgroundColor: "white",
-                    borderRadius: "2rem",
-                    width: "3rem",
-                  }}
-                  src="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/_static/espressif-logo.svg"
-                  alt="[platform io logo]"
-                />
-              </a>
-            </td>
-            <td>
-              Embeddes Systems ESP32/Arduino (C/C++/PlatformIO/ArduinoIDE)
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="https://cdn2.iconfinder.com/data/icons/whcompare-isometric-web-hosting-servers/50/value-server-512.png">
-                <img
-                  style={{
-                    height: "2rem",
-                    backgroundColor: "white",
-                    borderRadius: "2rem",
-                    width: "3rem",
-                  }}
-                  src="https://cdn2.iconfinder.com/data/icons/whcompare-isometric-web-hosting-servers/50/value-server-512.png"
-                  alt="[unity logo]"
-                />
-              </a>
-            </td>
-            <td>
-              Serverhosting mit <a target="_blank" href="https://codesandbox.io">Codesandbox</a>
-              , <a target="_blank" href="https://pages.github.com/">Github Pages</a>, <a target="_blank" href="https://render.com/">Render.com</a>, <a target="_blank" href="https://www.strato.de/">Strato</a>, <a target="_blank" href="https://www.netlify.com">Netlify</a> und{" "}
-              <a target="_blank" href="https://www.cloudflare.com/">Cloudflare</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="https://www.youtube.com/@TAGESSCHATTEN?sub_confirmation=1">
-                <img
-                  style={{
-                    height: "2rem",
-                    backgroundColor: "white",
-                    borderRadius: "2rem",
-                    width: "2rem",
-                  }}
-                  src="imag/ts.jpg"
-                  alt="[TAGESSCHATTEN Kanal Logo]"
-                />
-              </a>
-            </td>
-            <td>
-              <a href="https://www.youtube.com/@TAGESSCHATTEN?sub_confirmation=1">
-                Musik und Soundeffekterstellung/Youtub Kanal
-              </a>
-              <a
-                style={{ marginLeft: "0.5rem" }}
-                href="https://www.youtube.com/@TAGESSCHATTEN/videos"
-              >
-                [ Videos ]
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <BlurText
-        text="In diesem Zusammenhang möchte ich betonen, dass ich mir neue Technologien rasch und problemlos aneignen kann."
-        delay={150}
-        animateBy="words"
-        direction="top"
-      />
-    </section>
+    <div style={{ paddingTop: "60px", minHeight: "100dvh", background: "var(--bg)", overflowX: "hidden", width: "100%" }}>
+      {/* Hero */}
+      <div className="hero-bg" style={{ padding: "clamp(44px,8vw,60px) var(--px) clamp(52px,9vw,80px)" }}>
+        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+          <span className="section-label">Skills & Technologien</span>
+          <h1 style={{
+            fontFamily: "'Syne',sans-serif",
+            fontWeight: 800,
+            fontSize: "clamp(1.9rem, 6vw, 3.5rem)",
+            marginTop: "14px",
+            marginBottom: "18px",
+          }}>
+            Meine <span className="gradient-text">Werkzeuge</span>
+          </h1>
+          <p style={{ color: "var(--muted)", lineHeight: 1.7, fontSize: "clamp(0.85rem, 2vw, 0.95rem)", maxWidth: "480px" }}>
+            Ein breites Technologie-Stack — von Frontend bis Embedded, von Spieleentwicklung
+            bis Sounddesign. Neue Technologien eigne ich mir schnell an.
+          </p>
+        </div>
+      </div>
+
+      {/* Tech Cards */}
+      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "clamp(40px,7vw,60px) var(--px) clamp(60px,9vw,100px)" }}>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 280px), 1fr))",
+          gap: "clamp(14px, 2.5vw, 24px)",
+        }}>
+          {techStack.map(({ category, color, items }, i) => (
+            <div
+              key={category}
+              className="glass reveal"
+              style={{ padding: "clamp(20px, 3vw, 28px)", transitionDelay: `${i * 0.07}s` }}
+            >
+              {/* Category Header */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "18px" }}>
+                <div style={{ width: "9px", height: "9px", borderRadius: "50%", background: color, boxShadow: `0 0 10px ${color}80`, flexShrink: 0 }} />
+                <h3 style={{
+                  fontFamily: "'Syne',sans-serif",
+                  fontWeight: 700,
+                  fontSize: "0.8rem",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color,
+                }}>
+                  {category}
+                </h3>
+              </div>
+
+              {/* Items */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                {items.map(({ name, desc, href }) => (
+                  <div key={name} style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "8px" }}>
+                      <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 600, fontSize: "clamp(0.84rem, 2vw, 0.9rem)", minWidth: 0, overflow: "hidden", textOverflow: "ellipsis" }}>{name}</p>
+                      {href && (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: "var(--muted)", fontSize: "0.75rem", transition: "color 0.2s", flexShrink: 0, minHeight: "24px", display: "flex", alignItems: "center" }}
+                          onMouseEnter={e => e.currentTarget.style.color = color}
+                          onMouseLeave={e => e.currentTarget.style.color = "var(--muted)"}
+                        >
+                          ↗
+                        </a>
+                      )}
+                    </div>
+                    <p style={{ color: "var(--muted)", fontSize: "clamp(0.78rem, 1.8vw, 0.82rem)" }}>{desc}</p>
+                    <div style={{ height: "2px", background: `linear-gradient(90deg, ${color}40 0%, transparent 100%)`, borderRadius: "1px", marginTop: "5px" }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Note */}
+        <div className="reveal" style={{
+          marginTop: "clamp(36px,6vw,56px)",
+          padding: "clamp(18px,3vw,24px) clamp(16px,3vw,32px)",
+          background: "rgba(0,200,255,0.05)",
+          border: "1px solid rgba(0,200,255,0.15)",
+          borderRadius: "16px",
+          textAlign: "center",
+        }}>
+          <p style={{ color: "var(--muted)", fontSize: "clamp(0.82rem, 2vw, 0.9rem)", lineHeight: 1.7, fontStyle: "italic" }}>
+            „In diesem Zusammenhang möchte ich betonen, dass ich mir neue Technologien
+            <span style={{ color: "var(--accent)", fontStyle: "normal", fontWeight: 600 }}> rasch und problemlos </span>
+            aneignen kann."
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
-
-export default MyWork;

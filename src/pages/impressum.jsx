@@ -2,7 +2,7 @@ import React from "react";
 
 function Impressum() {
   return (
-    <div className="bg-image" style={{ padding: "20px" }}>
+    <div style={{ paddingTop: "80px", paddingBottom: "80px", paddingLeft: "var(--px)", paddingRight: "var(--px)", maxWidth: "800px", margin: "0 auto", minHeight: "100dvh", overflow: "hidden" }}>
       <h1>Impressum</h1>
 
       <h2>Angaben gemäß § 5 TMG</h2>

@@ -2,7 +2,7 @@ import React from "react";
 
 function Datenschutz() {
   return (
-    <div className="bg-image" style={{ padding: "20px" }}>
+    <div style={{ paddingTop: "80px", paddingBottom: "80px", paddingLeft: "var(--px)", paddingRight: "var(--px)", maxWidth: "800px", margin: "0 auto", minHeight: "100dvh", overflow: "hidden" }}>
       <div className="markdown prose w-full break-words dark:prose-invert">
         <h1>Datenschutzerklärung</h1>
 
