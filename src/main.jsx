@@ -1,6 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+
+// ── Lokale Fonts (DSGVO-konform, kein Google-Fonts-Request) ──────────────────
+// Benötigt: npm install @fontsource-variable/outfit
+//                       @fontsource-variable/syne
+//                       @fontsource-variable/jetbrains-mono
+import "@fontsource-variable/outfit"; // Variable Font: alle Gewichte
+import "@fontsource-variable/syne"; // Variable Font: alle Gewichte
+import "@fontsource-variable/jetbrains-mono"; // Variable Font: alle Gewichte
+// ────────────────────────────────────────────────────────────────────────────
+
 import "./index.css";
 import SplashCursor from "./comp/react-bits/splash-cursor";
 import { BrowserRouter } from "react-router-dom";
@@ -54,12 +64,13 @@ if (document.location.hash == "#white") {
   );
 }
 
-
-if (![
-  "http://localhost:4000",
-  "http://localhost:5173",
-  "http://localhost",
-  "https://manuel-westermeier.de",
-].includes(document.location.origin)) {
+if (
+  ![
+    "http://localhost:4000",
+    "http://localhost:5173",
+    "http://localhost",
+    "https://manuel-westermeier.de",
+  ].includes(document.location.origin)
+) {
   document.location = "https://manuel-westermeier.de";
 }
