@@ -81,10 +81,12 @@ export const data = {
         </div>
         <Img
           src="/imag/twr.jpg"
+          style={{ maxWidth: "50vmin", margin: "auto" }}
           alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
         />
         <br />
         <Img
+          style={{ maxWidth: "50vmin", margin: "auto" }}
           src="/imag/twr-bauteil.png"
           alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
         />
