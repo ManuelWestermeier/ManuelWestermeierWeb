@@ -56,10 +56,10 @@ export const data = {
       <article>
         <p>Die smarte Einkaufslisten-App für effizientes Planen.</p>
         <div className="links-row">
-          <LinkBtn href="https://app.easy-einkauf.de/">App Testen</LinkBtn>
+          <LinkBtn href="https://easy-einkauf.de/">App Testen</LinkBtn>
         </div>
         <Img
-          src="https://app.easy-einkauf.de/screenshots/list-page.jpg"
+          src="https://easy-einkauf.de/screenshots/list-page.jpg"
           alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
         />
         <div className="social-links">
@@ -67,6 +67,27 @@ export const data = {
           <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@easyeinkauf">TikTok</a> •
           <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/easy.einkauf">Instagram</a>
         </div>
+      </article>
+    ),
+  },
+  twr: {
+    name: "TWR - Turbo Wasserrettung",
+    elem: (
+      <article>
+        <p>Autonome KI-Ertrinkenden Rettung.</p>
+        <p>Ausgezeichnet durch den <b>1. Preis</b> bei dem <b>Jugendforscht</b> Regional Wettbewerb.</p>
+        <div className="links-row">
+          <LinkBtn href="https://twr-systems.de/">Mehr Infos</LinkBtn>
+        </div>
+        <Img
+          src="/imag/twr.jpg"
+          alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
+        />
+        <br />
+        <Img
+          src="/imag/twr-bauteil.png"
+          alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
+        />
       </article>
     ),
   },
@@ -193,9 +214,9 @@ export const data = {
           mit AES-Verschlüsselung direkt im Browser. Zugriff nur via Passwort möglich.
         </p>
         <div className="links-row">
-          <LinkBtn href="https://hidden-fs.duckdns.org">App Öffnen</LinkBtn>
+          <LinkBtn href="https://hidden-fs.manuel-westermeier.de/">App Öffnen</LinkBtn>
         </div>
-        <Img alt="Hidden FS Secure Icon" src="https://hidden-fs.duckdns.org/favicon.ico" style={{ width: '64px', margin: '10px auto', display: 'block' }} />
+        <Img alt="Hidden FS Secure Icon" src="https://hidden-fs.manuel-westermeier.de/favicon.ico" style={{ width: '64px', margin: '10px auto', display: 'block' }} />
       </article>
     ),
   },
@@ -220,9 +241,9 @@ export const data = {
     elem: (
       <article>
         <p>Werbefreies Online Memory-Spiel.</p>
-        <Img alt="Memory Game Logo" src="https://my-memory.duckdns.org/logo.jpg" />
+        <Img alt="Memory Game Logo" src="https://memory-game.manuel-westermeier.de/logo.jpg" />
         <div className="links-row">
-          <LinkBtn href="https://manuelwestermeier.github.io/memory_game/">Spiel Starten</LinkBtn>
+          <LinkBtn href="https://memory-game.manuel-westermeier.de/">Spiel Starten</LinkBtn>
         </div>
       </article>
     ),
@@ -344,19 +365,6 @@ export const data = {
 
         <p><strong>WSNET Starter:</strong> Boilerplate mit React, Vite, Bootstrap & Node.js (Auth & Routing inklusive).</p>
         <LinkBtn href="https://github.com/ManuelWestermeier/WSNET_STARTER">Starter Template</LinkBtn>
-      </article>
-    ),
-  },
-  wop: {
-    name: "Wahrheit oder Pflicht",
-    elem: (
-      <article>
-        <p>Klassische Party-App ohne Werbung.</p>
-        <div className="gallery-grid">
-          <Img src="https://manuelwestermeier.github.io/home-page/wop-create.png" alt="Wahrheit oder Pflicht Erstellen" />
-          <Img src="https://manuelwestermeier.github.io/home-page/wop-ask.png" alt="Wahrheit oder Pflicht Frage" />
-          <Img src="https://manuelwestermeier.github.io/home-page/wop-users.png" alt="Wahrheit oder Pflicht Spieler" />
-        </div>
       </article>
     ),
   },
