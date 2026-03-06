@@ -63,9 +63,11 @@ body {
 ::-webkit-scrollbar {
   width: 4px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--accent);
   border-radius: 3px;
@@ -105,6 +107,7 @@ a {
   text-decoration: none;
   position: relative;
 }
+
 a::after {
   content: "";
   position: absolute;
@@ -117,14 +120,17 @@ a::after {
   transform-origin: left;
   transition: transform 0.3s ease;
 }
+
 a:hover::after {
   transform: scaleX(1);
 }
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
   border-radius: 4px;
 }
+
 :focus:not(:focus-visible) {
   outline: none;
 }
@@ -137,24 +143,29 @@ canvas {
 .fadeIn {
   animation: pageIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
 .fadeOut {
   animation: pageOut 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
 @keyframes pageIn {
   from {
     opacity: 0;
     transform: translateY(14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 @keyframes pageOut {
   from {
     opacity: 1;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     transform: translateY(-14px);
@@ -164,27 +175,23 @@ canvas {
 /* ── Backgrounds ───────────────────────────────────── */
 .hero-bg {
   background:
-    radial-gradient(
-      ellipse 80% 55% at 50% -5%,
+    radial-gradient(ellipse 80% 55% at 50% -5%,
       rgba(0, 200, 255, 0.11) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 55% 35% at 88% 80%,
+      transparent 60%),
+    radial-gradient(ellipse 55% 35% at 88% 80%,
       rgba(99, 102, 241, 0.09) 0%,
-      transparent 50%
-    ),
+      transparent 50%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-mid) 100%);
 }
+
 .section-bg {
   background:
-    radial-gradient(
-      ellipse 70% 50% at 20% 50%,
+    radial-gradient(ellipse 70% 50% at 20% 50%,
       rgba(99, 102, 241, 0.07) 0%,
-      transparent 60%
-    ),
+      transparent 60%),
     var(--bg-mid);
 }
+
 .grid-overlay {
   background-image:
     linear-gradient(rgba(0, 200, 255, 0.032) 1px, transparent 1px),
@@ -203,6 +210,7 @@ canvas {
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
+
 .glass:hover {
   border-color: rgba(0, 200, 255, 0.28);
   box-shadow: var(--glow);
@@ -210,16 +218,15 @@ canvas {
 
 /* ── Text helpers ──────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(
-    135deg,
-    #fff 0%,
-    var(--accent) 55%,
-    var(--accent-2) 100%
-  );
+  background: linear-gradient(135deg,
+      #fff 0%,
+      var(--accent) 55%,
+      var(--accent-2) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 .section-label {
   font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
   font-size: clamp(0.6rem, 1.8vw, 0.7rem);
@@ -228,6 +235,7 @@ canvas {
   color: var(--accent);
   display: inline-block;
 }
+
 .nav-link {
   font-family: "Outfit Variable", "Outfit", sans-serif;
   font-size: 0.88rem;
@@ -237,9 +245,11 @@ canvas {
   transition: color 0.2s ease;
   position: relative;
 }
+
 .nav-link::after {
   background: var(--accent);
 }
+
 .nav-link:hover {
   color: var(--ink);
 }
@@ -267,10 +277,12 @@ canvas {
   flex-shrink: 0;
   min-height: 44px;
 }
+
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 32px rgba(0, 200, 255, 0.52);
 }
+
 .btn-primary::after {
   display: none !important;
 }
@@ -296,11 +308,13 @@ canvas {
   flex-shrink: 0;
   min-height: 44px;
 }
+
 .btn-ghost:hover {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-2px);
 }
+
 .btn-ghost::after {
   display: none !important;
 }
@@ -330,12 +344,14 @@ canvas {
   width: 100%;
   max-width: 520px;
 }
+
 .stat-cell {
   flex: 1;
   padding-right: 16px;
   min-width: 0;
 }
-.stat-cell + .stat-cell {
+
+.stat-cell+.stat-cell {
   padding-left: 16px;
   padding-right: 0;
   border-left: 1px solid rgba(0, 200, 255, 0.1);
@@ -344,14 +360,15 @@ canvas {
 /* ── Scroll Reveal ─────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
+  transform: scale(0.7);
   transition:
     opacity 0.6s ease,
     transform 0.6s ease;
 }
+
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1);
 }
 
 /* ── Skill Chip ────────────────────────────────────── */
@@ -368,6 +385,7 @@ canvas {
   transition: all 0.2s ease;
   white-space: nowrap;
 }
+
 .skill-chip:hover {
   background: rgba(0, 200, 255, 0.14);
   border-color: rgba(0, 200, 255, 0.36);
@@ -382,6 +400,7 @@ canvas {
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
 }
+
 .project-card:hover {
   border-color: rgba(0, 200, 255, 0.32);
   transform: translateY(-4px);
@@ -389,6 +408,7 @@ canvas {
     0 18px 44px rgba(0, 0, 0, 0.32),
     var(--glow);
 }
+
 .project-link {
   display: inline-flex;
   align-items: center;
@@ -405,9 +425,11 @@ canvas {
   white-space: nowrap;
   min-height: 36px;
 }
+
 .project-link::after {
   display: none !important;
 }
+
 .project-link:hover {
   background: rgba(0, 200, 255, 0.18);
 }
@@ -419,12 +441,14 @@ canvas {
   gap: 8px;
   margin: 10px 0;
 }
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr));
   gap: 8px;
   margin: 10px 0;
 }
+
 .feature-list {
   list-style: none;
   display: flex;
@@ -432,21 +456,25 @@ canvas {
   gap: 4px;
   margin: 8px 0;
 }
+
 .feature-list li {
   font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
   font-size: 0.76rem;
   color: var(--muted);
 }
+
 .social-links a {
   color: var(--accent);
   font-size: 0.8rem;
   margin: 0 4px;
 }
+
 .divider {
   border: none;
   border-top: 1px solid rgba(0, 200, 255, 0.1);
   margin: 12px 0;
 }
+
 .note {
   font-size: 0.76rem;
   color: var(--muted);
@@ -460,6 +488,7 @@ canvas {
   border: 1px solid rgba(0, 200, 255, 0.1);
   max-width: 100%;
 }
+
 .img-wrapper img {
   width: 100%;
   max-width: 100%;
@@ -468,6 +497,7 @@ canvas {
   display: block;
   transition: transform 0.3s ease;
 }
+
 .img-wrapper img.max {
   position: fixed;
   top: 50%;
@@ -481,6 +511,7 @@ canvas {
   box-shadow: 0 0 0 9999px rgba(5, 11, 23, 0.93);
   cursor: zoom-out;
 }
+
 .project-video {
   width: 100%;
   max-width: 100%;
@@ -489,6 +520,7 @@ canvas {
   cursor: pointer;
   display: block;
 }
+
 .iframe-container {
   margin: 10px 0;
   overflow: hidden;
@@ -510,9 +542,11 @@ canvas {
   overflow: hidden;
   min-height: 68px;
 }
+
 .contact-card::after {
   display: none !important;
 }
+
 .contact-card:hover {
   border-color: rgba(0, 200, 255, 0.32);
   transform: translateX(4px);
@@ -531,11 +565,9 @@ canvas {
 
 /* ── ChiemWeb Banner ───────────────────────────────── */
 .chiemweb-banner {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 200, 255, 0.07) 0%,
-    rgba(99, 102, 241, 0.07) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(0, 200, 255, 0.07) 0%,
+      rgba(99, 102, 241, 0.07) 100%);
   border: 1px solid rgba(0, 200, 255, 0.18);
   border-radius: 18px;
   padding: clamp(22px, 5vw, 36px) clamp(14px, 4vw, 28px);
@@ -545,49 +577,62 @@ canvas {
 
 /* ── Animations ────────────────────────────────────── */
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-14px);
   }
 }
+
 @keyframes floatSlow {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-20px);
   }
 }
+
 @keyframes pulseGlow {
+
   0%,
   100% {
     opacity: 0.4;
   }
+
   50% {
     opacity: 1;
   }
 }
+
 @keyframes orbitPulse {
+
   0%,
   100% {
     transform: scale(1);
     opacity: 0.75;
   }
+
   50% {
     transform: scale(1.06);
     opacity: 1;
   }
 }
+
 @keyframes textFadeIn {
   from {
     opacity: 0;
     filter: blur(4px);
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     filter: blur(0);
@@ -598,12 +643,15 @@ canvas {
 .anim-float {
   animation: float 5s ease-in-out infinite;
 }
+
 .anim-float-slow {
   animation: floatSlow 9s ease-in-out infinite;
 }
+
 .anim-glow {
   animation: pulseGlow 2.8s ease-in-out infinite;
 }
+
 .anim-orbit {
   animation: orbitPulse 4s ease-in-out infinite;
 }
@@ -626,19 +674,23 @@ canvas {
     flex-direction: column;
     align-items: stretch;
   }
+
   .cta-row .btn-primary,
   .cta-row .btn-ghost {
     width: 100%;
     justify-content: center;
   }
+
   .chiemweb-banner .btn-primary,
   .chiemweb-banner .btn-ghost {
     width: 100%;
     max-width: 100%;
   }
+
   .contact-card {
     padding: 13px 14px;
   }
+
   .contact-card-icon {
     width: 40px !important;
     height: 40px !important;
@@ -654,6 +706,7 @@ canvas {
     flex-direction: column;
     max-width: 100%;
   }
+
   .stat-cell {
     padding: 0 !important;
     border: none !important;
@@ -661,12 +714,14 @@ canvas {
     align-items: center;
     gap: 14px;
   }
-  .stat-cell + .stat-cell {
+
+  .stat-cell+.stat-cell {
     padding: 0 !important;
     border: none !important;
     padding-top: 14px !important;
     border-top: 1px solid rgba(0, 200, 255, 0.08) !important;
   }
+
   .btn-primary,
   .btn-ghost {
     font-size: 0.78rem;
