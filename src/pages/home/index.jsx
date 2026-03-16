@@ -13,26 +13,41 @@ function useReveal() {
   }, []);
 }
 
-function Counter({ end, suffix = "" }) {
+function Counter({ end, suffix = "", duration = 1000 }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const started = useRef(false);
+
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting && !started.current) {
         started.current = true;
-        let n = 0;
-        const step = Math.max(1, Math.ceil(end / 50));
+
+        const frames = 50;                 // smoothness
+        const stepValue = end / frames;
+        const stepTime = duration / frames;
+
+        let frame = 0;
+
         const t = setInterval(() => {
-          n += step;
-          if (n >= end) { setCount(end); clearInterval(t); }
-          else setCount(n);
-        }, 25);
+          frame++;
+
+          if (frame >= frames) {
+            setCount(end);
+            clearInterval(t);
+          } else {
+            setCount(Math.round(stepValue * frame));
+          }
+
+        }, stepTime);
       }
     }, { threshold: 0.5 });
+
     if (ref.current) obs.observe(ref.current);
+
     return () => obs.disconnect();
-  }, [end]);
+  }, [end, duration]);
+
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
@@ -105,24 +120,28 @@ export default function Home() {
           </p>
 
           {/* CTAs */}
-          <div className="cta-row" style={{ animation: "textFadeIn 0.6s 0.3s ease both" }}>
+          <div className="cta-row" style={{
+            animation: "textFadeIn 0.6s 0.3s ease both",
+          }}>
             <Link to="/projects" className="btn-primary">Projekte ansehen →</Link>
             <Link to="/contact" className="btn-ghost">Kontakt aufnehmen</Link>
           </div>
 
           {/* Stats */}
-          <div className="stats-row" style={{
+          <div style={{
             marginTop: "48px",
             animation: "textFadeIn 0.6s 0.45s ease both",
+            width: "100%",
+            display: "flex",
           }}>
             {[
               { end: 300, suffix: "+", label: "Projekte" },
-              { end: 3, suffix: "+", label: "Jahre Erfahrung" },
+              { end: 4, suffix: "+", label: "Jahre Erfahrung" },
               { end: 20, suffix: "+", label: "Technologien" },
             ].map(({ end, suffix, label }, idx) => (
               <div key={label} className="stat-cell">
                 <div className="stat-number">
-                  <Counter end={end} suffix={suffix} />
+                  <Counter end={end} duration={idx == 1 ? 1750 : 1500} suffix={suffix} />
                 </div>
                 <p style={{ color: "var(--muted)", fontSize: "clamp(0.68rem, 1.6vw, 0.78rem)", marginTop: "5px", letterSpacing: "0.03em" }}>{label}</p>
               </div>
