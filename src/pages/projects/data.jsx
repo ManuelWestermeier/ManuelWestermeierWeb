@@ -50,6 +50,30 @@ const LinkBtn = ({ href, children }) => (
 );
 
 export const data = {
+  twr: {
+    name: "TWR - Turbo Wasserrettung",
+    elem: (
+      <article>
+        <p>Baywatch, aber futuristisch:
+          Unser System erkennt mithilfe von KI eigenständig ertrinkende Personen per Kamera - von Landstationen oder Schiffen aus. Daraufhin wird ein autonomes, kleines Rettungsboot aktiviert, das zielgenau zur gefährdeten Person navigiert. Es bringt dieser eine Schwimmboje, und zieht die Person sicher zurück an Land oder an Bord.</p>
+        <p>Ausgezeichnet durch den <b>1. Preis</b> bei dem <b>Jugendforscht</b> Regional Wettbewerb.</p>
+        <div className="links-row">
+          <LinkBtn href="https://twr-systems.de/">Mehr Infos</LinkBtn>
+        </div>
+        <Img
+          src="/imag/twr.jpg"
+          style={{ maxWidth: "50vmin", margin: "auto" }}
+          alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
+        />
+        <br />
+        <Img
+          style={{ maxWidth: "50vmin", margin: "auto" }}
+          src="/imag/twr-bauteil.png"
+          alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
+        />
+      </article>
+    ),
+  },
   easyEinakuf: {
     name: "Easy-Einkauf",
     elem: (
@@ -67,29 +91,6 @@ export const data = {
           <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@easyeinkauf">TikTok</a> •
           <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/easy.einkauf">Instagram</a>
         </div>
-      </article>
-    ),
-  },
-  twr: {
-    name: "TWR - Turbo Wasserrettung",
-    elem: (
-      <article>
-        <p>Autonome KI-Ertrinkenden Rettung.</p>
-        <p>Ausgezeichnet durch den <b>1. Preis</b> bei dem <b>Jugendforscht</b> Regional Wettbewerb.</p>
-        <div className="links-row">
-          <LinkBtn href="https://twr-systems.de/">Mehr Infos</LinkBtn>
-        </div>
-        <Img
-          src="/imag/twr.jpg"
-          style={{ maxWidth: "50vmin", margin: "auto" }}
-          alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
-        />
-        <br />
-        <Img
-          style={{ maxWidth: "50vmin", margin: "auto" }}
-          src="/imag/twr-bauteil.png"
-          alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
-        />
       </article>
     ),
   },
