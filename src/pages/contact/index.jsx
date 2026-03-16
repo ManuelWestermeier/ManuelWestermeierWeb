@@ -1,10 +1,29 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { IconMail, IconPhone, IconGitHub } from "../../comp/icons";
 
 const contactItems = [
-  { icon: "✉", label: "E-Mail", value: "info@manuel-westermeier.de", href: "mailto:info@manuel-westermeier.de", color: "#00c8ff" },
-  { icon: "☎", label: "Telefon", value: "+49 1525 6427 900", href: "tel:+4915256427900", color: "#10b981" },
-  { icon: "⌥", label: "GitHub", value: "github.com/ManuelWestermeier", href: "https://github.com/ManuelWestermeier", color: "#6366f1" },
+  {
+    icon: IconMail,
+    label: "E-Mail",
+    value: "info@manuel-westermeier.de",
+    href: "mailto:info@manuel-westermeier.de",
+    color: "#00c8ff",
+  },
+  {
+    icon: IconPhone,
+    label: "Telefon",
+    value: "+49 1525 6427 900",
+    href: "tel:+4915256427900",
+    color: "#10b981",
+  },
+  {
+    icon: IconGitHub,
+    label: "GitHub",
+    value: "github.com/ManuelWestermeier",
+    href: "https://github.com/ManuelWestermeier",
+    color: "#6366f1",
+  },
 ];
 
 export default function Contact() {
@@ -42,7 +61,7 @@ export default function Contact() {
       {/* Contact Cards */}
       <div style={{ maxWidth: "600px", margin: "0 auto", padding: "clamp(36px,7vw,56px) var(--px) clamp(56px,9vw,80px)" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "40px" }}>
-          {contactItems.map(({ icon, label, value, href, color }, i) => (
+          {contactItems.map(({ icon: IconComp, label, value, href, color }, i) => (
             <a
               key={label} href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
@@ -54,9 +73,9 @@ export default function Contact() {
                 width: "44px", height: "44px", borderRadius: "11px",
                 background: `${color}14`, border: `1px solid ${color}30`,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "1.05rem", flexShrink: 0, color,
+                flexShrink: 0, color,
               }}>
-                {icon}
+                <IconComp size={20} />
               </div>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
                 <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 600, fontSize: "0.75rem", color: "var(--muted)", marginBottom: "2px" }}>{label}</p>

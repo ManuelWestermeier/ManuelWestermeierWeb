@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { IconGitHub, IconYouTube, IconUnity } from "../icons";
 
 const socials = [
-  { href: "https://github.com/manuelWestermeier/", label: "GitHub", icon: "⌥" },
-  { href: "https://www.youtube.com/@TAGESSCHATTEN?sub_confirmation=1", label: "YouTube", icon: "▶" },
-  { href: "https://play.unity.com/en/user/66818d56-98e8-499c-8fca-b3eb98a886c7", label: "Unity", icon: "◈" },
+  { href: "https://github.com/manuelWestermeier/", label: "GitHub", Icon: IconGitHub },
+  { href: "https://www.youtube.com/@TAGESSCHATTEN?sub_confirmation=1", label: "YouTube", Icon: IconYouTube },
+  { href: "https://play.unity.com/en/user/66818d56-98e8-499c-8fca-b3eb98a886c7", label: "Unity", Icon: IconUnity },
 ];
 
 export default function Footer() {
@@ -38,7 +39,7 @@ export default function Footer() {
               Full-Stack Entwickler &amp; Sounddesigner aus dem Chiemgau.
             </p>
             <div style={{ display: "flex", gap: "8px" }}>
-              {socials.map(({ href, label, icon }) => (
+              {socials.map(({ href, label, Icon }) => (
                 <a
                   key={label} href={href} target="_blank" rel="noopener noreferrer"
                   aria-label={label}
@@ -47,12 +48,14 @@ export default function Footer() {
                     display: "flex", alignItems: "center", justifyContent: "center",
                     background: "rgba(0,200,255,0.07)",
                     border: "1px solid rgba(0,200,255,0.14)",
-                    borderRadius: "9px", color: "var(--muted)", fontSize: "0.85rem",
+                    borderRadius: "9px", color: "var(--muted)",
                     transition: "all 0.2s ease", textDecoration: "none", flexShrink: 0,
                   }}
                   onMouseEnter={e => { e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.borderColor = "rgba(0,200,255,0.38)"; }}
                   onMouseLeave={e => { e.currentTarget.style.color = "var(--muted)"; e.currentTarget.style.borderColor = "rgba(0,200,255,0.14)"; }}
-                >{icon}</a>
+                >
+                  <Icon size={16} />
+                </a>
               ))}
             </div>
           </div>
