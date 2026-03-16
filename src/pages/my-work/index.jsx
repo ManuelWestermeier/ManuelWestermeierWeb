@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import {
   SiReact, SiHtml5, SiJavascript, SiTypescript, SiElectron,
   SiNodedotjs, SiCloudflare, SiArduino, SiCplusplus,
-  SiUnity, SiVisualstudiocode, SiGithub, SiNetlify, SiGit, SiLinux,
+  SiUnity, SiVisualstudio, SiGithub, SiNetlify, SiGit, SiLinux,
 } from "react-icons/si";
 import { FaServer, FaMicrochip, FaGamepad, FaMusic, FaCloud, FaCode, FaWrench } from "react-icons/fa";
 import { GiSoundWaves } from "react-icons/gi";
@@ -41,7 +41,7 @@ const techStack = [
     color: "#6366f1",
     items: [
       { name: "Unity (C#)", desc: "2D / 3D Spieleentwicklung", href: "https://unity.com", Icon: SiUnity },
-      { name: "Visual Studio", desc: "C# / C++ GUI-Entwicklung", href: "https://visualstudio.microsoft.com", Icon: SiVisualstudiocode },
+      { name: "Visual Studio", desc: "C# / C++ GUI-Entwicklung", href: "https://visualstudio.microsoft.com", Icon: SiVisualstudio },
       { name: "@-script", desc: "Eigene Programmiersprache", href: "https://github.com/ManuelWestermeier/at-script", Icon: FaCode },
     ],
   },
