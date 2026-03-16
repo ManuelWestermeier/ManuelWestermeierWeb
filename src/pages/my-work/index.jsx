@@ -1,66 +1,65 @@
 import React, { useEffect } from "react";
 import {
-  IconReact, IconHTML5, IconJavaScript, IconTypeScript, IconElectron,
-  IconNodeJS, IconServer, IconCloud, IconWebSocket,
-  IconChip, IconCpp, IconBuild,
-  IconUnity, IconVSCode, IconCode, IconGamepad,
-  IconMusic, IconWave,
-  IconGit, IconGlobe, IconDeploy, IconLinux,
-  IconGitHub, IconShield,
-} from "../../comp/icons";
+  SiReact, SiHtml5, SiJavascript, SiTypescript, SiElectron,
+  SiNodedotjs, SiCloudflare, SiArduino, SiCplusplus,
+  SiUnity, SiVisualstudiocode, SiGithub, SiNetlify, SiGit, SiLinux,
+} from "react-icons/si";
+import { FaServer, FaMicrochip, FaGamepad, FaMusic, FaCloud, FaCode, FaWrench } from "react-icons/fa";
+import { GiSoundWaves } from "react-icons/gi";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const techStack = [
   {
     category: "Frontend",
     color: "#00c8ff",
     items: [
-      { name: "React / Vite", desc: "Web-Apps & SPAs mit JSX", href: "https://react.dev", Icon: IconReact },
-      { name: "HTML / CSS / JS", desc: "Fundamentals & Vanilla Web", href: "", Icon: IconHTML5 },
-      { name: "Electron", desc: "Cross-Platform Desktop Apps", href: "https://www.electronjs.org", Icon: IconElectron },
+      { name: "React / Vite", desc: "Web-Apps & SPAs mit JSX", href: "https://react.dev", Icon: SiReact },
+      { name: "HTML / CSS / JS", desc: "Fundamentals & Vanilla Web", href: "", Icon: SiHtml5 },
+      { name: "Electron", desc: "Cross-Platform Desktop Apps", href: "https://www.electronjs.org", Icon: SiElectron },
     ],
   },
   {
     category: "Backend",
     color: "#10b981",
     items: [
-      { name: "Node.js / Express", desc: "REST APIs & Serverlogik", href: "https://nodejs.org", Icon: IconNodeJS },
-      { name: "WSNET Framework", desc: "Eigenes WebSocket-Protokoll", href: "https://github.com/ManuelWestermeier/WSNET_Framework/", Icon: IconWebSocket },
-      { name: "Strato / Cloudflare", desc: "Hosting & DNS-Management", href: "https://www.cloudflare.com", Icon: IconCloud },
+      { name: "Node.js / Express", desc: "REST APIs & Serverlogik", href: "https://nodejs.org", Icon: SiNodedotjs },
+      { name: "WSNET Framework", desc: "Eigenes WebSocket-Protokoll", href: "https://github.com/ManuelWestermeier/WSNET_Framework/", Icon: FaServer },
+      { name: "Strato / Cloudflare", desc: "Hosting & DNS-Management", href: "https://www.cloudflare.com", Icon: SiCloudflare },
     ],
   },
   {
     category: "Embedded",
     color: "#f59e0b",
     items: [
-      { name: "ESP32 / Arduino", desc: "Mikrocontroller-Programmierung", href: "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/", Icon: IconChip },
-      { name: "C / C++", desc: "Low-Level & Performance Code", href: "", Icon: IconCpp },
-      { name: "PlatformIO", desc: "Embedded Build-System", href: "", Icon: IconBuild },
+      { name: "ESP32 / Arduino", desc: "Mikrocontroller-Programmierung", href: "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/", Icon: SiArduino },
+      { name: "C / C++", desc: "Low-Level & Performance Code", href: "", Icon: SiCplusplus },
+      { name: "PlatformIO", desc: "Embedded Build-System", href: "", Icon: FaWrench },
     ],
   },
   {
     category: "Game Dev",
     color: "#6366f1",
     items: [
-      { name: "Unity (C#)", desc: "2D / 3D Spieleentwicklung", href: "https://unity.com", Icon: IconUnity },
-      { name: "Visual Studio", desc: "C# / C++ GUI-Entwicklung", href: "https://visualstudio.microsoft.com", Icon: IconVSCode },
-      { name: "@-script", desc: "Eigene Programmiersprache", href: "https://github.com/ManuelWestermeier/at-script", Icon: IconCode },
+      { name: "Unity (C#)", desc: "2D / 3D Spieleentwicklung", href: "https://unity.com", Icon: SiUnity },
+      { name: "Visual Studio", desc: "C# / C++ GUI-Entwicklung", href: "https://visualstudio.microsoft.com", Icon: SiVisualstudiocode },
+      { name: "@-script", desc: "Eigene Programmiersprache", href: "https://github.com/ManuelWestermeier/at-script", Icon: FaCode },
     ],
   },
   {
     category: "Audio",
     color: "#ec4899",
     items: [
-      { name: "Sounddesign", desc: "Effekte für Spiele & Medien", href: "https://www.youtube.com/@TAGESSCHATTEN?sub_confirmation=1", Icon: IconWave },
-      { name: "Musikproduktion", desc: "Beats, Soundscapes, YouTube", href: "https://www.youtube.com/@TAGESSCHATTEN/videos", Icon: IconMusic },
+      { name: "Sounddesign", desc: "Effekte für Spiele & Medien", href: "https://www.youtube.com/@TAGESSCHATTEN?sub_confirmation=1", Icon: GiSoundWaves },
+      { name: "Musikproduktion", desc: "Beats, Soundscapes, YouTube", href: "https://www.youtube.com/@TAGESSCHATTEN/videos", Icon: FaMusic },
     ],
   },
   {
     category: "DevOps",
     color: "#14b8a6",
     items: [
-      { name: "Git / GitHub", desc: "Versionskontrolle & CI", href: "https://github.com/manuelWestermeier/", Icon: IconGit },
-      { name: "Netlify / Render", desc: "Static Hosting & Deployment", href: "https://www.netlify.com", Icon: IconDeploy },
-      { name: "GitHub Pages / Cloudflare", desc: "Static & Dynamic Site Hosting", href: "https://pages.github.com/", Icon: IconGlobe },
+      { name: "Git / GitHub", desc: "Versionskontrolle & CI", href: "https://github.com/manuelWestermeier/", Icon: SiGit },
+      { name: "Netlify / Render", desc: "Static Hosting & Deployment", href: "https://www.netlify.com", Icon: SiNetlify },
+      { name: "GitHub Pages / Cloudflare", desc: "Static & Dynamic Site Hosting", href: "https://pages.github.com/", Icon: SiGithub },
     ],
   },
 ];
@@ -160,7 +159,7 @@ export default function MyWork() {
                           onMouseEnter={e => e.currentTarget.style.color = color}
                           onMouseLeave={e => e.currentTarget.style.color = "var(--muted)"}
                         >
-                          ↗
+                          <FiArrowUpRight />
                         </a>
                       )}
                     </div>
