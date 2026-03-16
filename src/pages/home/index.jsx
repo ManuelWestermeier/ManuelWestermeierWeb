@@ -239,7 +239,7 @@ export default function Home() {
         <div style={{ maxWidth: "620px", margin: "0 auto", width: "100%" }}>
           <div className="chiemweb-banner reveal">
             <img
-              src="https://chiemweb.de/logo-512.jpg" alt="ChiemWeb Logo"
+              src="/chiemweb-logo-512.jpg" alt="ChiemWeb Logo"
               style={{ width: "52px", height: "52px", borderRadius: "12px", margin: "0 auto 14px", display: "block", objectFit: "cover", border: "2px solid rgba(0,200,255,0.3)" }}
               className="anim-orbit"
             />

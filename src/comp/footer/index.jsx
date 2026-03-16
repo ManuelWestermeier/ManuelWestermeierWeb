@@ -90,7 +90,7 @@ export default function Footer() {
               onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(0,200,255,0.45)"; e.currentTarget.style.background = "rgba(0,200,255,0.12)"; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(0,200,255,0.18)"; e.currentTarget.style.background = "rgba(0,200,255,0.06)"; }}
             >
-              <img src="https://chiemweb.de/logo-512.jpg" alt="ChiemWeb" style={{ width: "28px", height: "28px", borderRadius: "7px", objectFit: "cover", flexShrink: 0 }} />
+              <img src="/chiemweb-logo-512.jpg" alt="ChiemWeb" style={{ width: "28px", height: "28px", borderRadius: "7px", objectFit: "cover", flexShrink: 0 }} />
               <div style={{ minWidth: 0 }}>
                 <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: "0.84rem", color: "var(--ink)" }}>ChiemWeb.de</p>
                 <p style={{ fontSize: "0.7rem", color: "var(--muted)", whiteSpace: "nowrap" }}>Professionelle Websites</p>

@@ -89,7 +89,7 @@ export default function Contact() {
         {/* ChiemWeb Banner */}
         <div className="chiemweb-banner reveal">
           <img
-            src="https://chiemweb.de/logo-512.jpg" alt="ChiemWeb"
+            src="/chiemweb-logo-512.jpg" alt="ChiemWeb"
             style={{ width: "56px", height: "56px", borderRadius: "12px", margin: "0 auto 14px", display: "block", border: "2px solid rgba(0,200,255,0.3)", objectFit: "cover" }}
           />
           <span className="section-label" style={{ display: "block", marginBottom: "8px" }}>Website-Kauf</span>
