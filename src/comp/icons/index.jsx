@@ -1,15 +1,39 @@
 import React from "react";
+import { SiUnity } from "react-icons/si";
 
 /* ── Base icon wrapper ───────────────────────────────────────────────────── */
-function Ic({ size = 18, vb = "0 0 24 24", f, stk, sw, slc, slj, children, style }) {
+function Ic({
+  size = 18,
+  vb = "0 0 24 24",
+  f,
+  stk,
+  sw,
+  slc,
+  slj,
+  children,
+  style,
+}) {
   return (
     <svg
-      width={size} height={size} viewBox={vb}
+      width={size}
+      height={size}
+      viewBox={vb}
       fill={f !== undefined ? f : "currentColor"}
-      stroke={stk} strokeWidth={sw} strokeLinecap={slc} strokeLinejoin={slj}
-      aria-hidden="true" focusable="false"
-      style={{ display: "inline-block", verticalAlign: "middle", flexShrink: 0, ...style }}
-    >{children}</svg>
+      stroke={stk}
+      strokeWidth={sw}
+      strokeLinecap={slc}
+      strokeLinejoin={slj}
+      aria-hidden="true"
+      focusable="false"
+      style={{
+        display: "inline-block",
+        verticalAlign: "middle",
+        flexShrink: 0,
+        ...style,
+      }}
+    >
+      {children}
+    </svg>
   );
 }
 
@@ -38,11 +62,7 @@ export const IconYouTube = (p) => (
   </Ic>
 );
 
-export const IconUnity = (p) => (
-  <Ic {...p}>
-    <path d="M11.175.003 .132 6.501v12.998l3.13 1.8V8.301l7.913-4.596 7.913 4.596v12.998l3.13-1.8V6.501L11.175.003zm1.498 7.474L9.18 9.575v4.144l3.493 2.1 3.494-2.1V9.575l-3.494-2.098zm-5.632 9.874 3.494 2.1 3.638-2.1v4.146l-3.638 2.1-3.494-2.1v-4.146z" />
-  </Ic>
-);
+export const IconUnity = (p) => <SiUnity />;
 
 /* ── Frontend ─────────────────────────────────────────────────────────────── */
 export const IconReact = (p) => (

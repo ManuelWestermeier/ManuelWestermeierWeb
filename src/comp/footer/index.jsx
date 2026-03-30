@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IconGitHub, IconYouTube, IconUnity } from "../icons";
 
 const socials = [
-  { href: "https://github.com/manuelWestermeier/", label: "GitHub", Icon: IconGitHub },
+  { href: "https://github.com/ManuelWestermeier/", label: "GitHub", Icon: IconGitHub },
   { href: "https://www.youtube.com/@TAGESSCHATTEN?sub_confirmation=1", label: "YouTube", Icon: IconYouTube },
   { href: "https://play.unity.com/en/user/66818d56-98e8-499c-8fca-b3eb98a886c7", label: "Unity", Icon: IconUnity },
 ];
@@ -65,7 +65,7 @@ export default function Footer() {
             <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 600, fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "4px" }}>
               Navigation
             </p>
-            {[{ to: "/my-work", label: "Skills" }, { to: "/projects", label: "Projekte" }, { to: "/contact", label: "Kontakt" }].map(({ to, label }) => (
+            {[{ to: "/my-work", label: "Fähigkeiten" }, { to: "/projects", label: "Projekte" }, { to: "/contact", label: "Kontakt" }].map(({ to, label }) => (
               <Link key={to} to={to} className="nav-link" style={{ fontSize: "0.88rem", width: "fit-content" }}>{label}</Link>
             ))}
           </div>
