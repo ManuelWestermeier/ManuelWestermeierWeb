@@ -138,7 +138,7 @@ const featuredProjects = [
     name: "Easy-Einkauf",
     desc: "Smarte Einkaufslisten-App",
     tag: "Web App",
-    href: "https://app.easy-einkauf.de/",
+    href: "https://easy-einkauf.de/",
     color: "#00c8ff",
   },
   {

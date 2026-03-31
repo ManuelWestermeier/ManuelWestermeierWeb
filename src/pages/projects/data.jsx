@@ -76,7 +76,13 @@ export const data = {
         <div className="links-row">
           <LinkBtn href="https://twr-systems.de/">Mehr Infos</LinkBtn>
         </div>
-        <video src="/TWR-VideoLQ.mp4" title="Turbo Wasser Rettungsboot beim schnellen fahren" autoPlay loop muted></video>
+        <video
+          src="/TWR-VideoLQ.mp4"
+          title="Turbo Wasser Rettungsboot beim schnellen fahren"
+          autoPlay
+          loop
+          muted
+        ></video>
       </article>
     ),
   },
@@ -89,7 +95,7 @@ export const data = {
           <LinkBtn href="https://easy-einkauf.de/">App Testen</LinkBtn>
         </div>
         <Img
-          src="https://easy-einkauf.de/screenshots/list-page.jpg"
+          src="/imag/list-page.jpg"
           alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
         />
         <div className="social-links">
@@ -163,10 +169,7 @@ export const data = {
           Innovativer Browser mit Swipe-Multitab Funktionalität für schnelle
           Navigation.
         </p>
-        <Img
-          src="https://github.com/user-attachments/assets/66d0bcf0-918e-4576-9a45-9cc1b9d54cd5"
-          alt="MW-Browser V3 Interface Demo"
-        />
+        <Img src="/imag/mw-browser.jpg" alt="MW-Browser V3 Interface Demo" />
       </article>
     ),
   },
@@ -188,14 +191,8 @@ export const data = {
           </LinkBtn>
         </div>
         <div className="gallery-grid">
-          <Img
-            src="https://github.com/ManuelWestermeier/easy-messenger/blob/main/public/img/screenshot1.png?raw=true"
-            alt="PrivusChat Login"
-          />
-          <Img
-            src="https://github.com/ManuelWestermeier/easy-messenger/blob/main/public/img/screenshot3.png?raw=true"
-            alt="PrivusChat Chat Fenster"
-          />
+          <Img src="/imag/privuschat1.jpg" alt="PrivusChat Login" />
+          <Img src="/imag/privuschat2.jpg" alt="PrivusChat Chat Fenster" />
         </div>
       </article>
     ),
@@ -206,11 +203,11 @@ export const data = {
       <article>
         <div className="gallery-grid">
           <Img
-            src="https://manuelwestermeier.github.io/home-page/car-game_2.png"
+            src="https://web.manuel-westermeier.de/home-page/car-game_2.png"
             alt="3D Car Game Screenshot Rennstrecke"
           />
           <Img
-            src="https://manuelwestermeier.github.io/home-page/car-game-back.png"
+            src="https://web.manuel-westermeier.de/home-page/car-game-back.png"
             alt="3D Car Game Rückansicht"
           />
         </div>
@@ -227,7 +224,7 @@ export const data = {
     elem: (
       <article>
         <Img
-          src="https://manuelwestermeier.github.io/home-page/bird-game.jpg"
+          src="https://web.manuel-westermeier.de/home-page/bird-game.jpg"
           alt="2D Bird Game Gameplay"
         />
         <p>Ein atmosphärisches Erkundungsspiel.</p>
@@ -245,11 +242,11 @@ export const data = {
       <article>
         <div className="gallery-grid">
           <Img
-            src="https://manuelwestermeier.github.io/Car.png"
+            src="https://web.manuel-westermeier.de/Car.png"
             alt="Jump and Drive Auto Modus"
           />
           <Img
-            src="https://manuelwestermeier.github.io/Player.png"
+            src="https://web.manuel-westermeier.de/Player.png"
             alt="Jump and Drive Spieler Modus"
           />
         </div>
@@ -271,11 +268,11 @@ export const data = {
       <article>
         <div className="gallery-grid">
           <Img
-            src="https://manuelwestermeier.github.io/home-page/car-top.png"
+            src="https://web.manuel-westermeier.de/home-page/car-top.png"
             alt="Top Down Racing Menu"
           />
           <Img
-            src="https://manuelwestermeier.github.io/home-page/car-top-play.png"
+            src="https://web.manuel-westermeier.de/home-page/car-top-play.png"
             alt="Top Down Racing Gameplay"
           />
         </div>
@@ -320,15 +317,15 @@ export const data = {
         <div className="gallery-grid">
           <Img
             alt="Notenbuch Schüleransicht"
-            src="https://manuelwestermeier.github.io/home-page/nb-student.png"
+            src="https://web.manuel-westermeier.de/home-page/nb-student.png"
           />
           <Img
             alt="Notenbuch Klassenansicht"
-            src="https://manuelwestermeier.github.io/home-page/nb-class.png"
+            src="https://web.manuel-westermeier.de/home-page/nb-class.png"
           />
           <Img
             alt="Notenbuch Übersicht"
-            src="https://manuelwestermeier.github.io/home-page/nb-main.png"
+            src="https://web.manuel-westermeier.de/home-page/nb-main.png"
           />
         </div>
         <div className="links-row">
@@ -360,16 +357,16 @@ export const data = {
       <article>
         <p>Markdown-basierte Präsentationssoftware für Entwickler.</p>
         <div className="links-row">
-          <LinkBtn href="https://manuelwestermeier.github.io/v-present/#/project/0">
-            Demo Projekt
-          </LinkBtn>
-          <LinkBtn href="https://manuelwestermeier.github.io/v-present/">
+          <LinkBtn href="https://web.manuel-westermeier.de/v-present/">
             Startseite
+          </LinkBtn>
+          <LinkBtn href="https://web.manuel-westermeier.de/v-present/#/project/0">
+            Demo Projekt
           </LinkBtn>
         </div>
         <Img
           alt="V-Present Logo"
-          src="https://manuelwestermeier.github.io/v-present/logo.jpg"
+          src="https://web.manuel-westermeier.de/v-present/logo.jpg"
         />
       </article>
     ),
@@ -380,7 +377,7 @@ export const data = {
       <article>
         <video
           className="project-video"
-          src="https://manuelwestermeier.github.io/esp32_141os.mp4"
+          src="https://web.manuel-westermeier.de/esp32_141os.mp4"
           title="ESP32 C6 OS Demo Video"
           loop
           onClick={(e) =>
@@ -398,7 +395,7 @@ export const data = {
         </p>
         <Img
           className="img"
-          src="https://manuelwestermeier.github.io/esp32_141os.jpg"
+          src="https://web.manuel-westermeier.de/esp32_141os.jpg"
           alt="ESP32 C6 Hardware Setup"
         />
         <div className="links-row">
@@ -419,15 +416,15 @@ export const data = {
         </p>
         <div className="gallery-grid">
           <Img
-            src="https://manuelwestermeier.github.io/home-page/Chatt.jpg"
+            src="https://web.manuel-westermeier.de/home-page/Chatt.jpg"
             alt="Quatsch App Chat View"
           />
           <Img
-            src="https://manuelwestermeier.github.io/home-page/Contacts.jpg"
+            src="https://web.manuel-westermeier.de/home-page/Contacts.jpg"
             alt="Quatsch App Kontakte"
           />
           <Img
-            src="https://manuelwestermeier.github.io/home-page/Invite.jpg"
+            src="https://web.manuel-westermeier.de/home-page/Invite.jpg"
             alt="Quatsch App Einladung"
           />
         </div>
@@ -442,15 +439,15 @@ export const data = {
         <p>Plattform zur Vermittlung von Freelancern weltweit.</p>
         <div className="gallery-grid">
           <Img
-            src="https://manuelwestermeier.github.io/home-page/c-data.png"
+            src="https://web.manuel-westermeier.de/home-page/c-data.png"
             alt="Business Contacts Datenansicht"
           />
           <Img
-            src="https://manuelwestermeier.github.io/home-page/c-search.png"
+            src="https://web.manuel-westermeier.de/home-page/c-search.png"
             alt="Business Contacts Suche"
           />
           <Img
-            src="https://manuelwestermeier.github.io/home-page/c-form.png"
+            src="https://web.manuel-westermeier.de/home-page/c-form.png"
             alt="Business Contacts Formular"
           />
         </div>
@@ -468,11 +465,11 @@ export const data = {
         </p>
         <div className="gallery-grid">
           <Img
-            src="https://manuelwestermeier.github.io/home-page/browser-1.png"
+            src="https://web.manuel-westermeier.de/home-page/browser-1.png"
             alt="Browser V1 Screenshot"
           />
           <Img
-            src="https://manuelwestermeier.github.io/img/Browser2.jpg"
+            src="https://web.manuel-westermeier.de/img/Browser2.jpg"
             alt="Browser V1 Dark Mode"
           />
         </div>
@@ -494,7 +491,7 @@ export const data = {
         </div>
         <div className="iframe-container">
           <Iframe
-            src="https://manuelwestermeier.github.io/next-gen-exe/"
+            src="https://web.manuel-westermeier.de/next-gen-exe/"
             title="Framework Dokumentation"
           />
         </div>
