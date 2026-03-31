@@ -66,21 +66,17 @@ export const data = {
           Ausgezeichnet durch den <b>1. Preis</b> bei dem <b>Jugendforscht</b>{" "}
           Regional Wettbewerb.
         </p>
+        <p>
+          Mit über 20.000 Zeilen Software, 30.000 Bilder in den
+          Erkennungs-Datensätzen, verschlüsselter eigens entwickelter Protokolle
+          und viel Entwicklungszeit gelang uns (Alexander Zuchenko & Manuel
+          Westermeier) die Entwicklung eines autonomen und sicheren
+          Wasserrettungssystems.
+        </p>
         <div className="links-row">
           <LinkBtn href="https://twr-systems.de/">Mehr Infos</LinkBtn>
         </div>
-        <video src="/TWR-VideoLQ.mp4" autoPlay loop muted></video>
-        <Img
-          src="/imag/twr.jpg"
-          style={{ maxWidth: "50vmin", margin: "auto" }}
-          alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
-        />
-        <br />
-        <Img
-          style={{ maxWidth: "50vmin", margin: "auto" }}
-          src="/imag/twr-bauteil.png"
-          alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
-        />
+        <video src="/TWR-VideoLQ.mp4" title="Turbo Wasser Rettungsboot beim schnellen fahren" autoPlay loop muted></video>
       </article>
     ),
   },
