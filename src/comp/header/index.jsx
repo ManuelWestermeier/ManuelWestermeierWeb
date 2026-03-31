@@ -83,9 +83,8 @@ function Header() {
             fontFamily: "'Syne',sans-serif", fontWeight: 700,
             fontSize: "0.92rem", letterSpacing: "-0.02em",
             color: "var(--ink)",
-            display: isMobile ? "none" : "block",
           }}>
-            Manuel<span style={{ color: "var(--accent)" }}>.</span>
+            Manuel Westermeier
           </span>
         </Link>
 
