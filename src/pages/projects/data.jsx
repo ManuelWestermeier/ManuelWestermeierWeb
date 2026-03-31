@@ -1,43 +1,43 @@
 import React from "react";
 import "./index.css";
 
-// Optimized Image Component
-function Img(props) {
-  // Extract className to avoid overriding the logical classNames
-  const { className, ...otherProps } = props;
-
+// SEO & Performance Optimized Image Component
+function Img({ className, alt, ...otherProps }) {
   return (
     <div
       className={`img-wrapper ${className || ""}`}
       onClick={(e) => {
-        // Toggle the 'max' class on the wrapper or image for the lightbox effect
-        // Using currentTarget ensures we target the container/image consistently
         const target = e.target.closest("img");
         if (target) target.classList.toggle("max");
       }}
+      role="button"
+      tabIndex={0}
+      aria-label="Bild vergrößern"
     >
       <img
-        loading="lazy" // SEO/Performance: Lazy load images
+        loading="lazy"
         decoding="async"
         title="Klicken zum Vergrößern"
+        alt={alt || "Projekt Screenshot"} // SEO: Fallback Alt-Text
         {...otherProps}
       />
     </div>
   );
 }
 
+// Optimized Iframe for Accessibility
 function Iframe(props) {
   return (
     <iframe
       {...props}
-      title={props.title || "Project Demo"} // Accessibility requirement
+      title={props.title || "Project Demo Interaktiv"}
       style={{ borderRadius: "10px", width: "100%", border: "none" }}
       loading="lazy"
     />
   );
 }
 
-// Reusable Button Component for consistent design
+// Reusable Button Component (Syntax-Fehler behoben)
 const LinkBtn = ({ href, children }) => (
   <a
     href={href}
@@ -59,16 +59,16 @@ export const data = {
           eigenständig ertrinkende Personen per Kamera - von Landstationen oder
           Schiffen aus. Daraufhin wird ein autonomes, kleines Rettungsboot
           aktiviert, das zielgenau zur gefährdeten Person navigiert. Es bringt
-          dieser eine Schwimmboje, und zieht die Person sicher zurück an Land
+          dieser eine Schwimmboje und zieht die Person sicher zurück an Land
           oder an Bord.
         </p>
         <p>
-          Ausgezeichnet durch den <b>1. Preis</b> bei dem <b>Jugendforscht</b>{" "}
-          Regional Wettbewerb.
+          Ausgezeichnet durch den <strong>1. Preis</strong> bei dem <strong>Jugend forscht</strong>{" "}
+          Regionalwettbewerb.
         </p>
         <p>
-          Mit über 20.000 Zeilen Software, 30.000 Bilder in den
-          Erkennungs-Datensätzen, verschlüsselter eigens entwickelter Protokolle
+          Mit über 20.000 Zeilen Software, 30.000 Bildern in den
+          Erkennungs-Datensätzen, eigens entwickelten, verschlüsselten Protokollen
           und viel Entwicklungszeit gelang uns (Alexander Zuchenko & Manuel
           Westermeier) die Entwicklung eines autonomen und sicheren
           Wasserrettungssystems.
@@ -78,10 +78,11 @@ export const data = {
         </div>
         <video
           src="/TWR-VideoLQ.mp4"
-          title="Turbo Wasser Rettungsboot beim schnellen fahren"
+          title="Autonomes Turbo Wasser Rettungsboot in Aktion"
           autoPlay
           loop
           muted
+          playsInline
         ></video>
       </article>
     ),
@@ -90,13 +91,13 @@ export const data = {
     name: "Easy-Einkauf",
     elem: (
       <article>
-        <p>Die smarte Einkaufslisten-App für effizientes Planen.</p>
+        <p>Die smarte Einkaufslisten-App für effizientes und schnelles Planen.</p>
         <div className="links-row">
           <LinkBtn href="https://easy-einkauf.de/">App Testen</LinkBtn>
         </div>
         <Img
           src="/imag/list-page.jpg"
-          alt="Easy-Einkauf App Benutzeroberfläche Listenansicht"
+          alt="Benutzeroberfläche der Easy-Einkauf App - Listenansicht"
         />
         <div className="social-links">
           <a
@@ -134,7 +135,7 @@ export const data = {
           Ein vollwertiges Mini-Betriebssystem für ESP-32 Mikrocontroller mit
           Touch-Display.
         </p>
-        <Img src="/imag/os/home.png" alt="MW-OS Startbildschirm Interface" />
+        <Img src="/imag/os-home.jpg" alt="Startbildschirm des MW-OS Betriebssystems" />
         <ul className="feature-list">
           <li>- Hardwarekosten &lt; 5 Euro</li>
           <li>- &gt; 22.000 Zeilen Code</li>
@@ -150,13 +151,13 @@ export const data = {
           <LinkBtn href="https://www.tiktok.com/@pdev111">TikTok Demo</LinkBtn>
         </div>
         <div className="gallery-grid">
-          <Img src="/imag/os/paint.png" alt="MW-OS Paint App" />
-          <Img src="/imag/os/login.png" alt="MW-OS Login Screen" />
-          <Img src="/imag/os/fs.png" alt="MW-OS Dateisystem" />
-          <Img src="/imag/os/settings.png" alt="MW-OS Einstellungen" />
-          <Img src="/imag/os/designer.png" alt="MW-OS UI Designer" />
-          <Img src="/imag/os/wlan.png" alt="MW-OS WLAN Scan" />
-          <Img src="/imag/os/keyboard.png" alt="MW-OS Tastatur" />
+          <Img src="/imag/os-paint.jpg" alt="MW-OS Paint Applikation" />
+          <Img src="/imag/os-login.jpg" alt="MW-OS Login-Bildschirm" />
+          <Img src="/imag/os-fs.jpg" alt="MW-OS Dateisystem Explorer" />
+          <Img src="/imag/os-settings.jpg" alt="MW-OS System-Einstellungen" />
+          <Img src="/imag/os-designer.jpg" alt="MW-OS User Interface Designer" />
+          <Img src="/imag/os-wlan.jpg" alt="MW-OS WLAN Scanner" />
+          <Img src="/imag/os-keyboard.jpg" alt="MW-OS Virtuelle Tastatur" />
         </div>
       </article>
     ),
@@ -166,10 +167,10 @@ export const data = {
     elem: (
       <article>
         <p>
-          Innovativer Browser mit Swipe-Multitab Funktionalität für schnelle
+          Innovativer Webbrowser mit Swipe-Multitab Funktionalität für eine extrem schnelle
           Navigation.
         </p>
-        <Img src="/imag/mw-browser.jpg" alt="MW-Browser V3 Interface Demo" />
+        <Img src="/imag/mw-browser.jpg" alt="Benutzeroberfläche des MW-Browser V3" />
       </article>
     ),
   },
@@ -177,7 +178,7 @@ export const data = {
     name: "PrivusChat",
     elem: (
       <article>
-        <p>Hochsicherer Messenger mit Fokus auf Privatsphäre.</p>
+        <p>Hochsicherer Messenger mit maximalem Fokus auf Privatsphäre.</p>
         <p>
           Implementiert symmetrische, quantencomputer-sichere Verschlüsselung
           (AES).
@@ -191,8 +192,8 @@ export const data = {
           </LinkBtn>
         </div>
         <div className="gallery-grid">
-          <Img src="/imag/privuschat1.jpg" alt="PrivusChat Login" />
-          <Img src="/imag/privuschat2.jpg" alt="PrivusChat Chat Fenster" />
+          <Img src="/imag/privuschat1.jpg" alt="PrivusChat Login Interface" />
+          <Img src="/imag/privuschat2.jpg" alt="PrivusChat aktives Chatfenster" />
         </div>
       </article>
     ),
@@ -203,12 +204,12 @@ export const data = {
       <article>
         <div className="gallery-grid">
           <Img
-            src="https://web.manuel-westermeier.de/home-page/car-game_2.png"
-            alt="3D Car Game Screenshot Rennstrecke"
+            src="/imag/car-game_2.jpg"
+            alt="3D Car Game Gameplay auf der Rennstrecke"
           />
           <Img
-            src="https://web.manuel-westermeier.de/home-page/car-game-back.png"
-            alt="3D Car Game Rückansicht"
+            src="/imag/car-game-back.jpg"
+            alt="3D Car Game Auto Rückansicht"
           />
         </div>
         <div className="links-row">
@@ -224,8 +225,8 @@ export const data = {
     elem: (
       <article>
         <Img
-          src="https://web.manuel-westermeier.de/home-page/bird-game.jpg"
-          alt="2D Bird Game Gameplay"
+          src="/imag/bird-game.jpg"
+          alt="2D Bird Game atmosphärisches Gameplay"
         />
         <p>Ein atmosphärisches Erkundungsspiel.</p>
         <div className="links-row">
@@ -242,16 +243,16 @@ export const data = {
       <article>
         <div className="gallery-grid">
           <Img
-            src="https://web.manuel-westermeier.de/Car.png"
-            alt="Jump and Drive Auto Modus"
+            src="/imag/Car.jpg"
+            alt="Jump and Drive Spielmodus: Auto"
           />
           <Img
-            src="https://web.manuel-westermeier.de/Player.png"
-            alt="Jump and Drive Spieler Modus"
+            src="/imag/Player.jpg"
+            alt="Jump and Drive Spielmodus: Charakter"
           />
         </div>
         <p>
-          Genre-Mix: Wechsle zwischen klassischem "Jump & Run" und
+          Kreativer Genre-Mix: Wechsle nahtlos zwischen klassischen "Jump & Run" und
           Rennspiel-Mechaniken.
         </p>
         <div className="links-row">
@@ -268,12 +269,12 @@ export const data = {
       <article>
         <div className="gallery-grid">
           <Img
-            src="https://web.manuel-westermeier.de/home-page/car-top.png"
-            alt="Top Down Racing Menu"
+            src="/imag/car-top.jpg"
+            alt="Car Game Top-Down Hauptmenü"
           />
           <Img
-            src="https://web.manuel-westermeier.de/home-page/car-top-play.png"
-            alt="Top Down Racing Gameplay"
+            src="/imag/car-top-play.jpg"
+            alt="Car Game Top-Down aktives Gameplay"
           />
         </div>
         <div className="links-row">
@@ -290,7 +291,7 @@ export const data = {
       <article>
         <p>
           Lokaler, verschlüsselter Dateicontainer. Sichert Videos, Bilder und
-          Dokumente mit AES-Verschlüsselung direkt im Browser. Zugriff nur via
+          Dokumente mit starker AES-Verschlüsselung direkt im Browser. Zugriff nur via
           Passwort möglich.
         </p>
         <div className="links-row">
@@ -299,8 +300,8 @@ export const data = {
           </LinkBtn>
         </div>
         <Img
-          alt="Hidden FS Secure Icon"
-          src="https://hidden-fs.manuel-westermeier.de/favicon.ico"
+          alt="Hidden FS Secure Icon Logo"
+          src="/imag/hidden-fs-favicon.jpg"
           style={{ width: "64px", margin: "10px auto", display: "block" }}
         />
       </article>
@@ -311,21 +312,21 @@ export const data = {
     elem: (
       <article>
         <p>
-          Notenmanagement-Tool für Lehrer und Schüler zur Berechnung und
+          Modernes Notenmanagement-Tool für Lehrer und Schüler zur Berechnung und
           Visualisierung des Leistungsstands.
         </p>
         <div className="gallery-grid">
           <Img
-            alt="Notenbuch Schüleransicht"
-            src="https://web.manuel-westermeier.de/home-page/nb-student.png"
+            alt="Digitales Notenbuch Dashboard für Schüler"
+            src="/imag/nb-student.jpg"
           />
           <Img
-            alt="Notenbuch Klassenansicht"
-            src="https://web.manuel-westermeier.de/home-page/nb-class.png"
+            alt="Digitales Notenbuch Übersicht für die gesamte Klasse"
+            src="/imag/nb-class.jpg"
           />
           <Img
-            alt="Notenbuch Übersicht"
-            src="https://web.manuel-westermeier.de/home-page/nb-main.png"
+            alt="Digitales Notenbuch Hauptmenü"
+            src="/imag/nb-main.jpg"
           />
         </div>
         <div className="links-row">
@@ -338,10 +339,10 @@ export const data = {
     name: "Memory Game",
     elem: (
       <article>
-        <p>Werbefreies Online Memory-Spiel.</p>
+        <p>Ein responsives, werbefreies Online Memory-Spiel.</p>
         <Img
-          alt="Memory Game Logo"
-          src="https://memory-game.manuel-westermeier.de/logo.jpg"
+          alt="Memory Game Logo und Titel"
+          src="/imag/memory-logo.jpg"
         />
         <div className="links-row">
           <LinkBtn href="https://memory-game.manuel-westermeier.de/">
@@ -355,7 +356,7 @@ export const data = {
     name: "V-Present",
     elem: (
       <article>
-        <p>Markdown-basierte Präsentationssoftware für Entwickler.</p>
+        <p>Effiziente, Markdown-basierte Präsentationssoftware für Entwickler.</p>
         <div className="links-row">
           <LinkBtn href="https://web.manuel-westermeier.de/v-present/">
             Startseite
@@ -365,8 +366,8 @@ export const data = {
           </LinkBtn>
         </div>
         <Img
-          alt="V-Present Logo"
-          src="https://web.manuel-westermeier.de/v-present/logo.jpg"
+          alt="V-Present Software Logo"
+          src="/imag/vpresent-logo.jpg"
         />
       </article>
     ),
@@ -377,8 +378,8 @@ export const data = {
       <article>
         <video
           className="project-video"
-          src="https://web.manuel-westermeier.de/esp32_141os.mp4"
-          title="ESP32 C6 OS Demo Video"
+          src="/imag/esp32_141os.mp4"
+          title="ESP32 C6 Betriebssystem Demo Video"
           loop
           onClick={(e) =>
             e.target.paused ? e.target.play() : e.target.pause()
@@ -395,8 +396,8 @@ export const data = {
         </p>
         <Img
           className="img"
-          src="https://web.manuel-westermeier.de/esp32_141os.jpg"
-          alt="ESP32 C6 Hardware Setup"
+          src="/imag/esp32_141os.jpg"
+          alt="ESP32 C6 Hardware Setup mit Display"
         />
         <div className="links-row">
           <LinkBtn href="https://github.com/ManuelWestermeier/mw-141-os">
@@ -411,21 +412,21 @@ export const data = {
     elem: (
       <article>
         <p>
-          Full-Stack Realtime Messenger mit Gruppen, Kontakten und
+          Full-Stack Realtime Messenger mit Gruppen, Kontaktverwaltung und
           Invite-System.
         </p>
         <div className="gallery-grid">
           <Img
-            src="https://web.manuel-westermeier.de/home-page/Chatt.jpg"
-            alt="Quatsch App Chat View"
+            src="/imag/Chatt.jpg"
+            alt="Quatsch App Chat-Verlauf Ansicht"
           />
           <Img
-            src="https://web.manuel-westermeier.de/home-page/Contacts.jpg"
-            alt="Quatsch App Kontakte"
+            src="/imag/Contacts.jpg"
+            alt="Quatsch App Kontaktliste"
           />
           <Img
-            src="https://web.manuel-westermeier.de/home-page/Invite.jpg"
-            alt="Quatsch App Einladung"
+            src="/imag/Invite.jpg"
+            alt="Quatsch App Einladungssystem"
           />
         </div>
         <p className="note">Auf Anfrage testbar</p>
@@ -436,19 +437,19 @@ export const data = {
     name: "Business Contacts",
     elem: (
       <article>
-        <p>Plattform zur Vermittlung von Freelancern weltweit.</p>
+        <p>Plattform zur weltweiten Vermittlung von Freelancern.</p>
         <div className="gallery-grid">
           <Img
-            src="https://web.manuel-westermeier.de/home-page/c-data.png"
-            alt="Business Contacts Datenansicht"
+            src="/imag/c-data.jpg"
+            alt="Business Contacts Entwickler Profil"
           />
           <Img
-            src="https://web.manuel-westermeier.de/home-page/c-search.png"
-            alt="Business Contacts Suche"
+            src="/imag/c-search.jpg"
+            alt="Business Contacts Suchfunktion für Freelancer"
           />
           <Img
-            src="https://web.manuel-westermeier.de/home-page/c-form.png"
-            alt="Business Contacts Formular"
+            src="/imag/c-form.jpg"
+            alt="Business Contacts Kontakt- und Anfrageformular"
           />
         </div>
         <p className="note">Auf Anfrage testbar</p>
@@ -460,17 +461,17 @@ export const data = {
     elem: (
       <article>
         <p>
-          Electron-basierter Browser mit Tabs, Extensions und dynamischen
+          Electron-basierter Desktop-Browser mit Tabs, Extensions und dynamischen
           Themes.
         </p>
         <div className="gallery-grid">
           <Img
-            src="https://web.manuel-westermeier.de/home-page/browser-1.png"
-            alt="Browser V1 Screenshot"
+            src="/imag/browser-1.jpg"
+            alt="Browser V1 Standard Theme Interface"
           />
           <Img
-            src="https://web.manuel-westermeier.de/img/Browser2.jpg"
-            alt="Browser V1 Dark Mode"
+            src="/imag/Browser2.jpg"
+            alt="Browser V1 Dark Mode Interface"
           />
         </div>
       </article>
@@ -481,8 +482,8 @@ export const data = {
     elem: (
       <article>
         <p>
-          Hybrid App Framework: Frontend in HTML/CSS/JS, High-Performance
-          Backend in C++.
+          Hybrid App Framework: Frontend in modernen Webtechnologien (HTML/CSS/JS), 
+          High-Performance Backend in C++.
         </p>
         <div className="links-row">
           <LinkBtn href="https://github.com/manuelWestermeier/next-gen-exe">
@@ -492,7 +493,7 @@ export const data = {
         <div className="iframe-container">
           <Iframe
             src="https://web.manuel-westermeier.de/next-gen-exe/"
-            title="Framework Dokumentation"
+            title="Next-Gen-Exe Framework Dokumentation"
           />
         </div>
       </article>
@@ -504,7 +505,7 @@ export const data = {
       <article>
         <p>
           <strong>Lightweight Hierarchical Routing Protocol:</strong> Entwickelt
-          für ESP-Mikrocontroller Mesh-Netzwerke. Bietet Verschlüsselung und
+          für ESP-Mikrocontroller Mesh-Netzwerke. Bietet effiziente Verschlüsselung und
           baumbasiertes Routing.
         </p>
         <div className="links-row">
@@ -524,7 +525,7 @@ export const data = {
     elem: (
       <article>
         <p>
-          <strong>WSNET Framework:</strong> Full Stack Framework für
+          <strong>WSNET Framework:</strong> Full Stack Framework für schnelle,
           bidirektionale Echtzeit-Kommunikation.
         </p>
         <LinkBtn href="https://github.com/ManuelWestermeier/WSNET_Framework">
