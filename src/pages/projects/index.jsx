@@ -3,7 +3,7 @@ import { data } from "./data";
 
 function Projects() {
   const [reposLength, setReposLength] = useState(180);
-  const [openKey, setOpenKey] = useState(null);
+  const [openKey, setOpenKey] = useState("twr");
   const itemRefs = useRef({});
 
   useEffect(() => {
