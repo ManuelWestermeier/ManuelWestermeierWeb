@@ -1,4 +1,11 @@
-window.cw = new URL(document.location).searchParams.get("cw") != "n";
+window.cw =
+  localStorage.getItem("cw") == "false"
+    ? false
+    : new URL(document.location).searchParams.get("cw") != "n";
+
+if (!window.cw) {
+  localStorage.setItem("cw", "false");
+}
 
 import React from "react";
 import ReactDOM from "react-dom/client";
