@@ -1,3 +1,5 @@
+window.cw = new URL(document.location).searchParams.get("cw") != "n";
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";

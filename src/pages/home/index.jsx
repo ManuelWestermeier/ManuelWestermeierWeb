@@ -125,7 +125,7 @@ const skills = [
 ];
 
 const featuredProjects = [
- {
+  {
     key: "a",
     name: "TWR - AI",
     desc: "Die zukunft der Wasserrettung - autonom mit KI und sicher",
@@ -641,75 +641,80 @@ export default function Home() {
       </section>
 
       {/* ── CHIEMWEB CTA ─────────────────── */}
-      <section
-        className="section-bg"
-        style={{
-          padding: "clamp(56px,8vw,80px) var(--px)",
-          overflow: "hidden",
-          boxSizing: "border-box",
-        }}
-      >
-        <div style={{ maxWidth: "620px", margin: "0 auto", width: "100%" }}>
-          <div className="chiemweb-banner reveal">
-            <img
-              src="/chiemweb-logo-512.jpg"
-              alt="ChiemWeb Logo"
-              style={{
-                width: "52px",
-                height: "52px",
-                borderRadius: "12px",
-                margin: "0 auto 14px",
-                display: "block",
-                objectFit: "cover",
-                border: "2px solid rgba(0,200,255,0.3)",
-              }}
-              className="anim-orbit"
-            />
-            <span
-              className="section-label"
-              style={{ display: "block", marginBottom: "8px" }}
-            >
-              Professionelle Webentwicklung
-            </span>
-            <h2
-              style={{
-                fontSize: "clamp(1.2rem, 4vw, 2rem)",
-                fontFamily: "'Syne',sans-serif",
-                fontWeight: 800,
-                marginBottom: "12px",
-              }}
-            >
-              Brauchen Sie eine <span className="gradient-text">Website</span>?
-            </h2>
-            <p
-              style={{
-                color: "var(--muted)",
-                maxWidth: "380px",
-                margin: "0 auto 22px",
-                lineHeight: 1.7,
-                fontSize: "clamp(0.82rem, 2vw, 0.88rem)",
-              }}
-            >
-              Für professionelle Webprojekte empfehle ich{" "}
-              <strong style={{ color: "var(--ink)" }}>ChiemWeb.de</strong> —
-              moderne Websites zu fairen Preisen aus dem Chiemgau.
-            </p>
-            <div className="cta-row" style={{ justifyContent: "center" }}>
-              <a
-                href="https://chiemweb.de"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
+      {!window.cw ? (
+        <></>
+      ) : (
+        <section
+          className="section-bg"
+          style={{
+            padding: "clamp(56px,8vw,80px) var(--px)",
+            overflow: "hidden",
+            boxSizing: "border-box",
+          }}
+        >
+          <div style={{ maxWidth: "620px", margin: "0 auto", width: "100%" }}>
+            <div className="chiemweb-banner reveal">
+              <img
+                src="/chiemweb-logo-512.jpg"
+                alt="ChiemWeb Logo"
+                style={{
+                  width: "52px",
+                  height: "52px",
+                  borderRadius: "12px",
+                  margin: "0 auto 14px",
+                  display: "block",
+                  objectFit: "cover",
+                  border: "2px solid rgba(0,200,255,0.3)",
+                }}
+                className="anim-orbit"
+              />
+              <span
+                className="section-label"
+                style={{ display: "block", marginBottom: "8px" }}
               >
-                ChiemWeb.de besuchen ↗
-              </a>
-              <Link to="/contact" className="btn-ghost">
-                Direkt anfragen
-              </Link>
+                Professionelle Webentwicklung
+              </span>
+              <h2
+                style={{
+                  fontSize: "clamp(1.2rem, 4vw, 2rem)",
+                  fontFamily: "'Syne',sans-serif",
+                  fontWeight: 800,
+                  marginBottom: "12px",
+                }}
+              >
+                Brauchen Sie eine <span className="gradient-text">Website</span>
+                ?
+              </h2>
+              <p
+                style={{
+                  color: "var(--muted)",
+                  maxWidth: "380px",
+                  margin: "0 auto 22px",
+                  lineHeight: 1.7,
+                  fontSize: "clamp(0.82rem, 2vw, 0.88rem)",
+                }}
+              >
+                Für professionelle Webprojekte empfehle ich{" "}
+                <strong style={{ color: "var(--ink)" }}>ChiemWeb.de</strong> —
+                moderne Websites zu fairen Preisen aus dem Chiemgau.
+              </p>
+              <div className="cta-row" style={{ justifyContent: "center" }}>
+                <a
+                  href="https://chiemweb.de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  ChiemWeb.de besuchen ↗
+                </a>
+                <Link to="/contact" className="btn-ghost">
+                  Direkt anfragen
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── CONTACT TEASER ───────────────── */}
       <section
