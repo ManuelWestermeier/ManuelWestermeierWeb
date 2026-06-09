@@ -137,7 +137,7 @@ export const data = {
         {/* Header with favicon + title */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
           <img
-            src="https://easy-einkauf.de/favicon.ico"
+            src="/imag/easy-einkauf-favicon.ico"
             alt="Easy-Einkauf Logo"
             style={{ width: "28px", height: "28px", flexShrink: 0 }}
             onError={e => { e.currentTarget.style.display = "none"; }}

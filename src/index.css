@@ -17,6 +17,18 @@
   --glow: 0 0 40px rgba(0, 212, 255, 0.22);
   --px: clamp(20px, 5vw, 40px);
   --radius: 2px;
+
+  /* ─── Consistent type scale ───────────────────── */
+  --font-display: "Syne Variable", "Syne", sans-serif;
+  --font-body: "Outfit Variable", "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", monospace;
+
+  --size-hero:  clamp(2.2rem, 7vw, 4rem);
+  --size-h2:    clamp(1.5rem, 4vw, 2.4rem);
+  --size-h3:    clamp(1.1rem, 2.5vw, 1.4rem);
+  --size-body:  clamp(0.85rem, 1.8vw, 0.96rem);
+  --size-small: clamp(0.7rem, 1.5vw, 0.78rem);
+  --size-label: clamp(0.58rem, 1.3vw, 0.65rem);
 }
 
 /* ─── Reset ───────────────────────────────────────── */
@@ -29,11 +41,12 @@
 html {
   background: var(--bg);
   color: var(--ink);
-  font-family: "Outfit Variable", "Outfit", sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(0.9rem, 0.55rem + 0.7vw, 1.06rem);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   scroll-behavior: smooth;
+
 }
 
 body {
@@ -41,6 +54,7 @@ body {
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
+
 }
 
 #root { overflow-x: hidden; width: 100%; min-width: 0; }
@@ -52,13 +66,24 @@ body {
 
 /* ─── Typography ──────────────────────────────────── */
 h1, h2, h3, h4 {
-  font-family: "Syne Variable", "Syne", sans-serif;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: none;
 }
 
-p, li, td, span, a { overflow-wrap: break-word; word-break: break-word; }
+h1 { font-size: var(--size-hero); }
+h2 { font-size: var(--size-h2); }
+h3 { font-size: var(--size-h3); }
+
+p, li, td, span, a {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  font-family: var(--font-body);
+}
+
 img { max-width: 100%; height: auto; }
 
 /* ─── Links ───────────────────────────────────────── */
@@ -115,7 +140,6 @@ canvas { opacity: 0.4; }
     var(--bg-mid);
 }
 
-/* Tight technical grid */
 .grid-overlay {
   background-image:
     linear-gradient(rgba(0, 212, 255, 0.025) 1px, transparent 1px),
@@ -138,16 +162,15 @@ canvas { opacity: 0.4; }
   box-shadow: var(--glow);
 }
 
-/* ─── Text helpers — NO GRADIENTS ─────────────────── */
-/* gradient-text class replaced with a sharp accent style */
+/* ─── Text helpers ────────────────────────────────── */
 .gradient-text {
   color: var(--accent);
   font-style: italic;
 }
 
 .section-label {
-  font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
-  font-size: clamp(0.58rem, 1.6vw, 0.66rem);
+  font-family: var(--font-mono);
+  font-size: var(--size-label);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
@@ -166,7 +189,7 @@ canvas { opacity: 0.4; }
 }
 
 .nav-link {
-  font-family: "Outfit Variable", "Outfit", sans-serif;
+  font-family: var(--font-body);
   font-size: 0.84rem;
   font-weight: 500;
   color: var(--muted);
@@ -185,12 +208,12 @@ canvas { opacity: 0.4; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 28px;
+  padding: 11px 24px;
   background: var(--accent);
   color: #04080f !important;
-  font-family: "Syne Variable", "Syne", sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(0.74rem, 1.8vw, 0.82rem);
+  font-size: var(--size-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 0;
@@ -200,8 +223,8 @@ canvas { opacity: 0.4; }
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
-  min-height: 44px;
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  min-height: 42px;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
 
 .btn-primary:hover {
@@ -217,12 +240,12 @@ canvas { opacity: 0.4; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 11px 27px;
+  padding: 10px 23px;
   background: transparent;
   color: var(--ink);
-  font-family: "Syne Variable", "Syne", sans-serif;
+  font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(0.74rem, 1.8vw, 0.82rem);
+  font-size: var(--size-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 0;
@@ -232,8 +255,8 @@ canvas { opacity: 0.4; }
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
-  min-height: 44px;
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  min-height: 42px;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
 
 .btn-ghost:hover {
@@ -247,28 +270,28 @@ canvas { opacity: 0.4; }
 /* ─── CTA Row ─────────────────────────────────────── */
 .cta-row {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
   align-items: center;
 }
 
 /* ─── Stat Counter ────────────────────────────────── */
 .stat-number {
-  font-family: "Syne Variable", "Syne", sans-serif;
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.8vw, 1.5rem);
   font-weight: 800;
   color: var(--ink);
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
 }
 
 /* ─── Stats ───────────────────────────────────────── */
 .stats-row {
   display: flex;
   border-top: 1px solid rgba(0, 212, 255, 0.1);
-  padding-top: 28px;
+  padding-top: 20px;
   width: 100%;
-  max-width: 520px;
+  max-width: 420px;
 }
 
 .stat-cell { flex: 1; padding-right: 16px; min-width: 0; }
@@ -294,7 +317,7 @@ canvas { opacity: 0.4; }
   background: rgba(0, 212, 255, 0.04);
   border: 1px solid rgba(0, 212, 255, 0.12);
   border-radius: 0;
-  font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: clamp(0.6rem, 1.6vw, 0.7rem);
   color: var(--ink-dim);
   transition: all 0.18s ease;
@@ -340,8 +363,8 @@ canvas { opacity: 0.4; }
   border: 1px solid rgba(0, 212, 255, 0.2);
   border-radius: 0;
   color: var(--accent);
-  font-size: 0.72rem;
-  font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: all 0.18s ease;
@@ -367,7 +390,7 @@ canvas { opacity: 0.4; }
   transition: all 0.2s ease;
   backdrop-filter: blur(10px);
   overflow: hidden;
-  min-height: 68px;
+  min-height: 64px;
   position: relative;
 }
 
@@ -386,7 +409,7 @@ canvas { opacity: 0.4; }
 .contact-card:hover::before { width: 100%; }
 
 .contact-card-value {
-  font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: clamp(0.68rem, 2vw, 0.8rem);
   color: var(--ink);
   overflow: hidden;
@@ -409,7 +432,7 @@ canvas { opacity: 0.4; }
 .links-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr)); gap: 8px; margin: 10px 0; }
 .feature-list { list-style: none; display: flex; flex-direction: column; gap: 4px; margin: 8px 0; }
-.feature-list li { font-family: "JetBrains Mono Variable", "JetBrains Mono", monospace; font-size: 0.76rem; color: var(--muted); }
+.feature-list li { font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); }
 .social-links a { color: var(--accent); font-size: 0.8rem; margin: 0 4px; }
 .divider { border: none; border-top: 1px solid rgba(0, 212, 255, 0.08); margin: 12px 0; }
 .note { font-size: 0.76rem; color: var(--muted); font-style: italic; }
@@ -425,10 +448,6 @@ canvas { opacity: 0.4; }
 @keyframes pulseGlow { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
 @keyframes orbitPulse { 0%,100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.05); opacity: 1; } }
 @keyframes textFadeIn { from { opacity: 0; filter: blur(4px); transform: translateY(10px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
-@keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
 
 .anim-float { animation: float 5s ease-in-out infinite; }
 .anim-float-slow { animation: floatSlow 9s ease-in-out infinite; }
@@ -471,5 +490,5 @@ canvas { opacity: 0.4; }
   .stats-row { flex-direction: column; max-width: 100%; }
   .stat-cell { padding: 0 !important; border: none !important; display: flex; align-items: center; gap: 14px; }
   .stat-cell + .stat-cell { padding: 0 !important; border: none !important; padding-top: 14px !important; border-top: 1px solid rgba(0, 212, 255, 0.08) !important; }
-  .btn-primary, .btn-ghost { font-size: 0.74rem; padding: 10px 18px; }
+  .btn-primary, .btn-ghost { padding: 10px 16px; }
 }

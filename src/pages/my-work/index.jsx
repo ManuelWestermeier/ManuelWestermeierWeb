@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   SiReact, SiHtml5, SiJavascript, SiTypescript, SiElectron,
   SiNodedotjs, SiCloudflare, SiArduino, SiCplusplus, SiUnity,
@@ -12,7 +13,6 @@ import {
 } from "react-icons/fa";
 import { GiSoundWaves, GiCircuitry } from "react-icons/gi";
 import { FiArrowUpRight } from "react-icons/fi";
-import { TbBrandCpp } from "react-icons/tb";
 
 const techStack = [
   {
@@ -114,44 +114,68 @@ export default function MyWork() {
 
   return (
     <div style={{ paddingTop: "60px", minHeight: "100dvh", background: "var(--bg)", overflowX: "hidden", width: "100%" }}>
+
       {/* Hero */}
-      <div className="hero-bg" style={{ padding: "clamp(44px,8vw,60px) var(--px) clamp(52px,9vw,80px)" }}>
-        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-          <span className="section-label">Fahigkeiten & Technologien</span>
+      <div className="hero-bg" style={{ padding: "clamp(44px,8vw,64px) var(--px) clamp(48px,8vw,72px)" }}>
+        <div style={{ maxWidth: "760px", margin: "0 auto" }}>
+          <span className="section-label">Fähigkeiten & Technologien</span>
           <h1 style={{
-            fontFamily: "'Syne',sans-serif", fontWeight: 800,
-            fontSize: "clamp(1.9rem, 6vw, 3.5rem)",
-            marginTop: "20px", marginBottom: "20px",
+            fontFamily: "var(--font-display)", fontWeight: 800,
+            fontSize: "var(--size-hero)",
+            marginTop: "18px", marginBottom: "18px",
           }}>
             Meine <span style={{ color: "var(--accent)", fontStyle: "italic" }}>Werkzeuge</span>
           </h1>
-          <div style={{ width: "50px", height: "2px", background: "var(--accent)", marginBottom: "20px" }} />
-          <p style={{ color: "var(--ink-dim)", lineHeight: 1.75, fontSize: "clamp(0.85rem, 2vw, 0.95rem)", maxWidth: "480px" }}>
+          <div style={{ width: "40px", height: "2px", background: "var(--accent)", marginBottom: "18px" }} />
+          <p style={{ color: "var(--ink-dim)", lineHeight: 1.75, fontSize: "var(--size-body)", maxWidth: "460px", fontFamily: "var(--font-body)" }}>
             Breites Tech-Stack — von Frontend bis Embedded, Spieleentwicklung
-            und Sounddesign. Neue Technologien aneigne ich mir schnell.
+            und Sounddesign. Neue Technologien eigne ich mir schnell an.
           </p>
+          {/* Cross-link: Fähigkeiten → Projekte */}
+          <div style={{ marginTop: "24px", display: "flex", gap: "14px", flexWrap: "wrap", alignItems: "center" }}>
+            <Link to="/projects" className="btn-primary" style={{ padding: "9px 20px" }}>
+              Projekte ansehen →
+            </Link>
+            <Link to="/contact" style={{
+              fontFamily: "var(--font-mono)", fontSize: "0.68rem",
+              color: "var(--muted)", textDecoration: "none",
+              transition: "color 0.2s",
+            }}
+              onMouseEnter={e => e.currentTarget.style.color = "var(--accent)"}
+              onMouseLeave={e => e.currentTarget.style.color = "var(--muted)"}
+            >
+              Projekt anfragen →
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Tech Cards */}
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "clamp(40px,7vw,60px) var(--px) clamp(60px,9vw,100px)" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 280px), 1fr))", gap: "1px", background: "rgba(0,212,255,0.06)" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "clamp(36px,6vw,56px) var(--px) clamp(56px,9vw,90px)" }}>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 270px), 1fr))",
+          gap: "1px",
+          background: "rgba(0,212,255,0.06)",
+        }}>
           {techStack.map(({ category, color, items }, i) => (
             <div key={category} className="reveal" style={{
-              padding: "clamp(20px,3vw,28px)",
+              padding: "clamp(18px,2.8vw,26px)",
               transitionDelay: `${i * 0.05}s`,
               background: "var(--bg)",
               position: "relative",
+              /* Stagger vertical offset for unpredictable feel */
+              marginTop: i % 3 === 1 ? "clamp(0px, 2vw, 20px)" : "0",
             }}>
               {/* Accent top border */}
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: color, opacity: 0.5 }} />
 
               {/* Category Header */}
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
-                <div style={{ width: "6px", height: "6px", background: color, flexShrink: 0, boxShadow: `0 0 8px ${color}` }} />
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "18px" }}>
+                <div style={{ width: "5px", height: "5px", background: color, flexShrink: 0, boxShadow: `0 0 6px ${color}` }} />
                 <h3 style={{
-                  fontFamily: "'JetBrains Mono',monospace", fontWeight: 700,
-                  fontSize: "0.68rem", letterSpacing: "0.14em",
+                  fontFamily: "var(--font-mono)", fontWeight: 700,
+                  fontSize: "var(--size-label)", letterSpacing: "0.14em",
                   textTransform: "uppercase", color,
                 }}>
                   {category}
@@ -159,23 +183,23 @@ export default function MyWork() {
               </div>
 
               {/* Items */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                 {items.map(({ name, desc, href, Icon }) => (
-                  <div key={name} style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+                  <div key={name} style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "8px" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "10px", minWidth: 0 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "9px", minWidth: 0 }}>
                         <span style={{
                           display: "flex", alignItems: "center", justifyContent: "center",
-                          width: "28px", height: "28px",
+                          width: "26px", height: "26px",
                           background: `${color}10`,
                           border: `1px solid ${color}20`,
                           color, flexShrink: 0,
                         }}>
-                          <Icon size={14} />
+                          <Icon size={13} />
                         </span>
                         <p style={{
-                          fontFamily: "'Syne',sans-serif", fontWeight: 700,
-                          fontSize: "clamp(0.84rem, 2vw, 0.9rem)",
+                          fontFamily: "var(--font-display)", fontWeight: 700,
+                          fontSize: "clamp(0.82rem, 2vw, 0.88rem)",
                           overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
                         }}>
                           {name}
@@ -183,7 +207,7 @@ export default function MyWork() {
                       </div>
                       {href && (
                         <a href={href} target="_blank" rel="noopener noreferrer"
-                          style={{ color: "var(--muted)", fontSize: "0.8rem", transition: "color 0.18s", flexShrink: 0, display: "flex", alignItems: "center" }}
+                          style={{ color: "var(--muted)", fontSize: "0.78rem", transition: "color 0.18s", flexShrink: 0, display: "flex", alignItems: "center" }}
                           onMouseEnter={e => e.currentTarget.style.color = color}
                           onMouseLeave={e => e.currentTarget.style.color = "var(--muted)"}
                         >
@@ -191,10 +215,10 @@ export default function MyWork() {
                         </a>
                       )}
                     </div>
-                    <p style={{ color: "var(--muted)", fontSize: "0.76rem", paddingLeft: "38px", fontFamily: "'JetBrains Mono',monospace" }}>
+                    <p style={{ color: "var(--muted)", fontSize: "0.72rem", paddingLeft: "35px", fontFamily: "var(--font-mono)" }}>
                       {desc}
                     </p>
-                    <div style={{ height: "1px", background: `${color}18`, marginTop: "4px" }} />
+                    <div style={{ height: "1px", background: `${color}15`, marginTop: "3px" }} />
                   </div>
                 ))}
               </div>
@@ -202,12 +226,28 @@ export default function MyWork() {
           ))}
         </div>
 
-        <div className="reveal" style={{ marginTop: "clamp(40px,6vw,60px)", padding: "32px", border: "1px solid rgba(0,212,255,0.1)", background: "rgba(0,212,255,0.03)", position: "relative" }}>
+        {/* Bottom quote card */}
+        <div className="reveal" style={{ marginTop: "clamp(36px,5vw,52px)", padding: "28px 32px", border: "1px solid rgba(0,212,255,0.1)", background: "rgba(0,212,255,0.03)", position: "relative" }}>
           <div className="corner-tl" />
           <div className="corner-br" />
-          <p style={{ color: "var(--ink-dim)", fontSize: "clamp(0.9rem, 2vw, 1rem)", lineHeight: 1.7, maxWidth: "700px", fontFamily: "'JetBrains Mono',monospace" }}>
-            Neue Technologien eigne ich mir rasch und problemlos an — das ist meine wichtigste Fahigkeit.
+          <p style={{ color: "var(--ink-dim)", fontSize: "var(--size-body)", lineHeight: 1.75, maxWidth: "660px", fontFamily: "var(--font-mono)" }}>
+            Neue Technologien eigne ich mir rasch und problemlos an — das ist meine wichtigste Fähigkeit.
           </p>
+        </div>
+
+        {/* Cross-links: Fähigkeiten → Projekte & Kontakt */}
+        <div className="reveal" style={{ marginTop: "28px", display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+          <Link to="/projects" className="btn-ghost">Projekte ansehen →</Link>
+          <Link to="/contact" style={{
+            fontFamily: "var(--font-mono)", fontSize: "0.68rem",
+            color: "var(--muted)", textDecoration: "none",
+            transition: "color 0.2s",
+          }}
+            onMouseEnter={e => e.currentTarget.style.color = "var(--accent)"}
+            onMouseLeave={e => e.currentTarget.style.color = "var(--muted)"}
+          >
+            Projekt starten →
+          </Link>
         </div>
       </div>
     </div>

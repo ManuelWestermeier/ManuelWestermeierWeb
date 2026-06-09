@@ -1,37 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./index.css";
 
-function WriteText({ text = "", timeToNextChar = 100, delay = 0 }) {
-  const [current, setCurrent] = useState("");
+function WriteText({
+  text = "",
+  speed = 55,
+  delay = 0,
+  className = "",
+  style: style = {},
+}) {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+  const indexRef = useRef(0);
 
   useEffect(() => {
-    setTimeout(() => {
-      const chars = text.split("");
+    setDisplayed("");
+    setDone(false);
+    indexRef.current = 0;
 
-      var interval = setInterval(() => {
-        const nextChar = chars.shift();
-
-        if (!nextChar) {
-          return clearInterval(interval);
+    const timeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        if (indexRef.current >= text.length) {
+          clearInterval(interval);
+          setDone(true);
+          return;
         }
-
-        setCurrent((old) => old + nextChar);
-      }, timeToNextChar);
+        const char = text[indexRef.current];
+        indexRef.current++;
+        setDisplayed((prev) => prev + char);
+      }, speed);
+      return () => clearInterval(interval);
     }, delay);
-    return () => true;
-  }, []);
 
-  return current.split("").map((char, i) => {
-    const style = {
-      animation: `text-fade-in ${timeToNextChar * i}ms ease-in-out`,
-    };
+    return () => clearTimeout(timeout);
+  }, [text, speed, delay]);
 
-    return (
-      <span style={style} key={i}>
-        {char}
-      </span>
-    );
-  });
+  return (
+    <span className={`write-text ${className}`} style={style}>
+      {displayed}
+      {!done && <span className="write-cursor">|</span>}
+    </span>
+  );
 }
 
 export default WriteText;
