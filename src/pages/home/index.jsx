@@ -125,7 +125,7 @@ export default function Home() {
   useReveal();
 
   return (
-    <div style={{ overflowX: "hidden", width: "100%" }}>
+    <div style={{ overflowX: "clip", width: "100%" }}>
       {/* ── HERO ──────────────────────────────────── */}
       <section
         className="hero-bg grid-overlay"
