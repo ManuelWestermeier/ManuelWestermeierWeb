@@ -71,7 +71,7 @@ export default function Contact() {
           >
             Lassen Sie uns
             <br />
-            <span className="gradient-text">zusammenarbeiten</span>
+            <span style={{color:"var(--accent)",fontStyle:"italic"}}>zusammenarbeiten</span>
           </h1>
           <p
             style={{

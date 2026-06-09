@@ -48,7 +48,7 @@ function Projects() {
             fontSize: "clamp(1.9rem, 6vw, 3.5rem)",
             marginTop: "12px", marginBottom: "16px",
           }}>
-            Meine <span className="gradient-text">Projekte</span>
+            Meine <span style={{color:"var(--accent)",fontStyle:"italic"}}>Projekte</span>
           </h1>
           <p style={{ color: "var(--muted)", lineHeight: 1.7, fontSize: "clamp(0.85rem, 2vw, 0.92rem)", maxWidth: "480px", marginBottom: "20px" }}>
             {dataKeys.length} ausgewählte Projekte — von Web-Apps bis Embedded-Systemen.

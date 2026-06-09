@@ -130,46 +130,77 @@ export const data = {
     ),
   },
 
-  easyEinakuf: {
+  easyEinkauf: {
     name: "Easy-Einkauf",
     elem: (
       <article>
+        {/* Header with favicon + title */}
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
+          <img
+            src="https://easy-einkauf.de/favicon.ico"
+            alt="Easy-Einkauf Logo"
+            style={{ width: "28px", height: "28px", flexShrink: 0 }}
+            onError={e => { e.currentTarget.style.display = "none"; }}
+          />
+          <div>
+            <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: "1rem" }}>
+              Easy-Einkauf
+            </p>
+            <p style={{ color: "var(--accent)", fontSize: "0.68rem", fontFamily: "'JetBrains Mono',monospace" }}>
+              Einkaufen. Einfach.
+            </p>
+          </div>
+        </div>
+
         <p>
-          Die smarte Einkaufslisten-App für schnelle Planung, klare Abläufe und
-          einen deutlich entspannteren Einkauf im Alltag.
+          Digitale Einkaufslisten fuer Familien und Paare. Listen erstellen,
+          per Link oder QR-Code in Echtzeit teilen — ohne App-Download oder
+          Registrierung fuer Empfaenger. Komplett kostenlos, werbefrei und
+          DSGVO-konform.
         </p>
+
         <div className="links-row">
           <LinkBtn href="https://easy-einkauf.de/">App testen</LinkBtn>
+          <LinkBtn href="https://easy-einkauf.de/">easy-einkauf.de</LinkBtn>
         </div>
+
+        {/* Screenshot */}
         <Img
-          src="/imag/list-page.jpg"
-          alt="Easy-Einkauf App mit übersichtlicher Listenansicht"
-          title="Easy-Einkauf: moderne Listenansicht für effizientes Einkaufen"
+          src="/imag/easy-einkauf-list-page.jpg"
+          alt="Easy-Einkauf App – Listenansicht mit Echtzeit-Sync"
+          title="Easy-Einkauf: Listenansicht – geteilte Einkaufsliste in Echtzeit"
         />
-        <div className="social-links">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.youtube.com/@easy-einkauf?sub_confirmation=1"
-          >
-            YouTube
-          </a>{" "}
-          •
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.tiktok.com/@easyeinkauf"
-          >
-            TikTok
-          </a>{" "}
-          •
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.instagram.com/easy.einkauf"
-          >
-            Instagram
-          </a>
+
+        {/* Feature list */}
+        <ul className="feature-list" style={{ marginTop: "12px" }}>
+          <li>- Echtzeit-Sync: Aenderungen sieht jeder sofort</li>
+          <li>- Teilen per Link oder QR-Code – kein Konto noetig</li>
+          <li>- Barcode-Scanner mit Naehrwert- und Preisinfo</li>
+          <li>- KI-Rezepte & Diktat (Login erforderlich)</li>
+          <li>- Offline nutzbar – lokale Speicherung mit Auto-Sync</li>
+          <li>- Installierbar als PWA auf iPhone & Android</li>
+          <li>- 100% kostenlos, keine Werbung, kein Abo</li>
+        </ul>
+
+        <hr className="divider" />
+
+        {/* How it works */}
+        <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "10px" }}>
+          In 4 Schritten
+        </p>
+        <ul className="feature-list">
+          <li>1. Liste erstellen – sofort, ohne Registrierung</li>
+          <li>2. Artikel hinzufuegen – tippen, Favoriten oder Barcode</li>
+          <li>3. Liste teilen – Link oder QR-Code verschicken</li>
+          <li>4. Gemeinsam einkaufen – Artikel abhaken, alle sehen es live</li>
+        </ul>
+
+        <hr className="divider" />
+
+        <div className="social-links" style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+          <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@easy-einkauf?sub_confirmation=1">YouTube</a>
+          <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@easyeinkauf">TikTok</a>
+          <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/easy.einkauf">Instagram</a>
         </div>
       </article>
     ),

@@ -41,7 +41,7 @@ export default function PageNotFound() {
         <div style={{ marginTop: "-20px", position: "relative", zIndex: 1 }}>
           <span className="section-label" style={{ display: "block", marginBottom: "12px" }}>Seite nicht gefunden</span>
           <h1 style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: "clamp(1.5rem, 4vw, 2.5rem)", marginBottom: "12px" }}>
-            Diese Seite <span className="gradient-text">existiert nicht</span>
+            Diese Seite <span style={{color:"var(--accent)",fontStyle:"italic"}}>existiert nicht</span>
           </h1>
           <p style={{ color: "var(--muted)", marginBottom: "8px", fontSize: "0.9rem" }}>
             Der Pfad <code style={{ fontFamily: "'JetBrains Mono',monospace", color: "var(--accent)", background: "rgba(0,200,255,0.1)", padding: "2px 8px", borderRadius: "4px" }}>{pathname}</code> wurde nicht gefunden.
