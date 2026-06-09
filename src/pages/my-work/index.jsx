@@ -161,11 +161,11 @@ export default function MyWork() {
           {techStack.map(({ category, color, items }, i) => (
             <div key={category} className="reveal" style={{
               padding: "clamp(18px,2.8vw,26px)",
-              transitionDelay: `${i * 0.05}s`,
+              transitionDelay: `${i * 0.1}s`,
               background: "var(--bg)",
               position: "relative",
               /* Stagger vertical offset for unpredictable feel */
-              marginTop: i % 3 === 1 ? "clamp(0px, 2vw, 20px)" : "0",
+              // marginTop: !(i % 3 === 1) ? "clamp(0px, 2vw, 20px)" : "0",
             }}>
               {/* Accent top border */}
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: color, opacity: 0.5 }} />
