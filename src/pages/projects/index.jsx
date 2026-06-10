@@ -107,7 +107,7 @@ function Projects() {
               rel="noopener noreferrer"
               className="btn-ghost"
             >
-              GitHub ↗
+              GitHub
             </a>
             <Link
               to="/my-work"
