@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { to: "/my-work", label: "Fähigkeiten" },
+  { to: "/my-work", label: "Fahigkeiten" },
   { to: "/projects", label: "Projekte" },
   { to: "/contact", label: "Kontakt" },
 ];
@@ -46,11 +46,11 @@ function Header() {
         right: 0,
         zIndex: 100,
         transition: "background 0.3s ease, border-color 0.3s ease",
-        background: scrolled || open ? "rgba(17,17,17,0.88)" : "transparent",
-        backdropFilter: scrolled || open ? "blur(14px)" : "none",
-        WebkitBackdropFilter: scrolled || open ? "blur(14px)" : "none",
+        background: scrolled || open ? "rgba(4,8,15,0.95)" : "transparent",
+        backdropFilter: scrolled || open ? "blur(20px)" : "none",
+        WebkitBackdropFilter: scrolled || open ? "blur(20px)" : "none",
         borderBottom: scrolled
-          ? "1px solid var(--border)"
+          ? "1px solid rgba(0,212,255,0.1)"
           : "1px solid transparent",
       }}
     >
@@ -85,6 +85,15 @@ function Header() {
               flexShrink: 0,
             }}
           >
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "rgba(0,212,255,0.2)",
+                filter: "blur(6px)",
+                animation: "pulseGlow 3s ease-in-out infinite",
+              }}
+            />
             <img
               src="/logo-512.png"
               alt="MW"
@@ -93,18 +102,17 @@ function Header() {
                 width: "28px",
                 height: "28px",
                 objectFit: "cover",
-                border: "1px solid var(--border)",
-                borderRadius: "4px",
+                border: "1px solid rgba(0,212,255,0.5)",
                 display: "block",
               }}
             />
           </div>
           <span
             style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 400,
-              fontSize: "0.92rem",
-              color: "var(--text)",
+              fontFamily: "'Syne',sans-serif",
+              fontWeight: 700,
+              fontSize: "0.86rem",
+              color: "var(--ink-dim)",
             }}
           >
             Manuel Westermeier
@@ -189,7 +197,7 @@ function Header() {
                 style={{
                   display: "block",
                   height: "1.5px",
-                  background: "var(--text)",
+                  background: "var(--ink)",
                   transition: "all 0.3s ease",
                   width: s.w,
                   transform: s.t,
@@ -205,14 +213,14 @@ function Header() {
       {isMobile && open && (
         <div
           style={{
-            background: "rgba(17,17,17,0.98)",
+            background: "rgba(4,8,15,0.98)",
             backdropFilter: "blur(20px)",
-            borderTop: "1px solid var(--border)",
+            borderTop: "1px solid rgba(0,212,255,0.08)",
             padding: "20px var(--px) 28px",
             display: "flex",
             flexDirection: "column",
             gap: "4px",
-            animation: "fadeIn 0.2s ease forwards",
+            animation: "textFadeIn 0.2s ease forwards",
           }}
         >
           {navLinks.map(({ to, label }) => (
@@ -220,14 +228,16 @@ function Header() {
               key={to}
               to={to}
               style={{
-                fontFamily: "var(--font-body)",
-                fontWeight: 400,
-                fontSize: "0.92rem",
+                fontFamily: "'JetBrains Mono',monospace",
+                fontWeight: 600,
+                fontSize: "0.84rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
                 color:
-                  location.pathname === to ? "var(--accent)" : "var(--text)",
+                  location.pathname === to ? "var(--accent)" : "var(--ink-dim)",
                 textDecoration: "none",
                 padding: "16px 0",
-                borderBottom: "1px solid var(--border)",
+                borderBottom: "1px solid rgba(0,212,255,0.06)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -236,11 +246,12 @@ function Header() {
               {label}
               <span
                 style={{
-                  color: "var(--muted)",
-                  fontSize: "0.8rem",
+                  color: "var(--accent)",
+                  fontSize: "0.7rem",
+                  fontFamily: "monospace",
                 }}
               >
-                {location.pathname === to ? "→" : ""}
+                {location.pathname === to ? ">" : "-"}
               </span>
             </Link>
           ))}

@@ -7,42 +7,53 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#111111',
-        surface: '#1A1D22',
-        border: 'rgba(255,255,255,0.08)',
-        accent: '#2F6FFF',
-        accentBright: '#5B8CFF',
-        text: '#EDEDED',
-        muted: '#9AA0A8',
-        violet: '#8B5CF6',
-        teal: '#14C9A6',
-        magenta: '#E23FA6',
-      },
-      borderRadius: {
-        lg: '10px',
-        xl: '14px',
-        '2xl': '18px',
-        '3xl': '24px',
+        bg: '#050b17',
+        'bg-mid': '#091526',
+        'bg-card': '#0d1e3a',
+        accent: '#00c8ff',
+        'accent-dim': 'rgba(0,200,255,0.15)',
+        'accent-2': '#6366f1',
+        ink: '#e2eaf6',
+        muted: '#7a8ba8',
       },
       fontFamily: {
-        display: ['Lora Variable', 'Lora', 'serif'],
-        body: ['Instrument Sans Variable', 'Instrument Sans', 'sans-serif'],
+        display: ['Syne', 'sans-serif'],
+        body: ['Outfit', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {
+        'float': 'float 6s ease-in-out infinite',
+        'float-slow': 'float 10s ease-in-out infinite',
+        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+        'slide-up': 'slideUp 0.6s ease forwards',
         'fade-in': 'fadeIn 0.8s ease forwards',
-        'blob-float': 'blobFloat 14s ease-in-out infinite',
-        'blob-float-slow': 'blobFloat 20s ease-in-out infinite reverse',
+        'spin-slow': 'spin 12s linear infinite',
+        'aurora': 'aurora 8s ease-in-out infinite alternate',
       },
       keyframes: {
-        fadeIn: {
-          from: { opacity: '0', transform: 'translateY(16px)' },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(0,200,255,0.3)' },
+          '50%': { boxShadow: '0 0 50px rgba(0,200,255,0.7)' },
+        },
+        slideUp: {
+          from: { opacity: '0', transform: 'translateY(40px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
-        blobFloat: {
-          '0%, 100%': { transform: 'translate(0,0) scale(1)' },
-          '33%': { transform: 'translate(4%,-6%) scale(1.08)' },
-          '66%': { transform: 'translate(-5%,4%) scale(0.94)' },
+        fadeIn: {
+          from: { opacity: '0', transform: 'translateX(-50px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
         },
+        aurora: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '100%': { backgroundPosition: '100% 50%' },
+        },
+      },
+      backdropBlur: {
+        xs: '2px',
       },
     },
   },

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { IconMail, IconPhone, IconGitHub } from "../../comp/icons";
-import GlowBlob from "../../comp/glow-blob";
 
 const contactItems = [
   {
@@ -8,21 +8,21 @@ const contactItems = [
     label: "E-Mail",
     value: "info@manuel-westermeier.de",
     href: "mailto:info@manuel-westermeier.de",
-    color: "var(--accent-bright)",
+    color: "#00c8ff",
   },
   {
     icon: IconPhone,
     label: "Telefon",
     value: "+49 1525 6427 900",
     href: "tel:+4915256427900",
-    color: "var(--hue-projects)",
+    color: "#10b981",
   },
   {
     icon: IconGitHub,
     label: "GitHub",
     value: "github.com/ManuelWestermeier",
     href: "https://github.com/ManuelWestermeier",
-    color: "var(--hue-about)",
+    color: "#6366f1",
   },
 ];
 
@@ -42,140 +42,86 @@ export default function Contact() {
 
   return (
     <div
-      className="section-contact"
       style={{
         paddingTop: "60px",
         minHeight: "100dvh",
+        background: "var(--bg)",
         overflowX: "hidden",
         width: "100%",
-        position: "relative",
       }}
     >
-      <GlowBlob color="var(--hue-contact)" size={440} top="0" right="-140px" />
-      <GlowBlob color="var(--hue-about)" size={300} bottom="10%" left="-100px" slow />
-
+      {/* Hero */}
       <div
+        className="hero-bg"
         style={{
-          maxWidth: "1050px",
-          margin: "0 auto",
-          padding: "clamp(56px,10vw,96px) var(--px) clamp(56px,9vw,90px)",
-          position: "relative",
+          padding: "clamp(44px,8vw,60px) var(--px) clamp(52px,9vw,72px)",
         }}
       >
-        <div className="about-grid" style={{ display: "grid", gap: "clamp(32px,5vw,64px)", alignItems: "center" }}>
-          {/* Left: pitch */}
-          <div>
-            <span className="section-label" style={{ "--label-color": "var(--hue-contact)" }}>
-              Kontakt
-            </span>
-            <h1
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 300,
-                fontSize: "clamp(2rem, 5.5vw, 3.2rem)",
-                marginTop: "14px",
-                marginBottom: "18px",
-                lineHeight: 1.1,
-              }}
-            >
-              <span className="hero-name-line1" style={{ display: "block" }}>
-                Lassen Sie uns
-              </span>
-              <span
-                className="hero-name-line2"
-                style={{ display: "block", color: "var(--hue-contact)" }}
-              >
-                zusammenarbeiten
-              </span>
-            </h1>
-            <p
-              style={{
-                color: "var(--muted)",
-                lineHeight: 1.75,
-                fontSize: "var(--size-body)",
-                fontFamily: "var(--font-body)",
-                fontWeight: 300,
-                maxWidth: "420px",
-                marginBottom: "22px",
-              }}
-            >
-              Schnelle Antwortzeiten, faire und verhandelbare Preise. Ich freue
-              mich auf Ihre Anfrage.
-            </p>
-
-            <div
-              className="reveal"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "10px",
-                padding: "9px 16px",
-                border: "1px solid var(--border)",
-                borderRadius: "999px",
-                marginBottom: "26px",
-              }}
-            >
-              <span
-                style={{
-                  width: "7px",
-                  height: "7px",
-                  borderRadius: "50%",
-                  background: "var(--hue-contact)",
-                  flexShrink: 0,
-                }}
-              />
-              <span
-                style={{
-                  color: "var(--muted)",
-                  fontSize: "0.78rem",
-                  fontFamily: "var(--font-body)",
-                }}
-              >
-                <strong style={{ color: "var(--text)", fontWeight: 500 }}>
-                  Verfügbar
-                </strong>{" "}
-                — Antwort meist binnen 24h
-              </span>
-            </div>
-
-            <div className="cta-row">
-              <a href="mailto:info@manuel-westermeier.de" className="btn-primary">
-                E-Mail schreiben
-              </a>
-              <a href="tel:+4915256427900" className="btn-ghost">
-                Anrufen
-              </a>
-            </div>
-          </div>
-
-          {/* Right: consolidated contact card */}
-          <div
-            className="tile reveal"
-            style={{ "--tile-accent": "var(--hue-contact)", padding: "10px" }}
+        <div style={{ maxWidth: "560px", margin: "0 auto" }}>
+          <span className="section-label">Kontakt</span>
+          <h1
+            style={{
+              fontFamily: "'Syne',sans-serif",
+              fontWeight: 800,
+              fontSize: "clamp(1.9rem, 6vw, 3.2rem)",
+              marginTop: "12px",
+              marginBottom: "16px",
+              lineHeight: 1.08,
+            }}
           >
-            {contactItems.map(({ icon: IconComp, label, value, href, color }) => (
+            Lassen Sie uns
+            <br />
+            <span style={{color:"var(--accent)",fontStyle:"italic"}}>zusammenarbeiten</span>
+          </h1>
+          <p
+            style={{
+              color: "var(--muted)",
+              lineHeight: 1.7,
+              fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
+            }}
+          >
+            Schnelle Antwortzeiten, faire und verhandelbare Preise. Ich freue
+            mich auf Ihre Anfrage.
+          </p>
+        </div>
+      </div>
+
+      {/* Contact Cards */}
+      <div
+        style={{
+          maxWidth: "600px",
+          margin: "0 auto",
+          padding: "clamp(36px,7vw,56px) var(--px) clamp(56px,9vw,80px)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            marginBottom: "40px",
+          }}
+        >
+          {contactItems.map(
+            ({ icon: IconComp, label, value, href, color }, i) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "14px",
-                  padding: "16px 12px",
-                  borderTop: "1px solid var(--border)",
-                  textDecoration: "none",
-                  transition: "background 0.18s ease",
-                }}
-                className="contact-row"
-                onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface-hover)")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                rel={
+                  href.startsWith("http") ? "noopener noreferrer" : undefined
+                }
+                className="contact-card reveal"
+                style={{ transitionDelay: `${i * 0.08}s` }}
               >
                 <div
+                  className="contact-card-icon"
                   style={{
-                    width: "38px",
-                    height: "38px",
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "11px",
+                    background: `${color}14`,
+                    border: `1px solid ${color}30`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -183,14 +129,14 @@ export default function Contact() {
                     color,
                   }}
                 >
-                  <IconComp size={18} />
+                  <IconComp size={20} />
                 </div>
                 <div style={{ flexGrow: 1, minWidth: 0 }}>
                   <p
                     style={{
-                      fontFamily: "var(--font-body)",
-                      fontWeight: 400,
-                      fontSize: "0.74rem",
+                      fontFamily: "'Syne',sans-serif",
+                      fontWeight: 600,
+                      fontSize: "0.75rem",
                       color: "var(--muted)",
                       marginBottom: "2px",
                     }}
@@ -199,30 +145,33 @@ export default function Contact() {
                   </p>
                   <p className="contact-card-value">{value}</p>
                 </div>
-                <span style={{ color: "var(--muted)", flexShrink: 0, fontSize: "0.9rem" }}>
+                <span
+                  style={{
+                    color: "var(--muted)",
+                    flexShrink: 0,
+                    fontSize: "0.9rem",
+                  }}
+                >
                   →
                 </span>
               </a>
-            ))}
-          </div>
+            ),
+          )}
         </div>
 
         {/* ChiemWeb Banner */}
         {window.cw ? (
-          <div
-            className="chiemweb-banner reveal"
-            style={{ marginTop: "clamp(48px,8vw,72px)" }}
-          >
+          <div className="chiemweb-banner reveal">
             <img
               src="/chiemweb-logo-512.jpg"
               alt="ChiemWeb"
               style={{
                 width: "56px",
                 height: "56px",
-                borderRadius: "var(--radius)",
+                borderRadius: "12px",
                 margin: "0 auto 14px",
                 display: "block",
-                border: "1px solid var(--border)",
+                border: "2px solid rgba(0,200,255,0.3)",
                 objectFit: "cover",
               }}
             />
@@ -234,9 +183,9 @@ export default function Contact() {
             </span>
             <h2
               style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 300,
-                fontSize: "clamp(1.15rem, 3.5vw, 1.5rem)",
+                fontFamily: "'Syne',sans-serif",
+                fontWeight: 800,
+                fontSize: "clamp(1.15rem, 3.5vw, 1.65rem)",
                 marginBottom: "12px",
               }}
             >
@@ -248,14 +197,12 @@ export default function Contact() {
                 marginBottom: "22px",
                 lineHeight: 1.7,
                 fontSize: "clamp(0.82rem, 2vw, 0.88rem)",
-                fontFamily: "var(--font-body)",
-                fontWeight: 300,
                 maxWidth: "360px",
                 margin: "0 auto 22px",
               }}
             >
               Für Unternehmen empfehle ich{" "}
-              <strong style={{ color: "var(--text)" }}>ChiemWeb.de</strong> —
+              <strong style={{ color: "var(--ink)" }}>ChiemWeb.de</strong> —
               moderne Websites zu fairen Preisen aus dem Chiemgau.
             </p>
             <div className="cta-row" style={{ justifyContent: "center" }}>
@@ -272,6 +219,45 @@ export default function Contact() {
         ) : (
           <></>
         )}
+
+        {/* Availability */}
+        <div
+          className="reveal"
+          style={{
+            marginTop: "24px",
+            padding: "16px 20px",
+            background: "rgba(16,185,129,0.05)",
+            border: "1px solid rgba(16,185,129,0.18)",
+            borderRadius: "13px",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+          }}
+        >
+          <div
+            style={{
+              width: "9px",
+              height: "9px",
+              borderRadius: "50%",
+              background: "#10b981",
+              boxShadow: "0 0 8px #10b981",
+              flexShrink: 0,
+              animation: "pulseGlow 2s ease-in-out infinite",
+            }}
+          />
+          <p
+            style={{
+              color: "var(--muted)",
+              fontSize: "clamp(0.8rem, 2vw, 0.85rem)",
+              lineHeight: 1.6,
+            }}
+          >
+            <strong style={{ color: "var(--ink)" }}>
+              Verfügbar für neue Projekte.
+            </strong>{" "}
+            Anfragen werden in der Regel innerhalb von 24h beantwortet.
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitenkarte – Manuel Westermeier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #02060e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            gap: 32px;
+            font-family: 'Outfit', sans-serif;
+            padding: 48px 24px;
+        }
+
+        .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: rgba(0, 200, 255, 0.45);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        /* ── Karte ─────────────────────────────────────────────── */
+        .card {
+            /* 91 × 61 mm @ ~250 DPI → 895 × 600 px  */
+            width: 895px;
+            height: 600px;
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+            background: #050b17;
+            border: 1px solid rgba(0, 200, 255, 0.13);
+            box-shadow:
+                0 0 0 1px rgba(0, 200, 255, 0.06),
+                0 40px 100px rgba(0, 0, 0, 0.75),
+                0 0 80px rgba(0, 200, 255, 0.06) inset;
+            flex-shrink: 0;
+        }
+
+        /* Grid overlay */
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 200, 255, 0.028) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 200, 255, 0.028) 1px, transparent 1px);
+            background-size: 52px 52px;
+            z-index: 0;
+        }
+
+        /* Hintergrund-Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 420px;
+            height: 380px;
+            top: -100px;
+            right: -80px;
+            background: rgba(0, 200, 255, 0.07);
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 280px;
+            bottom: -60px;
+            left: -60px;
+            background: rgba(99, 102, 241, 0.09);
+        }
+
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 42%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 200, 255, 0.04);
+        }
+
+        /* Diagonale Trennlinie */
+        .diagonal-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 52%;
+            width: 1px;
+            background: linear-gradient(180deg,
+                    transparent 0%,
+                    rgba(0, 200, 255, 0.18) 30%,
+                    rgba(0, 200, 255, 0.22) 60%,
+                    transparent 100%);
+            transform: skewX(-8deg);
+            z-index: 1;
+        }
+
+        /* Inhalt */
+        .content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100%;
+        }
+
+        /* Linke Seite */
+        .left {
+            padding: 42px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9.5px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #00c8ff;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 1px;
+            background: #00c8ff;
+            opacity: 0.7;
+        }
+
+        .name-block {
+            margin-bottom: 0;
+        }
+
+        .name-first {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 64px;
+            line-height: 0.96;
+            background: linear-gradient(135deg, #fff 0%, #00c8ff 52%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            letter-spacing: -0.02em;
+        }
+
+        .name-last {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 29px;
+            line-height: 1.2;
+            color: #e2eaf6;
+            display: block;
+            letter-spacing: -0.01em;
+            margin-top: 2px;
+        }
+
+        .bottom-left {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .skills-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 4px;
+        }
+
+        .chip {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5px;
+            letter-spacing: 0.06em;
+            padding: 3px 8px;
+            border-radius: 100px;
+            border: 1px solid rgba(0, 200, 255, 0.22);
+            background: rgba(0, 200, 255, 0.06);
+            color: #00c8ff;
+            white-space: nowrap;
+        }
+
+        .url-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: rgba(0, 200, 255, 0.55);
+            letter-spacing: 0.06em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .url-badge span {
+            color: rgba(226, 234, 246, 0.35);
+        }
+
+        /* Rechte Seite */
+        .right {
+            padding: 42px 40px 42px 52px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border: 1px solid rgba(0, 200, 255, 0.22);
+            border-radius: 100px;
+            background: rgba(0, 200, 255, 0.05);
+            width: fit-content;
+        }
+
+        .role-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #00c8ff;
+            box-shadow: 0 0 6px rgba(0, 200, 255, 0.8);
+            flex-shrink: 0;
+        }
+
+        .role-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: #00c8ff;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+        }
+
+        .contact-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 200, 255, 0.18);
+            background: rgba(0, 200, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon svg {
+            width: 13px;
+            height: 13px;
+            fill: none;
+            stroke: #00c8ff;
+            stroke-width: 1.6;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .contact-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .contact-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            color: #7a8ba8;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .contact-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 11.5px;
+            font-weight: 500;
+            color: #e2eaf6;
+            letter-spacing: 0.01em;
+        }
+
+        .bottom-right {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 18px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #00c8ff;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.5px;
+            color: #7a8ba8;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Akzentlinie unten links */
+        .accent-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 52%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #00c8ff 30%, #6366f1 80%, transparent 100%);
+            z-index: 2;
+        }
+
+        /* Ecke oben rechts */
+        .corner-glow {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at top right,
+                    rgba(99, 102, 241, 0.14) 0%,
+                    transparent 65%);
+            z-index: 1;
+        }
+
+        /* ── Print hint ──── */
+        .hint {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: rgba(0, 200, 255, 0.3);
+            letter-spacing: 0.08em;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p class="label">Visitenkarte · 91 × 61 mm · Manuel Westermeier</p>
+
+    <div class="card">
+        <!-- Orbs -->
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+
+        <!-- Diagonale Linie -->
+        <div class="diagonal-line"></div>
+
+        <!-- Ecken-Glow -->
+        <div class="corner-glow"></div>
+
+        <!-- Inhalt -->
+        <div class="content">
+
+            <!-- LINKS -->
+            <div class="left">
+                <div class="top-left">
+                    <div class="section-label">dev · sound · chiemgau</div>
+                    <div class="name-block">
+                        <span class="name-first">Manuel</span>
+                        <span class="name-last">Westermeier</span>
+                    </div>
+                </div>
+
+                <div class="bottom-left">
+                    <div class="skills-row">
+                        <span class="chip">React</span>
+                        <span class="chip">Node.js</span>
+                        <span class="chip">TypeScript</span>
+                        <span class="chip">ESP32</span>
+                        <span class="chip">C/C++</span>
+                        <span class="chip">Unity</span>
+                        <span class="chip">Electron</span>
+                        <span class="chip">Linux</span>
+                    </div>
+                    <div class="url-badge">
+                        <span>↗</span> manuel-westermeier.de
+                    </div>
+                </div>
+            </div>
+
+            <!-- RECHTS -->
+            <div class="right">
+                <div class="top-right">
+                    <div class="role-badge">
+                        <div class="role-dot"></div>
+                        <span class="role-text">Full-Stack · Sounddesign</span>
+                    </div>
+                </div>
+
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <!-- Mail Icon -->
+                            <svg viewBox="0 0 24 24">
+                                <rect x="2" y="4" width="20" height="16" rx="2" />
+                                <polyline points="2,4 12,13 22,4" />
+                            </svg>
+                        </div>
+                        <div class="contact-meta">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">info@manuel-westermeier.de</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <!-- GitHub Icon -->
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                            </svg>
+                        </div>
+                        <div class="contact-meta">
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">ManuelWestermeier</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <!-- Globe Icon -->
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                            </svg>
+                        </div>
+                        <div class="contact-meta">
+                            <span class="contact-label">Web</span>
+                            <span class="contact-value">chiemweb.de</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-right">
+                    <div class="stat-row">
+                        <div class="stat">
+                            <span class="stat-number">300+</span>
+                            <span class="stat-label">Projekte</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">4+</span>
+                            <span class="stat-label">Jahre</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-label">Technologien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /content -->
+
+        <!-- Akzentlinie unten -->
+        <div class="accent-bar"></div>
+
+    </div><!-- /card -->
+
+    <p class="hint">→ Screenshot bei 100 % Zoom für beste Qualität · Druckgröße 91 × 61 mm</p>
+
+</body>
+
+</html>

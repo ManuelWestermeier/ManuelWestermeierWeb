@@ -143,10 +143,10 @@ export const data = {
             onError={e => { e.currentTarget.style.display = "none"; }}
           />
           <div>
-            <p style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "1rem" }}>
+            <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: "1rem" }}>
               Easy-Einkauf
             </p>
-            <p style={{ color: "var(--accent)", fontSize: "0.72rem", fontFamily: "var(--font-body)" }}>
+            <p style={{ color: "var(--accent)", fontSize: "0.68rem", fontFamily: "'JetBrains Mono',monospace" }}>
               Einkaufen. Einfach.
             </p>
           </div>
@@ -185,7 +185,7 @@ export const data = {
         <hr className="divider" />
 
         {/* How it works */}
-        <p style={{ fontFamily: "var(--font-body)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "10px" }}>
+        <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "10px" }}>
           In 4 Schritten
         </p>
         <ul className="feature-list">

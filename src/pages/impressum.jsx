@@ -4,8 +4,8 @@ function Impressum() {
   return (
     <main
       style={{
-        padding: "clamp(100px,14vw,140px) var(--px) 80px",
-        maxWidth: "700px",
+        padding: "80px var(--px)",
+        maxWidth: "800px",
         margin: "0 auto",
         minHeight: "100dvh",
       }}
