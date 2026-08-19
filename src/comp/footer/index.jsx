@@ -11,7 +11,7 @@ const socials = [
 export default function Footer() {
   return (
     <footer style={{
-      borderTop: "1px solid rgba(0,212,255,0.08)",
+      borderTop: "1px solid var(--border)",
       padding: "clamp(40px,7vw,56px) var(--px) clamp(24px,5vw,36px)",
       background: "var(--bg)",
     }}>
@@ -25,12 +25,12 @@ export default function Footer() {
           {/* Brand */}
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <img src="/logo-512.png" alt="MW" style={{ width: "28px", height: "28px", objectFit: "cover", flexShrink: 0, border: "1px solid rgba(0,212,255,0.4)" }} />
-              <span style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: "0.88rem" }}>
+              <img src="/logo-512.png" alt="MW" style={{ width: "28px", height: "28px", objectFit: "cover", flexShrink: 0, border: "1px solid var(--border)", borderRadius: "4px" }} />
+              <span style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "0.92rem" }}>
                 Manuel Westermeier
               </span>
             </div>
-            <p style={{ color: "var(--muted)", fontSize: "0.8rem", lineHeight: 1.65, maxWidth: "220px", fontFamily: "'JetBrains Mono',monospace" }}>
+            <p style={{ color: "var(--muted)", fontSize: "0.82rem", lineHeight: 1.65, maxWidth: "220px", fontFamily: "var(--font-body)" }}>
               Full-Stack Dev &amp; Sounddesigner<br />Chiemgau, Bayern
             </p>
             <div style={{ display: "flex", gap: "6px" }}>
@@ -44,15 +44,16 @@ export default function Footer() {
                   style={{
                     width: "34px", height: "34px",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    background: "transparent",
-                    border: "1px solid rgba(0,212,255,0.12)",
+                    background: "var(--surface)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "var(--radius)",
                     color: "var(--muted)",
                     transition: "all 0.18s ease",
                     textDecoration: "none",
                     flexShrink: 0,
                   }}
-                  onMouseEnter={e => { e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.borderColor = "rgba(0,212,255,0.45)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.color = "var(--muted)"; e.currentTarget.style.borderColor = "rgba(0,212,255,0.12)"; }}
+                  onMouseEnter={e => { e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.borderColor = "var(--accent)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = "var(--muted)"; e.currentTarget.style.borderColor = "var(--border)"; }}
                 >
                   <Icon size={15} />
                 </a>
@@ -62,7 +63,7 @@ export default function Footer() {
 
           {/* Nav */}
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            <p style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: "0.62rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "4px" }}>
+            <p style={{ fontFamily: "var(--font-body)", fontWeight: 500, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "4px" }}>
               Navigation
             </p>
             {[
@@ -76,7 +77,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            <p style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: "0.62rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "4px" }}>
+            <p style={{ fontFamily: "var(--font-body)", fontWeight: 500, fontSize: "0.68rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "4px" }}>
               Rechtliches
             </p>
             <Link to="/impressum" className="nav-link" style={{ fontSize: "0.84rem", width: "fit-content" }}>Impressum</Link>
@@ -86,7 +87,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div style={{
-          borderTop: "1px solid rgba(0,212,255,0.06)",
+          borderTop: "1px solid var(--border)",
           paddingTop: "18px",
           display: "flex",
           flexWrap: "wrap",
@@ -94,10 +95,10 @@ export default function Footer() {
           alignItems: "center",
           gap: "6px",
         }}>
-          <p style={{ color: "var(--muted)", fontSize: "0.72rem", fontFamily: "'JetBrains Mono',monospace" }}>
+          <p style={{ color: "var(--muted)", fontSize: "0.76rem", fontFamily: "var(--font-body)" }}>
             &copy; {new Date().getFullYear()} Manuel Westermeier
           </p>
-          <p style={{ color: "var(--muted)", fontSize: "0.72rem", fontFamily: "'JetBrains Mono',monospace" }}>
+          <p style={{ color: "var(--muted)", fontSize: "0.76rem", fontFamily: "var(--font-body)" }}>
             Erstellt von Manuel Westermeier
           </p>
         </div>

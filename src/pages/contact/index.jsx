@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IconMail, IconPhone, IconGitHub } from "../../comp/icons";
+import GlowBlob from "../../comp/glow-blob";
 
 const contactItems = [
   {
@@ -8,21 +9,21 @@ const contactItems = [
     label: "E-Mail",
     value: "info@manuel-westermeier.de",
     href: "mailto:info@manuel-westermeier.de",
-    color: "#00c8ff",
+    color: "var(--accent-bright)",
   },
   {
     icon: IconPhone,
     label: "Telefon",
     value: "+49 1525 6427 900",
     href: "tel:+4915256427900",
-    color: "#10b981",
+    color: "var(--hue-projects)",
   },
   {
     icon: IconGitHub,
     label: "GitHub",
     value: "github.com/ManuelWestermeier",
     href: "https://github.com/ManuelWestermeier",
-    color: "#6366f1",
+    color: "var(--hue-about)",
   },
 ];
 
@@ -55,29 +56,34 @@ export default function Contact() {
         className="hero-bg"
         style={{
           padding: "clamp(44px,8vw,60px) var(--px) clamp(52px,9vw,72px)",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div style={{ maxWidth: "560px", margin: "0 auto" }}>
-          <span className="section-label">Kontakt</span>
+        <GlowBlob color="var(--hue-contact)" size={400} top="-100px" right="-60px" />
+        <div style={{ maxWidth: "560px", margin: "0 auto", position: "relative" }}>
+          <span className="section-label" style={{ "--label-color": "var(--hue-contact)" }}>Kontakt</span>
           <h1
             style={{
-              fontFamily: "'Syne',sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(1.9rem, 6vw, 3.2rem)",
+              fontFamily: "var(--font-display)",
+              fontWeight: 300,
+              fontSize: "clamp(1.9rem, 6vw, 3rem)",
               marginTop: "12px",
               marginBottom: "16px",
-              lineHeight: 1.08,
+              lineHeight: 1.15,
             }}
           >
             Lassen Sie uns
             <br />
-            <span style={{color:"var(--accent)",fontStyle:"italic"}}>zusammenarbeiten</span>
+            <span style={{ color: "var(--accent)" }}>zusammenarbeiten</span>
           </h1>
           <p
             style={{
               color: "var(--muted)",
               lineHeight: 1.7,
               fontSize: "clamp(0.85rem, 2vw, 0.9rem)",
+              fontFamily: "var(--font-body)",
+              fontWeight: 300,
             }}
           >
             Schnelle Antwortzeiten, faire und verhandelbare Preise. Ich freue
@@ -86,7 +92,7 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Contact Cards */}
+      {/* Contact rows */}
       <div
         style={{
           maxWidth: "600px",
@@ -94,69 +100,56 @@ export default function Contact() {
           padding: "clamp(36px,7vw,56px) var(--px) clamp(56px,9vw,80px)",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-            marginBottom: "40px",
-          }}
-        >
-          {contactItems.map(
-            ({ icon: IconComp, label, value, href, color }, i) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  href.startsWith("http") ? "noopener noreferrer" : undefined
-                }
-                className="contact-card reveal"
-                style={{ transitionDelay: `${i * 0.08}s` }}
+        <div className="tile-grid" style={{ marginBottom: "40px" }}>
+          {contactItems.map(({ icon: IconComp, label, value, href, color }, i) => (
+            <a
+              key={label}
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={
+                href.startsWith("http") ? "noopener noreferrer" : undefined
+              }
+              className="contact-card reveal"
+              style={{ "--tile-accent": color, transitionDelay: `${i * 0.08}s` }}
+            >
+              <div
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                  color,
+                }}
               >
-                <div
-                  className="contact-card-icon"
+                <IconComp size={19} />
+              </div>
+              <div style={{ flexGrow: 1, minWidth: 0 }}>
+                <p
                   style={{
-                    width: "44px",
-                    height: "44px",
-                    borderRadius: "11px",
-                    background: `${color}14`,
-                    border: `1px solid ${color}30`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                    color,
-                  }}
-                >
-                  <IconComp size={20} />
-                </div>
-                <div style={{ flexGrow: 1, minWidth: 0 }}>
-                  <p
-                    style={{
-                      fontFamily: "'Syne',sans-serif",
-                      fontWeight: 600,
-                      fontSize: "0.75rem",
-                      color: "var(--muted)",
-                      marginBottom: "2px",
-                    }}
-                  >
-                    {label}
-                  </p>
-                  <p className="contact-card-value">{value}</p>
-                </div>
-                <span
-                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontWeight: 400,
+                    fontSize: "0.78rem",
                     color: "var(--muted)",
-                    flexShrink: 0,
-                    fontSize: "0.9rem",
+                    marginBottom: "2px",
                   }}
                 >
-                  →
-                </span>
-              </a>
-            ),
-          )}
+                  {label}
+                </p>
+                <p className="contact-card-value">{value}</p>
+              </div>
+              <span
+                style={{
+                  color: "var(--muted)",
+                  flexShrink: 0,
+                  fontSize: "0.9rem",
+                }}
+              >
+                →
+              </span>
+            </a>
+          ))}
         </div>
 
         {/* ChiemWeb Banner */}
@@ -168,10 +161,10 @@ export default function Contact() {
               style={{
                 width: "56px",
                 height: "56px",
-                borderRadius: "12px",
+                borderRadius: "var(--radius)",
                 margin: "0 auto 14px",
                 display: "block",
-                border: "2px solid rgba(0,200,255,0.3)",
+                border: "1px solid var(--border)",
                 objectFit: "cover",
               }}
             />
@@ -183,9 +176,9 @@ export default function Contact() {
             </span>
             <h2
               style={{
-                fontFamily: "'Syne',sans-serif",
-                fontWeight: 800,
-                fontSize: "clamp(1.15rem, 3.5vw, 1.65rem)",
+                fontFamily: "var(--font-display)",
+                fontWeight: 300,
+                fontSize: "clamp(1.15rem, 3.5vw, 1.5rem)",
                 marginBottom: "12px",
               }}
             >
@@ -197,12 +190,14 @@ export default function Contact() {
                 marginBottom: "22px",
                 lineHeight: 1.7,
                 fontSize: "clamp(0.82rem, 2vw, 0.88rem)",
+                fontFamily: "var(--font-body)",
+                fontWeight: 300,
                 maxWidth: "360px",
                 margin: "0 auto 22px",
               }}
             >
               Für Unternehmen empfehle ich{" "}
-              <strong style={{ color: "var(--ink)" }}>ChiemWeb.de</strong> —
+              <strong style={{ color: "var(--text)" }}>ChiemWeb.de</strong> —
               moderne Websites zu fairen Preisen aus dem Chiemgau.
             </p>
             <div className="cta-row" style={{ justifyContent: "center" }}>
@@ -226,9 +221,9 @@ export default function Contact() {
           style={{
             marginTop: "24px",
             padding: "16px 20px",
-            background: "rgba(16,185,129,0.05)",
-            border: "1px solid rgba(16,185,129,0.18)",
-            borderRadius: "13px",
+            background: "var(--surface)",
+            border: "1px solid var(--border)",
+            borderRadius: "var(--radius)",
             display: "flex",
             alignItems: "center",
             gap: "12px",
@@ -236,13 +231,11 @@ export default function Contact() {
         >
           <div
             style={{
-              width: "9px",
-              height: "9px",
+              width: "7px",
+              height: "7px",
               borderRadius: "50%",
-              background: "#10b981",
-              boxShadow: "0 0 8px #10b981",
+              background: "var(--accent)",
               flexShrink: 0,
-              animation: "pulseGlow 2s ease-in-out infinite",
             }}
           />
           <p
@@ -250,9 +243,11 @@ export default function Contact() {
               color: "var(--muted)",
               fontSize: "clamp(0.8rem, 2vw, 0.85rem)",
               lineHeight: 1.6,
+              fontFamily: "var(--font-body)",
+              fontWeight: 300,
             }}
           >
-            <strong style={{ color: "var(--ink)" }}>
+            <strong style={{ color: "var(--text)", fontWeight: 500 }}>
               Verfügbar für neue Projekte.
             </strong>{" "}
             Anfragen werden in der Regel innerhalb von 24h beantwortet.

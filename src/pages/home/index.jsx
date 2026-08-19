@@ -15,6 +15,8 @@ import {
 } from "react-icons/si";
 import { FaShieldAlt } from "react-icons/fa";
 import WriteText from "../../comp/write-text";
+import SignalTrace from "../../comp/signal-trace";
+import GlowBlob from "../../comp/glow-blob";
 
 function useReveal() {
   useEffect(() => {
@@ -69,18 +71,18 @@ function Counter({ end, suffix = "", duration = 1200 }) {
 }
 
 const techIcons = [
-  { Icon: SiReact, label: "React", color: "#61dafb" },
-  { Icon: SiTypescript, label: "TypeScript", color: "#3178c6" },
-  { Icon: SiNodedotjs, label: "Node.js", color: "#83cd29" },
-  { Icon: SiPython, label: "Python", color: "#ffd43b" },
-  { Icon: SiCplusplus, label: "C++", color: "#00599c" },
-  { Icon: SiArduino, label: "Arduino", color: "#00979d" },
-  { Icon: SiUnity, label: "Unity", color: "#aaaaaa" },
-  { Icon: SiGit, label: "Git", color: "#f05032" },
-  { Icon: SiLinux, label: "Linux", color: "#fcc624" },
-  { Icon: SiElectron, label: "Electron", color: "#47848f" },
-  { Icon: SiCloudflare, label: "Cloudflare", color: "#f48120" },
-  { Icon: FaShieldAlt, label: "Security", color: "#ef4444" },
+  { Icon: SiReact, label: "React" },
+  { Icon: SiTypescript, label: "TypeScript" },
+  { Icon: SiNodedotjs, label: "Node.js" },
+  { Icon: SiPython, label: "Python" },
+  { Icon: SiCplusplus, label: "C++" },
+  { Icon: SiArduino, label: "Arduino" },
+  { Icon: SiUnity, label: "Unity" },
+  { Icon: SiGit, label: "Git" },
+  { Icon: SiLinux, label: "Linux" },
+  { Icon: SiElectron, label: "Electron" },
+  { Icon: SiCloudflare, label: "Cloudflare" },
+  { Icon: FaShieldAlt, label: "Security" },
 ];
 
 const featuredProjects = [
@@ -89,35 +91,35 @@ const featuredProjects = [
     desc: "Autonome KI-Wasserrettung — Echtzeit-Detektion und Steuerung",
     tag: "Web App",
     href: "https://twr-systems.de/",
-    color: "#00d4ff",
+    color: "var(--hue-projects)",
   },
   {
     name: "Easy-Einkauf",
     desc: "Smarte kollaborative Einkaufslisten-App",
     tag: "Web App",
     href: "https://easy-einkauf.de/",
-    color: "#00d4ff",
+    color: "var(--accent)",
   },
   {
     name: "MW-OS ESP32",
     desc: "Mini-OS fuer ESP32 mit Touch-Display und eigenem GUI-Framework",
     tag: "Embedded",
     href: "https://github.com/ManuelWestermeier/esp-wroom-2-4-inch-os",
-    color: "#f59e0b",
+    color: "var(--hue-about)",
   },
   {
     name: "PrivusChat",
     desc: "End-to-End verschluesselter Messenger mit AES-256",
     tag: "Security",
     href: "https://privuschat.github.io/easy-messenger/",
-    color: "#10b981",
+    color: "var(--hue-contact)",
   },
   {
     name: "LHRP Protocol",
     desc: "ESP Mesh-Netzwerk-Protokoll — Jugend Forscht Sieger",
     tag: "Networking",
     href: "https://github.com/ManuelWestermeier/LHRP",
-    color: "#f59e0b",
+    color: "var(--hue-projects)",
   },
 ];
 
@@ -128,70 +130,48 @@ export default function Home() {
     <div style={{ overflowX: "clip", width: "100%" }}>
       {/* ── HERO ──────────────────────────────────── */}
       <section
-        className="hero-bg grid-overlay"
+        className="hero-bg"
         style={{
           minHeight: "100dvh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding:
-            "80px var(--px) 80px " + (window.innerWidth > 500 ? "20%" : "1rem"),
+          padding: "80px var(--px) 80px",
           position: "relative",
           overflow: "hidden",
           boxSizing: "border-box",
         }}
       >
-        <div
-          className="orb anim-float-slow"
-          style={{
-            width: "min(360px,70vw)",
-            height: "min(360px,70vw)",
-            top: "-60px",
-            right: "-80px",
-            background: "rgba(0,212,255,0.05)",
-          }}
-        />
-        <div
-          className="orb anim-float"
-          style={{
-            width: "min(220px,50vw)",
-            height: "min(220px,50vw)",
-            bottom: "8%",
-            left: "-50px",
-            background: "rgba(124,58,237,0.06)",
-            animationDelay: "2s",
-          }}
-        />
+        <GlowBlob color="var(--hue-hero)" size={520} top="-140px" right="-120px" />
+        <GlowBlob color="var(--hue-about)" size={340} bottom="0" left="-100px" slow delay={2} />
 
         <div
           style={{
-            maxWidth: "860px",
+            maxWidth: "780px",
             width: "100%",
+            margin: "0 auto",
             position: "relative",
             zIndex: 1,
           }}
         >
-          {/* Asymmetric hero: name left-aligned, offset right */}
           <h1
             style={{
               fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              lineHeight: 1.0,
+              fontWeight: 300,
+              lineHeight: 1.1,
               marginBottom: "0",
-              animation: "textFadeIn 0.6s 0.1s ease both",
+              animation: "fadeIn 0.6s 0.1s ease both",
               fontSize: "var(--size-hero)",
               hyphens: "none",
-              letterSpacing: "-0.03em",
             }}
           >
-            <span style={{ display: "block", color: "var(--ink)" }}>
+            <span style={{ display: "block", color: "var(--text)" }}>
               Manuel Elias
             </span>
             <span
               style={{
                 display: "block",
-                color: "var(--accent)",
-                fontStyle: "italic",
+                color: "var(--accent-bright)",
               }}
             >
               Westermeier
@@ -200,24 +180,25 @@ export default function Home() {
 
           <div
             style={{
-              width: "40px",
+              width: "48px",
               height: "2px",
               background: "var(--accent)",
-              margin: "20px 0",
-              animation: "textFadeIn 0.6s 0.15s ease both",
+              margin: "24px 0",
+              animation: "fadeIn 0.6s 0.15s ease both",
+              borderRadius: "2px",
             }}
           />
 
-          {/* Typewriter intro */}
           <p
             style={{
               fontSize: "var(--size-body)",
-              color: "var(--ink-dim)",
+              color: "var(--muted)",
               maxWidth: "440px",
               lineHeight: 1.8,
               marginBottom: "32px",
-              animation: "textFadeIn 0.01s 0.2s ease both",
-              fontFamily: "var(--font-mono)",
+              animation: "fadeIn 0.01s 0.2s ease both",
+              fontFamily: "var(--font-body)",
+              fontWeight: 300,
             }}
           >
             <WriteText
@@ -230,7 +211,7 @@ export default function Home() {
 
           <div
             className="cta-row"
-            style={{ animation: "textFadeIn 0.6s 0.3s ease both" }}
+            style={{ animation: "fadeIn 0.6s 0.3s ease both" }}
           >
             <Link to="/projects" className="btn-primary">
               Projekte ansehen
@@ -240,13 +221,12 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Stats — kleiner und subtiler */}
           <div
             style={{
               marginTop: "48px",
-              animation: "textFadeIn 0.6s 0.45s ease both",
+              animation: "fadeIn 0.6s 0.45s ease both",
               display: "flex",
-              borderTop: "1px solid rgba(0,212,255,0.1)",
+              borderTop: "1px solid var(--border)",
               paddingTop: "20px",
               maxWidth: "380px",
               gap: "0",
@@ -268,11 +248,10 @@ export default function Home() {
                 <p
                   style={{
                     color: "var(--muted)",
-                    fontSize: "0.62rem",
+                    fontSize: "0.68rem",
                     marginTop: "4px",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    fontFamily: "var(--font-mono)",
+                    letterSpacing: "0.06em",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {label}
@@ -280,70 +259,69 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Tech icon row — bottom */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "20px",
-            left: "var(--px)",
-            right: "var(--px)",
-            display: "flex",
-            alignItems: "center",
-            gap: "14px",
-            opacity: 0.3,
-            overflowX: "hidden",
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.58rem",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "var(--muted)",
-              whiteSpace: "nowrap",
-              flexShrink: 0,
-            }}
-          >
-            Stack
-          </span>
           <div
             style={{
-              height: "1px",
-              flex: 1,
-              background: "rgba(0,212,255,0.15)",
+              marginTop: "56px",
+              display: "flex",
+              alignItems: "center",
+              gap: "14px",
+              opacity: 0.75,
             }}
-          />
-          {techIcons.map(({ Icon, label, color }) => (
+          >
             <span
-              key={label}
-              title={label}
               style={{
-                color,
+                fontFamily: "var(--font-body)",
+                fontSize: "0.68rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--muted)",
+                whiteSpace: "nowrap",
                 flexShrink: 0,
-                display: "flex",
-                alignItems: "center",
               }}
             >
-              <Icon size={13} />
+              Stack
             </span>
-          ))}
+            <div
+              style={{
+                height: "1px",
+                flex: 1,
+                background: "var(--border)",
+              }}
+            />
+            {techIcons.map(({ Icon, label }) => (
+              <span
+                key={label}
+                title={label}
+                style={{
+                  color: "var(--muted)",
+                  flexShrink: 0,
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Icon size={14} />
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── UBER MICH — asymmetric layout ─────────── */}
+      <SignalTrace color="var(--hue-about)" />
+
+      {/* ── UBER MICH ─────────────────────────────── */}
       <section
-        className="section-bg reveal"
+        className="section-about reveal"
         style={{
           padding: "clamp(60px,9vw,100px) var(--px)",
           overflow: "hidden",
           boxSizing: "border-box",
+          position: "relative",
         }}
       >
-        <div style={{ maxWidth: "1000px", margin: "0 auto", width: "100%" }}>
-          {/* Asymmetric: text takes 55%, card-col pushed with offset */}
+        <GlowBlob color="var(--hue-about)" size={380} top="10%" right="-140px" slow />
+
+        <div style={{ maxWidth: "1000px", margin: "0 auto", width: "100%", position: "relative" }}>
           <div
             style={{
               display: "grid",
@@ -356,28 +334,27 @@ export default function Home() {
             <div
               style={{ display: "flex", flexDirection: "column", gap: "18px" }}
             >
-              <span className="section-label">Uber mich</span>
+              <span className="section-label" style={{ "--label-color": "var(--hue-about)" }}>Uber mich</span>
               <h2
                 style={{
                   fontSize: "var(--size-h2)",
                   fontFamily: "var(--font-display)",
-                  fontWeight: 800,
-                  lineHeight: 1.1,
+                  fontWeight: 300,
+                  lineHeight: 1.2,
                 }}
               >
                 Leidenschaftlicher
                 <br />
-                <span style={{ color: "var(--accent)", fontStyle: "italic" }}>
-                  Entwickler
-                </span>
+                <span style={{ color: "var(--hue-about)" }}>Entwickler</span>
                 <br />
                 aus dem Chiemgau
               </h2>
               <p
                 style={{
-                  color: "var(--ink-dim)",
+                  color: "var(--muted)",
                   lineHeight: 1.8,
                   fontSize: "var(--size-body)",
+                  fontWeight: 300,
                 }}
               >
                 Ich bin Manuel Westermeier — Entwickler und Technikliebhaber.
@@ -386,9 +363,10 @@ export default function Home() {
               </p>
               <p
                 style={{
-                  color: "var(--ink-dim)",
+                  color: "var(--muted)",
                   lineHeight: 1.8,
                   fontSize: "var(--size-body)",
+                  fontWeight: 300,
                 }}
               >
                 Neue Technologien eigne ich mir rasch an und setze sie gezielt
@@ -398,85 +376,73 @@ export default function Home() {
                 <Link
                   to="/my-work"
                   className="btn-primary"
-                  style={{ padding: "9px 20px" }}
+                  style={{ padding: "10px 22px" }}
                 >
                   Fähigkeiten
                 </Link>
                 <Link
                   to="/projects"
                   className="btn-ghost"
-                  style={{ padding: "8px 20px" }}
+                  style={{ padding: "9px 22px" }}
                 >
                   Projekte
                 </Link>
               </div>
-              {/* Indirect contact nudge */}
               <p
                 style={{
                   color: "var(--muted)",
-                  fontSize: "0.74rem",
-                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.8rem",
+                  fontFamily: "var(--font-body)",
                 }}
               >
                 Interesse?{" "}
                 <Link
                   to="/contact"
-                  style={{ color: "var(--accent)", textDecoration: "none" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                  style={{ color: "var(--hue-about)", textDecoration: "none" }}
                 >
                   Schreib mir →
                 </Link>
               </p>
             </div>
 
-            {/* Card column — pushed slightly right via margin-top asymmetry */}
             <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "16px",
-                marginTop: "clamp(0px, 3vw, 32px)",
-              }}
+              className="tile"
+              style={{ "--tile-accent": "var(--hue-about)", display: "flex", flexDirection: "column", gap: "18px" }}
             >
               <div
-                className="glass"
                 style={{
-                  padding: "18px",
                   display: "flex",
                   alignItems: "center",
                   gap: "14px",
-                  position: "relative",
                 }}
               >
-                <div className="corner-tl" />
-                <div className="corner-br" />
                 <img
                   src="/logo-512.png"
                   alt="Manuel Westermeier"
                   style={{
-                    width: "44px",
-                    height: "44px",
+                    width: "48px",
+                    height: "48px",
                     objectFit: "cover",
                     flexShrink: 0,
-                    border: "1px solid rgba(0,212,255,0.4)",
+                    borderRadius: "10px",
+                    border: "1px solid var(--border)",
                   }}
                 />
                 <div style={{ minWidth: 0 }}>
                   <p
                     style={{
                       fontFamily: "var(--font-display)",
-                      fontWeight: 800,
-                      fontSize: "0.92rem",
+                      fontWeight: 400,
+                      fontSize: "0.98rem",
                     }}
                   >
                     Manuel Westermeier
                   </p>
                   <p
                     style={{
-                      color: "var(--accent)",
-                      fontSize: "0.66rem",
-                      fontFamily: "var(--font-mono)",
+                      color: "var(--hue-about)",
+                      fontSize: "0.74rem",
+                      fontFamily: "var(--font-body)",
                       marginTop: "2px",
                     }}
                   >
@@ -485,9 +451,9 @@ export default function Home() {
                   <p
                     style={{
                       color: "var(--muted)",
-                      fontSize: "0.64rem",
+                      fontSize: "0.7rem",
                       marginTop: "3px",
-                      fontFamily: "var(--font-mono)",
+                      fontFamily: "var(--font-body)",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
@@ -498,44 +464,24 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Tech icons grid */}
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(6, 1fr)",
+                  display: "flex",
+                  flexWrap: "wrap",
                   gap: "6px",
                 }}
               >
-                {techIcons.map(({ Icon, label, color }) => (
-                  <div
-                    key={label}
-                    title={label}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      aspectRatio: "1",
-                      background: "rgba(0,212,255,0.04)",
-                      border: "1px solid rgba(0,212,255,0.1)",
-                      color,
-                      transition: "all 0.18s",
-                      cursor: "default",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = color;
-                      e.currentTarget.style.background = color + "12";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "rgba(0,212,255,0.1)";
-                      e.currentTarget.style.background = "rgba(0,212,255,0.04)";
-                    }}
-                  >
-                    <Icon size={15} />
-                  </div>
+                {techIcons.map(({ Icon, label }) => (
+                  <span key={label} className="skill-chip" title={label}>
+                    <Icon
+                      size={13}
+                      style={{ marginRight: "6px", verticalAlign: "-2px" }}
+                    />
+                    {label}
+                  </span>
                 ))}
               </div>
 
-              {/* Teaser link to skills */}
               <Link
                 to="/my-work"
                 style={{
@@ -543,21 +489,14 @@ export default function Home() {
                   alignItems: "center",
                   justifyContent: "space-between",
                   padding: "12px 16px",
-                  border: "1px solid rgba(0,212,255,0.12)",
-                  background: "rgba(0,212,255,0.03)",
-                  color: "var(--ink-dim)",
-                  fontSize: "0.72rem",
-                  fontFamily: "var(--font-mono)",
+                  border: "1px solid var(--border)",
+                  borderRadius: "10px",
+                  background: "rgba(255,255,255,0.02)",
+                  color: "var(--muted)",
+                  fontSize: "0.8rem",
+                  fontFamily: "var(--font-body)",
                   transition: "all 0.2s",
                   textDecoration: "none",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(0,212,255,0.3)";
-                  e.currentTarget.style.color = "var(--accent)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(0,212,255,0.12)";
-                  e.currentTarget.style.color = "var(--ink-dim)";
                 }}
               >
                 <span>Alle Technologien</span>
@@ -568,16 +507,21 @@ export default function Home() {
         </div>
       </section>
 
+      <SignalTrace color="var(--hue-projects)" />
+
       {/* ── FEATURED PROJECTS ─────────────────────── */}
       <section
+        className="section-projects"
         style={{
           padding: "clamp(60px,9vw,100px) var(--px)",
-          background: "var(--bg)",
           overflow: "hidden",
           boxSizing: "border-box",
+          position: "relative",
         }}
       >
-        <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%" }}>
+        <GlowBlob color="var(--hue-projects)" size={420} bottom="-120px" left="-100px" />
+
+        <div style={{ maxWidth: "1100px", margin: "0 auto", width: "100%", position: "relative" }}>
           <div
             className="reveal"
             style={{
@@ -590,103 +534,61 @@ export default function Home() {
             }}
           >
             <div>
-              <span className="section-label">Portfolio</span>
+              <span className="section-label" style={{ "--label-color": "var(--hue-projects)" }}>Portfolio</span>
               <h2
                 style={{
                   fontSize: "var(--size-h2)",
                   fontFamily: "var(--font-display)",
-                  fontWeight: 800,
+                  fontWeight: 300,
                   marginTop: "14px",
                 }}
               >
                 Ausgewahlte{" "}
-                <span style={{ color: "var(--accent)", fontStyle: "italic" }}>
-                  Projekte
-                </span>
+                <span style={{ color: "var(--hue-projects)" }}>Projekte</span>
               </h2>
             </div>
-            {/* Cross-link to skills */}
             <Link
               to="/my-work"
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.68rem",
+                fontFamily: "var(--font-body)",
+                fontSize: "0.76rem",
                 color: "var(--muted)",
                 textDecoration: "none",
                 display: "flex",
                 alignItems: "center",
                 gap: "6px",
-                transition: "color 0.2s",
                 paddingBottom: "4px",
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--accent)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--muted)")
-              }
             >
               Fähigkeiten ansehen →
             </Link>
           </div>
 
-          {/* Unequal grid for modern/unpredictable layout */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fill, minmax(min(100%, 200px), 1fr))",
-              gap: "1px",
-              background: "rgba(0,212,255,0.08)",
-            }}
-          >
+          <div className="tile-grid">
             {featuredProjects.map(({ name, desc, tag, href, color }, i) => (
               <div
                 key={name}
-                className="reveal"
+                className="tile reveal"
                 style={{
-                  padding: "22px 20px",
+                  "--tile-accent": color,
+                  transitionDelay: `${i * 0.06}s`,
                   display: "flex",
                   flexDirection: "column",
                   gap: "10px",
-                  transitionDelay: `${i * 0.06}s`,
-                  background: "var(--bg)",
-                  position: "relative",
-                  overflow: "hidden",
-                  transition: "background 0.2s ease",
-                  /* Alternate top/bottom padding for uneven feel */
-                  paddingTop: i % 2 === 0 ? "22px" : "34px",
-                  paddingBottom: i % 2 === 0 ? "34px" : "22px",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(0,212,255,0.03)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "var(--bg)";
                 }}
               >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: "2px",
-                    background: color,
-                    opacity: 0.6,
-                  }}
-                />
                 <span
                   style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.56rem",
-                    padding: "2px 8px",
-                    background: `${color}15`,
-                    border: `1px solid ${color}35`,
+                    fontFamily: "var(--font-body)",
+                    fontSize: "0.62rem",
+                    padding: "3px 10px",
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "999px",
                     color,
-                    alignSelf: "flex-start",
-                    letterSpacing: "0.08em",
+                    letterSpacing: "0.06em",
                     textTransform: "uppercase",
+                    alignSelf: "flex-start",
                   }}
                 >
                   {tag}
@@ -694,19 +596,20 @@ export default function Home() {
                 <h3
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontWeight: 800,
-                    fontSize: "clamp(0.92rem, 2.2vw, 1rem)",
+                    fontWeight: 400,
+                    fontSize: "clamp(1rem, 2.2vw, 1.1rem)",
                   }}
                 >
                   {name}
                 </h3>
                 <p
                   style={{
-                    color: "var(--ink-dim)",
-                    fontSize: "0.8rem",
-                    lineHeight: 1.65,
-                    flexGrow: 1,
+                    color: "var(--muted)",
+                    fontSize: "0.85rem",
+                    lineHeight: 1.6,
                     fontFamily: "var(--font-body)",
+                    fontWeight: 300,
+                    flexGrow: 1,
                   }}
                 >
                   {desc}
@@ -716,6 +619,7 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="project-link"
+                  style={{ alignSelf: "flex-start" }}
                 >
                   Ansehen
                 </a>
@@ -739,18 +643,11 @@ export default function Home() {
             <Link
               to="/contact"
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.68rem",
+                fontFamily: "var(--font-body)",
+                fontSize: "0.76rem",
                 color: "var(--muted)",
                 textDecoration: "none",
-                transition: "color 0.2s",
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--accent)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--muted)")
-              }
             >
               Projekt anfragen →
             </Link>
@@ -758,40 +655,42 @@ export default function Home() {
         </div>
       </section>
 
+      <SignalTrace color="var(--hue-contact)" />
+
       {/* ── CONTACT TEASER ────────────────────────── */}
       <section
-        className="reveal"
+        className="reveal section-contact"
         style={{
-          padding: "20dvh " + (window.innerWidth > 500 ? "20%" : "1rem"),
-          background: "var(--bg-mid)",
+          padding: "clamp(80px,16vw,160px) var(--px)",
           overflow: "hidden",
           boxSizing: "border-box",
+          position: "relative",
         }}
       >
-        <div style={{ maxWidth: "600px" }}>
-          <span className="section-label">Kontakt</span>
+        <GlowBlob color="var(--hue-contact)" size={460} top="-100px" left="50%" slow />
+
+        <div style={{ maxWidth: "600px", margin: "0 auto", position: "relative" }}>
+          <span className="section-label" style={{ "--label-color": "var(--hue-contact)" }}>Kontakt</span>
           <h2
             style={{
               fontSize: "var(--size-h2)",
               fontFamily: "var(--font-display)",
-              fontWeight: 800,
+              fontWeight: 300,
               marginTop: "16px",
               marginBottom: "14px",
             }}
           >
-            Projekt in{" "}
-            <span style={{ color: "var(--accent)", fontStyle: "italic" }}>
-              Planung
-            </span>
+            Projekt in <span style={{ color: "var(--hue-contact)" }}>Planung</span>
             ?
           </h2>
           <p
             style={{
-              color: "var(--ink-dim)",
+              color: "var(--muted)",
               lineHeight: 1.75,
               marginBottom: "28px",
               fontSize: "var(--size-body)",
               fontFamily: "var(--font-body)",
+              fontWeight: 300,
             }}
           >
             Schnelle Antwortzeiten, faire Preise, professionelle Umsetzung.
@@ -807,25 +706,18 @@ export default function Home() {
             <Link
               to="/contact"
               className="btn-primary"
-              style={{ padding: "12px 28px" }}
+              style={{ padding: "13px 30px" }}
             >
               Jetzt Kontakt aufnehmen
             </Link>
             <Link
               to="/projects"
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.68rem",
+                fontFamily: "var(--font-body)",
+                fontSize: "0.76rem",
                 color: "var(--muted)",
                 textDecoration: "none",
-                transition: "color 0.2s",
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--accent)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--muted)")
-              }
             >
               Projekte anschauen →
             </Link>

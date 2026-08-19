@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { data } from "./data";
+import GlowBlob from "../../comp/glow-blob";
 
 function Projects() {
   const [reposLength, setReposLength] = useState(180);
@@ -58,23 +59,23 @@ function Projects() {
         className="hero-bg"
         style={{
           padding: "clamp(44px,8vw,64px) var(--px) clamp(48px,8vw,72px)",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <span className="section-label">Portfolio</span>
+        <GlowBlob color="var(--hue-projects)" size={400} top="-100px" left="-80px" />
+        <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative" }}>
+          <span className="section-label" style={{ "--label-color": "var(--hue-projects)" }}>Portfolio</span>
           <h1
             style={{
               fontFamily: "var(--font-display)",
-              fontWeight: 800,
+              fontWeight: 300,
               fontSize: "var(--size-hero)",
               marginTop: "14px",
               marginBottom: "14px",
             }}
           >
-            Meine{" "}
-            <span style={{ color: "var(--accent)", fontStyle: "italic" }}>
-              Projekte
-            </span>
+            Meine <span style={{ color: "var(--accent-bright)" }}>Projekte</span>
           </h1>
           <p
             style={{
@@ -84,11 +85,12 @@ function Projects() {
               maxWidth: "460px",
               marginBottom: "20px",
               fontFamily: "var(--font-body)",
+              fontWeight: 300,
             }}
           >
             {dataKeys.length} ausgewählte Projekte — von Web-Apps bis
             Embedded-Systemen. Weitere{" "}
-            <strong style={{ color: "var(--ink)" }}>{reposLength}+</strong>{" "}
+            <strong style={{ color: "var(--text)" }}>{reposLength}+</strong>{" "}
             Projekte auf GitHub.
           </p>
 
@@ -112,14 +114,14 @@ function Projects() {
             <Link
               to="/my-work"
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.68rem",
+                fontFamily: "var(--font-body)",
+                fontSize: "0.76rem",
                 color: "var(--muted)",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--accent)")
+                (e.currentTarget.style.color = "var(--accent-bright)")
               }
               onMouseLeave={(e) =>
                 (e.currentTarget.style.color = "var(--muted)")
@@ -130,14 +132,14 @@ function Projects() {
             <Link
               to="/contact"
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.68rem",
+                fontFamily: "var(--font-body)",
+                fontSize: "0.76rem",
                 color: "var(--muted)",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--accent)")
+                (e.currentTarget.style.color = "var(--accent-bright)")
               }
               onMouseLeave={(e) =>
                 (e.currentTarget.style.color = "var(--muted)")
@@ -166,14 +168,12 @@ function Projects() {
                 ref={(el) => (itemRefs.current[key] = el)}
                 className="reveal"
                 style={{
-                  background: "var(--bg-card)",
-                  border: `1px solid ${isOpen ? "rgba(0,200,255,0.38)" : "rgba(0,200,255,0.1)"}`,
-                  borderRadius: "0",
+                  background: "var(--surface)",
+                  border: `1px solid ${isOpen ? "var(--accent-bright)" : "var(--border)"}`,
+                  borderRadius: "var(--radius)",
                   overflow: "hidden",
-                  transition: "border-color 0.3s ease, box-shadow 0.3s ease",
-                  backdropFilter: "blur(10px)",
+                  transition: "border-color 0.3s ease",
                   transitionDelay: `${Math.min(i, 12) * 0.025}s`,
-                  boxShadow: isOpen ? "0 0 28px rgba(0,200,255,0.1)" : "none",
                 }}
               >
                 <button
@@ -187,7 +187,7 @@ function Projects() {
                     background: "none",
                     border: "none",
                     cursor: "pointer",
-                    color: "var(--ink)",
+                    color: "var(--text)",
                     gap: "12px",
                     textAlign: "left",
                     minHeight: "50px",
@@ -203,8 +203,8 @@ function Projects() {
                   >
                     <span
                       style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.62rem",
+                        fontFamily: "var(--font-body)",
+                        fontSize: "0.68rem",
                         color: "var(--muted)",
                         minWidth: "20px",
                         textAlign: "right",
@@ -216,8 +216,8 @@ function Projects() {
                     <h2
                       style={{
                         fontFamily: "var(--font-display)",
-                        fontWeight: 700,
-                        fontSize: "clamp(0.86rem, 2.2vw, 0.96rem)",
+                        fontWeight: 400,
+                        fontSize: "clamp(0.9rem, 2.2vw, 1rem)",
                         textAlign: "left",
                         minWidth: 0,
                         overflow: "hidden",
@@ -230,7 +230,7 @@ function Projects() {
                   </div>
                   <span
                     style={{
-                      color: isOpen ? "var(--accent)" : "var(--muted)",
+                      color: isOpen ? "var(--accent-bright)" : "var(--muted)",
                       fontSize: "1.1rem",
                       lineHeight: 1,
                       transition: "transform 0.3s ease, color 0.3s ease",
@@ -248,13 +248,14 @@ function Projects() {
                     style={{
                       padding: "0 clamp(14px,3vw,22px) clamp(16px,3vw,22px)",
                       paddingTop: "14px",
-                      borderTop: "1px solid rgba(0,200,255,0.1)",
+                      borderTop: "1px solid var(--border)",
                       color: "var(--muted)",
-                      fontSize: "clamp(0.82rem, 2vw, 0.88rem)",
+                      fontSize: "clamp(0.86rem, 2vw, 0.92rem)",
                       lineHeight: 1.7,
-                      animation: "textFadeIn 0.3s ease forwards",
+                      animation: "fadeIn 0.3s ease forwards",
                       overflowX: "hidden",
                       fontFamily: "var(--font-body)",
+                      fontWeight: 300,
                     }}
                   >
                     {data[key].elem}
@@ -282,14 +283,14 @@ function Projects() {
           <Link
             to="/contact"
             style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.68rem",
+              fontFamily: "var(--font-body)",
+              fontSize: "0.76rem",
               color: "var(--muted)",
               textDecoration: "none",
               transition: "color 0.2s",
             }}
             onMouseEnter={(e) =>
-              (e.currentTarget.style.color = "var(--accent)")
+              (e.currentTarget.style.color = "var(--accent-bright)")
             }
             onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
           >
