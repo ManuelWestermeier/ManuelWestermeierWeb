@@ -1,18 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const SWAP_INTERVAL_MS = 2200;
-const IDLE_MS = 4500;
-const INTRO_MARQUEE_MS = 1000;
+const INTRO_MARQUEE_MS = 2500;
 
 /**
  * Compressed, sharp-cornered skills grid. Every slot always holds a skill
  * (no empty/gray cells) — every couple seconds two skills trade places, and
  * framer-motion's layout animation makes them visibly fly across the grid
- * to their new spot. Starts with a 1s marquee intro before settling into
- * the grid. When the visitor isn't hovering the board and hasn't scrolled
- * for a while, it switches to infinite right-to-left marquee rows (one per
- * category); hovering or scrolling brings the grid straight back.
+ * to their new spot. Opens with a one-time marquee intro (2.5s) that then
+ * transitions into the grid for good — it never reverts to marquee mode
+ * afterward.
  */
 export default function SkillsBoard({ groups }) {
   const flatSkills = useMemo(
@@ -29,10 +27,7 @@ export default function SkillsBoard({ groups }) {
   );
 
   const [order, setOrder] = useState(flatSkills);
-  const [hovering, setHovering] = useState(false);
-  const [idle, setIdle] = useState(false);
   const [intro, setIntro] = useState(true);
-  const idleTimer = useRef(null);
 
   useEffect(() => {
     const t = setTimeout(() => setIntro(false), INTRO_MARQUEE_MS);
@@ -40,23 +35,7 @@ export default function SkillsBoard({ groups }) {
   }, []);
 
   useEffect(() => {
-    function resetIdle() {
-      setIdle(false);
-      clearTimeout(idleTimer.current);
-      idleTimer.current = setTimeout(() => setIdle(true), IDLE_MS);
-    }
-    resetIdle();
-    window.addEventListener("scroll", resetIdle, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", resetIdle);
-      clearTimeout(idleTimer.current);
-    };
-  }, []);
-
-  const marqueeMode = intro || (idle && !hovering);
-
-  useEffect(() => {
-    if (marqueeMode) return;
+    if (intro) return;
     const t = setInterval(() => {
       setOrder((prev) => {
         const a = Math.floor(Math.random() * prev.length);
@@ -68,16 +47,12 @@ export default function SkillsBoard({ groups }) {
       });
     }, SWAP_INTERVAL_MS);
     return () => clearInterval(t);
-  }, [marqueeMode]);
+  }, [intro]);
 
   return (
-    <div
-      className="skills-board"
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
-    >
+    <div className="skills-board">
       <AnimatePresence mode="wait">
-        {marqueeMode ? (
+        {intro ? (
           <motion.div
             key="marquee"
             className="marquee-stack skills-layer"

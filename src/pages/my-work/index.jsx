@@ -155,19 +155,12 @@ export default function MyWork() {
       {/* Tech stack — compressed, sharp-cornered board */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "clamp(36px,6vw,56px) var(--px) clamp(56px,9vw,90px)" }}>
         <p style={{ color: "var(--muted)", fontSize: "0.76rem", fontFamily: "var(--font-body)", marginBottom: "14px" }}>
-          Wird die Seite nicht bewegt/gehovert, laufen die Skills als Ticker durch.
+          Ein kompaktes Raster aller Technologien — es tauscht sich fortlaufend selbst durch.
         </p>
         <SkillsBoard groups={techStack} />
 
-        {/* Bottom quote panel — single one-off panel */}
-        <div className="tile reveal" style={{ marginTop: "clamp(36px,5vw,52px)" }}>
-          <p style={{ color: "var(--muted)", fontSize: "var(--size-body)", lineHeight: 1.75, maxWidth: "660px", fontFamily: "var(--font-body)", fontWeight: 300 }}>
-            Neue Technologien eigne ich mir rasch und problemlos an — das ist meine wichtigste Fähigkeit.
-          </p>
-        </div>
-
         {/* Cross-links: Fähigkeiten → Projekte & Kontakt */}
-        <div className="reveal" style={{ marginTop: "28px", display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
+        <div className="reveal" style={{ marginTop: "clamp(36px,5vw,52px)", display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
           <Link to="/projects" className="btn-ghost">Projekte ansehen →</Link>
           <Link to="/contact" style={{
             fontFamily: "var(--font-body)", fontSize: "0.76rem",

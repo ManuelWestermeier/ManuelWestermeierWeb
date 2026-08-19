@@ -372,6 +372,95 @@ canvas {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
+/* ─── Projects page: fixed-viewport shell + side nav ── */
+.projects-layout {
+  flex-direction: column;
+}
+.projects-nav {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  scrollbar-width: thin;
+  flex-shrink: 0;
+}
+.projects-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  padding: 10px 14px;
+  border: none;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.18s ease;
+}
+.projects-nav-item:hover {
+  background: var(--surface-hover);
+}
+.projects-scroll {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+.project-slide {
+  min-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: clamp(56px, 8vw, 90px) var(--px);
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  background:
+    radial-gradient(ellipse 65% 55% at 85% 15%, color-mix(in srgb, var(--slide-accent, var(--accent)) 12%, transparent) 0%, transparent 60%),
+    var(--bg);
+}
+.project-slide:first-child {
+  border-top: none;
+}
+.project-slide-inner {
+  max-width: 720px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.project-slide-watermark {
+  position: absolute;
+  top: 0;
+  right: clamp(-20px, 2vw, 30px);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(9rem, 22vw, 16rem);
+  line-height: 1;
+  opacity: 0.06;
+  user-select: none;
+  pointer-events: none;
+}
+.project-slide-end {
+  justify-content: center;
+  min-height: 60%;
+}
+@media (min-width: 860px) {
+  .projects-layout {
+    flex-direction: row;
+  }
+  .projects-nav {
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 260px;
+    border-bottom: none;
+    border-right: 1px solid var(--border);
+  }
+}
+
 /* ─── About section layout ─────────────────────────── */
 .about-grid {
   grid-template-columns: 1fr;

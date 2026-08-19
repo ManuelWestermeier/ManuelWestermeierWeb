@@ -67,7 +67,7 @@ export default function Footer() {
               Navigation
             </p>
             {[
-              { to: "/my-work", label: "Fahigkeiten" },
+              { to: "/my-work", label: "Fähigkeiten" },
               { to: "/projects", label: "Projekte" },
               { to: "/contact", label: "Kontakt" },
             ].map(({ to, label }) => (
