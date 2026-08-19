@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   SiReact,
   SiTypescript,
@@ -126,13 +127,19 @@ const featuredProjects = [
 export default function Home() {
   useReveal();
 
+  const [showAboutIntro, setShowAboutIntro] = useState(true);
+  useEffect(() => {
+    const t = setTimeout(() => setShowAboutIntro(false), 1500);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <div style={{ overflowX: "clip", width: "100%" }}>
       {/* ── HERO ──────────────────────────────────── */}
       <section
         className="hero-bg"
         style={{
-          minHeight: "100dvh",
+          minHeight: "88dvh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -417,54 +424,104 @@ export default function Home() {
                 textAlign: "center",
                 gap: "12px",
                 padding: "clamp(24px,3vw,32px) 20px",
+                minHeight: "168px",
+                justifyContent: "center",
               }}
             >
-              <img
-                src="/logo-512.png"
-                alt="Manuel Westermeier"
-                style={{
-                  width: "56px",
-                  height: "56px",
-                  objectFit: "cover",
-                  flexShrink: 0,
-                  borderRadius: "12px",
-                  border: "1px solid var(--border)",
-                }}
-              />
-              <div>
-                <p
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 400,
-                    fontSize: "1rem",
-                  }}
-                >
-                  Manuel Westermeier
-                </p>
-                <p
-                  style={{
-                    color: "var(--hue-about)",
-                    fontSize: "0.76rem",
-                    fontFamily: "var(--font-body)",
-                    marginTop: "4px",
-                  }}
-                >
-                  Full-Stack Dev — Chiemgau
-                </p>
-              </div>
+              <AnimatePresence mode="wait">
+                {showAboutIntro ? (
+                  <motion.div
+                    key="intro"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ width: "100%" }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "0.66rem",
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        color: "var(--muted)",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      Tech-Stack
+                    </p>
+                    <div className="marquee-row" style={{ border: "1px solid var(--border)" }}>
+                      <div className="marquee-track" style={{ "--marquee-duration": "9s" }}>
+                        {[...techIcons, ...techIcons].map(({ Icon, label }, j) => (
+                          <span
+                            key={`${label}-${j}`}
+                            className="marquee-chip"
+                            style={{ color: "var(--hue-about)" }}
+                          >
+                            <Icon size={13} />
+                            {label}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="profile"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.35 }}
+                    style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}
+                  >
+                    <img
+                      src="/logo-512.png"
+                      alt="Manuel Westermeier"
+                      style={{
+                        width: "56px",
+                        height: "56px",
+                        objectFit: "cover",
+                        flexShrink: 0,
+                        borderRadius: "12px",
+                        border: "1px solid var(--border)",
+                      }}
+                    />
+                    <div>
+                      <p
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontWeight: 400,
+                          fontSize: "1rem",
+                        }}
+                      >
+                        Manuel Westermeier
+                      </p>
+                      <p
+                        style={{
+                          color: "var(--hue-about)",
+                          fontSize: "0.76rem",
+                          fontFamily: "var(--font-body)",
+                          marginTop: "4px",
+                        }}
+                      >
+                        Full-Stack Dev — Chiemgau
+                      </p>
+                    </div>
 
-              <Link
-                to="/my-work"
-                style={{
-                  color: "var(--muted)",
-                  fontSize: "0.78rem",
-                  fontFamily: "var(--font-body)",
-                  textDecoration: "none",
-                  marginTop: "4px",
-                }}
-              >
-                Alle Technologien →
-              </Link>
+                    <Link
+                      to="/my-work"
+                      style={{
+                        color: "var(--muted)",
+                        fontSize: "0.78rem",
+                        fontFamily: "var(--font-body)",
+                        textDecoration: "none",
+                        marginTop: "4px",
+                      }}
+                    >
+                      Alle Technologien →
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
@@ -692,6 +749,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SignalTrace color="var(--accent-bright)" />
     </div>
   );
 }

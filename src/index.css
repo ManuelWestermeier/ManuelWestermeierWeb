@@ -406,7 +406,6 @@ canvas {
 }
 .projects-scroll {
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
 }
 .project-slide {
   min-height: 100%;
@@ -417,7 +416,6 @@ canvas {
   border-top: 1px solid var(--border);
   position: relative;
   overflow: hidden;
-  scroll-snap-align: start;
   background:
     radial-gradient(ellipse 65% 55% at 85% 15%, color-mix(in srgb, var(--slide-accent, var(--accent)) 12%, transparent) 0%, transparent 60%),
     var(--bg);
