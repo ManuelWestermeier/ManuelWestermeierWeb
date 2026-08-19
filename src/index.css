@@ -201,6 +201,16 @@ canvas {
   pointer-events: none;
   mix-blend-mode: screen;
   opacity: 0.55;
+  max-width: 70vw;
+  max-height: 70vw;
+}
+@media (max-width: 700px) {
+  .glow-blob {
+    opacity: 0.22;
+    filter: blur(46px);
+    max-width: 60vw;
+    max-height: 60vw;
+  }
 }
 
 /* ─── Signal-trace divider, animated flow ─────────── */
@@ -360,6 +370,16 @@ canvas {
 .reveal.visible { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ─── About section layout ─────────────────────────── */
+.about-grid {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) {
+  .about-grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.8fr);
+  }
 }
 
 /* ─── Tiles (cards) ───────────────────────────────── */
@@ -535,6 +555,123 @@ main ul { padding-left: 20px; margin: 8px 0; }
 main a { color: var(--accent-bright); }
 main h2 { font-size: var(--size-h3); font-weight: 400; margin-top: 28px; }
 main h3 { font-size: 1rem; font-weight: 500; color: var(--text); margin-top: 16px; }
+
+/* ─── Skills board (Fähigkeiten page) ──────────────── */
+.skills-board {
+  position: relative;
+  min-height: 340px;
+}
+.skills-layer {
+  animation: fadeIn 0.5s ease both;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.skill-cell {
+  background: var(--bg);
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  text-align: center;
+  min-height: 86px;
+  position: relative;
+  transition: background 0.2s ease;
+}
+.skill-cell:hover {
+  background: var(--surface-hover);
+}
+.skill-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+/* Marquee — infinite right-to-left drift while idle */
+.marquee-stack {
+  border: 1px solid var(--border);
+  border-top: none;
+}
+.marquee-row {
+  overflow: hidden;
+  width: 100%;
+  border-top: 1px solid var(--border);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll linear infinite;
+  animation-duration: var(--marquee-duration, 26s);
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-chip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 22px;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+}
+
+/* Projects marquee (Home) — same mechanic, bigger cards */
+.project-marquee {
+  overflow: hidden;
+  width: 100%;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.project-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 2px;
+  animation: marqueeScroll 42s linear infinite;
+}
+.project-marquee:hover .project-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .project-marquee-track { animation: none; }
+}
+
+/* ─── Hero name fly-in (signature entrance) ───────── */
+@keyframes flyInLeft {
+  0% { opacity: 0; transform: translateX(-140px) rotate(-10deg) scale(1.35); filter: blur(14px); }
+  55% { opacity: 1; transform: translateX(8px) rotate(1.5deg) scale(1.03); filter: blur(0); }
+  75% { transform: translateX(-3px) rotate(-0.5deg) scale(1); }
+  100% { opacity: 1; transform: translateX(0) rotate(0) scale(1); filter: blur(0); }
+}
+@keyframes flyInRight {
+  0% { opacity: 0; transform: translateX(140px) rotate(10deg) scale(1.35); filter: blur(14px); }
+  55% { opacity: 1; transform: translateX(-8px) rotate(-1.5deg) scale(1.03); filter: blur(0); }
+  75% { transform: translateX(3px) rotate(0.5deg) scale(1); }
+  100% { opacity: 1; transform: translateX(0) rotate(0) scale(1); filter: blur(0); }
+}
+.hero-name-line1 {
+  animation: flyInLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-name-line2 {
+  animation: flyInRight 0.9s 0.14s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-name-line1, .hero-name-line2 { animation: fadeIn 0.6s ease both; }
+}
 
 /* ─── MOBILE ≤ 600px ──────────────────────────────── */
 @media (max-width: 600px) {

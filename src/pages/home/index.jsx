@@ -160,15 +160,18 @@ export default function Home() {
               fontWeight: 300,
               lineHeight: 1.1,
               marginBottom: "0",
-              animation: "fadeIn 0.6s 0.1s ease both",
               fontSize: "var(--size-hero)",
               hyphens: "none",
             }}
           >
-            <span style={{ display: "block", color: "var(--text)" }}>
+            <span
+              className="hero-name-line1"
+              style={{ display: "block", color: "var(--text)" }}
+            >
               Manuel Elias
             </span>
             <span
+              className="hero-name-line2"
               style={{
                 display: "block",
                 color: "var(--accent-bright)",
@@ -323,12 +326,11 @@ export default function Home() {
 
         <div style={{ maxWidth: "1000px", margin: "0 auto", width: "100%", position: "relative" }}>
           <div
+            className="about-grid"
             style={{
               display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(min(100%, 260px), 1fr))",
               gap: "clamp(32px,5vw,64px)",
-              alignItems: "start",
+              alignItems: "center",
             }}
           >
             <div
@@ -407,100 +409,61 @@ export default function Home() {
 
             <div
               className="tile"
-              style={{ "--tile-accent": "var(--hue-about)", display: "flex", flexDirection: "column", gap: "18px" }}
+              style={{
+                "--tile-accent": "var(--hue-about)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                gap: "12px",
+                padding: "clamp(24px,3vw,32px) 20px",
+              }}
             >
-              <div
+              <img
+                src="/logo-512.png"
+                alt="Manuel Westermeier"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "14px",
+                  width: "56px",
+                  height: "56px",
+                  objectFit: "cover",
+                  flexShrink: 0,
+                  borderRadius: "12px",
+                  border: "1px solid var(--border)",
                 }}
-              >
-                <img
-                  src="/logo-512.png"
-                  alt="Manuel Westermeier"
+              />
+              <div>
+                <p
                   style={{
-                    width: "48px",
-                    height: "48px",
-                    objectFit: "cover",
-                    flexShrink: 0,
-                    borderRadius: "10px",
-                    border: "1px solid var(--border)",
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 400,
+                    fontSize: "1rem",
                   }}
-                />
-                <div style={{ minWidth: 0 }}>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontWeight: 400,
-                      fontSize: "0.98rem",
-                    }}
-                  >
-                    Manuel Westermeier
-                  </p>
-                  <p
-                    style={{
-                      color: "var(--hue-about)",
-                      fontSize: "0.74rem",
-                      fontFamily: "var(--font-body)",
-                      marginTop: "2px",
-                    }}
-                  >
-                    Full-Stack Dev — Chiemgau
-                  </p>
-                  <p
-                    style={{
-                      color: "var(--muted)",
-                      fontSize: "0.7rem",
-                      marginTop: "3px",
-                      fontFamily: "var(--font-body)",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    info@manuel-westermeier.de
-                  </p>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "6px",
-                }}
-              >
-                {techIcons.map(({ Icon, label }) => (
-                  <span key={label} className="skill-chip" title={label}>
-                    <Icon
-                      size={13}
-                      style={{ marginRight: "6px", verticalAlign: "-2px" }}
-                    />
-                    {label}
-                  </span>
-                ))}
+                >
+                  Manuel Westermeier
+                </p>
+                <p
+                  style={{
+                    color: "var(--hue-about)",
+                    fontSize: "0.76rem",
+                    fontFamily: "var(--font-body)",
+                    marginTop: "4px",
+                  }}
+                >
+                  Full-Stack Dev — Chiemgau
+                </p>
               </div>
 
               <Link
                 to="/my-work"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "12px 16px",
-                  border: "1px solid var(--border)",
-                  borderRadius: "10px",
-                  background: "rgba(255,255,255,0.02)",
                   color: "var(--muted)",
-                  fontSize: "0.8rem",
+                  fontSize: "0.78rem",
                   fontFamily: "var(--font-body)",
-                  transition: "all 0.2s",
                   textDecoration: "none",
+                  marginTop: "4px",
                 }}
               >
-                <span>Alle Technologien</span>
-                <span>→</span>
+                Alle Technologien →
               </Link>
             </div>
           </div>
@@ -564,67 +527,72 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="tile-grid">
-            {featuredProjects.map(({ name, desc, tag, href, color }, i) => (
-              <div
-                key={name}
-                className="tile reveal"
-                style={{
-                  "--tile-accent": color,
-                  transitionDelay: `${i * 0.06}s`,
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.62rem",
-                    padding: "3px 10px",
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "999px",
-                    color,
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                    alignSelf: "flex-start",
-                  }}
-                >
-                  {tag}
-                </span>
-                <h3
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 400,
-                    fontSize: "clamp(1rem, 2.2vw, 1.1rem)",
-                  }}
-                >
-                  {name}
-                </h3>
-                <p
-                  style={{
-                    color: "var(--muted)",
-                    fontSize: "0.85rem",
-                    lineHeight: 1.6,
-                    fontFamily: "var(--font-body)",
-                    fontWeight: 300,
-                    flexGrow: 1,
-                  }}
-                >
-                  {desc}
-                </p>
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-link"
-                  style={{ alignSelf: "flex-start" }}
-                >
-                  Ansehen
-                </a>
-              </div>
-            ))}
+          <div className="project-marquee reveal">
+            <div className="project-marquee-track">
+              {[...featuredProjects, ...featuredProjects].map(
+                ({ name, desc, tag, href, color }, i) => (
+                  <div
+                    key={`${name}-${i}`}
+                    className="tile"
+                    style={{
+                      "--tile-accent": color,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "10px",
+                      width: "300px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "0.62rem",
+                        padding: "3px 10px",
+                        background: "rgba(255,255,255,0.04)",
+                        border: "1px solid var(--border)",
+                        borderRadius: "999px",
+                        color,
+                        letterSpacing: "0.06em",
+                        textTransform: "uppercase",
+                        alignSelf: "flex-start",
+                      }}
+                    >
+                      {tag}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontWeight: 400,
+                        fontSize: "clamp(1rem, 2.2vw, 1.1rem)",
+                      }}
+                    >
+                      {name}
+                    </h3>
+                    <p
+                      style={{
+                        color: "var(--muted)",
+                        fontSize: "0.85rem",
+                        lineHeight: 1.6,
+                        fontFamily: "var(--font-body)",
+                        fontWeight: 300,
+                        flexGrow: 1,
+                      }}
+                    >
+                      {desc}
+                    </p>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-link"
+                      style={{ alignSelf: "flex-start" }}
+                    >
+                      Ansehen
+                    </a>
+                  </div>
+                ),
+              )}
+            </div>
           </div>
 
           <div

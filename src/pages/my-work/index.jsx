@@ -12,8 +12,8 @@ import {
   FaKey, FaShieldAlt, FaCubes, FaWindows,
 } from "react-icons/fa";
 import { GiSoundWaves, GiCircuitry } from "react-icons/gi";
-import { FiArrowUpRight } from "react-icons/fi";
 import GlowBlob from "../../comp/glow-blob";
+import SkillsBoard from "../../comp/skills-board";
 
 const techStack = [
   {
@@ -152,57 +152,12 @@ export default function MyWork() {
         </div>
       </div>
 
-      {/* Tech stack — one tile per category */}
+      {/* Tech stack — compressed, sharp-cornered board */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "clamp(36px,6vw,56px) var(--px) clamp(56px,9vw,90px)" }}>
-        <div className="tile-grid">
-          {techStack.map(({ category, color, items }, i) => (
-            <div
-              key={category}
-              className="tile reveal"
-              style={{ "--tile-accent": color, transitionDelay: `${i * 0.06}s` }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-body)", fontWeight: 500,
-                fontSize: "var(--size-label)", letterSpacing: "0.12em",
-                textTransform: "uppercase", color, marginBottom: "16px",
-              }}>
-                {category}
-              </h3>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-                {items.map(({ name, desc, href, Icon }) => (
-                  <div key={name} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "10px" }}>
-                    <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", minWidth: 0 }}>
-                      <span style={{ color, flexShrink: 0, marginTop: "3px", opacity: 0.85 }}>
-                        <Icon size={15} />
-                      </span>
-                      <div>
-                        <p style={{
-                          fontFamily: "var(--font-display)", fontWeight: 400,
-                          fontSize: "clamp(0.9rem, 2vw, 0.96rem)",
-                        }}>
-                          {name}
-                        </p>
-                        <p style={{ color: "var(--muted)", fontSize: "0.78rem", fontFamily: "var(--font-body)", fontWeight: 300 }}>
-                          {desc}
-                        </p>
-                      </div>
-                    </div>
-                    {href && (
-                      <a href={href} target="_blank" rel="noopener noreferrer"
-                        style={{ color: "var(--muted)", fontSize: "0.85rem", transition: "color 0.18s", flexShrink: 0, display: "flex", alignItems: "center" }}
-                        onMouseEnter={e => e.currentTarget.style.color = color}
-                        onMouseLeave={e => e.currentTarget.style.color = "var(--muted)"}
-                      >
-                        <FiArrowUpRight />
-                      </a>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+        <p style={{ color: "var(--muted)", fontSize: "0.76rem", fontFamily: "var(--font-body)", marginBottom: "14px" }}>
+          Wird die Seite nicht bewegt/gehovert, laufen die Skills als Ticker durch.
+        </p>
+        <SkillsBoard groups={techStack} />
 
         {/* Bottom quote panel — single one-off panel */}
         <div className="tile reveal" style={{ marginTop: "clamp(36px,5vw,52px)" }}>
