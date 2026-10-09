@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Icon from "../components/Icon";
 import { useSeo } from "../lib/seo";
 
 export default function PageNotFound() {
@@ -11,7 +12,7 @@ export default function PageNotFound() {
         404<span className="dim">. Diese Seite gibt es nicht.</span>
       </h1>
       <Link to="/" className="pill pill--solid">
-        Zur Startseite <span className="arr">↗</span>
+        Zur Startseite <Icon name="arrow" size={15} className="arr" />
       </Link>
     </div>
   );

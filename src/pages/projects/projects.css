@@ -288,3 +288,50 @@
     display: none;
   }
 }
+
+/* ─── Ergänzungen: Icons, Mobil-Filter ─────────────────────────────── */
+.prj__head > * {
+  min-width: 0;
+}
+
+.seg__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.row__kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Mobil: Filter umbrechen statt überlaufen, Markierung direkt am Knopf */
+@media (max-width: 760px) {
+  .seg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    overflow: visible;
+    border-radius: 24px;
+    padding: 6px;
+  }
+
+  .seg__mark,
+  .row__kind {
+    display: none;
+  }
+
+  .seg__btn {
+    padding: 9px 13px;
+  }
+
+  .seg__btn[aria-selected="true"] {
+    background: rgba(237, 239, 241, 0.12);
+    box-shadow: inset 0 1px 0 rgba(237, 239, 241, 0.2);
+  }
+
+  .prj__title {
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+  }
+}

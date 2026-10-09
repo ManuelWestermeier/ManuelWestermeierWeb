@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Orbit from "../../components/Orbit";
+import BoatFilm from "../../components/BoatFilm";
 import ProjectCard from "../../components/ProjectCard";
+import Icon from "../../components/Icon";
 import { useRise, useScrollProgress, useTilt } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 import { projects } from "../../data/projects";
@@ -12,41 +14,56 @@ const STATEMENT =
   "Ich baue Dinge, die es vorher nicht gab: ein Betriebssystem für einen Mikrocontroller, ein Routing-Protokoll für Funknetze und ein Boot, das Ertrinkende selbst findet.";
 
 function Hero() {
-  const ref = useScrollProgress();
   const card = useTilt(6);
+  const title = useRef(null);
+  const sub = useRef(null);
+  const orbit = useRef(null);
+  const cue = useRef(null);
+  const cardMove = useRef(null);
+
+  /* Nur transform/opacity – keine Layout- oder Stilneuberechnung */
+  const ref = useScrollProgress((p) => {
+    if (title.current) {
+      title.current.style.transform = `translate3d(0,${-p * 18}vh,0)`;
+      title.current.style.opacity = Math.max(0, 1 - p * 1.6);
+    }
+    if (sub.current) sub.current.style.opacity = Math.max(0, 1 - p * 2);
+    if (orbit.current) {
+      orbit.current.style.transform = `translate3d(0,-50%,0) scale(${1 + p * 0.9})`;
+      orbit.current.style.opacity = 1 - p * 0.85;
+    }
+    if (cardMove.current) cardMove.current.style.transform = `translate3d(0,${-p * 30}vh,0)`;
+    if (cue.current) cue.current.style.opacity = Math.max(0, 1 - p * 4);
+  });
+
   const yes = awards[0];
 
-  const onMove = (e) => {
-    const el = ref.current;
-    if (!el || e.pointerType !== "mouse") return;
-    el.style.setProperty("--ox", ((e.clientY / window.innerHeight - 0.5) * -14).toFixed(2) + "deg");
-    el.style.setProperty("--oy", ((e.clientX / window.innerWidth - 0.5) * 18).toFixed(2) + "deg");
-  };
-
   return (
-    <section className="hero" ref={ref} onPointerMove={onMove} aria-labelledby="hero-title">
+    <section className="hero" ref={ref} aria-labelledby="hero-title">
       <div className="hero__stage">
-        <Orbit className="hero__orbit" />
+        <Orbit className="hero__orbit" innerRef={orbit} />
 
         <div className="wrap hero__inner">
-          <h1 id="hero-title" className="hero__title">
+          <h1 id="hero-title" className="hero__title" ref={title}>
             <span className="hero__line">Manuel</span>
             <span className="hero__line hero__line--2">Westermeier</span>
           </h1>
 
-          <p className="hero__sub">
+          <p className="hero__sub" ref={sub}>
             Betriebssysteme, Netzwerkprotokolle und KI. <span className="dim">Gebaut in Ruhpolding.</span>
           </p>
 
-          <Link to="/wettbewerbe" className="hero__card glass tilt" ref={card}>
-            <span className="meta">{yes.round} {year(yes.date)}</span>
-            <span className="hero__card-title">{yes.prize} bei YES!</span>
-            <span className="dim hero__card-sub">{yes.project}, {yes.team}</span>
-            <span className="hero__card-arr" aria-hidden="true">↗</span>
-          </Link>
+          <div className="hero__cardpos" ref={cardMove}>
+            <Link to="/wettbewerbe" className="hero__card glass glass--refract tilt" ref={card}>
+              <span className="meta">{yes.round} {year(yes.date)}</span>
+              <span className="hero__card-title">{yes.prize} bei YES!</span>
+              <span className="dim hero__card-sub">{yes.project}, {yes.team}</span>
+              <Icon name="arrow" size={16} className="hero__card-arr" />
+            </Link>
+          </div>
         </div>
 
-        <span className="hero__cue" aria-hidden="true" />
+        <span className="hero__cue" ref={cue} aria-hidden="true" />
       </div>
     </section>
   );
@@ -55,9 +72,14 @@ function Hero() {
 function Statement() {
   const words = STATEMENT.split(" ");
   const spans = useRef([]);
+  const lit = useRef(-1);
   const ref = useScrollProgress((p) => {
-    const lit = Math.round(p * 1.25 * words.length);
-    spans.current.forEach((s, i) => s && s.classList.toggle("on", i < lit));
+    const n = Math.round(p * 1.25 * words.length);
+    if (n === lit.current) return;
+    const from = Math.min(n, Math.max(lit.current, 0));
+    const to = Math.max(n, lit.current);
+    for (let i = from; i < to; i++) spans.current[i]?.classList.toggle("on", i < n);
+    lit.current = n;
   });
 
   return (
@@ -77,25 +99,41 @@ function Statement() {
   );
 }
 
+/* Vertikales Scrollen schiebt die Karten horizontal – auch mobil. */
 function Work() {
   const featured = projects.filter((p) => p.featured);
   const track = useRef(null);
+  const dist = useRef(0);
+
   const ref = useScrollProgress((p) => {
-    const t = track.current;
-    if (!t || window.innerWidth < 900) return;
-    const dist = t.scrollWidth - t.clientWidth;
-    t.style.transform = `translate3d(${-p * dist}px,0,0)`;
+    if (track.current) track.current.style.transform = `translate3d(${-p * dist.current}px,0,0)`;
   });
 
+  useEffect(() => {
+    const sec = ref.current;
+    const t = track.current;
+    if (!sec || !t) return;
+    const measure = () => {
+      dist.current = Math.max(0, t.scrollWidth - sec.clientWidth);
+      /* Scrollweg = horizontale Strecke, auf Touch etwas kürzer */
+      const k = window.matchMedia("(pointer: coarse)").matches ? 0.9 : 1.1;
+      sec.style.height = `calc(100svh + ${Math.round(dist.current * k)}px)`;
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(t);
+    return () => ro.disconnect();
+  }, [ref]);
+
   return (
-    <section className="work" ref={ref} style={{ "--n": featured.length }} aria-labelledby="work-title">
+    <section className="work" ref={ref} aria-labelledby="work-title">
       <div className="work__stage">
         <div className="wrap work__head">
           <h2 id="work-title" className="work__title">
             {featured.length} von {projects.length}.
           </h2>
           <Link to="/projects" className="pill pill--glass glass">
-            Alle Projekte <span className="arr">↗</span>
+            Alle Projekte <Icon name="arrow" size={15} className="arr" />
           </Link>
         </div>
         <div className="work__track" ref={track}>
@@ -123,7 +161,7 @@ function Awards() {
 
       <ol className="aw__list">
         {awards.map((a, i) => (
-          <li key={a.id} className="aw__row rise" style={{ "--d": `${i * 0.05}s` }}>
+          <li key={a.id} className="aw__row rise" style={{ "--d": `${(i % 3) * 0.05}s` }}>
             <span className="meta">{year(a.date)}</span>
             <span className="aw__prize">{a.prize}</span>
             <span className="dim aw__proj">{a.project}</span>
@@ -163,6 +201,7 @@ export default function Home() {
     <>
       <Hero />
       <Statement />
+      <BoatFilm />
       <Work />
       <Awards />
       <Close />

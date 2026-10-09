@@ -9,6 +9,9 @@ import "@fontsource-variable/stack-sans-text";
 import "./index.css";
 import "./pages.css";
 import App from "./App.jsx";
+import { detectLite } from "./lib/hooks";
+
+detectLite();
 
 // ?cw=n blendet den ChiemWeb-Hinweis aus. Bewusst ohne localStorage,
 // damit nichts auf dem Endgerät gespeichert wird (§ 25 TDDDG).

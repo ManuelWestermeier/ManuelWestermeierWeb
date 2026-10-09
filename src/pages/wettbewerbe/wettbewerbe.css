@@ -159,3 +159,29 @@
     gap: 12px;
   }
 }
+
+.cmp__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 760px) {
+  .cmp__title {
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+  }
+
+  .hl,
+  .nx {
+    border-radius: 26px;
+    padding: 24px 20px;
+  }
+
+  .hl__prize {
+    font-size: clamp(2.4rem, 13vw, 3.6rem);
+  }
+
+  .cmp__prize {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+}

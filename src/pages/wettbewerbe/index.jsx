@@ -1,4 +1,5 @@
 import React from "react";
+import Icon from "../../components/Icon";
 import { awards, fmtDate, next, year } from "../../data/awards";
 import { useRise, useTilt } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
@@ -18,7 +19,7 @@ function Links({ links }) {
     <div className="cmp__links">
       {links.map((l) => (
         <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="ul">
-          {l.label} ↗
+          {l.label} <Icon name="arrow" size={14} />
         </a>
       ))}
     </div>
@@ -65,7 +66,7 @@ function Next() {
       <p className="nx__text">{next.text}</p>
       <p className="dim nx__team">{next.project} · {next.team}</p>
       <a href={next.href} target="_blank" rel="noopener noreferrer" className="pill pill--solid">
-        twr-systems.de <span className="arr">↗</span>
+        twr-systems.de <Icon name="arrow" size={15} className="arr" />
       </a>
     </article>
   );

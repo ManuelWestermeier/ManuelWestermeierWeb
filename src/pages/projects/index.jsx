@@ -1,7 +1,8 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { kinds, projects } from "../../data/projects";
-import { reducedMotion, useRise } from "../../lib/hooks";
+import Icon from "../../components/Icon";
+import { finePointer, reducedMotion, useRise } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 import "./projects.css";
 
@@ -32,6 +33,7 @@ function Filter({ value, onChange }) {
       <span className="seg__mark" style={{ transform: `translateX(${mark.x}px)`, width: mark.w }} aria-hidden="true" />
       {kinds.map((k) => (
         <button key={k} data-k={k} role="tab" aria-selected={value === k} className="seg__btn" onClick={() => onChange(k)}>
+          {k !== "Alle" && <Icon name={k} size={15} />}
           {k}
         </button>
       ))}
@@ -45,7 +47,7 @@ function usePreview() {
   const [src, setSrc] = useState(null);
 
   useEffect(() => {
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches || reducedMotion()) return;
+    if (!finePointer() || reducedMotion()) return;
     let x = 0, y = 0, cx = 0, cy = 0, raf;
     const move = (e) => {
       x = e.clientX;
@@ -82,12 +84,15 @@ function Row({ p, open, onToggle, onHover }) {
           aria-expanded={open}
           aria-controls={panel}
           onClick={onToggle}
-          onPointerEnter={() => onHover(p.poster || p.images[0] || null)}
+          onPointerEnter={() => onHover(p.images[0] || p.poster || null)}
           onPointerLeave={() => onHover(null)}
         >
           <span className="row__name">{p.name}</span>
           <span className="row__full dim">{p.full}</span>
-          <span className="meta row__kind">{p.kind}</span>
+          <span className="meta row__kind">
+            <Icon name={p.kind} size={14} />
+            {p.kind}
+          </span>
           <span className="row__plus" aria-hidden="true" />
         </button>
       </h2>
@@ -104,7 +109,7 @@ function Row({ p, open, onToggle, onHover }) {
                 <div className="row__links">
                   {p.links.map((l) => (
                     <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="pill pill--solid" tabIndex={open ? 0 : -1}>
-                      {l.label} <span className="arr">↗</span>
+                      {l.label} <Icon name="arrow" size={15} className="arr" />
                     </a>
                   ))}
                 </div>
