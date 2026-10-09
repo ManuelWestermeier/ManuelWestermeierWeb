@@ -1,0 +1,161 @@
+.cmp {
+  padding-top: clamp(130px, 22vh, 220px);
+  padding-bottom: clamp(80px, 14vh, 160px);
+}
+
+.cmp__title {
+  font-size: var(--t-2xl);
+}
+
+.cmp__title .dim {
+  color: var(--ink-4);
+}
+
+.cmp__top {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(16px, 2vw, 28px);
+  margin-top: clamp(56px, 9vh, 110px);
+  align-items: start;
+}
+
+/* ─── Bundessieg ───────────────────────────────────────────────────── */
+.hl {
+  padding: clamp(28px, 4vw, 56px);
+  border-radius: 36px;
+  display: grid;
+  gap: 20px;
+}
+
+.hl__prize {
+  font-size: clamp(3rem, 1.5rem + 6vw, 7.5rem);
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  margin-top: 4px;
+}
+
+.hl__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 48px);
+  margin-top: clamp(20px, 3vw, 40px);
+}
+
+.hl__project {
+  font-size: var(--t-xl);
+  font-weight: 200;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.hl__facts {
+  display: grid;
+  gap: 16px;
+  font-size: var(--t-s);
+}
+
+.hl__facts dt {
+  margin-bottom: 4px;
+}
+
+.hl__facts dd {
+  color: var(--ink-2);
+}
+
+/* ─── Nächste Runde ────────────────────────────────────────────────── */
+.nx {
+  padding: clamp(28px, 3.4vw, 48px);
+  border-radius: 36px;
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+  margin-top: clamp(0px, 10vw, 140px);
+  background: linear-gradient(160deg, rgba(12, 67, 121, 0.42), rgba(12, 67, 121, 0.08) 60%), rgba(3, 15, 27, 0.4);
+}
+
+.nx__lead {
+  font-size: var(--t-xl);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.nx__text {
+  color: var(--ink-2);
+  max-width: 44ch;
+}
+
+.nx__team {
+  font-size: var(--t-s);
+}
+
+/* ─── Chronik ──────────────────────────────────────────────────────── */
+.cmp__list {
+  list-style: none;
+  margin-top: clamp(100px, 16vh, 180px);
+}
+
+.cmp__row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 6fr) minmax(0, 4fr);
+  gap: 24px;
+  padding: clamp(28px, 3.6vw, 44px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.cmp__row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.cmp__date {
+  padding-top: 0.6em;
+}
+
+.cmp__prize {
+  font-size: var(--t-xl);
+  font-weight: 200;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.cmp__project {
+  margin-top: 12px;
+  font-size: var(--t-m);
+}
+
+.cmp__team {
+  font-size: var(--t-s);
+  margin-top: 2px;
+}
+
+.cmp__side {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  font-size: var(--t-s);
+  padding-top: 0.4em;
+}
+
+.cmp__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin-top: 12px;
+  font-size: var(--t-s);
+}
+
+@media (max-width: 960px) {
+  .cmp__top,
+  .hl__body {
+    grid-template-columns: 1fr;
+  }
+
+  .nx {
+    margin-top: 0;
+  }
+
+  .cmp__row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

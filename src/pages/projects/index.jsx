@@ -1,304 +1,182 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { data } from "./data";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { kinds, projects } from "../../data/projects";
+import { reducedMotion, useRise } from "../../lib/hooks";
+import { useSeo } from "../../lib/seo";
+import "./projects.css";
 
-function Projects() {
-  const [reposLength, setReposLength] = useState(180);
-  const [openKey, setOpenKey] = useState("twr");
-  const itemRefs = useRef({});
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Projekte von Manuel Westermeier",
+  itemListElement: projects.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: `${p.name} – ${p.full}`,
+    url: `https://manuel-westermeier.de/projects#${p.id}`,
+  })),
+};
 
-  useEffect(() => {
-    // keep
-    // fetch("https://api.github.com/users/manuelwestermeier")
-    //   .then((r) => r.json())
-    //   .then((d) => setReposLength(d.public_repos || 180))
-    //   .catch(() => {});
-    setReposLength(281);
+/* Segmentierte Filterleiste mit gleitender Glasmarke */
+function Filter({ value, onChange }) {
+  const wrap = useRef(null);
+  const [mark, setMark] = useState({ x: 0, w: 0 });
 
-    const els = document.querySelectorAll(".reveal");
-    const obs = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        }),
-      { threshold: 0.04 },
-    );
-    els.forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
-  }, []);
-
-  function toggleProject(key) {
-    const isOpen = openKey === key;
-    setOpenKey(isOpen ? null : key);
-    if (!isOpen) {
-      setTimeout(() => {
-        const el = itemRefs.current[key];
-        if (el) {
-          const top = el.getBoundingClientRect().top + window.scrollY - 76;
-          window.scrollTo({ top, behavior: "smooth" });
-        }
-      }, 60);
-    }
-  }
-
-  const dataKeys = Object.keys(data);
+  useLayoutEffect(() => {
+    const el = wrap.current?.querySelector(`[data-k="${value}"]`);
+    if (el) setMark({ x: el.offsetLeft, w: el.offsetWidth });
+  }, [value]);
 
   return (
-    <div
-      style={{
-        paddingTop: "60px",
-        minHeight: "100dvh",
-        background: "var(--bg)",
-        overflowX: "hidden",
-        width: "100%",
-      }}
-    >
-      {/* Hero */}
-      <div
-        className="hero-bg"
-        style={{
-          padding: "clamp(44px,8vw,64px) var(--px) clamp(48px,8vw,72px)",
-        }}
-      >
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <span className="section-label">Portfolio</span>
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              fontSize: "var(--size-hero)",
-              marginTop: "14px",
-              marginBottom: "14px",
-            }}
-          >
-            Meine{" "}
-            <span style={{ color: "var(--accent)", fontStyle: "italic" }}>
-              Projekte
-            </span>
-          </h1>
-          <p
-            style={{
-              color: "var(--muted)",
-              lineHeight: 1.7,
-              fontSize: "var(--size-body)",
-              maxWidth: "460px",
-              marginBottom: "20px",
-              fontFamily: "var(--font-body)",
-            }}
-          >
-            {dataKeys.length} ausgewählte Projekte — von Web-Apps bis
-            Embedded-Systemen. Weitere{" "}
-            <strong style={{ color: "var(--ink)" }}>{reposLength}+</strong>{" "}
-            Projekte auf GitHub.
-          </p>
-
-          {/* Cross-links: Projekte → Fähigkeiten & Kontakt */}
-          <div
-            style={{
-              display: "flex",
-              gap: "12px",
-              flexWrap: "wrap",
-              alignItems: "center",
-            }}
-          >
-            <a
-              href="https://github.com/ManuelWestermeier?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-ghost"
-            >
-              GitHub
-            </a>
-            <Link
-              to="/my-work"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.68rem",
-                color: "var(--muted)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--accent)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--muted)")
-              }
-            >
-              Fähigkeiten ansehen →
-            </Link>
-            <Link
-              to="/contact"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.68rem",
-                color: "var(--muted)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--accent)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--muted)")
-              }
-            >
-              Projekt anfragen →
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Accordion */}
-      <div
-        style={{
-          maxWidth: "900px",
-          margin: "0 auto",
-          padding: "clamp(28px,5vw,48px) var(--px) clamp(56px,9vw,90px)",
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-          {dataKeys.map((key, i) => {
-            const isOpen = openKey === key;
-            return (
-              <div
-                key={key}
-                ref={(el) => (itemRefs.current[key] = el)}
-                className="reveal"
-                style={{
-                  background: "var(--bg-card)",
-                  border: `1px solid ${isOpen ? "rgba(0,200,255,0.38)" : "rgba(0,200,255,0.1)"}`,
-                  borderRadius: "0",
-                  overflow: "hidden",
-                  transition: "border-color 0.3s ease, box-shadow 0.3s ease",
-                  backdropFilter: "blur(10px)",
-                  transitionDelay: `${Math.min(i, 12) * 0.025}s`,
-                  boxShadow: isOpen ? "0 0 28px rgba(0,200,255,0.1)" : "none",
-                }}
-              >
-                <button
-                  onClick={() => toggleProject(key)}
-                  style={{
-                    width: "100%",
-                    padding: "clamp(13px,2.5vw,16px) clamp(14px,3vw,22px)",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    color: "var(--ink)",
-                    gap: "12px",
-                    textAlign: "left",
-                    minHeight: "50px",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "12px",
-                      minWidth: 0,
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.62rem",
-                        color: "var(--muted)",
-                        minWidth: "20px",
-                        textAlign: "right",
-                        flexShrink: 0,
-                      }}
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h2
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        fontWeight: 700,
-                        fontSize: "clamp(0.86rem, 2.2vw, 0.96rem)",
-                        textAlign: "left",
-                        minWidth: 0,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {data[key].name}
-                    </h2>
-                  </div>
-                  <span
-                    style={{
-                      color: isOpen ? "var(--accent)" : "var(--muted)",
-                      fontSize: "1.1rem",
-                      lineHeight: 1,
-                      transition: "transform 0.3s ease, color 0.3s ease",
-                      transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
-                      flexShrink: 0,
-                      display: "inline-block",
-                    }}
-                  >
-                    +
-                  </span>
-                </button>
-
-                {isOpen && (
-                  <div
-                    style={{
-                      padding: "0 clamp(14px,3vw,22px) clamp(16px,3vw,22px)",
-                      paddingTop: "14px",
-                      borderTop: "1px solid rgba(0,200,255,0.1)",
-                      color: "var(--muted)",
-                      fontSize: "clamp(0.82rem, 2vw, 0.88rem)",
-                      lineHeight: 1.7,
-                      animation: "textFadeIn 0.3s ease forwards",
-                      overflowX: "hidden",
-                      fontFamily: "var(--font-body)",
-                    }}
-                  >
-                    {data[key].elem}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Bottom cross-links */}
-        <div
-          className="reveal"
-          style={{
-            marginTop: "36px",
-            display: "flex",
-            gap: "12px",
-            flexWrap: "wrap",
-            alignItems: "center",
-          }}
-        >
-          <Link to="/my-work" className="btn-ghost">
-            Fähigkeiten ansehen →
-          </Link>
-          <Link
-            to="/contact"
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.68rem",
-              color: "var(--muted)",
-              textDecoration: "none",
-              transition: "color 0.2s",
-            }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.color = "var(--accent)")
-            }
-            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
-          >
-            Ähnliches Projekt gewünscht? →
-          </Link>
-        </div>
-      </div>
+    <div className="seg glass" ref={wrap} role="tablist" aria-label="Nach Bereich filtern">
+      <span className="seg__mark" style={{ transform: `translateX(${mark.x}px)`, width: mark.w }} aria-hidden="true" />
+      {kinds.map((k) => (
+        <button key={k} data-k={k} role="tab" aria-selected={value === k} className="seg__btn" onClick={() => onChange(k)}>
+          {k}
+        </button>
+      ))}
     </div>
   );
 }
 
-export default Projects;
+/* Vorschaubild, das dem Zeiger folgt (nur Desktop) */
+function usePreview() {
+  const ref = useRef(null);
+  const [src, setSrc] = useState(null);
+
+  useEffect(() => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches || reducedMotion()) return;
+    let x = 0, y = 0, cx = 0, cy = 0, raf;
+    const move = (e) => {
+      x = e.clientX;
+      y = e.clientY;
+    };
+    const loop = () => {
+      cx += (x - cx) * 0.14;
+      cy += (y - cy) * 0.14;
+      const el = ref.current;
+      if (el) {
+        const rot = Math.max(-8, Math.min(8, (x - cx) * 0.06));
+        el.style.transform = `translate3d(${cx + 28}px, ${cy - 120}px, 0) rotate(${rot}deg)`;
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    window.addEventListener("pointermove", move, { passive: true });
+    raf = requestAnimationFrame(loop);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("pointermove", move);
+    };
+  }, []);
+
+  return { ref, src, setSrc };
+}
+
+function Row({ p, open, onToggle, onHover }) {
+  const panel = `panel-${p.id}`;
+  return (
+    <article id={p.id} className={`row${open ? " row--open" : ""}`}>
+      <h2 className="row__h">
+        <button
+          className="row__head"
+          aria-expanded={open}
+          aria-controls={panel}
+          onClick={onToggle}
+          onPointerEnter={() => onHover(p.poster || p.images[0] || null)}
+          onPointerLeave={() => onHover(null)}
+        >
+          <span className="row__name">{p.name}</span>
+          <span className="row__full dim">{p.full}</span>
+          <span className="meta row__kind">{p.kind}</span>
+          <span className="row__plus" aria-hidden="true" />
+        </button>
+      </h2>
+
+      <div className="row__panel" id={panel} role="region" aria-label={p.name}>
+        <div>
+          <div className="row__inner">
+            <div className="row__text">
+              <p className="row__line">{p.line}</p>
+              {p.detail && <p className="dim">{p.detail}</p>}
+              {p.award && <p className="meta row__award">{p.award}</p>}
+              {p.note && <p className="meta">{p.note}</p>}
+              {p.links.length > 0 && (
+                <div className="row__links">
+                  {p.links.map((l) => (
+                    <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="pill pill--solid" tabIndex={open ? 0 : -1}>
+                      {l.label} <span className="arr">↗</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {(p.video || p.images.length > 0) && (
+              <div className="row__media">
+                {open && p.video && (
+                  <video src={p.video} poster={p.poster} controls muted playsInline preload="none" aria-label={`${p.name} – Video`} />
+                )}
+                {open &&
+                  !p.video &&
+                  p.images.map((src, i) => (
+                    <img key={src} src={src} alt={`${p.name}, Ansicht ${i + 1}`} loading="lazy" decoding="async" />
+                  ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default function Projects() {
+  const { hash } = useLocation();
+  const [kind, setKind] = useState("Alle");
+  const [open, setOpen] = useState(() => hash.slice(1) || null);
+  const preview = usePreview();
+  const list = kind === "Alle" ? projects : projects.filter((p) => p.kind === kind);
+
+  useSeo({
+    title: "Projekte",
+    description:
+      "Projekte von Manuel Westermeier: MW-OS für ESP32, LHRP-Routingprotokoll, KI-Wasserrettung TWR, Easy-Einkauf, PrivusChat, Unity-Spiele und mehr.",
+    path: "/projects",
+    jsonLd,
+  });
+  useRise([kind]);
+
+  useEffect(() => {
+    const id = hash.slice(1);
+    if (!id) return;
+    setOpen(id);
+    const t = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 100, behavior: "smooth" });
+    }, 120);
+    return () => clearTimeout(t);
+  }, [hash]);
+
+  return (
+    <div className="prj">
+      <header className="wrap prj__head">
+        <h1 className="prj__title rise">
+          {projects.length} Projekte<span className="dim">, vom Mikrocontroller bis zum Browser.</span>
+        </h1>
+        <div className="rise" style={{ "--d": ".1s" }}>
+          <Filter value={kind} onChange={setKind} />
+        </div>
+      </header>
+
+      <div className="wrap prj__list" onPointerLeave={() => preview.setSrc(null)}>
+        {list.map((p) => (
+          <Row key={p.id} p={p} open={open === p.id} onToggle={() => setOpen(open === p.id ? null : p.id)} onHover={(s) => open !== p.id && preview.setSrc(s)} />
+        ))}
+      </div>
+
+      <div className={`prv glass${preview.src ? " prv--on" : ""}`} ref={preview.ref} aria-hidden="true">
+        {preview.src && <img src={preview.src} alt="" />}
+      </div>
+    </div>
+  );
+}

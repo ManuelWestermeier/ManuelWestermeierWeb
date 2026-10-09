@@ -3,91 +3,94 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
-  <title>Manuel Westermeier — Full-Stack Entwickler & Sounddesigner | Chiemgau</title>
-
-  <!-- Basic SEO -->
-  <meta name="description" content="Manuel Westermeier — Full-Stack Entwickler, Sounddesigner und Technikliebhaber aus dem Chiemgau. Websites, Apps, Embedded-Systems, Spieleentwicklung und Musikproduktion." />
-  <meta name="keywords" content="Manuel Westermeier, Full-Stack Entwickler, Webentwicklung, Chiemgau, React, NodeJS, ESP32, Sounddesign, Portfolio" />
+  <title>Manuel Westermeier · Entwickler aus Ruhpolding</title>
+  <meta name="description" content="Manuel Westermeier, Entwickler aus Ruhpolding: Betriebssysteme für ESP32, Netzwerkprotokolle, KI-Wasserrettung TWR. Bundessieg YES! 2026, Preise bei Jugend forscht." />
   <meta name="author" content="Manuel Westermeier" />
-  <meta name="robots" content="index,follow" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://manuel-westermeier.de/" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="de_DE" />
   <meta property="og:site_name" content="Manuel Westermeier" />
-  <meta property="og:title" content="Manuel Westermeier — Full-Stack Entwickler & Sounddesigner" />
-  <meta property="og:description" content="Full-Stack Web Entwicklung, Embedded-Systems, Spieleentwicklung und Sounddesign. Entdecke Projekte, Demos und Kontaktdetails." />
+  <meta property="og:title" content="Manuel Westermeier · Entwickler aus Ruhpolding" />
+  <meta property="og:description" content="Betriebssysteme für ESP32, Netzwerkprotokolle und KI. Bundessieg YES! 2026, Preise bei Jugend forscht." />
   <meta property="og:url" content="https://manuel-westermeier.de/" />
   <meta property="og:image" content="https://manuel-westermeier.de/logo-512.png?v=2" />
   <meta property="og:image:width" content="512" />
   <meta property="og:image:height" content="512" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Manuel Westermeier — Full-Stack Entwickler & Sounddesigner" />
-  <meta name="twitter:description" content="Full-Stack Web Entwicklung, Embedded-Systems, Spieleentwicklung und Sounddesign. Projekte, Demos und Kontakt." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Manuel Westermeier · Entwickler aus Ruhpolding" />
+  <meta name="twitter:description" content="Betriebssysteme für ESP32, Netzwerkprotokolle und KI. Bundessieg YES! 2026, Preise bei Jugend forscht." />
   <meta name="twitter:image" content="https://manuel-westermeier.de/logo-512.png?v=2" />
 
-  <!-- Favicons / PWA -->
   <link rel="icon" type="image/png" sizes="512x512" href="/logo-512.png?v=2" />
   <link rel="icon" type="image/png" sizes="192x192" href="/logo-192.png?v=2" />
-  <link rel="icon" type="image/png" sizes="128x128" href="/logo-128.png?v=2" />
-  <link rel="apple-touch-icon" sizes="512x512" href="/logo-512.png?v=2" />
   <link rel="apple-touch-icon" sizes="192x192" href="/logo-192.png?v=2" />
-  <meta name="theme-color" content="#050b17" />
+  <meta name="theme-color" content="#030F1B" />
+  <meta name="color-scheme" content="dark" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-  <!-- Structured Data -->
+  <style>html,body{background:#030F1B;color:#EDEFF1}</style>
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
           "@type": "Person",
+          "@id": "https://manuel-westermeier.de/#person",
           "name": "Manuel Westermeier",
           "url": "https://manuel-westermeier.de/",
           "image": "https://manuel-westermeier.de/logo-512.png?v=2",
-          "jobTitle": "Full-Stack Entwickler & Sounddesigner",
-          "address": {"@type":"PostalAddress","addressLocality":"Ruhpolding","addressRegion":"Bayern","addressCountry":"DE"},
+          "jobTitle": "Entwickler",
+          "email": "mailto:info@manuel-westermeier.de",
+          "address": { "@type": "PostalAddress", "addressLocality": "Ruhpolding", "addressRegion": "Bayern", "addressCountry": "DE" },
+          "knowsAbout": ["ESP32", "Embedded Systems", "Netzwerkprotokolle", "Mesh-Routing", "Computer Vision", "Kryptografie", "React", "Node.js", "Unity"],
+          "award": [
+            "Bundessieg YES! Young Economic Solutions 2026 – EnergieFlow",
+            "Sonderpreis Fraunhofer Talents – Jugend forscht Landeswettbewerb Bayern 2026 – TWR",
+            "Sonderpreis Ressourceneffizienz und Zirkularität – Jugend forscht Regionalwettbewerb Rosenheim 2025 – ESP32 Mini OS",
+            "3. Preis Mathematik/Informatik – Jugend forscht Regionalwettbewerb Rosenheim 2025 – LHRP",
+            "Regionalsieg, 1. Preis Arbeitswelt – Jugend forscht Regionalwettbewerb Rosenheim 2025 – TWR",
+            "3. Preis Mathematik/Informatik – Jugend forscht Regionalwettbewerb Rosenheim 2024 – MW-Protokoll"
+          ],
           "sameAs": [
             "https://github.com/ManuelWestermeier",
             "https://www.youtube.com/@TAGESSCHATTEN",
             "https://play.unity.com/en/user/66818d56-98e8-499c-8fca-b3eb98a886c7"
-          ],
-          "email": "mailto:info@manuel-westermeier.de"
+          ]
         },
         {
           "@type": "WebSite",
+          "@id": "https://manuel-westermeier.de/#website",
           "url": "https://manuel-westermeier.de/",
           "name": "Manuel Westermeier",
-          "description": "Full-Stack Entwickler, Sounddesigner, Embedded-Systems, Spieleentwicklung und Musikproduktion.",
-          "publisher": {"@type":"Person","name":"Manuel Westermeier"}
+          "inLanguage": "de-DE",
+          "publisher": { "@id": "https://manuel-westermeier.de/#person" }
         }
       ]
     }
   </script>
-  <script>window.log = console.log;</script>
 </head>
 
 <body>
-  <main id="root" role="main" aria-label="Hauptinhalt">
+  <div id="root">
     <noscript>
-      <h1>Manuel Westermeier — Full-Stack Entwickler & Sounddesigner</h1>
-      <p>Bitte aktivieren Sie JavaScript, um die vollständige Website zu sehen. Kontakt: <a href="mailto:info@manuel-westermeier.de">info@manuel-westermeier.de</a></p>
-      <nav><ul>
-        <li><a href="/projects">Projekte</a></li>
-        <li><a href="/my-work">Meine Arbeit</a></li>
-        <li><a href="/contact">Kontakt</a></li>
-        <li><a href="/impressum">Impressum</a></li>
-        <li><a href="/datenschutz">Datenschutz</a></li>
-      </ul></nav>
+      <h1>Manuel Westermeier, Entwickler aus Ruhpolding</h1>
+      <p>Betriebssysteme für ESP32, Netzwerkprotokolle und KI. Bundessieg YES! 2026 mit EnergieFlow. Jugend forscht, Regionalwettbewerb Rosenheim: 1. Preis Arbeitswelt für TWR.</p>
+      <p><a href="mailto:info@manuel-westermeier.de">info@manuel-westermeier.de</a></p>
+      <nav>
+        <a href="/projects">Projekte</a>
+        <a href="/wettbewerbe">Wettbewerbe</a>
+        <a href="/my-work">Stack</a>
+        <a href="/contact">Kontakt</a>
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+      </nav>
     </noscript>
-  </main>
+  </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
