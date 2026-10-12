@@ -3,6 +3,8 @@ import React from "react";
 /* Eigene Linien-Icons, 24er Raster, 1.25 Strich, currentColor. */
 const paths = {
   arrow: <path d="M7 17 17 7M9 7h8v8" />,
+  "chev-l": <path d="m14.5 6-6 6 6 6" />,
+  "chev-r": <path d="m9.5 6 6 6-6 6" />,
   plus: <path d="M12 5v14M5 12h14" />,
   mail: (
     <>

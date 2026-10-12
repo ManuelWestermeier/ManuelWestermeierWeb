@@ -138,3 +138,11 @@ export function useVisible(onChange, rootMargin = "0px") {
   }, [rootMargin]);
   return ref;
 }
+
+/* Scrollt so, dass ein useScrollProgress-Abschnitt den Fortschritt p erreicht. */
+export function scrollToProgress(el, p) {
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY;
+  const total = el.offsetHeight - window.innerHeight;
+  window.scrollTo({ top: top + Math.min(1, Math.max(0, p)) * total, behavior: reducedMotion() ? "auto" : "smooth" });
+}

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Icon from "./Icon";
+import StepNav from "./StepNav";
 import { techGroups } from "../data/tech";
-import { useScrollProgress } from "../lib/hooks";
+import { scrollToProgress, useScrollProgress } from "../lib/hooks";
 
 /* Scroll-Karussell: Jede Gruppe kommt gemeinsam leicht von oben rechts,
    bleibt lange ruhig in der Mitte stehen und zieht kleiner nach links hinaus.
@@ -20,6 +21,9 @@ export default function TechCarousel() {
   const rows = useRef([]);
   const shown = useRef([]);
   const count = useRef(null);
+  const pos = useRef(-LEAD);
+  const prevBtn = useRef(null);
+  const nextBtn = useRef(null);
 
   const apply = (p) => {
     const n = techGroups.length;
@@ -60,6 +64,8 @@ export default function TechCarousel() {
         r.style.opacity = (o * (2 - o)).toFixed(3);
       }
     }
+    pos.current = k;
+    if (prevBtn.current) prevBtn.current.disabled = k < 0.001;
     if (count.current) {
       const c = Math.min(n, Math.max(1, Math.round(k) + 1));
       count.current.textContent = String(c).padStart(2, "0");
@@ -67,6 +73,19 @@ export default function TechCarousel() {
   };
 
   const ref = useScrollProgress(apply);
+
+  /* Knöpfe springen genau auf die Ruheposition der nächsten/vorigen Gruppe */
+  const n = techGroups.length;
+  const goTo = (c) => scrollToProgress(ref.current, (c + LEAD) / (n - 1 + LEAD * 2));
+  const next = () => {
+    const c = Math.floor(pos.current + 0.001) + 1;
+    if (c < n) goTo(c);
+    else scrollToProgress(ref.current, 1); // nach der letzten Gruppe: weiter zum nächsten Abschnitt
+  };
+  const prev = () => {
+    const c = Math.ceil(pos.current - 0.001) - 1;
+    if (c >= 0) goTo(c);
+  };
 
   useEffect(() => {
     apply(0);
@@ -106,6 +125,7 @@ export default function TechCarousel() {
             <span ref={count}>01</span> / {String(techGroups.length).padStart(2, "0")}
             <span className="tc__total"> · {total} Technologien</span>
           </span>
+          <StepNav onPrev={prev} onNext={next} prevRef={prevBtn} nextRef={nextBtn} label="Technologie-Gruppen" />
           <Link to="/my-work" className="ul tc__more">
             Alle Technologien <Icon name="arrow" size={14} />
           </Link>

@@ -331,6 +331,12 @@
   font-size: var(--t-2xl);
 }
 
+.work__ctl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .work__track {
   display: flex;
   gap: clamp(12px, 2vw, 28px);
@@ -429,8 +435,19 @@
     border-radius: 16px;
   }
 
+  .work__head {
+    flex-wrap: wrap;
+    row-gap: 18px;
+  }
+
+  .work__ctl {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .work__head .pill {
-    padding: 0 16px;
+    padding: 0 18px;
+    white-space: nowrap;
   }
 }
 

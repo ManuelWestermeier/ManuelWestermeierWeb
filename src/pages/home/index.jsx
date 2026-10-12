@@ -5,7 +5,8 @@ import BoatFilm from "../../components/BoatFilm";
 import TechCarousel from "../../components/TechCarousel";
 import ProjectCard from "../../components/ProjectCard";
 import Icon from "../../components/Icon";
-import { useRise, useScrollProgress, useTilt } from "../../lib/hooks";
+import StepNav from "../../components/StepNav";
+import { scrollToProgress, useRise, useScrollProgress, useTilt } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 import { projects } from "../../data/projects";
 import { awards, year } from "../../data/awards";
@@ -105,10 +106,32 @@ function Work() {
   const featured = projects.filter((p) => p.featured);
   const track = useRef(null);
   const dist = useRef(0);
+  const cur = useRef(0);
+  const prevBtn = useRef(null);
+  const nextBtn = useRef(null);
 
   const ref = useScrollProgress((p) => {
+    cur.current = p;
     if (track.current) track.current.style.transform = `translate3d(${-p * dist.current}px,0,0)`;
+    if (prevBtn.current) prevBtn.current.disabled = p < 0.002;
+    if (nextBtn.current) nextBtn.current.disabled = p > 0.998;
   });
+
+  /* Fortschritt, bei dem Karte i am linken Rand steht */
+  const stops = () => {
+    const t = track.current;
+    if (!t || !dist.current) return [];
+    const pad = t.firstElementChild ? t.firstElementChild.offsetLeft : 0;
+    return [...t.children].map((c) => Math.min(1, (c.offsetLeft - pad) / dist.current));
+  };
+  const next = () => {
+    const s = stops().find((x) => x > cur.current + 0.01);
+    scrollToProgress(ref.current, s ?? 1);
+  };
+  const prev = () => {
+    const s = stops().filter((x) => x < cur.current - 0.01).pop();
+    scrollToProgress(ref.current, s ?? 0);
+  };
 
   useEffect(() => {
     const sec = ref.current;
@@ -133,9 +156,12 @@ function Work() {
           <h2 id="work-title" className="work__title">
             {featured.length} von {projects.length}.
           </h2>
-          <Link to="/projects" className="pill pill--glass glass">
-            Alle Projekte <Icon name="arrow" size={15} className="arr" />
-          </Link>
+          <div className="work__ctl">
+            <StepNav onPrev={prev} onNext={next} prevRef={prevBtn} nextRef={nextBtn} label="Projekte blättern" />
+            <Link to="/projects" className="pill pill--glass glass">
+              Alle Projekte <Icon name="arrow" size={15} className="arr" />
+            </Link>
+          </div>
         </div>
         <div className="work__track" ref={track}>
           {featured.map((p) => (

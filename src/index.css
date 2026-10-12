@@ -521,3 +521,39 @@ main {
     transform: none;
   }
 }
+
+/* ─── Schritt-Knöpfe (Vor/Zurück in Scroll-Abschnitten) ─────────────── */
+.step {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.step__btn.glass {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  cursor: pointer;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.step__btn.glass:hover {
+  transform: translateY(-1px);
+}
+
+.step__btn:active {
+  transform: scale(0.94);
+}
+
+.step__btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+  transform: none;
+}
+
+.step__btn:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+}
