@@ -177,7 +177,6 @@
 /* ─── Statement ────────────────────────────────────────────────────── */
 .stmt {
   height: 230svh;
-  margin-top: -40svh;
 }
 
 .stmt__stage {
@@ -208,7 +207,6 @@
 @media (max-width: 900px) {
   .stmt {
     height: 190svh;
-    margin-top: -30svh;
   }
 
   .stmt__text {
@@ -587,5 +585,154 @@
 
   .film__frame {
     transform: none;
+  }
+}
+
+/* ─── Technologie-Karussell ────────────────────────────────────────── */
+.tc {
+  position: relative;
+  height: calc(100svh + var(--n) * 17svh);
+  margin-top: -38svh;
+}
+
+.tc__stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  perspective: 1200px;
+}
+
+.tc__ring {
+  list-style: none;
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.tc__item {
+  --lbl: 0;
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: 300px;
+  margin-left: -150px;
+  margin-top: -130px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Kacheln ohne Backdrop-Filter: sie bewegen sich jedes Bild */
+.tc__tile.glass {
+  width: clamp(150px, 15vw, 210px);
+  aspect-ratio: 1;
+  border-radius: 30%;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: linear-gradient(150deg, rgba(237, 239, 241, 0.1), rgba(237, 239, 241, 0.02) 45%, rgba(12, 67, 121, 0.22)), rgba(7, 26, 46, 0.9);
+}
+
+.tc__tile .ico {
+  width: 42%;
+  height: 42%;
+  stroke-width: 1;
+}
+
+.tc__name {
+  font-size: var(--t-xl);
+  font-weight: 200;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: var(--lbl);
+}
+
+.tc__note {
+  font-size: var(--t-s);
+  opacity: var(--lbl);
+}
+
+.tc__foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(24px, 5vh, 48px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tc__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-s);
+}
+
+@media (max-width: 760px) {
+  .tc {
+    height: calc(100svh + var(--n) * 14svh);
+    margin-top: -30svh;
+  }
+
+  .tc__tile.glass {
+    width: 132px;
+  }
+
+  .tc__name {
+    font-size: 1.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tc {
+    height: auto;
+    margin-top: 0;
+  }
+
+  .tc__stage {
+    position: relative;
+    height: auto;
+    padding: 80px 0;
+  }
+
+  .tc__ring {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    padding: 0 var(--gut) 80px;
+  }
+
+  .tc__item {
+    --lbl: 1;
+    position: static;
+    margin: 0;
+    width: 140px;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .tc__tile.glass {
+    width: 96px;
+  }
+
+  .tc__name {
+    font-size: var(--t-m);
+    white-space: normal;
+  }
+
+  .tc__foot {
+    position: static;
   }
 }

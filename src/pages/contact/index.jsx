@@ -7,7 +7,7 @@ const ways = [
   { icon: "mail", label: "E-Mail", value: "info@manuel-westermeier.de", href: "mailto:info@manuel-westermeier.de" },
   { icon: "phone", label: "Telefon", value: "+49 1525 6427 900", href: "tel:+4915256427900" },
   { icon: "github", label: "GitHub", value: "ManuelWestermeier", href: "https://github.com/ManuelWestermeier", ext: true },
-  { icon: "youtube", label: "YouTube", value: "@TAGESSCHATTEN", href: "https://www.youtube.com/@TAGESSCHATTEN", ext: true },
+  { icon: "tiktok", label: "TikTok", value: "@p111dev", href: "https://www.tiktok.com/@p111dev", ext: true },
 ];
 
 function ChiemWeb() {

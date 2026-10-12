@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Orbit from "../../components/Orbit";
 import BoatFilm from "../../components/BoatFilm";
+import TechCarousel from "../../components/TechCarousel";
 import ProjectCard from "../../components/ProjectCard";
 import Icon from "../../components/Icon";
 import { useRise, useScrollProgress, useTilt } from "../../lib/hooks";
@@ -200,6 +201,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <TechCarousel />
       <Statement />
       <BoatFilm />
       <Work />

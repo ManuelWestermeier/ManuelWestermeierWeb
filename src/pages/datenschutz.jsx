@@ -89,7 +89,7 @@ export default function Datenschutz() {
         <section>
           <h2>8. Externe Links</h2>
           <p>
-            Diese Website verlinkt auf externe Angebote (zum Beispiel GitHub, YouTube, Unity Play, Jugend forscht, YES!). Daten
+            Diese Website verlinkt auf externe Angebote (zum Beispiel GitHub, TikTok, Unity Play, Jugend forscht, YES!). Daten
             werden an diese Anbieter erst übertragen, wenn Sie einen Link anklicken. Dort gelten die Datenschutzhinweise des
             jeweiligen Anbieters.
           </p>

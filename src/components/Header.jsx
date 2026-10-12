@@ -10,23 +10,9 @@ const nav = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => setOpen(false), [pathname]);
-
-  /* Beim Runterscrollen ausblenden, beim Hochscrollen zurück. */
-  useEffect(() => {
-    let last = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      setHidden(y > 160 && y > last + 4);
-      if (y < last - 4 || y < 160) setHidden(false);
-      last = y;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -36,7 +22,7 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className={`hdr${open ? " hdr--open" : ""}${hidden && !open ? " hdr--hidden" : ""}`}>
+    <header className={`hdr${open ? " hdr--open" : ""}`}>
       <div className="hdr__bar glass">
         <Link to="/" className="hdr__brand" aria-label="Manuel Westermeier, Startseite">
           Manuel <b>Westermeier</b>

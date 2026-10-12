@@ -3,21 +3,21 @@ import { useRise } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 
 const stack = [
-  ["Embedded", [["ESP32 / Arduino", "Mikrocontroller"], ["C / C++", "Low-Level, Performance"], ["Assembly", "Register, CPU-Architektur"], ["Schaltungen", "Elektronik, PCB"]]],
-  ["Netzwerk", [["LHRP", "eigenes Mesh-Routing"], ["WebSockets / WSNET", "eigenes Echtzeit-Framework"], ["WebRTC", "Peer-to-Peer"], ["TCP / UDP", "Protokolle"], ["WiFi, RF24", "Funk"]]],
+  ["Embedded", [["ESP32 / Arduino", "Mikrocontroller"], ["C / C++", "Low-Level, Performance"], ["Assembly", "Register, CPU-Architektur"], ["Schaltungen", "Elektronik, PCB"], ["NVIDIA Jetson", "KI direkt auf dem Gerät"]]],
+  ["Netzwerk", [["LHRP", "eigenes Mesh-Routing"], ["WebSockets / WSNET", "eigenes Echtzeit-Framework"], ["WebRTC", "Peer-to-Peer"], ["TCP / UDP", "Protokolle"], ["RF 2,4 GHz", "Funkmodule"], ["WiFi", "Funk"]]],
   ["KI und Vision", [["Python", "Daten, Training"], ["YOLO", "Objekterkennung, Tracking"], ["Machine Learning", "Klassifizierung in Echtzeit"]]],
   ["Sicherheit", [["AES, RSA, ECC", "symmetrisch und asymmetrisch"], ["Post-Quantum", "Signaturen"], ["OpenSSL", "Zertifikate, TLS"]]],
-  ["Web", [["React / Vite", "Single-Page-Apps"], ["TypeScript", ""], ["Node.js / Express", "APIs, Server"], ["Cloudflare, Netlify", "Hosting, DNS, Deployment"]]],
+  ["Web", [["React / Vite", "Single-Page-Apps"], ["TypeScript", ""], ["Node.js / Express", "APIs, Server"], ["Cloudflare, Netlify", "Hosting, DNS, Deployment"], ["Oracle Server", "eigene Server in der Cloud"], ["Linux", "Server-Administration"]]],
   ["Desktop", [["Electron", "plattformübergreifend"], ["Next-Gen-Exe", "eigenes Web-plus-C++-Framework"]]],
   ["Spiele", [["Unity (C#)", "2D und 3D"], ["@-script", "eigene Programmiersprache"]]],
-  ["Audio", [["Sounddesign", "Effekte für Spiele und Medien"], ["Musikproduktion", "auf YouTube als TAGESSCHATTEN"]]],
+  ["Audio", [["Sounddesign", "Effekte für Spiele und Medien"], ["Musikproduktion", "Beats, Soundscapes"]]],
 ];
 
 export default function MyWork() {
   useSeo({
     title: "Stack",
     description:
-      "Technologien von Manuel Westermeier: ESP32, C/C++, eigene Netzwerkprotokolle, Python und YOLO, Kryptografie, React, Node.js, Unity und Sounddesign.",
+      "Technologien von Manuel Westermeier: ESP32, C/C++, RF 2,4 GHz, eigene Netzwerkprotokolle, NVIDIA Jetson, Python und YOLO, Kryptografie, Oracle Server, React, Node.js, Unity.",
     path: "/my-work",
   });
   useRise();

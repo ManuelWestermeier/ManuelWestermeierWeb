@@ -25,6 +25,7 @@ export const projects = [
     images: ["/imag/os/home.webp", "/imag/os/paint.webp", "/imag/os/fs.webp", "/imag/os/designer.webp", "/imag/os/wlan.webp", "/imag/os/login.webp"],
     links: [
       { label: "Quellcode", href: "https://github.com/ManuelWestermeier/esp-wroom-2-4-inch-os" },
+      { label: "Demo auf TikTok", href: "https://www.tiktok.com/@p111dev" },
       { label: "Arbeit (PDF)", href: "https://wv.jugend-forscht.de/media/2025/project_120063/description/description_2026-01-26_22-41-07.pdf" },
     ],
     award: "Sonderpreis Ressourceneffizienz und Zirkularität",

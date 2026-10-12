@@ -334,10 +334,6 @@ main {
   transition: width 0.6s var(--ease), transform 0.6s var(--ease);
 }
 
-.hdr--hidden .hdr__bar {
-  transform: translateY(-90px);
-}
-
 .hdr__brand {
   font-size: var(--t-s);
   letter-spacing: 0.02em;
