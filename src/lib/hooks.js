@@ -139,10 +139,49 @@ export function useVisible(onChange, rootMargin = "0px") {
   return ref;
 }
 
+/* Weiches Scrollen mit eigener Kurve – in jedem Browser gleich und immer smooth.
+   Bricht ab, sobald man selbst scrollt (Rad, Touch, Tasten). */
+let anim = 0;
+export function smoothScrollTo(y) {
+  cancelAnimationFrame(anim);
+  const from = window.scrollY;
+  const to = Math.max(0, Math.min(y, document.documentElement.scrollHeight - window.innerHeight));
+  const d = to - from;
+  if (Math.abs(d) < 1) return;
+  const dur = Math.min(1400, 500 + Math.abs(d) * 0.35);
+  const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const t0 = performance.now();
+  const stop = () => {
+    cancelAnimationFrame(anim);
+    off();
+  };
+  const off = () => {
+    window.removeEventListener("wheel", stop);
+    window.removeEventListener("touchstart", stop);
+    window.removeEventListener("keydown", stop);
+  };
+  window.addEventListener("wheel", stop, { passive: true });
+  window.addEventListener("touchstart", stop, { passive: true });
+  window.addEventListener("keydown", stop);
+  const step = (now) => {
+    const x = Math.min(1, (now - t0) / dur);
+    window.scrollTo(0, from + d * ease(x));
+    if (x < 1) anim = requestAnimationFrame(step);
+    else off();
+  };
+  anim = requestAnimationFrame(step);
+}
+
 /* Scrollt so, dass ein useScrollProgress-Abschnitt den Fortschritt p erreicht. */
 export function scrollToProgress(el, p) {
   if (!el) return;
   const top = el.getBoundingClientRect().top + window.scrollY;
   const total = el.offsetHeight - window.innerHeight;
-  window.scrollTo({ top: top + Math.min(1, Math.max(0, p)) * total, behavior: reducedMotion() ? "auto" : "smooth" });
+  smoothScrollTo(top + Math.min(1, Math.max(0, p)) * total);
+}
+
+/* Scrollt zum Anfang des nächsten Abschnitts nach el. */
+export function scrollPast(el) {
+  if (!el) return;
+  smoothScrollTo(el.getBoundingClientRect().bottom + window.scrollY);
 }

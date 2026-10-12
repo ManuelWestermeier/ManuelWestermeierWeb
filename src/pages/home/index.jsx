@@ -6,7 +6,7 @@ import TechCarousel from "../../components/TechCarousel";
 import ProjectCard from "../../components/ProjectCard";
 import Icon from "../../components/Icon";
 import StepNav from "../../components/StepNav";
-import { scrollToProgress, useRise, useScrollProgress, useTilt } from "../../lib/hooks";
+import { scrollPast, scrollToProgress, useRise, useScrollProgress, useTilt } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 import { projects } from "../../data/projects";
 import { awards, year } from "../../data/awards";
@@ -114,7 +114,6 @@ function Work() {
     cur.current = p;
     if (track.current) track.current.style.transform = `translate3d(${-p * dist.current}px,0,0)`;
     if (prevBtn.current) prevBtn.current.disabled = p < 0.002;
-    if (nextBtn.current) nextBtn.current.disabled = p > 0.998;
   });
 
   /* Fortschritt, bei dem Karte i am linken Rand steht */
@@ -126,7 +125,9 @@ function Work() {
   };
   const next = () => {
     const s = stops().find((x) => x > cur.current + 0.01);
-    scrollToProgress(ref.current, s ?? 1);
+    /* Am Ende der Karten geht es weiter zum nächsten Abschnitt */
+    if (s === undefined || cur.current > 0.998) scrollPast(ref.current);
+    else scrollToProgress(ref.current, s);
   };
   const prev = () => {
     const s = stops().filter((x) => x < cur.current - 0.01).pop();

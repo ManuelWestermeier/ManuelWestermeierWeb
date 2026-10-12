@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "./Icon";
 import StepNav from "./StepNav";
 import { techGroups } from "../data/tech";
-import { scrollToProgress, useScrollProgress } from "../lib/hooks";
+import { scrollPast, scrollToProgress, useScrollProgress } from "../lib/hooks";
 
 /* Scroll-Karussell: Jede Gruppe kommt gemeinsam leicht von oben rechts,
    bleibt lange ruhig in der Mitte stehen und zieht kleiner nach links hinaus.
@@ -80,7 +80,7 @@ export default function TechCarousel() {
   const next = () => {
     const c = Math.floor(pos.current + 0.001) + 1;
     if (c < n) goTo(c);
-    else scrollToProgress(ref.current, 1); // nach der letzten Gruppe: weiter zum nächsten Abschnitt
+    else scrollPast(ref.current); // nach der letzten Gruppe: weiter zum nächsten Abschnitt
   };
   const prev = () => {
     const c = Math.ceil(pos.current - 0.001) - 1;

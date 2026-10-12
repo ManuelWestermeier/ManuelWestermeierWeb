@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { kinds, projects } from "../../data/projects";
 import Icon from "../../components/Icon";
-import { finePointer, reducedMotion, useRise } from "../../lib/hooks";
+import { finePointer, reducedMotion, smoothScrollTo, useRise } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 import "./projects.css";
 
@@ -157,7 +157,7 @@ export default function Projects() {
     setOpen(id);
     const t = setTimeout(() => {
       const el = document.getElementById(id);
-      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 100, behavior: "smooth" });
+      if (el) smoothScrollTo(el.getBoundingClientRect().top + window.scrollY - 100);
     }, 120);
     return () => clearTimeout(t);
   }, [hash]);
