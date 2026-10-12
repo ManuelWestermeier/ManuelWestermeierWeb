@@ -5,9 +5,12 @@ const JF_BAYERN_TWR =
 export const awards = [
   {
     id: "yes-2026",
-    date: "2026",
+    date: "2026-10-01",
+    from: "2026-09-30",
     contest: "YES! Young Economic Solutions",
     round: "Bundesfinale",
+    place: "Futurium Berlin",
+    short: "Bundessieg YES!",
     prize: "Bundessieg",
     project: "EnergieFlow",
     team: "Team des Annette-Kolb-Gymnasiums",
@@ -18,6 +21,7 @@ export const awards = [
   },
   {
     id: "jfb-2026-twr",
+    short: "Sonderpreis Fraunhofer",
     date: "2026-02-26",
     contest: "Jugend forscht",
     round: "Landeswettbewerb Bayern",
@@ -29,6 +33,7 @@ export const awards = [
   },
   {
     id: "jf-2025-os",
+    short: "Sonderpreis ESP32 OS",
     date: "2025-11-23",
     contest: "Jugend forscht",
     round: "Regionalwettbewerb Rosenheim",
@@ -42,6 +47,7 @@ export const awards = [
   },
   {
     id: "jf-2025-lhrp",
+    short: "3. Preis LHRP",
     date: "2025-05-02",
     contest: "Jugend forscht",
     round: "Regionalwettbewerb Rosenheim",
@@ -55,6 +61,7 @@ export const awards = [
   },
   {
     id: "jf-2025-twr",
+    short: "Regionalsieg TWR",
     date: "2025-04-15",
     contest: "Jugend forscht",
     round: "Regionalwettbewerb Rosenheim",
@@ -67,6 +74,7 @@ export const awards = [
   },
   {
     id: "jf-2024-mw",
+    short: "3. Preis MW",
     date: "2024-11-24",
     contest: "Jugend forscht",
     round: "Regionalwettbewerb Rosenheim",
@@ -95,3 +103,15 @@ export function fmtDate(d) {
 }
 
 export const year = (d) => d.slice(0, 4);
+
+/* „30. Sep – 1. Okt 2026“ für mehrtägige Runden, sonst ein Datum. */
+export function fmtRange(a) {
+  if (!a.from) return fmtDate(a.date);
+  const end = fmtDate(a.date);
+  if (a.from.slice(0, 7) === a.date.slice(0, 7)) return `${Number(a.from.slice(8))}.–${end}`;
+  const start = fmtDate(a.from);
+  return a.from.slice(0, 4) === a.date.slice(0, 4) ? `${start.slice(0, -5)} – ${end}` : `${start} – ${end}`;
+}
+
+/* Mittag, damit Zeitzonen den Tag nicht verschieben. */
+export const time = (d) => new Date(`${d}T12:00:00`).getTime();
