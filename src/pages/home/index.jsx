@@ -209,9 +209,12 @@ function Close() {
         <wbr />
         westermeier.de
       </a>
-      <p className="dim close__note rise" style={{ "--d": ".1s" }}>
-        Anfragen beantworte ich meist innerhalb von 24 Stunden. <Link to="/contact" className="ul">Telefon und weitere Wege</Link>
-      </p>
+      <div className="close__more rise" style={{ "--d": ".1s" }}>
+        <p className="dim">Anfragen beantworte ich meist innerhalb von 24 Stunden. Lieber anrufen oder schreiben?</p>
+        <Link to="/contact" className="pill pill--glass glass">
+          <Icon name="phone" size={16} /> Telefon & alle Kontaktwege <Icon name="arrow" size={15} className="arr" />
+        </Link>
+      </div>
     </section>
   );
 }

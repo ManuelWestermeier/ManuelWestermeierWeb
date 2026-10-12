@@ -559,10 +559,18 @@
   background-size: 100% 2px;
 }
 
-.close__note {
+.close__more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
   margin-top: 28px;
-  max-width: 52ch;
+  max-width: 920px;
   margin-left: clamp(0px, 18vw, 320px);
+}
+
+.close__more p {
+  max-width: 44ch;
 }
 
 @media (max-width: 760px) {
@@ -570,7 +578,7 @@
     font-size: 11.4vw;
   }
 
-  .close__note {
+  .close__more {
     margin-left: 0;
   }
 }
