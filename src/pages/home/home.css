@@ -588,10 +588,10 @@
   }
 }
 
-/* ─── Technologie-Karussell ────────────────────────────────────────── */
+/* ─── Technologie-Karussell (Gruppen, Text im Fokus) ───────────────── */
 .tc {
   position: relative;
-  height: calc(100svh + var(--n) * 17svh);
+  height: calc(100svh + var(--n) * 70svh);
   margin-top: -38svh;
 }
 
@@ -600,64 +600,58 @@
   top: 0;
   height: 100svh;
   overflow: hidden;
-  perspective: 1200px;
 }
 
-.tc__ring {
-  list-style: none;
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-}
-
-.tc__item {
+.tc__group {
   --lbl: 0;
   position: absolute;
-  left: 50%;
-  top: 44%;
-  width: 300px;
-  margin-left: -150px;
-  margin-top: -130px;
-  display: grid;
-  justify-items: center;
-  gap: 10px;
-  text-align: center;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-54%);
+  max-width: 860px;
   visibility: hidden;
+}
+
+.tc__label {
+  margin-bottom: clamp(18px, 3vh, 32px);
+  opacity: var(--lbl);
+}
+
+.tc__list {
+  list-style: none;
+}
+
+.tc__row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 18px;
+  padding: clamp(12px, 2vh, 20px) 0;
+  border-top: 1px solid rgba(237, 239, 241, 0.08);
   opacity: 0;
   will-change: transform, opacity;
 }
 
-/* Kacheln ohne Backdrop-Filter: sie bewegen sich jedes Bild */
-.tc__tile.glass {
-  width: clamp(150px, 15vw, 210px);
-  aspect-ratio: 1;
-  border-radius: 30%;
-  display: grid;
-  place-items: center;
-  margin-bottom: 18px;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  background: linear-gradient(150deg, rgba(237, 239, 241, 0.1), rgba(237, 239, 241, 0.02) 45%, rgba(12, 67, 121, 0.22)), rgba(7, 26, 46, 0.9);
+.tc__row:last-child {
+  border-bottom: 1px solid rgba(237, 239, 241, 0.08);
 }
 
-.tc__tile .ico {
-  width: 42%;
-  height: 42%;
-  stroke-width: 1;
+.tc__ico {
+  color: var(--ink-3);
+  align-self: center;
 }
 
 .tc__name {
   font-size: var(--t-xl);
   font-weight: 200;
   letter-spacing: -0.035em;
-  line-height: 1;
-  white-space: nowrap;
-  opacity: var(--lbl);
+  line-height: 1.05;
 }
 
 .tc__note {
   font-size: var(--t-s);
-  opacity: var(--lbl);
+  text-align: right;
 }
 
 .tc__foot {
@@ -668,6 +662,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
 .tc__more {
@@ -675,20 +670,32 @@
   align-items: center;
   gap: 6px;
   font-size: var(--t-s);
+  white-space: nowrap;
 }
 
 @media (max-width: 760px) {
   .tc {
-    height: calc(100svh + var(--n) * 14svh);
+    height: calc(100svh + var(--n) * 60svh);
     margin-top: -30svh;
   }
 
-  .tc__tile.glass {
-    width: 132px;
+  .tc__row {
+    grid-template-columns: 22px minmax(0, 1fr);
+    row-gap: 4px;
+    column-gap: 14px;
   }
 
   .tc__name {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
+  }
+
+  .tc__note {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .tc__total {
+    display: none;
   }
 }
 
@@ -704,32 +711,17 @@
     padding: 80px 0;
   }
 
-  .tc__ring {
-    position: static;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 24px;
-    padding: 0 var(--gut) 80px;
-  }
-
-  .tc__item {
+  .tc__group {
     --lbl: 1;
     position: static;
-    margin: 0;
-    width: 140px;
+    transform: none;
     visibility: visible !important;
+    margin-bottom: 56px;
+  }
+
+  .tc__row {
     opacity: 1 !important;
     transform: none !important;
-  }
-
-  .tc__tile.glass {
-    width: 96px;
-  }
-
-  .tc__name {
-    font-size: var(--t-m);
-    white-space: normal;
   }
 
   .tc__foot {

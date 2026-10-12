@@ -1,53 +1,68 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Icon from "./Icon";
-import { tech } from "../data/tech";
+import { techGroups } from "../data/tech";
 import { useScrollProgress } from "../lib/hooks";
 
-/* Scroll-Karussell: Jede Technologie kommt leicht von oben rechts,
-   steht groß in der Mitte und zieht kleiner nach links hinaus.
+/* Scroll-Karussell: Jede Gruppe kommt gemeinsam leicht von oben rechts,
+   bleibt lange ruhig in der Mitte stehen und zieht kleiner nach links hinaus.
    t = Abstand zur Mitte in „Plätzen“ (t > 0 rechts, t < 0 links).
-   Geschrieben werden nur transform/opacity, und nur für sichtbare Plätze. */
-const LEAD = 0.9;
+   Die Zeilen einer Gruppe folgen leicht versetzt, in der Mitte stehen sie bündig.
+   Geschrieben werden nur transform/opacity, und nur für sichtbare Gruppen. */
+const LEAD = 0.75;
+const HOLD = 0.5; // Anteil des Scrollwegs je Gruppe, in dem sie still steht
+const LAG = 0.09; // Versatz pro Zeile
+
+const total = techGroups.reduce((n, g) => n + g.items.length, 0);
 
 export default function TechCarousel() {
-  const items = useRef([]);
+  const groups = useRef([]);
+  const rows = useRef([]);
+  const shown = useRef([]);
   const count = useRef(null);
-  const state = useRef([]);
 
   const apply = (p) => {
-    /* Kurzer Halt in der Mitte: Steigung 0 an jeder ganzen Zahl */
-    const raw = -LEAD + p * (tech.length - 1 + LEAD * 2);
-    const f = raw - Math.floor(raw);
-    const k = Math.floor(raw) + f - Math.sin(f * Math.PI * 2) / (Math.PI * 2);
+    const n = techGroups.length;
+    const raw = -LEAD + p * (n - 1 + LEAD * 2);
+    const base = Math.floor(raw);
+    const f = raw - base;
+    /* Bewegung nur im mittleren Teil, sanft (smoothstep) – davor und danach Stillstand */
+    const g = Math.min(1, Math.max(0, (f - HOLD / 2) / (1 - HOLD)));
+    const k = base + g * g * (3 - 2 * g);
     const vw = window.innerWidth;
     const vh = window.innerHeight;
-    const spread = vw < 760 ? 0.42 : 0.34;
-    for (let i = 0; i < items.current.length; i++) {
-      const el = items.current[i];
+    const spread = vw < 760 ? 0.9 : 0.55;
+
+    for (let i = 0; i < n; i++) {
+      const el = groups.current[i];
       if (!el) continue;
       const t = i - k;
-      const a = Math.abs(t);
-      const vis = a < 1.25;
-      if (!vis) {
-        if (state.current[i] !== 0) {
-          el.style.visibility = "hidden";
-          state.current[i] = 0;
-        }
-        continue;
+      const vis = Math.abs(t) < 1.3;
+      if (vis !== shown.current[i]) {
+        el.style.visibility = vis ? "visible" : "hidden";
+        shown.current[i] = vis;
       }
-      if (state.current[i] === 0 || state.current[i] === undefined) el.style.visibility = "visible";
-      state.current[i] = 1;
-      const x = t * vw * spread;
-      const y = t > 0 ? -t * vh * 0.16 : -t * vh * 0.05;
-      const s = t > 0 ? 1 - t * 0.5 : 1 + t * 0.62;
-      el.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0) rotateY(${(-t * 28).toFixed(1)}deg) scale(${Math.max(0.2, s).toFixed(3)})`;
-      el.style.opacity = Math.max(0, 1 - a * 0.95).toFixed(3);
-      el.style.setProperty("--lbl", Math.max(0, 1 - a * 2.6).toFixed(3));
+      if (!vis) continue;
+      el.style.setProperty("--lbl", Math.max(0, 1 - Math.abs(t) * 2.2).toFixed(3));
+      const lagAmt = LAG * Math.min(1, Math.abs(t) * 4);
+      const rs = rows.current[i] || [];
+      for (let j = 0; j < rs.length; j++) {
+        const r = rs[j];
+        if (!r) continue;
+        /* Untere Zeilen hängen nach; beim Hinausziehen eilen die oberen voraus */
+        const tj = t > 0 ? t + j * lagAmt : t - (rs.length - 1 - j) * lagAmt;
+        const a = Math.abs(tj);
+        const x = tj * vw * spread;
+        const y = tj > 0 ? -tj * vh * 0.12 : -tj * vh * 0.04;
+        const s = tj > 0 ? 1 - tj * 0.22 : 1 + tj * 0.4;
+        r.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0) scale(${Math.max(0.3, s).toFixed(3)})`;
+        const o = Math.max(0, 1 - a / 0.75);
+        r.style.opacity = (o * (2 - o)).toFixed(3);
+      }
     }
     if (count.current) {
-      const n = Math.min(tech.length, Math.max(1, Math.round(k) + 1));
-      count.current.textContent = String(n).padStart(2, "0");
+      const c = Math.min(n, Math.max(1, Math.round(k) + 1));
+      count.current.textContent = String(c).padStart(2, "0");
     }
   };
 
@@ -59,26 +74,37 @@ export default function TechCarousel() {
   }, []);
 
   return (
-    <section className="tc" ref={ref} style={{ "--n": tech.length }} aria-labelledby="tc-title">
+    <section className="tc" ref={ref} style={{ "--n": techGroups.length }} aria-labelledby="tc-title">
       <h2 id="tc-title" className="sr-only">
         Technologien
       </h2>
       <div className="tc__stage">
-        <ul className="tc__ring">
-          {tech.map((t, i) => (
-            <li key={t.name} className="tc__item" ref={(el) => (items.current[i] = el)}>
-              <span className="tc__tile glass">
-                <Icon name={t.icon} size={64} />
-              </span>
-              <span className="tc__name">{t.name}</span>
-              <span className="tc__note dim">{t.note}</span>
-            </li>
-          ))}
-        </ul>
+        {techGroups.map((grp, i) => (
+          <div key={grp.label} className="tc__group wrap" ref={(el) => (groups.current[i] = el)}>
+            <p className="meta tc__label">{grp.label}</p>
+            <ul className="tc__list">
+              {grp.items.map((t, j) => (
+                <li
+                  key={t.name}
+                  className="tc__row"
+                  ref={(el) => {
+                    rows.current[i] = rows.current[i] || [];
+                    rows.current[i][j] = el;
+                  }}
+                >
+                  <Icon name={t.icon} size={20} className="tc__ico" />
+                  <span className="tc__name">{t.name}</span>
+                  <span className="tc__note dim">{t.note}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
 
         <div className="wrap tc__foot">
           <span className="meta">
-            <span ref={count}>01</span> / {String(tech.length).padStart(2, "0")}
+            <span ref={count}>01</span> / {String(techGroups.length).padStart(2, "0")}
+            <span className="tc__total"> · {total} Technologien</span>
           </span>
           <Link to="/my-work" className="ul tc__more">
             Alle Technologien <Icon name="arrow" size={14} />
