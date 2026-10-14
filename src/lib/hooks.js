@@ -5,6 +5,32 @@ const mq = (q) => typeof window !== "undefined" && window.matchMedia(q).matches;
 export const reducedMotion = () => mq("(prefers-reduced-motion: reduce)");
 export const finePointer = () => mq("(hover: hover) and (pointer: fine)");
 
+/* svh, wo vorhanden – sonst vh (ältere Browser verwerfen svh komplett) */
+export const svh = typeof CSS !== "undefined" && CSS.supports && CSS.supports("height", "1svh") ? "svh" : "vh";
+
+/* Sichtbarkeit beobachten; ohne IntersectionObserver gilt alles als sichtbar,
+   statt dass ein Fehler die ganze Seite abreißt. Gibt disconnect zurück. */
+export function observeVisible(el, cb, options) {
+  if (typeof IntersectionObserver === "undefined") {
+    cb(true, el);
+    return () => {};
+  }
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => cb(e.isIntersecting, e.target)), options);
+  io.observe(el);
+  return () => io.disconnect();
+}
+
+/* Größenänderungen beobachten; ohne ResizeObserver über window.resize. */
+export function observeResize(el, cb) {
+  if (typeof ResizeObserver !== "undefined") {
+    const ro = new ResizeObserver(() => cb());
+    ro.observe(el);
+    return () => ro.disconnect();
+  }
+  window.addEventListener("resize", cb);
+  return () => window.removeEventListener("resize", cb);
+}
+
 /* „Lite“: Touch-Geräte und schwache Hardware. Dort keine Blur-Filter,
    gedrosselte Canvas-Animation. Wird einmal beim Start gesetzt. */
 export const isLite = () => document.documentElement.classList.contains("lite");
@@ -20,7 +46,7 @@ export function detectLite() {
 export function useRise(deps = []) {
   useEffect(() => {
     const els = document.querySelectorAll(".rise:not(.in)");
-    if (reducedMotion()) {
+    if (reducedMotion() || typeof IntersectionObserver === "undefined") {
       els.forEach((el) => el.classList.add("in"));
       return;
     }
@@ -106,16 +132,15 @@ export function useScrollProgress(onProgress) {
       last = -1;
       onScroll();
     };
-    const io = new IntersectionObserver(([e]) => {
-      active = e.isIntersecting;
+    const unobserve = observeVisible(el, (v) => {
+      active = v;
       if (active) onResize();
     });
-    io.observe(el);
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
     return () => {
-      io.disconnect();
+      unobserve();
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
@@ -132,9 +157,7 @@ export function useVisible(onChange, rootMargin = "0px") {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => cb.current(e.isIntersecting), { rootMargin });
-    io.observe(el);
-    return () => io.disconnect();
+    return observeVisible(el, (v) => cb.current(v), { rootMargin });
   }, [rootMargin]);
   return ref;
 }

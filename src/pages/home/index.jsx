@@ -6,7 +6,7 @@ import TechCarousel from "../../components/TechCarousel";
 import ProjectCard from "../../components/ProjectCard";
 import Icon from "../../components/Icon";
 import StepNav from "../../components/StepNav";
-import { scrollPast, scrollToProgress, useRise, useScrollProgress, useTilt } from "../../lib/hooks";
+import { observeResize, scrollPast, scrollToProgress, svh, useRise, useScrollProgress, useTilt } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 import { projects } from "../../data/projects";
 import { awards, year } from "../../data/awards";
@@ -142,12 +142,10 @@ function Work() {
       dist.current = Math.max(0, t.scrollWidth - sec.clientWidth);
       /* Scrollweg = horizontale Strecke, auf Touch etwas kürzer */
       const k = window.matchMedia("(pointer: coarse)").matches ? 0.9 : 1.1;
-      sec.style.height = `calc(100svh + ${Math.round(dist.current * k)}px)`;
+      sec.style.height = `calc(100${svh} + ${Math.round(dist.current * k)}px)`;
     };
     measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(t);
-    return () => ro.disconnect();
+    return observeResize(t, measure);
   }, [ref]);
 
   return (

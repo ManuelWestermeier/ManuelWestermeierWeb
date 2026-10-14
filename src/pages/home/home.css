@@ -2,7 +2,7 @@
 .orbit {
   position: absolute;
   width: min(68vw, 92vh);
-  aspect-ratio: 1;
+  height: min(68vw, 92vh); /* statt aspect-ratio: auch ältere Browser */
   pointer-events: none;
   will-change: transform, opacity;
 }
@@ -142,6 +142,7 @@
 
   .orbit {
     width: min(118vw, 62svh);
+    height: min(118vw, 62svh);
   }
 
   .hero__orbit {

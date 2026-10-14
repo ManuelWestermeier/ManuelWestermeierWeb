@@ -27,7 +27,7 @@ export default function App() {
       <GlassFilter />
       <Header />
       <main id="main" key={pathname} className="page-enter">
-        <Suspense fallback={<div style={{ minHeight: "100svh" }} />}>
+        <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />

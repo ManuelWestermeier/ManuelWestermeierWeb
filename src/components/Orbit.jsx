@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { finePointer, isLite, reducedMotion } from "../lib/hooks";
+import { finePointer, isLite, observeResize, observeVisible, reducedMotion } from "../lib/hooks";
 
 /* Wireframe-Kugel als Canvas: ein einziges Element statt vieler 3D-Ebenen.
    Knoten stehen für ein Mesh-Netz (LHRP), einer trägt den Akzent.
@@ -131,20 +131,18 @@ export default function Orbit({ className = "", innerRef }) {
 
     size();
     draw();
-    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()));
-    io.observe(cv);
-    const ro = new ResizeObserver(() => {
+    const unobserve = observeVisible(cv, (v) => (v ? start() : stop()));
+    const unresize = observeResize(cv, () => {
       size();
       draw();
     });
-    ro.observe(cv);
     const fine = finePointer();
     if (fine) window.addEventListener("pointermove", onMove, { passive: true });
 
     return () => {
       stop();
-      io.disconnect();
-      ro.disconnect();
+      unobserve();
+      unresize();
       if (fine) window.removeEventListener("pointermove", onMove);
     };
   }, []);
