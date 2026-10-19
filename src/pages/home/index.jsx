@@ -27,7 +27,7 @@ function Hero() {
   const ref = useScrollProgress((p) => {
     if (title.current) {
       title.current.style.transform = `translate3d(0,${-p * 18}vh,0)`;
-      title.current.style.opacity = Math.max(0, 1 - p * 1.6);
+      title.current.style.opacity = Math.max(0, 1 - p * 1.25);
     }
     if (sub.current) sub.current.style.opacity = Math.max(0, 1 - p * 2);
     if (orbit.current) {

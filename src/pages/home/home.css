@@ -584,41 +584,11 @@
   }
 }
 
-/* ─── Reduzierte Bewegung ──────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  .hero,
-  .stmt,
-  .film {
-    height: auto;
-    margin-top: 0;
-  }
-
-  .hero__stage,
-  .stmt__stage,
-  .film__sticky {
-    position: relative;
-  }
-
-  .stmt__stage,
-  .film__sticky {
-    height: auto;
-    padding: 120px 0;
-  }
-
-  .stmt__text span {
-    color: var(--ink);
-  }
-
-  .film__frame {
-    transform: none;
-  }
-}
-
 /* ─── Technologie-Karussell (Gruppen, Text im Fokus) ───────────────── */
 .tc {
   position: relative;
   height: calc(100svh + var(--n) * 70svh);
-  margin-top: -38svh;
+  margin-top: -55svh;
 }
 
 .tc__stage {
@@ -725,32 +695,3 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .tc {
-    height: auto;
-    margin-top: 0;
-  }
-
-  .tc__stage {
-    position: relative;
-    height: auto;
-    padding: 80px 0;
-  }
-
-  .tc__group {
-    --lbl: 1;
-    position: static;
-    transform: none;
-    visibility: visible !important;
-    margin-bottom: 56px;
-  }
-
-  .tc__row {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .tc__foot {
-    position: static;
-  }
-}

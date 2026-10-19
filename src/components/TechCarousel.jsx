@@ -10,7 +10,7 @@ import { scrollPast, scrollToProgress, useScrollProgress } from "../lib/hooks";
    t = Abstand zur Mitte in „Plätzen“ (t > 0 rechts, t < 0 links).
    Die Zeilen einer Gruppe folgen leicht versetzt, in der Mitte stehen sie bündig.
    Geschrieben werden nur transform/opacity, und nur für sichtbare Gruppen. */
-const LEAD = 0.75;
+const LEAD = 0.75; // Auslauf nach der letzten Gruppe; die erste steht von Anfang an
 const HOLD = 0.5; // Anteil des Scrollwegs je Gruppe, in dem sie still steht
 const LAG = 0.09; // Versatz pro Zeile
 
@@ -21,13 +21,13 @@ export default function TechCarousel() {
   const rows = useRef([]);
   const shown = useRef([]);
   const count = useRef(null);
-  const pos = useRef(-LEAD);
+  const pos = useRef(0);
   const prevBtn = useRef(null);
   const nextBtn = useRef(null);
 
   const apply = (p) => {
     const n = techGroups.length;
-    const raw = -LEAD + p * (n - 1 + LEAD * 2);
+    const raw = p * (n - 1 + LEAD);
     const base = Math.floor(raw);
     const f = raw - base;
     /* Bewegung nur im mittleren Teil, sanft (smoothstep) – davor und danach Stillstand */
@@ -76,7 +76,7 @@ export default function TechCarousel() {
 
   /* Knöpfe springen genau auf die Ruheposition der nächsten/vorigen Gruppe */
   const n = techGroups.length;
-  const goTo = (c) => scrollToProgress(ref.current, (c + LEAD) / (n - 1 + LEAD * 2));
+  const goTo = (c) => scrollToProgress(ref.current, c / (n - 1 + LEAD));
   const next = () => {
     const c = Math.floor(pos.current + 0.001) + 1;
     if (c < n) goTo(c);
