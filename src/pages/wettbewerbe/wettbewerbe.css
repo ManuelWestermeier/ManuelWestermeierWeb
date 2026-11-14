@@ -851,3 +851,56 @@
     display: none;
   }
 }
+
+/* Handy: wie am Desktop – Linie in der Mitte, Stationen abwechselnd links
+   und rechts, nur eben senkrecht */
+@media (max-width: 760px) {
+  .ax__pts {
+    padding: 0;
+    gap: 14px;
+  }
+  .ax__pts::before {
+    left: 50%;
+  }
+  .ax__pt,
+  .ax__pt--up {
+    width: 50%;
+    padding-left: 18px;
+    margin-left: 50%;
+  }
+  .ax__pt--up {
+    margin-left: 0;
+    padding: 0 18px 0 0;
+    text-align: right;
+  }
+  .ax__pt::before {
+    left: -5px;
+    top: 5px;
+  }
+  .ax__pt--up::before {
+    left: auto;
+    right: -6px;
+  }
+  .ax__pt--up .ax__label,
+  .ax__pt--up .ax__label--multi {
+    justify-items: end;
+  }
+  .ax__pt--up button {
+    text-align: right;
+  }
+  .ax__pt--up .ax__label--multi .ax__item {
+    padding: 6px 12px 6px 0;
+    border-left: 0;
+    border-right: 1px solid var(--line-2);
+  }
+  .ax__pt {
+    --dy: 0;
+    transform: translateX(-10px);
+  }
+  .ax__pt--up {
+    transform: translateX(10px);
+  }
+  .ax--in .ax__pt {
+    transform: none;
+  }
+}

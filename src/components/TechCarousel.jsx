@@ -111,9 +111,11 @@ export default function TechCarousel() {
                     rows.current[i][j] = el;
                   }}
                 >
-                  <Icon name={t.icon} size={20} className="tc__ico" />
-                  <span className="tc__name">{t.name}</span>
-                  <span className="tc__note dim">{t.note}</span>
+                  <a className="tc__link" href={t.href} target="_blank" rel="noopener noreferrer">
+                    <Icon name={t.icon} size={20} className="tc__ico" />
+                    <span className="tc__name">{t.name}</span>
+                    <span className="tc__note dim">{t.note}</span>
+                  </a>
                 </li>
               ))}
             </ul>

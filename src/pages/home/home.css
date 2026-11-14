@@ -771,3 +771,34 @@
   transform: none;
 }
 .pcard__media::after { display: none; }
+
+/* Technologien sind Links: die Zeile selbst trägt das Raster */
+.tc__row {
+  display: block;
+}
+.tc__link {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 18px;
+  color: inherit;
+  transition: color 0.25s var(--ease);
+}
+.tc__link:hover .tc__name {
+  color: var(--accent);
+}
+@media (max-width: 760px) {
+  .tc__link {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+  .tc__link .tc__note {
+    grid-column: 2;
+    text-align: left;
+  }
+}
+@media (max-width: 760px) {
+  .tc__link {
+    row-gap: 4px;
+    column-gap: 14px;
+  }
+}

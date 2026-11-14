@@ -13,7 +13,7 @@ export const projects = [
     model: "/3d/twr.glb",
     modelPoster: "/imag/live/twr-render-front.webp",
     poster: "/imag/twr-poster.webp",
-    images: ["/imag/live/twr-render-front.webp", "/imag/live/twr-render-back.webp", "/imag/live/twr-render-top.webp", "/imag/live/twr-render-side.webp"],
+    images: ["/imag/live/twr-render-front.webp", "/imag/live/twr-render-back.webp", "/imag/live/twr-render-top.webp", "/imag/live/twr-render-side.webp", "/imag/live/twrsite-full.webp"],
     links: [{ label: "twr-systems.de", href: "https://twr-systems.de/" }],
     award: "Regionalsieg Jugend forscht · Sonderpreis Fraunhofer Talents",
     featured: true,
@@ -24,7 +24,7 @@ export const projects = [
     full: "Betriebssystem für ESP32",
     kind: "Embedded",
     line: "Ein Mini-Betriebssystem mit Touch-Display, Dateisystem, WLAN und eigenem GUI-Framework.",
-    images: ["/imag/live/tt-os-design.webp", "/imag/live/tt-os-apps.webp", "/imag/live/tt-os-boot.webp", "/imag/live/tt-os-keyboard.webp", "/imag/os/home.webp", "/imag/os/paint.webp", "/imag/os/fs.webp", "/imag/os/designer.webp", "/imag/os/wlan.webp", "/imag/os/login.webp"],
+    images: ["/imag/live/mwos-apps.webp", "/imag/live/mwos-login.webp", "/imag/live/mwos-boot.webp", "/imag/live/tt-os-design.webp", "/imag/os/home.webp", "/imag/os/paint.webp", "/imag/os/fs.webp", "/imag/os/designer.webp", "/imag/os/wlan.webp", "/imag/os/login.webp"],
     links: [
       { label: "Quellcode", href: "https://github.com/ManuelWestermeier/esp-wroom-2-4-inch-os" },
       { label: "Demo auf TikTok", href: "https://www.tiktok.com/@pdev111" },
@@ -53,16 +53,16 @@ export const projects = [
     full: "Geteilte Einkaufslisten",
     kind: "Web",
     line: "Listen per Link oder QR-Code in Echtzeit teilen. Ohne Konto, ohne Werbung.",
-    images: ["/imag/live/easy-einkauf.webp", "/imag/live/tt-easy-dark.webp", "/imag/easy-einkauf-list-page.webp"],
+    images: ["/imag/live/easy-einkauf.webp", "/imag/live/easy-full.webp", "/imag/live/tt-easy-dark.webp", "/imag/easy-einkauf-list-page.webp"],
     links: [{ label: "easy-einkauf.de", href: "https://easy-einkauf.de/" }],
   },
   {
     id: "hectobase",
     name: "HectoBase OS",
-    full: "Linux vom USB-Stick",
-    kind: "Security",
-    line: "Stick einstecken, starten, arbeiten. Läuft im Arbeitsspeicher, Dateien liegen verschlüsselt auf dem Stick.",
-    images: ["/imag/live/hectobase-desktop.webp", "/imag/live/hectobase-boot.webp", "/imag/live/hectobase-login.webp", "/imag/live/hectobase-files.webp", "/imag/live/hectobase-settings.webp", "/imag/live/hectobase.webp"],
+    full: "Eigenes Betriebssystem auf Linux und Electron",
+    kind: "Desktop",
+    line: "Ein vollständiges Betriebssystem vom USB-Stick: Linux-Kern, Oberfläche in Electron, läuft im Arbeitsspeicher, Dateien verschlüsselt mit LUKS2.",
+    images: ["/imag/live/hectobase-desktop.webp", "/imag/live/hectobase-boot.webp", "/imag/live/hectobase-login.webp", "/imag/live/hectobase-files.webp", "/imag/live/hectobase-settings.webp", "/imag/live/hecto-full.webp"],
     links: [
       { label: "os.hectobase.com", href: "https://os.hectobase.com/" },
       { label: "Video auf TikTok", href: "https://www.tiktok.com/@pdev111/video/7698479686724226337" },
@@ -75,7 +75,9 @@ export const projects = [
     full: "3D-Überlebensspiel im Browser",
     kind: "Spiele",
     line: "Als Gartenzwerg den Garten gegen Schnecken, Käfer und Bosse verteidigen.",
-    images: ["/imag/live/schnecke.webp"],
+    video: "/imag/live/schnecke-promo.mp4",
+    poster: "/imag/live/schnecke-poster.webp",
+    images: ["/imag/live/schnecke.webp", "/imag/live/schnecke-full.webp"],
     links: [{ label: "Spielen", href: "https://schneckenalarm.chiemweb.de/" }],
     featured: true,
   },
@@ -85,7 +87,7 @@ export const projects = [
     full: "KI baut Websites",
     kind: "Web",
     line: "Beschreiben, KI baut die Website. In zehn Minuten online.",
-    images: ["/imag/live/kuein.webp"],
+    images: ["/imag/live/kuein-full.webp", "/imag/live/kuein.webp"],
     links: [{ label: "küin.de", href: "https://xn--kin-hoa.de/" }],
     featured: true,
   },
@@ -95,7 +97,7 @@ export const projects = [
     full: "Websites für Unternehmen",
     kind: "Web",
     line: "Individuelle Websites, Apps und KI-Lösungen für Betriebe aus dem Chiemgau.",
-    images: ["/imag/live/chiemweb.webp"],
+    images: ["/imag/live/chiemweb-full.webp", "/imag/live/chiemweb.webp"],
     links: [{ label: "chiemweb.de", href: "https://chiemweb.de/" }],
   },
   {
@@ -265,3 +267,12 @@ export const projects = [
     links: [{ label: "Spielen", href: "https://play.unity.com/en/games/e6fb7edc-ba03-48ea-ba03-e7e3d5e4094f/bird-game-manuel111" }],
   },
 ];
+
+/* Reihenfolge nach Anspruch: Hardware, eigene Systeme und Protokolle zuerst */
+const ORDER = [
+  "twr", "hectobase", "mw-os", "lhrp", "c6-os", "schneckenalarm", "kuein", "easy-einkauf",
+  "privuschat", "hidden-fs", "wsnet", "next-gen-exe", "mw-browser", "quatsch", "notenbuch",
+  "chiemweb", "rope-swing", "browser-v1", "contacts", "v-present", "car-game", "jump-drive",
+  "car-top", "memory", "bird",
+];
+projects.sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));

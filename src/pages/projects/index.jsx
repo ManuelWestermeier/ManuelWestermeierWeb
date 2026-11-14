@@ -4,7 +4,7 @@ import { kinds, projects } from "../../data/projects";
 import Icon from "../../components/Icon";
 import Schema, { hasSchema } from "../../components/Schema";
 import Model3D from "../../components/Model3D";
-import { observeVisible, smoothScrollTo, useRise } from "../../lib/hooks";
+import { observeVisible, reducedMotion, smoothScrollTo, useRise } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 import "./projects.css";
 
@@ -21,6 +21,10 @@ const jsonLd = {
 };
 
 const pad = (n) => String(n).padStart(2, "0");
+
+/* Ganzseitige Website-Screenshots scrollen im Rahmen langsam durch */
+const isFull = (src) => /-full\.webp$/.test(src || "");
+const PAN_MS = 26000;
 
 function Filter({ value, onChange }) {
   return (
@@ -46,11 +50,14 @@ function Media({ p }) {
         <div className="pm pm--3d">
           <Model3D src={p.model} title={p.name} poster={p.modelPoster} />
         </div>
+      ) : view === "img" ? (
+        <MediaInner p={{ ...p, video: undefined }} />
       ) : (
         <MediaInner p={p} />
       )}
       <div className="pm__switch" role="tablist" aria-label="Ansicht">
         <button role="tab" aria-selected={view === "3d"} onClick={() => setView("3d")}>3D-Modell</button>
+        <button role="tab" aria-selected={view === "img"} onClick={() => setView("img")}>Bilder</button>
         <button role="tab" aria-selected={view === "media"} onClick={() => setView("media")}>Video</button>
       </div>
     </div>
@@ -69,6 +76,27 @@ function MediaInner({ p }) {
     return observeVisible(v, (on) => (on ? v.play().catch(() => {}) : v.pause()), { threshold: 0.4 });
   }, []);
 
+  /* Bilder blättern langsam von selbst, solange sie sichtbar sind –
+     bis jemand selbst eine Ansicht wählt */
+  const touched = useRef(false);
+  const n = p.images.length;
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    const el = box.current;
+    if (!el || p.video || reducedMotion()) return;
+    return observeVisible(el, setSeen, { threshold: 0.5 });
+  }, [p.video]);
+  const full = isFull(p.images[sel]);
+  useEffect(() => {
+    if (!seen || n < 2 || touched.current || reducedMotion()) return;
+    const t = setTimeout(() => setSel((i) => (i + 1) % n), full ? PAN_MS + 1500 : 4200);
+    return () => clearTimeout(t);
+  }, [seen, sel, n, full]);
+  const pick = (i) => {
+    touched.current = true;
+    setSel(i);
+  };
+
   if (hasSchema(p.id) && (p.schema || !p.images.length) && !p.video) {
     return (
       <div className="pm pm--schema">
@@ -86,7 +114,14 @@ function MediaInner({ p }) {
   }
 
   return (
-    <div className={`pm${tall ? " pm--tall" : ""}`}>
+    <div
+      className={`pm${tall && !full ? " pm--tall" : ""}${full ? " pm--full" : ""}${seen ? " pm--seen" : ""}`}
+      ref={box}
+      onPointerDown={(e) => {
+        touched.current = true;
+        e.currentTarget.classList.add("pm--touched");
+      }}
+    >
       <img
         key={p.images[sel]}
         src={p.images[sel]}
@@ -94,12 +129,18 @@ function MediaInner({ p }) {
         loading="lazy"
         decoding="async"
         draggable="false"
-        onLoad={(e) => setTall(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth * 1.1)}
+        style={full ? { "--pan": `${PAN_MS}ms` } : undefined}
+        onLoad={(e) => {
+          const im = e.currentTarget;
+          setTall(im.naturalHeight > im.naturalWidth * 1.1);
+          /* Ganzseitige Screenshots: Strecke bis zum Seitenende */
+          if (full) im.style.setProperty("--d", `${Math.min(0, im.parentElement.clientHeight - im.clientHeight)}px`);
+        }}
       />
       {p.images.length > 1 && (
         <div className="pm__dots" role="group" aria-label={`${p.name}: Ansichten`}>
           {p.images.map((src, i) => (
-            <button key={src} type="button" className="pm__dot" aria-pressed={i === sel} aria-label={`Ansicht ${i + 1}`} onClick={() => setSel(i)} />
+            <button key={src} type="button" className="pm__dot" aria-pressed={i === sel} aria-label={`Ansicht ${i + 1}`} onClick={() => pick(i)} />
           ))}
         </div>
       )}
