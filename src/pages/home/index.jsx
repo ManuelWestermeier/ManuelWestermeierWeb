@@ -16,12 +16,10 @@ const STATEMENT =
   "Ich baue Dinge, die es vorher nicht gab: ein Betriebssystem für einen Mikrocontroller, ein Routing-Protokoll für Funknetze und ein Boot, das Ertrinkende selbst findet.";
 
 function Hero() {
-  const card = useTilt(6);
   const title = useRef(null);
   const sub = useRef(null);
   const orbit = useRef(null);
   const cue = useRef(null);
-  const cardMove = useRef(null);
 
   /* Nur transform/opacity – keine Layout- oder Stilneuberechnung */
   const ref = useScrollProgress((p) => {
@@ -29,16 +27,20 @@ function Hero() {
       title.current.style.transform = `translate3d(0,${-p * 18}vh,0)`;
       title.current.style.opacity = Math.max(0, 1 - p * 1.25);
     }
-    if (sub.current) sub.current.style.opacity = Math.max(0, 1 - p * 2);
+    /* Untertitel und Knöpfe weichen dem nächsten Abschnitt –
+       ausgeblendet auch nicht mehr klickbar */
+    for (const el of [sub.current]) {
+      if (!el) continue;
+      el.style.opacity = Math.max(0, 1 - p * 2.2);
+      el.style.visibility = p > 0.45 ? "hidden" : "";
+    }
     if (orbit.current) {
       orbit.current.style.transform = `translate3d(0,-50%,0) scale(${1 + p * 0.9})`;
       orbit.current.style.opacity = 1 - p * 0.85;
     }
-    if (cardMove.current) cardMove.current.style.transform = `translate3d(0,${-p * 30}vh,0)`;
     if (cue.current) cue.current.style.opacity = Math.max(0, 1 - p * 4);
   });
 
-  const yes = awards[0];
 
   return (
     <section className="hero" ref={ref} aria-labelledby="hero-title">
@@ -51,29 +53,20 @@ function Hero() {
             <span className="hero__line hero__line--2">Westermeier</span>
           </h1>
 
-          <p className="hero__sub" ref={sub}>
-            Betriebssysteme, Netzwerkprotokolle und KI.
-          </p>
+          <div ref={sub}>
+            <p className="hero__sub">Betriebssysteme, Netzwerkprotokolle und KI.</p>
 
-          <div className="hero__cta">
-            <Link to="/contact" className="pill pill--solid">
-              Kontakt aufnehmen <Icon name="arrow" size={16} className="arr" />
-            </Link>
-            <a href="https://www.linkedin.com/in/manuel-westermeier/" target="_blank" rel="noopener noreferrer" className="pill pill--ghost">
-              <Icon name="linkedin" size={16} /> LinkedIn
-            </a>
-            <a href="https://wa.me/4915256427900" target="_blank" rel="noopener noreferrer" className="pill pill--ghost">
-              <Icon name="whatsapp" size={16} /> WhatsApp
-            </a>
-          </div>
-
-          <div className="hero__cardpos" ref={cardMove}>
-            <Link to="/wettbewerbe" className="hero__card glass glass--refract tilt" ref={card}>
-              <span className="meta">{yes.round} {year(yes.date)}</span>
-              <span className="hero__card-title">{yes.prize} bei YES!</span>
-              <span className="dim hero__card-sub">{yes.project}, {yes.team}</span>
-              <Icon name="arrow" size={16} className="hero__card-arr" />
-            </Link>
+            <div className="hero__cta">
+              <Link to="/contact" className="pill pill--solid">
+                Kontakt aufnehmen <Icon name="arrow" size={16} className="arr" />
+              </Link>
+              <a href="https://www.linkedin.com/in/manuel-westermeier/" target="_blank" rel="noopener noreferrer" className="pill pill--ghost">
+                <Icon name="linkedin" size={16} /> LinkedIn
+              </a>
+              <a href="https://wa.me/4915256427900" target="_blank" rel="noopener noreferrer" className="pill pill--ghost">
+                <Icon name="whatsapp" size={16} /> WhatsApp
+              </a>
+            </div>
           </div>
         </div>
 
@@ -189,7 +182,7 @@ function Awards() {
     <section className="aw wrap grid" aria-labelledby="aw-title">
       <div className="aw__side">
         <h2 id="aw-title" className="aw__count rise">
-          {awards.length}
+          {awards.filter((a) => !a.event).length}
           <span>Auszeichnungen seit {year(awards[awards.length - 1].date)}</span>
         </h2>
         <Link to="/wettbewerbe" className="ul aw__more rise" style={{ "--d": ".1s" }}>
@@ -198,11 +191,14 @@ function Awards() {
       </div>
 
       <ol className="aw__list">
-        {awards.map((a, i) => (
+        {awards.filter((a) => !a.event).map((a, i) => (
           <li key={a.id} className="aw__row rise" style={{ "--d": `${(i % 3) * 0.05}s` }}>
             <span className="meta">{year(a.date)}</span>
             <span className="aw__prize">{a.prize}</span>
-            <span className="dim aw__proj">{a.project}</span>
+            <span className="dim aw__proj">
+              {a.project}
+              {a.team && ` · ${a.team}`}
+            </span>
             <span className="meta aw__where">{a.contest} · {a.round}</span>
           </li>
         ))}

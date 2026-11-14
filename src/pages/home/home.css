@@ -696,7 +696,7 @@
 }
 
 
-/* TEST: Kugel vollständig im Bild */
+/* Kugel vollständig im Bild */
 .orbit {
   width: min(52vw, 84vh);
   height: min(52vw, 84vh);
@@ -730,3 +730,44 @@
     right: 4vw;
   }
 }
+
+/* Auszeichnung als schmales Badge über dem Namen – nichts schwebt mehr
+   über der Kugel */
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(18px, 3vh, 28px);
+  padding: 7px 14px 7px 12px;
+  border-radius: 999px;
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  animation: lineIn 1.1s 0.1s var(--ease) both;
+  transition: color 0.3s var(--ease), background 0.3s var(--ease);
+}
+.hero__badge:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+.hero__badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(255, 212, 0, 0.14);
+}
+.hero__line--2::after { display: none; }
+.hero__inner { position: relative; z-index: 1; }
+
+/* Vorschaubilder nie beschneiden, kein Farbschleier */
+.pcard__media { background: #000; }
+.pcard__media img,
+.pcard:hover .pcard__media img {
+  object-fit: contain;
+  transform: none;
+}
+.pcard__media::after { display: none; }

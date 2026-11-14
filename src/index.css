@@ -561,7 +561,7 @@ main {
   outline-offset: 3px;
 }
 
-/* TEST: Schwarz/Weiß mit Gelb- und Blau-Akzenten */
+/* Schwarz/Weiß mit Gelb- und Blau-Akzenten */
 :root {
   --bg: #000;
   --bg-1: #0a0a0a;
@@ -572,7 +572,7 @@ main {
   --ink: #fff;
   --ink-2: #c8c8c8;
   --ink-3: #8a8a8a;
-  --ink-4: #3a3a3a;
+  --ink-4: #565656;
   --accent: #ffd400;
   --accent-ink: #000;
   --line: rgba(255, 255, 255, 0.08);
@@ -581,7 +581,7 @@ main {
   --glass-edge: rgba(255, 255, 255, 0.12);
 }
 
-/* TEST: Hintergrund mit Tiefe – fixe Lichtflecken, einmal gemalt, kein Filter */
+/* Hintergrund mit Tiefe – fixe Lichtflecken, einmal gemalt, kein Filter */
 body { background: transparent; }
 body::before {
   content: "";
@@ -599,25 +599,23 @@ body::before {
   mask: radial-gradient(120% 90% at 50% 30%, #000 40%, transparent 100%);
 }
 
-/* TEST: Glas – klar, satt, Kante nur als Hauch */
-.glass {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.02) 50%), rgba(10, 12, 20, 0.35);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9);
-}
+/* Flächen – ruhig, dunkel, nur eine Haarlinie als Kante */
+.glass,
 .lite .glass {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.025) 50%), rgba(14, 16, 24, 0.95);
-  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9);
+  background: rgba(12, 13, 18, 0.72);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07), 0 30px 60px -40px rgba(0, 0, 0, 0.9);
 }
-.glass::before {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0) 40%);
+.glass {
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
 }
+.lite .glass { background: rgba(12, 13, 18, 0.96); }
+.glass::before { display: none; }
 .glass::after {
-  background: radial-gradient(420px circle at var(--mx, 30%) var(--my, 0%), rgba(255, 255, 255, 0.10), transparent 45%);
+  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, -30%), rgba(255, 255, 255, 0.05), transparent 60%);
 }
 
-/* TEST: Knöpfe – Primär massiv weiß, Sekundär Glas; Gelb nur als Punkt */
+/* Knöpfe – Primär massiv weiß, Sekundär Glas; Gelb nur als Punkt */
 .pill {
   min-height: 50px;
   padding: 0 26px;
@@ -652,3 +650,8 @@ body::before {
   border-radius: 50%;
   background: var(--accent);
 }
+
+/* Lesbarkeit: gedimmte Zusätze nie dunkler als --ink-3 */
+.page__title .dim,
+.cmp__title .dim,
+.tl__year { color: var(--ink-3); }

@@ -506,3 +506,348 @@
     font-size: clamp(1.5rem, 7vw, 2rem);
   }
 }
+
+/* Zeitleiste direkt unter dem Titel */
+.cmp { padding-top: clamp(120px, 18vh, 180px); }
+.cmp__title .dim { font-size: 0.42em; letter-spacing: -0.01em; color: var(--ink-3); }
+.tl { margin-top: clamp(28px, 5vh, 56px); }
+.ax__label .ax__short + .ax__short { display: block; }
+.tl__note { margin-top: 6px; max-width: 52ch; }
+
+/* Wege pro Projekt */
+.paths {
+  display: grid;
+  gap: clamp(40px, 6vh, 64px);
+  margin-top: clamp(64px, 10vh, 120px);
+  margin-bottom: clamp(40px, 8vh, 96px);
+}
+.path__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 20px;
+  margin-bottom: 22px;
+}
+.path__name {
+  font-size: var(--t-xl);
+  font-weight: 200;
+  letter-spacing: -0.04em;
+}
+.path__steps {
+  list-style: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  padding: 0;
+  margin: 0;
+}
+.path__step {
+  position: relative;
+  padding-right: 48px;
+}
+/* Verbindung mit Pfeilspitze zur nächsten Station */
+.path__step:not(.path__step--last)::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 20px;
+  right: 18px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), var(--deep));
+}
+.path__step:not(.path__step--last)::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 19px;
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid var(--deep);
+  border-right: 1px solid var(--deep);
+  transform: rotate(45deg);
+}
+.path__step button {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  padding: 26px 0 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.path__step button::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+.path__step--last button::before {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.path__prize {
+  font-size: var(--t-l);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  transition: color 0.25s;
+}
+.path__step button:hover .path__prize {
+  color: var(--accent);
+}
+.path__round {
+  font-size: var(--t-s);
+}
+@media (max-width: 760px) {
+  .path__steps {
+    grid-auto-flow: row;
+    gap: 22px;
+  }
+  .path__step {
+    padding: 0;
+  }
+  .path__step:not(.path__step--last)::after {
+    top: 18px;
+    bottom: -18px;
+    left: 5px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), var(--deep));
+  }
+  .path__step:not(.path__step--last)::before {
+    display: none;
+  }
+}
+
+/* Mehrere Preise an einem Tag: ein Eintrag, Preise untereinander */
+.tl__group {
+  grid-column: 3 / -1;
+  display: grid;
+  gap: clamp(22px, 3vh, 32px);
+}
+.tl__entry {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 4fr);
+  gap: 12px 24px;
+}
+.tl__entry + .tl__entry {
+  padding-top: clamp(22px, 3vh, 32px);
+  border-top: 1px solid var(--line);
+}
+.tl__item--major .tl__prize {
+  color: var(--ink);
+}
+.tl__entry--major .tl__prize {
+  color: var(--accent);
+}
+.tl__entry--event .tl__prize {
+  color: var(--ink-2);
+}
+.tl__item--major .tl__node {
+  box-shadow: 0 0 18px rgba(255, 212, 0, 0.35);
+}
+.tl__count {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink-3);
+}
+@media (max-width: 760px) {
+  .tl__group {
+    grid-column: auto;
+  }
+  .tl__entry {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .tl__entry { grid-template-columns: 1fr; }
+  .tl__entry .tl__main,
+  .tl__entry .tl__side { grid-area: auto; grid-column: auto; }
+}
+@media (max-width: 760px) {
+  .tl__group { grid-area: 2 / 2; }
+}
+
+/* Gelb nur am Punkt, Preise in Weiß */
+.tl__entry--major .tl__prize { color: var(--ink); }
+@media (max-width: 760px) {
+  .path__step button { padding: 0 0 0 28px; }
+  .path__step button::before { top: 3px; }
+}
+
+/* Achse: jeder Preis mit „wofür“; mehrere an einem Tag durch Haarlinien getrennt */
+.ax__label { max-width: 180px; }
+.ax__item {
+  display: grid;
+  gap: 1px;
+  padding: 6px 0;
+}
+.ax__item + .ax__item {
+  border-top: 1px solid var(--line-2);
+}
+.ax__item:first-of-type { padding-top: 2px; }
+.ax__what {
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.ax__pt button:hover .ax__what { color: var(--ink-2); }
+
+/* Mehrere Preise am selben Tag: nebeneinander, senkrechte Haarlinien */
+.ax__label--multi {
+  max-width: none;
+  grid-template-columns: repeat(auto-fit, minmax(0, max-content));
+  column-gap: 0;
+}
+.ax__label--multi time { grid-column: 1 / -1; }
+.ax__label--multi .ax__item {
+  grid-row: 2;
+  padding: 2px 14px 0;
+  border-top: 0;
+  border-left: 1px solid var(--line-2);
+}
+.ax__label--multi .ax__item:first-of-type { padding-left: 0; border-left: 0; }
+.path__team { flex-basis: 100%; }
+.ax__pt:not(.ax__pt--l):not(.ax__pt--r) .ax__label:not(.ax__label--multi) { max-width: 150px; }
+
+/* Achse: Einblenden beim Scrollen – Linie zieht sich auf, Punkte folgen */
+.ax__line {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.4s var(--ease);
+}
+.ax__pt {
+  opacity: 0;
+  transform: translateY(var(--dy, 10px));
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: calc(0.25s + var(--i, 0) * 0.12s);
+}
+.ax__pt--up {
+  --dy: -10px;
+}
+.ax__today,
+.ax__month {
+  opacity: 0;
+  transition: opacity 0.8s var(--ease) 0.2s;
+}
+.ax--in .ax__line {
+  transform: none;
+}
+.ax--in .ax__pt {
+  opacity: 1;
+  transform: none;
+}
+.ax--in .ax__today,
+.ax--in .ax__month {
+  opacity: 1;
+}
+.ax__pt--major::before {
+  box-shadow: 0 0 16px rgba(255, 212, 0, 0.4);
+}
+.ax__today {
+  box-shadow: 0 0 0 4px rgba(255, 212, 0, 0.1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ax__line,
+  .ax__pt,
+  .ax__today,
+  .ax__month {
+    transition: none;
+  }
+}
+
+/* Handy: dieselbe Achse senkrecht, neueste oben, keine Überlappung */
+@media (max-width: 760px) {
+  .ax-scroll {
+    overflow: visible;
+  }
+  .ax {
+    min-width: 0;
+    height: auto;
+    margin: 0;
+  }
+  .ax__month,
+  .ax__line,
+  .ax__today {
+    display: none;
+  }
+  .ax__pts {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 22px;
+    padding: 0 0 0 26px;
+    margin: 0;
+  }
+  /* senkrechte Linie, zieht sich von oben auf */
+  .ax__pts::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--ink-3), var(--line-2));
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: transform 1.4s var(--ease);
+  }
+  .ax--in .ax__pts::before {
+    transform: none;
+  }
+  .ax__pt,
+  .ax__pt--up {
+    --dy: 10px;
+    position: relative;
+    top: auto;
+    left: auto !important;
+    width: auto;
+  }
+  .ax__pt::before {
+    left: -26px;
+    top: 4px;
+  }
+  .ax__pt button,
+  .ax__pt--up button,
+  .ax__pt--r button {
+    position: static;
+    padding: 0;
+    border: 0;
+    text-align: left;
+    width: 100%;
+  }
+  .ax__label,
+  .ax__pt--r .ax__label,
+  .ax__label--multi {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: auto;
+    max-width: none !important;
+    padding: 0;
+  }
+  .ax__label--multi .ax__item,
+  .ax__label--multi .ax__item:first-of-type {
+    grid-row: auto;
+    padding: 6px 0 6px 12px;
+    border-left: 1px solid var(--line-2);
+  }
+  .ax__label--multi .ax__item + .ax__item {
+    margin-top: 2px;
+  }
+  .ax__legend {
+    min-width: 0;
+    margin: 22px 0 0;
+  }
+  .ax__legend-span {
+    display: none;
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "../../components/Icon";
-import { useRise, useTilt } from "../../lib/hooks";
+import { useRise } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 
 const ways = [
@@ -12,12 +12,13 @@ const ways = [
 ];
 
 function ChiemWeb() {
-  const ref = useTilt(4);
   return (
-    <a href="https://chiemweb.de" target="_blank" rel="noopener noreferrer" className="cw glass tilt rise" ref={ref} style={{ "--d": ".2s" }}>
+    <a href="https://chiemweb.de" target="_blank" rel="noopener noreferrer" className="cw rise" style={{ "--d": ".2s" }}>
       <span className="meta">Für Unternehmen</span>
       <span className="cw__t">Eine Website für Ihren Betrieb baut ChiemWeb aus dem Chiemgau.</span>
-      <span className="ul cw__l">chiemweb.de <Icon name="arrow" size={14} /></span>
+      <span className="cw__l">
+        chiemweb.de <Icon name="arrow" size={14} />
+      </span>
     </a>
   );
 }

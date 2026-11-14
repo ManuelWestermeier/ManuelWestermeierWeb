@@ -211,3 +211,31 @@
   object-fit: cover;
   margin-bottom: 1.5rem;
 }
+
+/* ChiemWeb als ruhige Zeile statt Kachel */
+.cw {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 12px 32px;
+  max-width: none;
+  margin: clamp(72px, 12vh, 140px) 0 0;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--line-2);
+}
+.cw__t {
+  font-size: var(--t-m);
+  color: var(--ink-2);
+}
+.cw__l {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-s);
+  color: #fff;
+  transition: transform 0.3s var(--ease);
+}
+.cw:hover .cw__l { transform: translateX(3px); }
+@media (max-width: 760px) {
+  .cw { grid-template-columns: 1fr; }
+}

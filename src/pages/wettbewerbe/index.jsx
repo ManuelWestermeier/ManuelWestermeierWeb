@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import Icon from "../../components/Icon";
-import { awards, fmtDate, fmtRange, next, time, year } from "../../data/awards";
-import { smoothScrollTo, useRise, useTilt } from "../../lib/hooks";
+import { awards, fmtDate, fmtRange, paths, time, year } from "../../data/awards";
+import { observeVisible, reducedMotion, smoothScrollTo, useRise } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 import "./wettbewerbe.css";
 
@@ -13,7 +13,6 @@ const jsonLd = {
   award: awards.map((a) => `${a.prize} – ${a.contest} ${a.round} ${year(a.date)}: ${a.project}`),
 };
 
-const MONTHS = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
 const iso = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 
 function Links({ links }) {
@@ -26,55 +25,6 @@ function Links({ links }) {
         </a>
       ))}
     </div>
-  );
-}
-
-function Highlight({ a }) {
-  const ref = useTilt(4);
-  return (
-    <article className="hl glass tilt rise" ref={ref}>
-      <p className="meta">
-        {a.contest} · {a.round} · {fmtRange(a)}
-        {a.place && ` · ${a.place}`}
-      </p>
-      <h2 className="hl__prize">{a.prize}</h2>
-      <div className="hl__body">
-        <div>
-          <p className="hl__project">{a.project}</p>
-          <p className="dim">{a.note}</p>
-        </div>
-        <dl className="hl__facts">
-          <div>
-            <dt className="meta">Forschungsfrage</dt>
-            <dd>Wie können Mieterinnen und Mieter aktiv an der Energiewende teilhaben und finanziell davon profitieren?</dd>
-          </div>
-          <div>
-            <dt className="meta">Partner</dt>
-            <dd>{a.partner}</dd>
-          </div>
-          <div>
-            <dt className="meta">Team</dt>
-            <dd>{a.team}</dd>
-          </div>
-        </dl>
-      </div>
-      <Links links={a.links} />
-    </article>
-  );
-}
-
-function Next() {
-  const ref = useTilt(4);
-  return (
-    <article className="nx glass tilt rise" ref={ref} aria-labelledby="nx-title">
-      <p className="meta">Nächste Teilnahme · {next.contest} · {next.field}</p>
-      <h2 id="nx-title" className="nx__lead">{next.lead}</h2>
-      <p className="nx__text">{next.text}</p>
-      <p className="dim nx__team">{next.project} · {next.team}</p>
-      <a href={next.href} target="_blank" rel="noopener noreferrer" className="pill pill--solid">
-        twr-systems.de <Icon name="arrow" size={15} className="arr" />
-      </a>
-    </article>
   );
 }
 
@@ -91,6 +41,7 @@ function jumpTo(id) {
 /* Maßstabsgetreue Zeitachse: jeder Monat gleich breit, Punkte tagesgenau. */
 function Axis({ items }) {
   const box = useRef(null);
+  const axis = useRef(null);
 
   /* Schmale Bildschirme: Achse am neuesten Ende beginnen lassen */
   useEffect(() => {
@@ -98,40 +49,67 @@ function Axis({ items }) {
     if (el) el.scrollLeft = el.scrollWidth;
   }, []);
 
-  const { start, end, months, points, today } = useMemo(() => {
+  /* Beim Hineinscrollen: Linie aufziehen, Punkte nacheinander einblenden */
+  useEffect(() => {
+    const el = axis.current;
+    if (!el) return;
+    if (reducedMotion()) return void el.classList.add("ax--in");
+    const stop = observeVisible(
+      el,
+      (on) => {
+        if (!on) return;
+        el.classList.add("ax--in");
+        stop();
+      },
+      { threshold: 0.2 },
+    );
+    return stop;
+  }, []);
+
+  /* Nicht maßstabsgetreu: Ereignisse stehen in gleichen Abständen,
+     Jahreswechsel werden markiert – keine leeren Monate */
+  const { start, months, points, today } = useMemo(() => {
     const now = new Date();
     const asc = [...items].sort((a, b) => time(a.date) - time(b.date));
-    const first = new Date(`${asc[0].date}T12:00:00`);
-    const last = new Date(Math.max(time(asc[asc.length - 1].date), now.getTime()));
-    const s = new Date(first.getFullYear(), first.getMonth() - 1, 1);
-    const e = new Date(last.getFullYear(), last.getMonth() + 2, 1);
-    const span = e - s;
-    const pos = (t) => ((t - s) / span) * 100;
+    const groups = Object.values(
+      asc.reduce((g, a) => {
+        (g[a.date] ||= []).push(a);
+        return g;
+      }, {}),
+    );
+    const n = groups.length;
+    const pos = (i) => 6 + (n > 1 ? (i / (n - 1)) * 86 : 43);
 
-    const ms = [];
-    for (let d = new Date(s); d < e; d.setMonth(d.getMonth() + 1)) {
-      ms.push({ key: iso(d), m: d.getMonth(), y: d.getFullYear(), x: pos(d.getTime()) });
-    }
+    const ys = [];
+    groups.forEach((g, i) => {
+      const y = Number(year(g[0].date));
+      if (!ys.length || ys[ys.length - 1].y !== y) {
+        const x = i === 0 ? 1 : (pos(i - 1) + pos(i)) / 2;
+        ys.push({ key: `y${y}`, m: 0, y, x });
+      }
+    });
 
     return {
-      start: s,
-      end: e,
-      months: ms,
-      today: { x: pos(now.getTime()), label: fmtDate(iso(now)) },
-      points: asc.map((a, i) => {
-        const x = pos(time(a.date));
-        return { a, x, up: i % 2 === 0, edge: x < 9 ? "l" : x > 91 ? "r" : "" };
+      start: new Date(`${asc[0].date}T12:00:00`),
+      months: ys,
+      today: { x: 98, label: fmtDate(iso(now)) },
+      points: groups.map((group, i) => {
+        const x = pos(i);
+        /* Breite Mehrfach-Labels liegen unten; was rechts daneben
+           auf derselben Seite läge, wandert nach oben */
+        const multi = (j) => groups[j]?.length > 1;
+        const up = multi(i) ? false : multi(i - 2) || multi(i + 2) ? true : i % 2 === 0;
+        return { a: group[0], group, x, up, edge: x < 9 ? "l" : x > 91 ? "r" : "" };
       }),
     };
   }, [items]);
 
   return (
     <div className="ax-scroll rise" ref={box} role="region" aria-label="Zeitachse" tabIndex={0}>
-      <div className="ax">
+      <div className="ax" ref={axis}>
         {months.map((m) => (
           <span key={m.key} className={`ax__month${m.m === 0 ? " ax__month--year" : ""}`} style={{ left: `${m.x}%` }} aria-hidden="true">
-            {(m.m === 0 || m.key === months[0].key) && <b className="ax__year">{m.y}</b>}
-            <i>{MONTHS[m.m]}</i>
+            <b className="ax__year">{m.y}</b>
           </span>
         ))}
 
@@ -140,12 +118,17 @@ function Axis({ items }) {
         <span className="ax__today" style={{ left: `${today.x}%` }} title={`Heute, ${today.label}`} aria-hidden="true" />
 
         <ol className="ax__pts">
-          {points.map(({ a, x, up, edge }) => (
-            <li key={a.id} className={`ax__pt${up ? " ax__pt--up" : ""}${a.major ? " ax__pt--major" : ""}${edge ? ` ax__pt--${edge}` : ""}`} style={{ left: `${x}%` }}>
-              <button type="button" onClick={() => jumpTo(a.id)} aria-label={`${a.short}, ${fmtRange(a)}: zum Eintrag springen`}>
-                <span className="ax__label">
+          {points.map(({ a, group, x, up, edge }, i) => (
+            <li key={a.id} className={`ax__pt${up ? " ax__pt--up" : ""}${group.some((g) => g.major) ? " ax__pt--major" : ""}${edge ? ` ax__pt--${edge}` : ""}`} style={{ left: `${x}%`, "--i": i }}>
+              <button type="button" onClick={() => jumpTo(a.id)} aria-label={`${group.map((g) => `${g.short} (${g.what})`).join(", ")}, ${fmtRange(a)}: zum Eintrag springen`}>
+                <span className={`ax__label${group.length > 1 ? " ax__label--multi" : ""}`}>
                   <time className="meta" dateTime={a.date}>{fmtRange(a)}</time>
-                  <span className="ax__short">{a.short}</span>
+                  {group.map((g) => (
+                    <span key={g.id} className="ax__item">
+                      <span className="ax__short">{g.short}</span>
+                      <span className="ax__what">{g.what}</span>
+                    </span>
+                  ))}
                 </span>
               </button>
             </li>
@@ -155,9 +138,40 @@ function Axis({ items }) {
       <p className="meta ax__legend">
         <span className="ax__legend-dot" aria-hidden="true" /> Heute · {today.label}
         <span className="ax__legend-span">
-          {fmtDate(iso(start))} – {fmtDate(iso(new Date(end - 864e5)))}
+          {fmtDate(iso(start))} – heute
         </span>
       </p>
+    </div>
+  );
+}
+
+/* Wege: Stationen eines Projekts nebeneinander, verbunden durch Pfeile */
+function Paths() {
+  return (
+    <div className="paths">
+      {paths.map((p) => {
+        const steps = awards.filter((a) => a.path === p.id).sort((a, b) => time(a.date) - time(b.date));
+        return (
+          <section key={p.id} className="path rise" aria-label={`Weg ${p.name}`}>
+            <header className="path__head">
+              <h2 className="path__name">{p.name}</h2>
+              <p className="dim">{p.line}</p>
+              {p.team && <p className="meta path__team">{p.team}</p>}
+            </header>
+            <ol className="path__steps">
+              {steps.map((a, i) => (
+                <li key={a.id} className={`path__step${i === steps.length - 1 ? " path__step--last" : ""}`}>
+                  <button type="button" onClick={() => jumpTo(a.id)}>
+                    <span className="meta">{fmtRange(a)}</span>
+                    <span className="path__prize">{a.prize}</span>
+                    <span className="dim path__round">{a.round}</span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </section>
+        );
+      })}
     </div>
   );
 }
@@ -166,62 +180,76 @@ export default function Wettbewerbe() {
   useSeo({
     title: "Wettbewerbe",
     description:
-      "Bundessieg bei YES! 2026 mit EnergieFlow. Jugend forscht, Regionalwettbewerb Rosenheim: 1. Preis Arbeitswelt für TWR, 3. Preise für LHRP und MW-Protokoll, Sonderpreise für ESP32 Mini OS und Fraunhofer Talents.",
+      "Bundessieg bei YES! 2026 mit EnergieFlow. Jugend forscht 2026, Regionalwettbewerb Rosenheim: 1. Preis für TWR, 3. Preis für LHRP, Sonderpreis Ressourceneffizienz für ESP32 Mini OS. Landeswettbewerb Bayern, European Talent School, Schülerstipendium QAware.",
     path: "/wettbewerbe",
     jsonLd,
   });
   useRise();
 
   const sorted = useMemo(() => [...awards].sort((a, b) => time(b.date) - time(a.date)), []);
-  const yes = awards.find((a) => a.id === "yes-2026");
+  /* Was am selben Tag war, steht in einem Eintrag */
+  const days = useMemo(() => {
+    const out = [];
+    for (const a of sorted) {
+      const last = out[out.length - 1];
+      if (last && last[0].date === a.date) last.push(a);
+      else out.push([a]);
+    }
+    return out;
+  }, [sorted]);
 
   return (
     <div className="cmp">
       <header className="wrap cmp__head">
         <h1 className="cmp__title rise">
-          Wettbewerbe<span className="dim"> seit {year(sorted[sorted.length - 1].date)}.</span>
+          Wettbewerbe
+          <span className="dim">
+            {" "}
+            · {sorted.filter((a) => !a.event).length} Auszeichnungen seit {year(sorted[sorted.length - 1].date)}
+          </span>
         </h1>
       </header>
 
-      <div className="wrap cmp__top">
-        <Highlight a={yes} />
-        <Next />
-      </div>
-
-      <section className="wrap tl" aria-labelledby="tl-title">
-        <div className="tl__head rise">
-          <h2 id="tl-title" className="tl__title">Zeitleiste</h2>
-          <p className="dim">
-            {sorted.length} Auszeichnungen in {new Set(sorted.map((a) => year(a.date))).size} Jahren, tagesgenau auf der Achse.
-          </p>
-        </div>
-
+      <section className="wrap tl" aria-label="Zeitleiste">
         <Axis items={awards} />
 
-        <ol className="tl__list" aria-label="Alle Auszeichnungen, neueste zuerst">
-          {sorted.map((a, i) => {
-            const newYear = i === 0 || year(sorted[i - 1].date) !== year(a.date);
+        <Paths />
+
+        <ol className="tl__list" aria-label="Alle Stationen, neueste zuerst">
+          {days.map((group, i) => {
+            const a = group[0];
+            const newYear = i === 0 || year(days[i - 1][0].date) !== year(a.date);
             return (
-              <React.Fragment key={a.id}>
+              <React.Fragment key={a.date}>
                 {newYear && (
                   <li className="tl__year rise" aria-hidden="true">
                     {year(a.date)}
                   </li>
                 )}
-                <li id={`aw-${a.id}`} className={`tl__item rise${a.major ? " tl__item--major" : ""}`}>
-                  <time className="meta tl__date" dateTime={a.date}>{fmtRange(a)}</time>
+                <li id={`aw-${a.id}`} className={`tl__item rise${group.some((g) => g.major) ? " tl__item--major" : ""}`}>
+                  <time className="meta tl__date" dateTime={a.date}>
+                    {fmtRange(a)}
+                    {group.length > 1 && <span className="tl__count">{group.length} Preise</span>}
+                  </time>
                   <span className="tl__node" aria-hidden="true" />
-                  <div className="tl__main">
-                    <p className="tl__prize">{a.prize}</p>
-                    <p className="tl__project">{a.project}</p>
-                    {a.team && <p className="dim tl__team">{a.team}</p>}
-                  </div>
-                  <div className="tl__side">
-                    <p className="meta">{a.contest}</p>
-                    <p className="dim">{a.round}</p>
-                    {a.field && <p className="dim">{a.field}</p>}
-                    {a.place && <p className="dim">{a.place}</p>}
-                    <Links links={a.links} />
+                  <div className="tl__group">
+                    {group.map((g, j) => (
+                      <div key={g.id} id={j ? `aw-${g.id}` : undefined} className={`tl__entry${g.major ? " tl__entry--major" : ""}${g.event ? " tl__entry--event" : ""}`}>
+                        <div className="tl__main">
+                          <p className="tl__prize">{g.prize}</p>
+                          <p className="tl__project">{g.project}</p>
+                          {g.team && <p className="dim tl__team">{g.team}</p>}
+                          {g.note && <p className="dim tl__note">{g.note}</p>}
+                        </div>
+                        <div className="tl__side">
+                          <p className="meta">{g.contest}</p>
+                          <p className="dim">{g.round}</p>
+                          {g.field && <p className="dim">{g.field}</p>}
+                          {g.place && <p className="dim">{g.place}</p>}
+                          <Links links={g.links} />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </li>
               </React.Fragment>
