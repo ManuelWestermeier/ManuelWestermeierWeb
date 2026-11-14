@@ -243,3 +243,106 @@
     gap: 14px;
   }
 }
+
+/* 3D-Modell */
+.pm-wrap {
+  position: relative;
+}
+.pm--3d {
+  background: radial-gradient(70% 60% at 50% 45%, rgba(30, 91, 255, 0.16), transparent 70%), #000;
+}
+.m3d {
+  position: absolute;
+  inset: 0;
+  cursor: grab;
+  touch-action: pan-y;
+}
+.m3d:active {
+  cursor: grabbing;
+}
+.m3d canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.m3d__state,
+.m3d__hint {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  color: var(--ink-3);
+  pointer-events: none;
+}
+.m3d__state {
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+}
+.pm__switch {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+.pm__switch button {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: var(--t-xs);
+  color: var(--ink-2);
+  background: none;
+  cursor: pointer;
+}
+.pm__switch button[aria-selected="true"] {
+  background: #fff;
+  color: #000;
+}
+
+/* Eckige Oberflächen nicht an den runden Rahmenecken abschneiden */
+.pm img {
+  inset: 3%;
+  width: 94%;
+  height: 94%;
+  border-radius: 10px;
+}
+
+.m3d__poster {
+  position: absolute;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  border-radius: 0 !important;
+}
+.m3d__go {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: var(--t-s);
+  font-weight: 500;
+  color: #000;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -10px rgba(30, 91, 255, 0.6);
+}
+.pm--tall img {
+  inset: auto;
+  top: 5%;
+  left: 50%;
+  width: auto;
+  height: 90%;
+  max-width: 90%;
+}

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { kinds, projects } from "../../data/projects";
 import Icon from "../../components/Icon";
 import Schema, { hasSchema } from "../../components/Schema";
+import Model3D from "../../components/Model3D";
 import { observeVisible, smoothScrollTo, useRise } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 import "./projects.css";
@@ -35,7 +36,28 @@ function Filter({ value, onChange }) {
 
 /* Bildschirmfotos im Hochformat (Handy) stehen schmal in der Mitte,
    Querformat füllt den Rahmen. Diagramme für Projekte ohne gute Fotos. */
+/* Projekte mit 3D-Modell: Umschalter zwischen Modell und Video */
 function Media({ p }) {
+  const [view, setView] = useState(p.model ? "3d" : "media");
+  if (!p.model) return <MediaInner p={p} />;
+  return (
+    <div className="pm-wrap">
+      {view === "3d" ? (
+        <div className="pm pm--3d">
+          <Model3D src={p.model} title={p.name} poster={p.modelPoster} />
+        </div>
+      ) : (
+        <MediaInner p={p} />
+      )}
+      <div className="pm__switch" role="tablist" aria-label="Ansicht">
+        <button role="tab" aria-selected={view === "3d"} onClick={() => setView("3d")}>3D-Modell</button>
+        <button role="tab" aria-selected={view === "media"} onClick={() => setView("media")}>Video</button>
+      </div>
+    </div>
+  );
+}
+
+function MediaInner({ p }) {
   const [sel, setSel] = useState(0);
   const [tall, setTall] = useState(false);
   const box = useRef(null);
