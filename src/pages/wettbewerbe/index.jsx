@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import Icon from "../../components/Icon";
+import Trophy from "../../components/Trophy";
 import { awards, fmtDate, fmtRange, paths, time, year } from "../../data/awards";
 import { observeVisible, reducedMotion, smoothScrollTo, useRise } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
@@ -163,7 +164,10 @@ function Paths() {
                 <li key={a.id} className={`path__step${i === steps.length - 1 ? " path__step--last" : ""}`}>
                   <button type="button" onClick={() => jumpTo(a.id)}>
                     <span className="meta">{fmtRange(a)}</span>
-                    <span className="path__prize">{a.prize}</span>
+                    <span className="path__prize">
+                      {!a.event && <Trophy prize={a.prize} size={20} />}
+                      {a.prize}
+                    </span>
                     <span className="dim path__round">{a.round}</span>
                   </button>
                 </li>
@@ -236,7 +240,10 @@ export default function Wettbewerbe() {
                     {group.map((g, j) => (
                       <div key={g.id} id={j ? `aw-${g.id}` : undefined} className={`tl__entry${g.major ? " tl__entry--major" : ""}${g.event ? " tl__entry--event" : ""}`}>
                         <div className="tl__main">
-                          <p className="tl__prize">{g.prize}</p>
+                          <p className="tl__prize">
+                            {!g.event && <Trophy prize={g.prize} size={30} className="tl__trophy" />}
+                            {g.prize}
+                          </p>
                           <p className="tl__project">{g.project}</p>
                           {g.team && <p className="dim tl__team">{g.team}</p>}
                           {g.note && <p className="dim tl__note">{g.note}</p>}

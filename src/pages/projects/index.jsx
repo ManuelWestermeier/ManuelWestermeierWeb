@@ -4,6 +4,7 @@ import { kinds, projects } from "../../data/projects";
 import Icon from "../../components/Icon";
 import Schema, { hasSchema } from "../../components/Schema";
 import Model3D from "../../components/Model3D";
+import Trophy from "../../components/Trophy";
 import { observeVisible, reducedMotion, smoothScrollTo, useRise } from "../../lib/hooks";
 import { useSeo } from "../../lib/seo";
 import "./projects.css";
@@ -108,7 +109,17 @@ function MediaInner({ p }) {
   if (p.video) {
     return (
       <div className="pm" ref={box}>
-        <video src={p.video} poster={p.poster} muted loop playsInline preload="none" aria-label={`${p.name} – Video`} />
+        <video
+          ref={(v) => v && (v.muted = true) && v.setAttribute("muted", "")}
+          src={p.video}
+          poster={p.poster}
+          muted
+          loop
+          playsInline
+          controls
+          preload="metadata"
+          aria-label={`${p.name} – Video`}
+        />
       </div>
     );
   }
@@ -159,7 +170,16 @@ function Slide({ p, i, n }) {
           </p>
           <h2 className="ps__name">{p.name}</h2>
           <p className="ps__line">{p.line}</p>
-          {p.award && <p className="ps__award">{p.award}</p>}
+          {p.award && (
+            <ul className="ps__awards">
+              {p.award.split(" · ").map((a) => (
+                <li key={a} className="ps__award">
+                  <Trophy prize={a} />
+                  {a}
+                </li>
+              ))}
+            </ul>
+          )}
           {(p.links.length > 0 || p.note) && (
             <div className="ps__links">
               {p.links.map((l, j) => (

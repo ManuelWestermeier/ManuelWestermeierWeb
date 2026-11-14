@@ -24,7 +24,7 @@ export const projects = [
     full: "Betriebssystem für ESP32",
     kind: "Embedded",
     line: "Ein Mini-Betriebssystem mit Touch-Display, Dateisystem, WLAN und eigenem GUI-Framework.",
-    images: ["/imag/live/mwos-apps.webp", "/imag/live/mwos-login.webp", "/imag/live/mwos-boot.webp", "/imag/live/tt-os-design.webp", "/imag/os/home.webp", "/imag/os/paint.webp", "/imag/os/fs.webp", "/imag/os/designer.webp", "/imag/os/wlan.webp", "/imag/os/login.webp"],
+    images: ["/imag/live/mwos-apps-clean.webp", "/imag/live/mwos-login-clean.webp", "/imag/live/tt-os-design.webp", "/imag/os/home.webp", "/imag/os/paint.webp", "/imag/os/fs.webp", "/imag/os/designer.webp", "/imag/os/wlan.webp", "/imag/os/login.webp"],
     links: [
       { label: "Quellcode", href: "https://github.com/ManuelWestermeier/esp-wroom-2-4-inch-os" },
       { label: "Demo auf TikTok", href: "https://www.tiktok.com/@pdev111" },
@@ -53,7 +53,7 @@ export const projects = [
     full: "Geteilte Einkaufslisten",
     kind: "Web",
     line: "Listen per Link oder QR-Code in Echtzeit teilen. Ohne Konto, ohne Werbung.",
-    images: ["/imag/live/easy-einkauf.webp", "/imag/live/easy-full.webp", "/imag/live/tt-easy-dark.webp", "/imag/easy-einkauf-list-page.webp"],
+    images: ["/imag/live/easy-einkauf.webp", "/imag/live/easy-full.webp"],
     links: [{ label: "easy-einkauf.de", href: "https://easy-einkauf.de/" }],
   },
   {
@@ -62,7 +62,7 @@ export const projects = [
     full: "Eigenes Betriebssystem auf Linux und Electron",
     kind: "Desktop",
     line: "Ein vollständiges Betriebssystem vom USB-Stick: Linux-Kern, Oberfläche in Electron, läuft im Arbeitsspeicher, Dateien verschlüsselt mit LUKS2.",
-    images: ["/imag/live/hectobase-desktop.webp", "/imag/live/hectobase-boot.webp", "/imag/live/hectobase-login.webp", "/imag/live/hectobase-files.webp", "/imag/live/hectobase-settings.webp", "/imag/live/hecto-full.webp"],
+    images: ["/imag/live/hectobase-laptop.webp", "/imag/live/hectobase-boot.webp", "/imag/live/hectobase-laptop-files.webp", "/imag/live/hectobase-login.webp", "/imag/live/hectobase-settings.webp", "/imag/live/hecto-full.webp"],
     links: [
       { label: "os.hectobase.com", href: "https://os.hectobase.com/" },
       { label: "Video auf TikTok", href: "https://www.tiktok.com/@pdev111/video/7698479686724226337" },
@@ -210,18 +210,6 @@ export const projects = [
     links: [{ label: "App öffnen", href: "https://web.manuel-westermeier.de/v-present/" }],
   },
   {
-    id: "rope-swing",
-    name: "Rope Swing",
-    full: "Physik-Spiel",
-    kind: "Spiele",
-    line: "Fliehkraft baut Tempo auf, der Schwung trägt weiter. Wie weit kommst du?",
-    images: ["/imag/live/tt-rope-swing.webp"],
-    links: [
-      { label: "Spielen", href: "https://g.l4bizz.com/rope-swing" },
-      { label: "Video auf TikTok", href: "https://www.tiktok.com/@pdev111/video/7698015072920046870" },
-    ],
-  },
-  {
     id: "memory",
     name: "Memory",
     full: "Online-Memory",
@@ -272,7 +260,7 @@ export const projects = [
 const ORDER = [
   "twr", "hectobase", "mw-os", "lhrp", "c6-os", "schneckenalarm", "kuein", "easy-einkauf",
   "privuschat", "hidden-fs", "wsnet", "next-gen-exe", "mw-browser", "quatsch", "notenbuch",
-  "chiemweb", "rope-swing", "browser-v1", "contacts", "v-present", "car-game", "jump-drive",
+  "chiemweb", "browser-v1", "contacts", "v-present", "car-game", "jump-drive",
   "car-top", "memory", "bird",
 ];
 projects.sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));

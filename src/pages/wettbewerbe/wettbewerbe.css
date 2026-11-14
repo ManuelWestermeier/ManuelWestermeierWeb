@@ -904,3 +904,25 @@
     transform: none;
   }
 }
+
+/* Pokale */
+.path__prize {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tl__trophy {
+  margin-right: 12px;
+  vertical-align: -0.1em;
+}
+.trophy {
+  flex: none;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.55));
+}
+.tl__prize {
+  display: flex;
+  align-items: flex-start;
+}
+.tl__trophy {
+  margin-top: 0.15em;
+}

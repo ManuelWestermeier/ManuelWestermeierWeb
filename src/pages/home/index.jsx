@@ -168,8 +168,8 @@ function Work() {
           </div>
         </div>
         <div className="work__track" ref={track}>
-          {featured.map((p) => (
-            <ProjectCard key={p.id} p={p} />
+          {featured.map((p, i) => (
+            <ProjectCard key={p.id} p={p} i={i} />
           ))}
         </div>
       </div>

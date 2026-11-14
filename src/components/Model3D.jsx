@@ -17,10 +17,11 @@ export default function Model3D({ src, title, poster }) {
     const start = async () => {
       started = true;
       setState("loading");
-      const [THREE, { GLTFLoader }, { OrbitControls }] = await Promise.all([
+      const [THREE, { GLTFLoader }, { OrbitControls }, { RoomEnvironment }] = await Promise.all([
         import("three"),
         import("three/examples/jsm/loaders/GLTFLoader.js"),
         import("three/examples/jsm/controls/OrbitControls.js"),
+        import("three/examples/jsm/environments/RoomEnvironment.js"),
       ]);
       const lite = isLite();
       const renderer = new THREE.WebGLRenderer({ antialias: !lite, alpha: true, preserveDrawingBuffer: true });
@@ -33,7 +34,11 @@ export default function Model3D({ src, title, poster }) {
       const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 50);
       camera.position.set(2.6, 1.5, 2.6);
 
-      scene.add(new THREE.HemisphereLight(0xdfe6ff, 0x101014, 1.4));
+      /* Weiches Studiolicht als Umgebung: saubere Spiegelungen auf dem Rumpf */
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+      scene.environmentIntensity = 0.55;
+      scene.add(new THREE.HemisphereLight(0xdfe6ff, 0x101014, 0.6));
       const key = new THREE.DirectionalLight(0xffffff, 2.6);
       key.position.set(3, 4, 2);
       scene.add(key);
@@ -62,8 +67,8 @@ export default function Model3D({ src, title, poster }) {
         const orange = /orange/i.test(o.name) || /orange/i.test(o.material.name);
         o.material = new THREE.MeshStandardMaterial({
           color: orange ? 0xf0501a : 0x2f3338,
-          roughness: orange ? 0.45 : 0.6,
-          metalness: orange ? 0.05 : 0.25,
+          roughness: orange ? 0.38 : 0.55,
+          metalness: orange ? 0.0 : 0.2,
         });
       });
       const b = new THREE.Box3().setFromObject(model);

@@ -30,29 +30,42 @@ const Arrow = ({ x1, y1, x2, y2, both, color = D, dash }) => (
   </g>
 );
 
-/* Baum-Mesh: Wurzel, zwei Ebenen Knoten, Pakete laufen entlang der Kanten */
+/* LHRP: Ein Paket steigt vom Absender im Baum auf, bis zum gemeinsamen
+   Vorfahren (hier die Wurzel), und steigt dann zum Ziel ab. */
 function Lhrp() {
-  const root = [400, 90];
-  const l1 = [[220, 230], [400, 230], [580, 230]];
-  const l2 = [[150, 380], [270, 380], [350, 380], [450, 380], [530, 380], [650, 380]];
+  const root = [400, 96];
+  const l1 = [[220, 236], [400, 236], [580, 236]];
+  const l2 = [[150, 384], [270, 384], [350, 384], [450, 384], [530, 384], [650, 384]];
   const edges = [
     [root, l1[0]], [root, l1[1]], [root, l1[2]],
     [l1[0], l2[0]], [l1[0], l2[1]], [l1[1], l2[2]], [l1[1], l2[3]], [l1[2], l2[4]], [l1[2], l2[5]],
   ];
+  const up = new Set([0, 3]);
+  const down = new Set([2, 8]);
+  const route = "M150 384 L220 236 L400 96 L580 236 L650 384";
   return (
     <>
       {edges.map(([a, b], i) => (
-        <line key={i} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={i === 1 || i === 6 ? B : D} strokeWidth={i === 1 || i === 6 ? 2 : 1.2} />
+        <line key={i} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={up.has(i) ? Y : down.has(i) ? B : D} strokeWidth={up.has(i) || down.has(i) ? 2.4 : 1.2} />
       ))}
-      <path d="M150 380 C 150 450, 650 450, 650 380" stroke={D} strokeDasharray="4 6" fill="none" />
-      <circle cx={root[0]} cy={root[1]} r="16" fill={Y} />
-      {l1.map(([x, y]) => <circle key={x} cx={x} cy={y} r="11" fill={W} />)}
-      {l2.map(([x, y]) => <circle key={x} cx={x} cy={y} r="8" fill="none" stroke={W} strokeWidth="1.5" />)}
-      <circle r="4" fill={B}>
-        <animateMotion dur="2.4s" repeatCount="indefinite" path="M350 380 L400 230 L400 90" />
+      {/* Route als laufender Strich */}
+      <path d={route} fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="2.4" strokeDasharray="14 600" strokeLinecap="round">
+        <animate attributeName="stroke-dashoffset" from="0" to="-614" dur="3.2s" repeatCount="indefinite" />
+      </path>
+      <circle cx={root[0]} cy={root[1]} r="15" fill="#fff" />
+      {l1.map(([x, y]) => <circle key={x} cx={x} cy={y} r="10" fill={W} />)}
+      {l2.map(([x, y], i) => (
+        <circle key={x} cx={x} cy={y} r="8" fill={i === 0 ? Y : i === 5 ? B : "#000"} stroke={i === 0 ? Y : i === 5 ? B : W} strokeWidth="1.5" />
+      ))}
+      <circle r="6" fill="#fff">
+        <animateMotion dur="3.2s" repeatCount="indefinite" path={route} />
       </circle>
-      <text x="430" y="96" fill="rgba(255,255,255,0.5)" fontSize="13" letterSpacing="1.5">ROOT</text>
-      <text x="400" y="470" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="13" letterSpacing="1.5">ESP-MESH · AES</text>
+      <text x="150" y="420" textAnchor="middle" fill={Y} fontSize="14" letterSpacing="1.5">START</text>
+      <text x="650" y="420" textAnchor="middle" fill="#7fa2f5" fontSize="14" letterSpacing="1.5">ZIEL</text>
+      <text x="400" y="62" textAnchor="middle" fill="rgba(255,255,255,0.55)" fontSize="13" letterSpacing="1.5">GEMEINSAMER VORFAHR</text>
+      <text x="236" y="150" textAnchor="end" fill={Y} fontSize="13" letterSpacing="1.5">1 · AUFSTEIGEN</text>
+      <text x="566" y="150" fill="#7fa2f5" fontSize="13" letterSpacing="1.5">2 · ABSTEIGEN</text>
+      <text x="400" y="470" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="13" letterSpacing="1.5">HIERARCHISCHES ROUTING · ESP-MESH · AES</text>
     </>
   );
 }

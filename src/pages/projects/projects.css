@@ -379,3 +379,19 @@
 .pm--touched img {
   animation-play-state: running, paused !important;
 }
+
+/* Auszeichnungen mit Pokal statt Punkt */
+.ps__awards {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+.ps__award::before {
+  display: none;
+}
+.trophy {
+  flex: none;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
