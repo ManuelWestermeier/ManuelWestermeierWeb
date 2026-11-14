@@ -8,7 +8,7 @@ const ways = [
   { icon: "phone", label: "Telefon", value: "+49 1525 6427 900", href: "tel:+4915256427900" },
   { icon: "github", label: "GitHub", value: "ManuelWestermeier", href: "https://github.com/ManuelWestermeier", ext: true },
   { icon: "linkedin", label: "LinkedIn", value: "manuel-westermeier", href: "https://www.linkedin.com/in/manuel-westermeier/", ext: true },
-  { icon: "tiktok", label: "TikTok", value: "@p111dev", href: "https://www.tiktok.com/@p111dev", ext: true },
+  { icon: "tiktok", label: "TikTok", value: "@pdev111", href: "https://www.tiktok.com/@pdev111", ext: true },
 ];
 
 function ChiemWeb() {

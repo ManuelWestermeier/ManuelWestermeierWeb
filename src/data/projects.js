@@ -22,10 +22,10 @@ export const projects = [
     full: "Betriebssystem für ESP32",
     kind: "Embedded",
     line: "Ein Mini-Betriebssystem mit Touch-Display, Dateisystem, WLAN und eigenem GUI-Framework.",
-    images: ["/imag/os/home.webp", "/imag/os/paint.webp", "/imag/os/fs.webp", "/imag/os/designer.webp", "/imag/os/wlan.webp", "/imag/os/login.webp"],
+    images: ["/imag/live/tt-os-design.webp", "/imag/os/home.webp", "/imag/os/paint.webp", "/imag/os/fs.webp", "/imag/os/designer.webp", "/imag/os/wlan.webp", "/imag/os/login.webp"],
     links: [
       { label: "Quellcode", href: "https://github.com/ManuelWestermeier/esp-wroom-2-4-inch-os" },
-      { label: "Demo auf TikTok", href: "https://www.tiktok.com/@p111dev" },
+      { label: "Demo auf TikTok", href: "https://www.tiktok.com/@pdev111" },
       { label: "Arbeit (PDF)", href: "https://wv.jugend-forscht.de/media/2025/project_120063/description/description_2026-01-26_22-41-07.pdf" },
     ],
     award: "Sonderpreis Ressourceneffizienz und Zirkularität",
@@ -51,8 +51,20 @@ export const projects = [
     full: "Geteilte Einkaufslisten",
     kind: "Web",
     line: "Listen per Link oder QR-Code in Echtzeit teilen. Ohne Konto, ohne Werbung.",
-    images: ["/imag/live/easy-einkauf.webp", "/imag/easy-einkauf-list-page.webp"],
+    images: ["/imag/live/easy-einkauf.webp", "/imag/live/tt-easy-dark.webp", "/imag/easy-einkauf-list-page.webp"],
     links: [{ label: "easy-einkauf.de", href: "https://easy-einkauf.de/" }],
+  },
+  {
+    id: "hectobase",
+    name: "HectoBase OS",
+    full: "Linux vom USB-Stick",
+    kind: "Security",
+    line: "Stick einstecken, starten, arbeiten. Läuft im Arbeitsspeicher, Dateien liegen verschlüsselt auf dem Stick.",
+    images: ["/imag/live/hectobase.webp", "/imag/live/tt-hectobase.webp"],
+    links: [
+      { label: "os.hectobase.com", href: "https://os.hectobase.com/" },
+      { label: "Video auf TikTok", href: "https://www.tiktok.com/@pdev111/video/7698479686724226337" },
+    ],
     featured: true,
   },
   {
@@ -192,6 +204,18 @@ export const projects = [
     line: "Markdown rein, Folien raus.",
     images: [],
     links: [{ label: "App öffnen", href: "https://web.manuel-westermeier.de/v-present/" }],
+  },
+  {
+    id: "rope-swing",
+    name: "Rope Swing",
+    full: "Physik-Spiel",
+    kind: "Spiele",
+    line: "Fliehkraft baut Tempo auf, der Schwung trägt weiter. Wie weit kommst du?",
+    images: ["/imag/live/tt-rope-swing.webp"],
+    links: [
+      { label: "Spielen", href: "https://g.l4bizz.com/rope-swing" },
+      { label: "Video auf TikTok", href: "https://www.tiktok.com/@pdev111/video/7698015072920046870" },
+    ],
   },
   {
     id: "memory",

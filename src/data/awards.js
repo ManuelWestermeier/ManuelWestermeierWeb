@@ -18,6 +18,7 @@ export const awards = [
     project: "TWR | KI-gestützte Rettung von Ertrinkenden",
     team: "mit Alexander Zhuchenko",
     note: "Eingelöst mit Präsentation von TWR.",
+    links: [{ label: "Fraunhofer Talent Schools", href: "https://www.fraunhofer.de/en/jobs-and-career/students_trainees/talentschools.html" }],
     major: true,
   },
   {
@@ -50,6 +51,7 @@ export const awards = [
     project: "EnergieFlow",
     team: "Team des Annette-Kolb-Gymnasiums",
     note: "Damit weiter ins Bundesfinale.",
+    links: [{ label: "Bericht des ZEW", href: "https://www.zew.de/AM10534-1" }],
     major: true,
   },
   {
@@ -59,12 +61,13 @@ export const awards = [
     what: "ESP32 OS · Berlin",
     date: "2026-09-29",
     from: "2026-09-28",
-    contest: "BilRess · Netzwerk Bildung für Ressourcenschonung",
-    round: "Treffen der Preisträger Jugend forscht in Berlin",
+    contest: "BilRess-Netzwerk · Stiftung Jugend forscht",
+    round: "Preisträgertreffen & 25. BilRess-Netzwerkkonferenz in Berlin",
     place: "Bundesumweltministerium, Berlin",
     prize: "Preisträgertreffen",
     project: "ESP32 Mini OS",
-    note: "Projekt als Poster im Ministerium ausgestellt.",
+    note: "Für die Preisträger des Sonderpreises Ressourceneffizienz und Zirkularität 2025 und 2026.",
+    links: [{ label: "Bundesumweltministerium", href: "https://www.bundesumweltministerium.de/media/jugend-forscht-fuer-ressourceneffizienz" }],
     event: true,
   },
   {
