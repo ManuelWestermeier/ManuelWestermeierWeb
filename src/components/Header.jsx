@@ -25,7 +25,7 @@ export default function Header() {
     <header className={`hdr${open ? " hdr--open" : ""}`}>
       <div className="hdr__bar glass">
         <Link to="/" className="hdr__brand" aria-label="Manuel Westermeier, Startseite">
-          <img className="hdr__logo" src="/logo.svg" alt="" width="26" height="26" />
+          <img className="hdr__logo" src="/logo-128.png" alt="" width="26" height="26" />
           Manuel <b>Westermeier</b>
         </Link>
 
