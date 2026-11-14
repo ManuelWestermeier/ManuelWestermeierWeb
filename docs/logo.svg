@@ -1,47 +1,45 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <title>Manuel Westermeier</title>
   <defs>
-    <radialGradient id="bg" cx="0.5" cy="0.42" r="0.7">
-      <stop offset="0" stop-color="#0b1633"/>
+    <radialGradient id="bg" cx="0.5" cy="0.38" r="0.75">
+      <stop offset="0" stop-color="#0d1a3a"/>
       <stop offset="1" stop-color="#030409"/>
     </radialGradient>
-    <radialGradient id="core" cx="0.42" cy="0.38" r="0.62">
-      <stop offset="0" stop-color="#2a6bff" stop-opacity="0.42"/>
-      <stop offset="0.6" stop-color="#1e5bff" stop-opacity="0.1"/>
-      <stop offset="1" stop-color="#1e5bff" stop-opacity="0"/>
-    </radialGradient>
-    <clipPath id="ball"><circle cx="256" cy="256" r="176"/></clipPath>
+    <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a9c4ff"/>
+      <stop offset="1" stop-color="#1e5bff"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe680"/>
+      <stop offset="1" stop-color="#ffb000"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
   </defs>
 
   <rect width="512" height="512" rx="112" fill="url(#bg)"/>
-  <circle cx="256" cy="256" r="176" fill="url(#core)"/>
 
-  <!-- Drahtgitter-Kugel: Längen- und Breitengrade -->
-  <g fill="none" stroke="#5b8bff" stroke-opacity="0.55" stroke-width="5" clip-path="url(#ball)">
-    <ellipse cx="256" cy="256" rx="58" ry="176"/>
-    <ellipse cx="256" cy="256" rx="118" ry="176"/>
-    <ellipse cx="256" cy="256" rx="160" ry="176"/>
-    <line x1="256" y1="80" x2="256" y2="432"/>
-    <ellipse cx="256" cy="256" rx="176" ry="40"/>
-    <ellipse cx="256" cy="168" rx="152" ry="30"/>
-    <ellipse cx="256" cy="344" rx="152" ry="30"/>
+  <!-- Drahtgitter-Kugel dezent im Hintergrund -->
+  <g fill="none" stroke="#5b8bff" stroke-opacity="0.22" stroke-width="3">
+    <circle cx="256" cy="256" r="196"/>
+    <ellipse cx="256" cy="256" rx="70" ry="196"/>
+    <ellipse cx="256" cy="256" rx="140" ry="196"/>
+    <ellipse cx="256" cy="256" rx="196" ry="46"/>
+    <ellipse cx="256" cy="160" rx="170" ry="34"/>
+    <ellipse cx="256" cy="352" rx="170" ry="34"/>
   </g>
-  <circle cx="256" cy="256" r="176" fill="none" stroke="#8fb0ff" stroke-width="6"/>
 
-  <!-- Umlaufbahn mit Satellit -->
-  <ellipse cx="256" cy="256" rx="226" ry="70" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="4" stroke-dasharray="3 14" stroke-linecap="round" transform="rotate(-24 256 256)"/>
+  <!-- Leuchten hinter dem M -->
+  <g filter="url(#glow)" opacity="0.6" fill="#1e5bff">
+    <rect x="96" y="120" width="56" height="272" rx="28"/>
+    <rect x="360" y="120" width="56" height="272" rx="28"/>
+  </g>
 
-  <defs>
-    <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#c9d8ff"/>
-    </linearGradient>
-    <filter id="ms" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="0.55"/>
-    </filter>
-  </defs>
-  <!-- Großes M in Stack Sans Notch (Pfad) vor der Kugel -->
-  <path fill="url(#mg)" filter="url(#ms)" transform="translate(43.8 440.2) scale(0.5034)" d="M319 0 138 -700H286L457 0ZM524 0H386L557 -700H705ZM52 -700H192V0H52ZM651 -700H791V0H651Z"/>
-  <!-- W als gelber Akzent in der Kerbe des M -->
-  <path fill="#ffd400" transform="translate(217.4 145.8) scale(0.0763)" d="M201.625 0.0 20.625 -700.0H155.5L326.5 0.0ZM384.25 0.0H259.375L430.375 -700.0H565.25ZM626.875 0.0 445.875 -700.0H580.75L751.75 0.0ZM809.5 0.0H684.625L855.625 -700.0H990.5Z"/>
+  <!-- M aus Strichen: oben bündig, zur Mitte kürzer – die Kerbe des M -->
+  <rect x="96" y="120" width="56" height="272" rx="28" fill="url(#blue)"/>
+  <rect x="162" y="120" width="56" height="196" rx="28" fill="url(#blue)"/>
+  <rect x="228" y="120" width="56" height="128" rx="28" fill="url(#gold)"/>
+  <rect x="294" y="120" width="56" height="196" rx="28" fill="url(#blue)"/>
+  <rect x="360" y="120" width="56" height="272" rx="28" fill="url(#blue)"/>
 </svg>
