@@ -227,7 +227,7 @@ function Close() {
 
 export default function Home() {
   useSeo({
-    title: "Entwickler",
+    title: "Entwickler für Embedded, Netzwerke und KI",
     description:
       "Manuel Westermeier, Entwickler: Betriebssysteme für ESP32, Netzwerkprotokolle, KI-Wasserrettung TWR. Bundessieg YES! 2026, Preise bei Jugend forscht.",
     path: "/",

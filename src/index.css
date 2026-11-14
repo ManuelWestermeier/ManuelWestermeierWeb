@@ -667,3 +667,16 @@ body::before {
 .pill--glass.glass::after {
   display: none;
 }
+
+/* Logo in der Kopfzeile */
+.hdr__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.hdr__logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  flex: none;
+}
