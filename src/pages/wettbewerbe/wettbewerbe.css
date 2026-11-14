@@ -926,3 +926,6 @@
 .tl__trophy {
   margin-top: 0.15em;
 }
+.tl .tl__year {
+  color: var(--ink-3);
+}

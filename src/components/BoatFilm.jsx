@@ -50,7 +50,7 @@ export default function BoatFilm() {
           <div className="film__bar">
             <Link to="/projects#twr" className="film__cap glass">
               <span className="meta">TWR</span>
-              <span>Das Boot fährt allein zur Person.</span>
+              <span>Das autonome Rettungsboot im Testeinsatz.</span>
               <Icon name="arrow" size={16} />
             </Link>
             <button className="film__btn glass" onClick={toggle} aria-label={paused ? "Video abspielen" : "Video pausieren"}>

@@ -239,3 +239,6 @@
 @media (max-width: 760px) {
   .cw { grid-template-columns: 1fr; }
 }
+.page .page__title .dim {
+  color: var(--ink-3);
+}

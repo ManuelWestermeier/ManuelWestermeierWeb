@@ -858,3 +858,8 @@
   font-size: var(--t-xs);
   color: var(--ink-2);
 }
+
+/* Noch nicht „gelesene“ Wörter der Aussage: gedimmt, aber lesbar (≥ 3:1) */
+.stmt__text span {
+  color: #6e6e6e;
+}

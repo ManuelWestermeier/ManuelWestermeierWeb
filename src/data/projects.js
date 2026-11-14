@@ -87,7 +87,7 @@ export const projects = [
     full: "KI baut Websites",
     kind: "Web",
     line: "Beschreiben, KI baut die Website. In zehn Minuten online.",
-    images: ["/imag/live/kuein-full.webp", "/imag/live/kuein.webp"],
+    images: ["/imag/live/kuein.webp", "/imag/live/kuein-full.webp"],
     links: [{ label: "küin.de", href: "https://xn--kin-hoa.de/" }],
     featured: true,
   },

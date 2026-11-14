@@ -655,3 +655,15 @@ body::before {
 .page__title .dim,
 .cmp__title .dim,
 .tl__year { color: var(--ink-3); }
+
+/* Weiße Knöpfe bleiben weiß – auch wenn .lite .glass auf Touch-Geräten
+   die Glasfläche dunkel ersetzt (sonst Schwarz auf Schwarz) */
+.pill--glass.glass,
+.lite .pill--glass.glass {
+  background: #fff;
+  color: #000;
+}
+.pill--glass.glass::before,
+.pill--glass.glass::after {
+  display: none;
+}
