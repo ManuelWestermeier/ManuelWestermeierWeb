@@ -18,6 +18,7 @@ detectLite();
 window.cw = new URL(document.location).searchParams.get("cw") !== "n";
 
 if (
+  !import.meta.env.DEV &&
   !["http://localhost:4000", "http://localhost:5173", "http://localhost:4173", "http://localhost", "https://manuel-westermeier.de"].includes(
     document.location.origin,
   )

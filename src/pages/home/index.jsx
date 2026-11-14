@@ -55,6 +55,18 @@ function Hero() {
             Betriebssysteme, Netzwerkprotokolle und KI.
           </p>
 
+          <div className="hero__cta">
+            <Link to="/contact" className="pill pill--solid">
+              Kontakt aufnehmen <Icon name="arrow" size={16} className="arr" />
+            </Link>
+            <a href="https://www.linkedin.com/in/manuel-westermeier/" target="_blank" rel="noopener noreferrer" className="pill pill--ghost">
+              <Icon name="linkedin" size={16} /> LinkedIn
+            </a>
+            <a href="https://wa.me/4915256427900" target="_blank" rel="noopener noreferrer" className="pill pill--ghost">
+              <Icon name="whatsapp" size={16} /> WhatsApp
+            </a>
+          </div>
+
           <div className="hero__cardpos" ref={cardMove}>
             <Link to="/wettbewerbe" className="hero__card glass glass--refract tilt" ref={card}>
               <span className="meta">{yes.round} {year(yes.date)}</span>

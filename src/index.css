@@ -560,3 +560,95 @@ main {
   outline: 1px solid var(--accent);
   outline-offset: 3px;
 }
+
+/* TEST: Schwarz/Weiß mit Gelb- und Blau-Akzenten */
+:root {
+  --bg: #000;
+  --bg-1: #0a0a0a;
+  --bg-2: #141414;
+  --deep: #1e5bff;
+  --deep-2: #1747c4;
+  --deep-3: #2a66ff;
+  --ink: #fff;
+  --ink-2: #c8c8c8;
+  --ink-3: #8a8a8a;
+  --ink-4: #3a3a3a;
+  --accent: #ffd400;
+  --accent-ink: #000;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.16);
+  --glass-fill: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01) 42%, rgba(30, 91, 255, 0.08));
+  --glass-edge: rgba(255, 255, 255, 0.12);
+}
+
+/* TEST: Hintergrund mit Tiefe – fixe Lichtflecken, einmal gemalt, kein Filter */
+body { background: transparent; }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60vmax 45vmax at 85% -10%, rgba(30, 91, 255, 0.28), transparent 60%),
+    radial-gradient(50vmax 40vmax at -10% 110%, rgba(30, 91, 255, 0.16), transparent 60%),
+    radial-gradient(30vmax 25vmax at 105% 95%, rgba(255, 212, 0, 0.07), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 64px 64px;
+  -webkit-mask: radial-gradient(120% 90% at 50% 30%, #000 40%, transparent 100%);
+  mask: radial-gradient(120% 90% at 50% 30%, #000 40%, transparent 100%);
+}
+
+/* TEST: Glas – klar, satt, Kante nur als Hauch */
+.glass {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.02) 50%), rgba(10, 12, 20, 0.35);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9);
+}
+.lite .glass {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.025) 50%), rgba(14, 16, 24, 0.95);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9);
+}
+.glass::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0) 40%);
+}
+.glass::after {
+  background: radial-gradient(420px circle at var(--mx, 30%) var(--my, 0%), rgba(255, 255, 255, 0.10), transparent 45%);
+}
+
+/* TEST: Knöpfe – Primär massiv weiß, Sekundär Glas; Gelb nur als Punkt */
+.pill {
+  min-height: 50px;
+  padding: 0 26px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.pill--solid,
+.pill--glass {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 10px 30px -10px rgba(30, 91, 255, 0.55);
+}
+.pill--glass::before,
+.pill--glass::after { display: none; }
+.pill--solid:hover,
+.pill--glass:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -12px rgba(30, 91, 255, 0.75);
+}
+.pill .arr { color: var(--deep); }
+.step__btn.glass:hover { color: #fff; }
+
+/* Gelb: nur ein kleiner Punkt hinter dem Namen */
+.hero__line--2::after {
+  content: "";
+  display: inline-block;
+  width: 0.14em;
+  height: 0.14em;
+  margin-left: 0.06em;
+  border-radius: 50%;
+  background: var(--accent);
+}
