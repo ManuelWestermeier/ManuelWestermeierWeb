@@ -258,7 +258,7 @@ export const projects = [
 
 /* Reihenfolge nach Anspruch: Hardware, eigene Systeme und Protokolle zuerst */
 const ORDER = [
-  "twr", "hectobase", "mw-os", "lhrp", "c6-os", "schneckenalarm", "kuein", "easy-einkauf",
+  "twr", "hectobase", "mw-os", "easy-einkauf", "lhrp", "c6-os", "schneckenalarm", "kuein",
   "privuschat", "hidden-fs", "wsnet", "next-gen-exe", "mw-browser", "quatsch", "notenbuch",
   "chiemweb", "browser-v1", "contacts", "v-present", "car-game", "jump-drive",
   "car-top", "memory", "bird",

@@ -114,6 +114,7 @@ function MediaInner({ p }) {
           src={p.video}
           poster={p.poster}
           muted
+          autoPlay
           loop
           playsInline
           controls

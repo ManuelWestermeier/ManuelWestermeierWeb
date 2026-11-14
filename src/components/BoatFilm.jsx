@@ -1,15 +1,16 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "./Icon";
-import { reducedMotion, useScrollProgress, useVisible } from "../lib/hooks";
+import { useScrollProgress, useVisible } from "../lib/hooks";
 
 /* Stummer Loop des TWR-Boots. Lädt erst kurz vor dem Sichtbereich,
    pausiert außerhalb. Wächst beim Scrollen von 86 % auf volle Breite. */
 export default function BoatFilm() {
   const video = useRef(null);
   const frame = useRef(null);
-  const [paused, setPaused] = useState(reducedMotion());
-  const userPaused = useRef(reducedMotion());
+  /* Startet immer von selbst; anhalten kann man per Knopf */
+  const [paused, setPaused] = useState(false);
+  const userPaused = useRef(false);
 
   const wrap = useScrollProgress((p) => {
     const f = frame.current;
@@ -46,7 +47,7 @@ export default function BoatFilm() {
     <section className="film" ref={wrap} aria-label="TWR – autonomes Rettungsboot im Einsatz">
       <div className="film__sticky" ref={sentinel}>
         <div className="film__frame" ref={frame}>
-          <video ref={video} muted loop playsInline preload="none" poster="/imag/twr-poster.webp" aria-hidden="true" />
+          <video ref={video} muted autoPlay loop playsInline preload="none" poster="/imag/twr-poster.webp" aria-hidden="true" />
           <div className="film__bar">
             <Link to="/projects#twr" className="film__cap glass">
               <span className="meta">TWR</span>
