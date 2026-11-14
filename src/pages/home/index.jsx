@@ -52,7 +52,7 @@ function Hero() {
           </h1>
 
           <p className="hero__sub" ref={sub}>
-            Betriebssysteme, Netzwerkprotokolle und KI. <span className="dim">Gebaut in Ruhpolding.</span>
+            Betriebssysteme, Netzwerkprotokolle und KI.
           </p>
 
           <div className="hero__cardpos" ref={cardMove}>
@@ -219,9 +219,9 @@ function Close() {
 
 export default function Home() {
   useSeo({
-    title: "Entwickler aus Ruhpolding",
+    title: "Entwickler",
     description:
-      "Manuel Westermeier, Entwickler aus Ruhpolding: Betriebssysteme für ESP32, Netzwerkprotokolle, KI-Wasserrettung TWR. Bundessieg YES! 2026, Preise bei Jugend forscht.",
+      "Manuel Westermeier, Entwickler: Betriebssysteme für ESP32, Netzwerkprotokolle, KI-Wasserrettung TWR. Bundessieg YES! 2026, Preise bei Jugend forscht.",
     path: "/",
   });
   useRise();

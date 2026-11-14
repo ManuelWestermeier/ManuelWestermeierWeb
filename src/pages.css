@@ -202,3 +202,12 @@
     margin-left: 0;
   }
 }
+
+.portrait {
+  display: block;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+}

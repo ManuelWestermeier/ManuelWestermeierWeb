@@ -7,6 +7,7 @@ const ways = [
   { icon: "mail", label: "E-Mail", value: "info@manuel-westermeier.de", href: "mailto:info@manuel-westermeier.de" },
   { icon: "phone", label: "Telefon", value: "+49 1525 6427 900", href: "tel:+4915256427900" },
   { icon: "github", label: "GitHub", value: "ManuelWestermeier", href: "https://github.com/ManuelWestermeier", ext: true },
+  { icon: "linkedin", label: "LinkedIn", value: "manuel-westermeier", href: "https://www.linkedin.com/in/manuel-westermeier/", ext: true },
   { icon: "tiktok", label: "TikTok", value: "@p111dev", href: "https://www.tiktok.com/@p111dev", ext: true },
 ];
 
@@ -31,6 +32,7 @@ export default function Contact() {
 
   return (
     <div className="page wrap">
+      <img src="/manuel.webp" alt="Manuel Westermeier" className="portrait rise" width="160" height="160" decoding="async" />
       <h1 className="page__title rise">
         Schreiben Sie mir<span className="dim">. Antwort meist innerhalb von 24 Stunden.</span>
       </h1>

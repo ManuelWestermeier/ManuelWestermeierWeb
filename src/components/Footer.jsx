@@ -5,9 +5,10 @@ export default function Footer() {
   return (
     <footer className="ftr">
       <div className="wrap">
-        <p>© {new Date().getFullYear()} Manuel Westermeier · Ruhpolding</p>
+        <p>© {new Date().getFullYear()} Manuel Westermeier</p>
         <nav aria-label="Rechtliches und Profile">
           <a href="https://github.com/ManuelWestermeier" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/manuel-westermeier/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://www.tiktok.com/@p111dev" target="_blank" rel="noopener noreferrer">TikTok</a>
           <Link to="/impressum">Impressum</Link>
           <Link to="/datenschutz">Datenschutz</Link>
