@@ -7,7 +7,7 @@ import { spawn } from "node:child_process";
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-const ROUTES = ["/", "/projects", "/wettbewerbe", "/my-work", "/contact", "/impressum", "/datenschutz"];
+const ROUTES = ["/", "/projects", "/wettbewerbe", "/my-work", "/contact", "/impressum", "/datenschutz", "/links"];
 const OUT = "docs";
 const PORT = 4173;
 const BROWSERS = [

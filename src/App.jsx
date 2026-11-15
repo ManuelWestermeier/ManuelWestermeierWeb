@@ -12,10 +12,12 @@ const MyWork = lazy(() => import("./pages/my-work"));
 const Contact = lazy(() => import("./pages/contact"));
 const Impressum = lazy(() => import("./pages/impressum"));
 const Datenschutz = lazy(() => import("./pages/datenschutz"));
+const Links = lazy(() => import("./pages/links"));
 const PageNotFound = lazy(() => import("./pages/404"));
 
 export default function App() {
   const { pathname, hash } = useLocation();
+  const bare = pathname.startsWith("/links");
 
   useEffect(() => {
     if (!hash) window.scrollTo(0, 0);
@@ -25,7 +27,7 @@ export default function App() {
     <>
       <a href="#main" className="skip">Zum Inhalt springen</a>
       <GlassFilter />
-      <Header />
+      {!bare && <Header />}
       <main id="main" key={pathname} className="page-enter">
         <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
           <Routes>
@@ -36,11 +38,12 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/impressum" element={<Impressum />} />
             <Route path="/datenschutz" element={<Datenschutz />} />
+            <Route path="/links" element={<Links />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Suspense>
       </main>
-      <Footer />
+      {!bare && <Footer />}
     </>
   );
 }
